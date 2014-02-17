@@ -25,10 +25,6 @@ Partial Class Main
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.ToolStripContainer = New System.Windows.Forms.ToolStripContainer
         Me.MainStatusStrip = New System.Windows.Forms.StatusStrip
-        Me.MainMenuStrip = New System.Windows.Forms.MenuStrip
-        Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripStatusLabel = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStripProgressBar = New System.Windows.Forms.ToolStripProgressBar
         Me.SplitContainer = New System.Windows.Forms.SplitContainer
@@ -39,15 +35,20 @@ Partial Class Main
         Me.RadBtnEquipos = New System.Windows.Forms.RadioButton
         Me.RadBtnConsultas = New System.Windows.Forms.RadioButton
         Me.RadBtnCertificados = New System.Windows.Forms.RadioButton
+        Me.MainMenuStrip = New System.Windows.Forms.MenuStrip
+        Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripContainer.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainer.ContentPanel.SuspendLayout()
         Me.ToolStripContainer.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainer.SuspendLayout()
         Me.MainStatusStrip.SuspendLayout()
-        Me.MainMenuStrip.SuspendLayout()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.SuspendLayout()
         Me.FlowLayoutPanelMenu.SuspendLayout()
+        Me.MainMenuStrip.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStripContainer
@@ -73,28 +74,6 @@ Partial Class Main
         resources.ApplyResources(Me.MainStatusStrip, "MainStatusStrip")
         Me.MainStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel, Me.ToolStripProgressBar})
         Me.MainStatusStrip.Name = "MainStatusStrip"
-        '
-        'MainMenuStrip
-        '
-        resources.ApplyResources(Me.MainMenuStrip, "MainMenuStrip")
-        Me.MainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.AyudaToolStripMenuItem})
-        Me.MainMenuStrip.Name = "MainMenuStrip"
-        '
-        'ArchivoToolStripMenuItem
-        '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SalirToolStripMenuItem})
-        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        resources.ApplyResources(Me.ArchivoToolStripMenuItem, "ArchivoToolStripMenuItem")
-        '
-        'AyudaToolStripMenuItem
-        '
-        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
-        resources.ApplyResources(Me.AyudaToolStripMenuItem, "AyudaToolStripMenuItem")
-        '
-        'SalirToolStripMenuItem
-        '
-        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        resources.ApplyResources(Me.SalirToolStripMenuItem, "SalirToolStripMenuItem")
         '
         'ToolStripStatusLabel
         '
@@ -190,12 +169,39 @@ Partial Class Main
         Me.RadBtnCertificados.Name = "RadBtnCertificados"
         Me.RadBtnCertificados.UseVisualStyleBackColor = True
         '
+        'MainMenuStrip
+        '
+        resources.ApplyResources(Me.MainMenuStrip, "MainMenuStrip")
+        Me.MainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.AyudaToolStripMenuItem})
+        Me.MainMenuStrip.Name = "MainMenuStrip"
+        '
+        'ArchivoToolStripMenuItem
+        '
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SalirToolStripMenuItem})
+        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
+        resources.ApplyResources(Me.ArchivoToolStripMenuItem, "ArchivoToolStripMenuItem")
+        '
+        'SalirToolStripMenuItem
+        '
+        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        resources.ApplyResources(Me.SalirToolStripMenuItem, "SalirToolStripMenuItem")
+        '
+        'AyudaToolStripMenuItem
+        '
+        Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AcercaDeToolStripMenuItem})
+        Me.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem"
+        resources.ApplyResources(Me.AyudaToolStripMenuItem, "AyudaToolStripMenuItem")
+        '
+        'AcercaDeToolStripMenuItem
+        '
+        Me.AcercaDeToolStripMenuItem.Name = "AcercaDeToolStripMenuItem"
+        resources.ApplyResources(Me.AcercaDeToolStripMenuItem, "AcercaDeToolStripMenuItem")
+        '
         'Main
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ToolStripContainer)
-        Me.MainMenuStrip = Me.MainMenuStrip
         Me.Name = "Main"
         Me.ToolStripContainer.BottomToolStripPanel.ResumeLayout(False)
         Me.ToolStripContainer.BottomToolStripPanel.PerformLayout()
@@ -206,18 +212,18 @@ Partial Class Main
         Me.ToolStripContainer.PerformLayout()
         Me.MainStatusStrip.ResumeLayout(False)
         Me.MainStatusStrip.PerformLayout()
-        Me.MainMenuStrip.ResumeLayout(False)
-        Me.MainMenuStrip.PerformLayout()
         Me.SplitContainer.Panel1.ResumeLayout(False)
         Me.SplitContainer.ResumeLayout(False)
         Me.FlowLayoutPanelMenu.ResumeLayout(False)
         Me.FlowLayoutPanelMenu.PerformLayout()
+        Me.MainMenuStrip.ResumeLayout(False)
+        Me.MainMenuStrip.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents ToolStripContainer As System.Windows.Forms.ToolStripContainer
     Friend WithEvents MainStatusStrip As System.Windows.Forms.StatusStrip
-    Friend WithEvents MainMenuStrip As System.Windows.Forms.MenuStrip
+    Shadows WithEvents MainMenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents ArchivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -231,5 +237,6 @@ Partial Class Main
     Friend WithEvents RadBtnEquipos As System.Windows.Forms.RadioButton
     Friend WithEvents RadBtnConsultas As System.Windows.Forms.RadioButton
     Friend WithEvents RadBtnCertificados As System.Windows.Forms.RadioButton
+    Friend WithEvents AcercaDeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

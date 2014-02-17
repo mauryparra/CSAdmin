@@ -1,6 +1,7 @@
 ﻿Public Class Main
 
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        My.Forms.LoginForm.ShowDialog()
         ToolStripStatusLabel.Text = "Listo"
     End Sub
 
@@ -20,15 +21,22 @@
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
         Application.Exit()
     End Sub
+
+    Private Sub AcercaDeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AcercaDeToolStripMenuItem.Click
+        My.Forms.AcercaDe.ShowDialog()
+    End Sub
 #End Region
 
 #Region "Menu Lateral"
     Private Sub RadBtnPersonal_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadBtnPersonal.CheckedChanged
         If RadBtnPersonal.Checked Then
+            ToolStripProgressBar.Style = ProgressBarStyle.Continuous
+            ToolStripProgressBar.Visible = True
             Call limpiarPanel()
             Dim pantallaPersonal As New Personal
             pantallaPersonal.Dock = DockStyle.Fill
             SplitContainer.Panel2.Controls.Add(pantallaPersonal)
+            ToolStripProgressBar.Visible = False
         End If
     End Sub
 

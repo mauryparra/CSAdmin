@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="MainStatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>0, 0</value>
   </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="MainStatusStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -382,22 +382,22 @@
     <value>0</value>
   </data>
   <metadata name="MainMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>155, 17</value>
+    <value>0, 0</value>
   </metadata>
   <data name="MainMenuStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="SalirToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="SalirToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Salir</value>
   </data>
   <data name="ArchivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 20</value>
   </data>
   <data name="ArchivoToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Archivo</value>
+  </data>
+  <data name="AcercaDeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 22</value>
+  </data>
+  <data name="AcercaDeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Acerca de CSAdmin</value>
   </data>
   <data name="AyudaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 20</value>
@@ -720,6 +720,12 @@
   <data name="&gt;&gt;RadBtnCertificados.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="SalirToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 22</value>
+  </data>
+  <data name="SalirToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Salir</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -735,24 +741,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>CSAdmin</value>
   </data>
-  <data name="&gt;&gt;ArchivoToolStripMenuItem.Name" xml:space="preserve">
-    <value>ArchivoToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;ArchivoToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;AyudaToolStripMenuItem.Name" xml:space="preserve">
-    <value>AyudaToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;AyudaToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SalirToolStripMenuItem.Name" xml:space="preserve">
-    <value>SalirToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;SalirToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;ToolStripStatusLabel.Name" xml:space="preserve">
     <value>ToolStripStatusLabel</value>
   </data>
@@ -764,6 +752,30 @@
   </data>
   <data name="&gt;&gt;ToolStripProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ArchivoToolStripMenuItem.Name" xml:space="preserve">
+    <value>ArchivoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ArchivoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SalirToolStripMenuItem.Name" xml:space="preserve">
+    <value>SalirToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SalirToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AyudaToolStripMenuItem.Name" xml:space="preserve">
+    <value>AyudaToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;AyudaToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AcercaDeToolStripMenuItem.Name" xml:space="preserve">
+    <value>AcercaDeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;AcercaDeToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Main</value>
