@@ -147,6 +147,9 @@ Partial Class AcercaDe
         '
         Me.OKButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.OKButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
+        Me.OKButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.OKButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.OKButton.Location = New System.Drawing.Point(318, 232)
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(75, 23)
