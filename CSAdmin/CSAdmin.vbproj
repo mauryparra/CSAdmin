@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6D472CA3-FA8A-400A-8F5A-01052686F555}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -111,7 +111,7 @@
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modulos\Funciones.vb" />
+    <Compile Include="Modulos\FunSubs.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -127,40 +127,40 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Pantallas\Asistencia.Designer.vb">
-      <DependentUpon>Asistencia.vb</DependentUpon>
+    <Compile Include="Pantallas\pAsistencia.Designer.vb">
+      <DependentUpon>pAsistencia.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Asistencia.vb">
+    <Compile Include="Pantallas\pAsistencia.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pantallas\Certificados.Designer.vb">
-      <DependentUpon>Certificados.vb</DependentUpon>
+    <Compile Include="Pantallas\pCertificados.Designer.vb">
+      <DependentUpon>pCertificados.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Certificados.vb">
+    <Compile Include="Pantallas\pCertificados.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pantallas\Consultas.Designer.vb">
-      <DependentUpon>Consultas.vb</DependentUpon>
+    <Compile Include="Pantallas\pConsultas.Designer.vb">
+      <DependentUpon>pConsultas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Consultas.vb">
+    <Compile Include="Pantallas\pConsultas.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pantallas\Contratos.Designer.vb">
-      <DependentUpon>Contratos.vb</DependentUpon>
+    <Compile Include="Pantallas\pContratos.Designer.vb">
+      <DependentUpon>pContratos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Contratos.vb">
+    <Compile Include="Pantallas\pContratos.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pantallas\Equipos.Designer.vb">
-      <DependentUpon>Equipos.vb</DependentUpon>
+    <Compile Include="Pantallas\pEquipos.Designer.vb">
+      <DependentUpon>pEquipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Equipos.vb">
+    <Compile Include="Pantallas\pEquipos.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pantallas\Personal.Designer.vb">
-      <DependentUpon>Personal.vb</DependentUpon>
+    <Compile Include="Pantallas\pPersonal.Designer.vb">
+      <DependentUpon>pPersonal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\Personal.vb">
+    <Compile Include="Pantallas\pPersonal.vb">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
@@ -183,28 +183,28 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Asistencia.resx">
-      <DependentUpon>Asistencia.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pAsistencia.resx">
+      <DependentUpon>pAsistencia.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Certificados.resx">
-      <DependentUpon>Certificados.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pCertificados.resx">
+      <DependentUpon>pCertificados.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Consultas.resx">
-      <DependentUpon>Consultas.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pConsultas.resx">
+      <DependentUpon>pConsultas.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Contratos.resx">
-      <DependentUpon>Contratos.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pContratos.resx">
+      <DependentUpon>pContratos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Equipos.resx">
-      <DependentUpon>Equipos.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pEquipos.resx">
+      <DependentUpon>pEquipos.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pantallas\Personal.resx">
-      <DependentUpon>Personal.vb</DependentUpon>
+    <EmbeddedResource Include="Pantallas\pPersonal.resx">
+      <DependentUpon>pPersonal.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

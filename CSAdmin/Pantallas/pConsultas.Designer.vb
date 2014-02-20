@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Equipos
+Partial Class pConsultas
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -24,11 +24,11 @@ Partial Class Equipos
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
-        'Equipos
+        'Consultas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Name = "Equipos"
+        Me.Name = "Consultas"
         Me.Size = New System.Drawing.Size(435, 292)
         Me.ResumeLayout(False)
 

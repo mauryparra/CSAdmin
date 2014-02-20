@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Personal
+Partial Class pContratos
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -22,34 +22,34 @@ Partial Class Personal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TabControlPersonal = New System.Windows.Forms.TabControl
-        Me.TabPageAlta = New System.Windows.Forms.TabPage
+        Me.TabControl1 = New System.Windows.Forms.TabControl
+        Me.TabPageNuevo = New System.Windows.Forms.TabPage
         Me.TabPageModificar = New System.Windows.Forms.TabPage
         Me.TabPageBaja = New System.Windows.Forms.TabPage
-        Me.TabControlPersonal.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TabControlPersonal
+        'TabControl1
         '
-        Me.TabControlPersonal.Controls.Add(Me.TabPageAlta)
-        Me.TabControlPersonal.Controls.Add(Me.TabPageModificar)
-        Me.TabControlPersonal.Controls.Add(Me.TabPageBaja)
-        Me.TabControlPersonal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControlPersonal.Location = New System.Drawing.Point(0, 0)
-        Me.TabControlPersonal.Name = "TabControlPersonal"
-        Me.TabControlPersonal.SelectedIndex = 0
-        Me.TabControlPersonal.Size = New System.Drawing.Size(435, 292)
-        Me.TabControlPersonal.TabIndex = 0
+        Me.TabControl1.Controls.Add(Me.TabPageNuevo)
+        Me.TabControl1.Controls.Add(Me.TabPageModificar)
+        Me.TabControl1.Controls.Add(Me.TabPageBaja)
+        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(435, 292)
+        Me.TabControl1.TabIndex = 0
         '
-        'TabPageAlta
+        'TabPageNuevo
         '
-        Me.TabPageAlta.Location = New System.Drawing.Point(4, 22)
-        Me.TabPageAlta.Name = "TabPageAlta"
-        Me.TabPageAlta.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageAlta.Size = New System.Drawing.Size(427, 266)
-        Me.TabPageAlta.TabIndex = 0
-        Me.TabPageAlta.Text = "Alta"
-        Me.TabPageAlta.UseVisualStyleBackColor = True
+        Me.TabPageNuevo.Location = New System.Drawing.Point(4, 22)
+        Me.TabPageNuevo.Name = "TabPageNuevo"
+        Me.TabPageNuevo.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageNuevo.Size = New System.Drawing.Size(427, 266)
+        Me.TabPageNuevo.TabIndex = 0
+        Me.TabPageNuevo.Text = "Nuevo"
+        Me.TabPageNuevo.UseVisualStyleBackColor = True
         '
         'TabPageModificar
         '
@@ -70,19 +70,19 @@ Partial Class Personal
         Me.TabPageBaja.Text = "Baja"
         Me.TabPageBaja.UseVisualStyleBackColor = True
         '
-        'Personal
+        'Contratos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.TabControlPersonal)
-        Me.Name = "Personal"
+        Me.Controls.Add(Me.TabControl1)
+        Me.Name = "Contratos"
         Me.Size = New System.Drawing.Size(435, 292)
-        Me.TabControlPersonal.ResumeLayout(False)
+        Me.TabControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TabControlPersonal As System.Windows.Forms.TabControl
-    Friend WithEvents TabPageAlta As System.Windows.Forms.TabPage
+    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabPageNuevo As System.Windows.Forms.TabPage
     Friend WithEvents TabPageModificar As System.Windows.Forms.TabPage
     Friend WithEvents TabPageBaja As System.Windows.Forms.TabPage
 
