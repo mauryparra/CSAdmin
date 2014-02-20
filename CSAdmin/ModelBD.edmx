@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="CSAdminBDModelStoreContainer">
+          <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" />
+          <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" />
+          <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Store.Funciones" store:Type="Tables" />
+          <EntitySet Name="Inasistencias" EntityType="CSAdminBDModel.Store.Inasistencias" store:Type="Tables" />
+          <EntitySet Name="Personas" EntityType="CSAdminBDModel.Store.Personas" store:Type="Tables" />
+          <EntitySet Name="PersonasTel" EntityType="CSAdminBDModel.Store.PersonasTel" store:Type="Tables" />
+          <EntitySet Name="SituacionesProfesionales" EntityType="CSAdminBDModel.Store.SituacionesProfesionales" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="CSAdminBDModel.Store.Usuarios" store:Type="Tables" />
+          <AssociationSet Name="Equipos_Contratos" Association="CSAdminBDModel.Store.Equipos_Contratos">
+            <End Role="Equipos" EntitySet="Equipos" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Funciones_Contratos" Association="CSAdminBDModel.Store.Funciones_Contratos">
+            <End Role="Funciones" EntitySet="Funciones" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Contratos" Association="CSAdminBDModel.Store.Personas_Contratos">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Equipos" Association="CSAdminBDModel.Store.Personas_Equipos">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Inasistencias" Association="CSAdminBDModel.Store.Personas_Inasistencias">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Inasistencias" EntitySet="Inasistencias" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_PersonasTel" Association="CSAdminBDModel.Store.Personas_PersonasTel">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasTel" EntitySet="PersonasTel" />
+          </AssociationSet>
+          <AssociationSet Name="SituacionesProfesionales_Contratos" Association="CSAdminBDModel.Store.SituacionesProfesionales_Contratos">
+            <End Role="SituacionesProfesionales" EntitySet="SituacionesProfesionales" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Usuarios_Personas" Association="CSAdminBDModel.Store.Usuarios_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contratos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+          <Property Name="Afectado" Type="bit" Nullable="false" />
+          <Property Name="Origen" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="CargoId" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="CondicionId" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="FuncionId" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="EquipoId" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Horas" Type="tinyint" Nullable="false" />
+          <Property Name="Observacion" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Equipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Ubicacion" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="30" />
+          <Property Name="Contraseña" Type="nvarchar" MaxLength="30" />
+          <Property Name="Telefono" Type="numeric" Precision="12" />
+          <Property Name="CoordinadorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Funciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="Funcion" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Inasistencias">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="Desde" Type="datetime" Nullable="false" />
+          <Property Name="Hasta" Type="datetime" Nullable="false" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="140" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="numeric" Nullable="false" Precision="9" />
+          <Property Name="CUIT" Type="numeric" Precision="11" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="100" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="40" />
+          <Property Name="Baja" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonasTel">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="nchar" Nullable="false" MaxLength="2" />
+          <Property Name="Numero" Type="numeric" Nullable="false" Precision="12" />
+        </EntityType>
+        <EntityType Name="SituacionesProfesionales">
+          <Key>
+            <PropertyRef Name="CargoAbrev" />
+            <PropertyRef Name="CondicionAbrev" />
+          </Key>
+          <Property Name="CargoAbrev" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="Cargo" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CondicionAbrev" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="Condicion" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Contraseña" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="Rol" Type="nvarchar" Nullable="false" MaxLength="3" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="Equipos_Contratos">
+          <End Role="Equipos" Type="CSAdminBDModel.Store.Equipos" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratos">
+              <PropertyRef Name="EquipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Funciones_Contratos">
+          <End Role="Funciones" Type="CSAdminBDModel.Store.Funciones" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Funciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contratos">
+              <PropertyRef Name="FuncionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_Contratos">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contratos">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_Equipos">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
+          <End Role="Equipos" Type="CSAdminBDModel.Store.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="CoordinadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_Inasistencias">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inasistencias" Type="CSAdminBDModel.Store.Inasistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inasistencias">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_PersonasTel">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonasTel" Type="CSAdminBDModel.Store.PersonasTel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonasTel">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SituacionesProfesionales_Contratos">
+          <End Role="SituacionesProfesionales" Type="CSAdminBDModel.Store.SituacionesProfesionales" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SituacionesProfesionales">
+              <PropertyRef Name="CargoAbrev" />
+              <PropertyRef Name="CondicionAbrev" />
+            </Principal>
+            <Dependent Role="Contratos">
+              <PropertyRef Name="CargoId" />
+              <PropertyRef Name="CondicionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuarios_Personas">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
+          <End Role="Usuarios" Type="CSAdminBDModel.Store.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="CSAdminBDEntities1">
+          <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Contratos" />
+          <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Equipos" />
+          <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Funciones" />
+          <EntitySet Name="Inasistencias" EntityType="CSAdminBDModel.Inasistencias" />
+          <EntitySet Name="Personas" EntityType="CSAdminBDModel.Personas" />
+          <EntitySet Name="PersonasTel" EntityType="CSAdminBDModel.PersonasTel" />
+          <EntitySet Name="SituacionesProfesionales" EntityType="CSAdminBDModel.SituacionesProfesionales" />
+          <EntitySet Name="Usuarios" EntityType="CSAdminBDModel.Usuarios" />
+          <AssociationSet Name="Equipos_Contratos" Association="CSAdminBDModel.Equipos_Contratos">
+            <End Role="Equipos" EntitySet="Equipos" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Funciones_Contratos" Association="CSAdminBDModel.Funciones_Contratos">
+            <End Role="Funciones" EntitySet="Funciones" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Contratos" Association="CSAdminBDModel.Personas_Contratos">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="SituacionesProfesionales_Contratos" Association="CSAdminBDModel.SituacionesProfesionales_Contratos">
+            <End Role="SituacionesProfesionales" EntitySet="SituacionesProfesionales" />
+            <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Equipos" Association="CSAdminBDModel.Personas_Equipos">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_Inasistencias" Association="CSAdminBDModel.Personas_Inasistencias">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Inasistencias" EntitySet="Inasistencias" />
+          </AssociationSet>
+          <AssociationSet Name="Personas_PersonasTel" Association="CSAdminBDModel.Personas_PersonasTel">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasTel" EntitySet="PersonasTel" />
+          </AssociationSet>
+          <AssociationSet Name="Usuarios_Personas" Association="CSAdminBDModel.Usuarios_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contratos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
+          <Property Name="FechaBaja" Type="DateTime" />
+          <Property Name="Afectado" Type="Boolean" Nullable="false" />
+          <Property Name="Origen" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Horas" Type="Byte" Nullable="false" />
+          <Property Name="Observacion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.Equipos_Contratos" FromRole="Contratos" ToRole="Equipos" />
+          <NavigationProperty Name="Funciones" Relationship="CSAdminBDModel.Funciones_Contratos" FromRole="Contratos" ToRole="Funciones" />
+          <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Contratos" FromRole="Contratos" ToRole="Personas" />
+          <NavigationProperty Name="SituacionesProfesionales" Relationship="CSAdminBDModel.SituacionesProfesionales_Contratos" FromRole="Contratos" ToRole="SituacionesProfesionales" />
+        </EntityType>
+        <EntityType Name="Equipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono" Type="Decimal" Precision="12" Scale="0" />
+          <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Equipos_Contratos" FromRole="Equipos" ToRole="Contratos" />
+          <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Equipos" FromRole="Equipos" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="Funciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Funcion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Funciones_Contratos" FromRole="Funciones" ToRole="Contratos" />
+        </EntityType>
+        <EntityType Name="Inasistencias">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Desde" Type="DateTime" Nullable="false" />
+          <Property Name="Hasta" Type="DateTime" Nullable="false" />
+          <Property Name="Motivo" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Inasistencias" FromRole="Inasistencias" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DNI" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <Property Name="CUIT" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Baja" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Personas_Contratos" FromRole="Personas" ToRole="Contratos" />
+          <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.Personas_Equipos" FromRole="Personas" ToRole="Equipos" />
+          <NavigationProperty Name="Inasistencias" Relationship="CSAdminBDModel.Personas_Inasistencias" FromRole="Personas" ToRole="Inasistencias" />
+          <NavigationProperty Name="PersonasTel" Relationship="CSAdminBDModel.Personas_PersonasTel" FromRole="Personas" ToRole="PersonasTel" />
+          <NavigationProperty Name="Usuarios" Relationship="CSAdminBDModel.Usuarios_Personas" FromRole="Personas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="PersonasTel">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Tipo" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="Numero" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
+          <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_PersonasTel" FromRole="PersonasTel" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="SituacionesProfesionales">
+          <Key>
+            <PropertyRef Name="CargoAbrev" />
+            <PropertyRef Name="CondicionAbrev" />
+          </Key>
+          <Property Name="CargoAbrev" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Cargo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CondicionAbrev" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Condicion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.SituacionesProfesionales_Contratos" FromRole="SituacionesProfesionales" ToRole="Contratos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Usuarios_Personas" FromRole="Usuarios" ToRole="Personas" />
+        </EntityType>
+        <Association Name="Equipos_Contratos">
+          <End Role="Equipos" Type="CSAdminBDModel.Equipos" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
+        </Association>
+        <Association Name="Funciones_Contratos">
+          <End Role="Funciones" Type="CSAdminBDModel.Funciones" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
+        </Association>
+        <Association Name="Personas_Contratos">
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
+        </Association>
+        <Association Name="SituacionesProfesionales_Contratos">
+          <End Role="SituacionesProfesionales" Type="CSAdminBDModel.SituacionesProfesionales" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
+        </Association>
+        <Association Name="Personas_Equipos">
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1" />
+          <End Role="Equipos" Type="CSAdminBDModel.Equipos" Multiplicity="1" />
+        </Association>
+        <Association Name="Personas_Inasistencias">
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inasistencias" Type="CSAdminBDModel.Inasistencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inasistencias">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Personas_PersonasTel">
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonasTel" Type="CSAdminBDModel.PersonasTel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PersonasTel">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Usuarios_Personas">
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1" />
+          <End Role="Usuarios" Type="CSAdminBDModel.Usuarios" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities1">
+          <EntitySetMapping Name="Contratos">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Contratos)">
+              <MappingFragment StoreEntitySet="Contratos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Afectado" ColumnName="Afectado" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipos">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Equipos)">
+              <MappingFragment StoreEntitySet="Equipos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funciones">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Funciones)">
+              <MappingFragment StoreEntitySet="Funciones">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Funcion" ColumnName="Funcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inasistencias">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Inasistencias)">
+              <MappingFragment StoreEntitySet="Inasistencias">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Desde" ColumnName="Desde" />
+                <ScalarProperty Name="Hasta" ColumnName="Hasta" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Personas)">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Baja" ColumnName="Baja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasTel">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.PersonasTel)">
+              <MappingFragment StoreEntitySet="PersonasTel">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SituacionesProfesionales">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.SituacionesProfesionales)">
+              <MappingFragment StoreEntitySet="SituacionesProfesionales">
+                <ScalarProperty Name="CargoAbrev" ColumnName="CargoAbrev" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="CondicionAbrev" ColumnName="CondicionAbrev" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Usuarios)">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Equipos_Contratos" TypeName="CSAdminBDModel.Equipos_Contratos" StoreEntitySet="Contratos">
+            <EndProperty Name="Equipos">
+              <ScalarProperty Name="Id" ColumnName="EquipoId" />
+            </EndProperty>
+            <EndProperty Name="Contratos">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Funciones_Contratos" TypeName="CSAdminBDModel.Funciones_Contratos" StoreEntitySet="Contratos">
+            <EndProperty Name="Funciones">
+              <ScalarProperty Name="Id" ColumnName="FuncionId" />
+            </EndProperty>
+            <EndProperty Name="Contratos">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Personas_Contratos" TypeName="CSAdminBDModel.Personas_Contratos" StoreEntitySet="Contratos">
+            <EndProperty Name="Personas">
+              <ScalarProperty Name="ID" ColumnName="PersonaId" />
+            </EndProperty>
+            <EndProperty Name="Contratos">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="SituacionesProfesionales_Contratos" TypeName="CSAdminBDModel.SituacionesProfesionales_Contratos" StoreEntitySet="Contratos">
+            <EndProperty Name="SituacionesProfesionales">
+              <ScalarProperty Name="CargoAbrev" ColumnName="CargoId" />
+              <ScalarProperty Name="CondicionAbrev" ColumnName="CondicionId" />
+            </EndProperty>
+            <EndProperty Name="Contratos">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Personas_Equipos" TypeName="CSAdminBDModel.Personas_Equipos" StoreEntitySet="Equipos">
+            <EndProperty Name="Personas">
+              <ScalarProperty Name="ID" ColumnName="CoordinadorId" />
+            </EndProperty>
+            <EndProperty Name="Equipos">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Personas_Inasistencias" TypeName="CSAdminBDModel.Personas_Inasistencias" StoreEntitySet="Inasistencias">
+            <EndProperty Name="Personas">
+              <ScalarProperty Name="ID" ColumnName="IdPersona" />
+            </EndProperty>
+            <EndProperty Name="Inasistencias">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+              <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Personas_PersonasTel" TypeName="CSAdminBDModel.Personas_PersonasTel" StoreEntitySet="PersonasTel">
+            <EndProperty Name="Personas">
+              <ScalarProperty Name="ID" ColumnName="IdPersona" />
+            </EndProperty>
+            <EndProperty Name="PersonasTel">
+              <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Usuarios_Personas" TypeName="CSAdminBDModel.Usuarios_Personas" StoreEntitySet="Usuarios">
+            <EndProperty Name="Personas">
+              <ScalarProperty Name="ID" ColumnName="PersonaId" />
+            </EndProperty>
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="ModelBD">
+        <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5.25" PointY="7.25" Height="3.1340950520833353" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="3" PointY="10.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Funciones" Width="1.5" PointX="5.25" PointY="4.875" Height="1.5956835937500014" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="3" PointY="8.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="0.75" PointY="6" Height="3.5186979166666648" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="3" PointY="4" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.SituacionesProfesionales" Width="1.5" PointX="7.5" PointY="7.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3" PointY="6" Height="1.7879850260416674" IsExpanded="true" />
+        <AssociationConnector Association="CSAdminBDModel.Equipos_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="11.239583333333332" />
+          <ConnectorPoint PointX="5.5729166666666661" PointY="11.239583333333332" />
+          <ConnectorPoint PointX="5.5729166666666661" PointY="10.384095052083335" />
+          </AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Funciones_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="6.4706835937500014" />
+          <ConnectorPoint PointX="6" PointY="7.25" />
+          </AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Personas_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.0814925130208337" />
+          <ConnectorPoint PointX="5.25" PointY="8.0814925130208337" />
+          </AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.SituacionesProfesionales_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="8.6666666666666661" />
+          <ConnectorPoint PointX="6.75" PointY="8.6666666666666661" />
+          </AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Personas_Equipos" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="9.5186979166666639" />
+          <ConnectorPoint PointX="1.5" PointY="12.028595377604166" />
+          <ConnectorPoint PointX="3" PointY="12.028595377604166" /></AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Personas_Inasistencias" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.9468489583333319" />
+          <ConnectorPoint PointX="3" PointY="8.9468489583333319" /></AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Personas_PersonasTel" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6" />
+          <ConnectorPoint PointX="1.5" PointY="4.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="4.8939925130208337" /></AssociationConnector>
+        <AssociationConnector Association="CSAdminBDModel.Usuarios_Personas" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="6.8939925130208337" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

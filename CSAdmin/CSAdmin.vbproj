@@ -58,9 +58,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=3.5.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -110,6 +117,11 @@
     <Compile Include="Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelBD.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
     <Compile Include="Modulos\FunSubs.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -209,6 +221,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="CSAdminBDDataSet.xsc">
       <DependentUpon>CSAdminBDDataSet.xsd</DependentUpon>
     </None>
@@ -220,6 +233,10 @@
     <None Include="CSAdminBDDataSet.xss">
       <DependentUpon>CSAdminBDDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="ModelBD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelBD.Designer.vb</LastGenOutput>
+    </EntityDeploy>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
