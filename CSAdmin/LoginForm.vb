@@ -10,24 +10,20 @@
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         'Login de Prueba
-        If UsernameTextBox.Text = "admin" Then
-            If PasswordTextBox.Text = "admin" Then
-                Me.Close()
-            Else
-                MessageBox.Show("Contraseña incorrecta, intente nuevamente.", _
-                                "Error", _
-                                MessageBoxButtons.OK, _
-                                MessageBoxIcon.Information)
-                PasswordTextBox.SelectAll()
-                PasswordTextBox.Focus()
-            End If
+        Dim samplePrincipal As New SampleIPrincipal( _
+            UsernameTextBox.Text, PasswordTextBox.Text)
+        Me.PasswordTextBox.Text = ""
+        If Not (samplePrincipal.Identity.IsAuthenticated) Then
+            ' El usuario no esta validado.
+            MessageBox.Show("Usuario o contraseña incorrecta, intente nuevamente.", _
+                            "Error", MessageBoxButtons.OK, _
+                            MessageBoxIcon.Information)
+            PasswordTextBox.SelectAll()
+            PasswordTextBox.Focus()
         Else
-            MessageBox.Show("Nombre de usurio incorrecto, intente nuevamente.", _
-                                "Error", _
-                                MessageBoxButtons.OK, _
-                                MessageBoxIcon.Information)
-            UsernameTextBox.SelectAll()
-            UsernameTextBox.Focus()
+            ' Usuario Validado
+            My.User.CurrentPrincipal = samplePrincipal
+            Me.Close()
         End If
     End Sub
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="CSAdminBDModelStoreContainer">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" />
@@ -38,13 +38,13 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="PersonasTel" EntitySet="PersonasTel" />
           </AssociationSet>
+          <AssociationSet Name="Personas_Usuarios" Association="CSAdminBDModel.Store.Personas_Usuarios">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
           <AssociationSet Name="SituacionesProfesionales_Contratos" Association="CSAdminBDModel.Store.SituacionesProfesionales_Contratos">
             <End Role="SituacionesProfesionales" EntitySet="SituacionesProfesionales" />
             <End Role="Contratos" EntitySet="Contratos" />
-          </AssociationSet>
-          <AssociationSet Name="Usuarios_Personas" Association="CSAdminBDModel.Store.Usuarios_Personas">
-            <End Role="Personas" EntitySet="Personas" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contratos">
@@ -131,7 +131,7 @@
             <PropertyRef Name="Usuario" />
           </Key>
           <Property Name="Usuario" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Contraseña" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="Contra" Type="nvarchar" Nullable="false" MaxLength="40" />
           <Property Name="Rol" Type="nvarchar" Nullable="false" MaxLength="3" />
           <Property Name="PersonaId" Type="int" Nullable="false" />
         </EntityType>
@@ -213,6 +213,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Personas_Usuarios">
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Usuarios" Type="CSAdminBDModel.Store.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SituacionesProfesionales_Contratos">
           <End Role="SituacionesProfesionales" Type="CSAdminBDModel.Store.SituacionesProfesionales" Multiplicity="1" />
           <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
@@ -227,24 +241,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Usuarios_Personas">
-          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
-          <End Role="Usuarios" Type="CSAdminBDModel.Store.Usuarios" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Personas">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="PersonaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="CSAdminBDEntities1">
+        <EntityContainer Name="CSAdminBDEntities">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Contratos" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Equipos" />
           <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Funciones" />
@@ -379,10 +380,9 @@
             <PropertyRef Name="Usuario" />
           </Key>
           <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
           <Property Name="Rol" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Usuarios_Personas" FromRole="Usuarios" ToRole="Personas" />
-        </EntityType>
+          <Property Name="Contra" Type="String" Nullable="false" /></EntityType>
         <Association Name="Equipos_Contratos">
           <End Role="Equipos" Type="CSAdminBDModel.Equipos" Multiplicity="1" />
           <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
@@ -442,7 +442,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities1">
+        <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities">
           <EntitySetMapping Name="Contratos">
             <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Contratos)">
               <MappingFragment StoreEntitySet="Contratos">
@@ -523,8 +523,8 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="IsTypeOf(CSAdminBDModel.Usuarios)">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="Rol" ColumnName="Rol" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -622,7 +622,7 @@
         <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="0.75" PointY="6" Height="3.5186979166666648" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="3" PointY="4" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.SituacionesProfesionales" Width="1.5" PointX="7.5" PointY="7.25" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3" PointY="6" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3" PointY="6" Height="1.7879850260416665" IsExpanded="true" />
         <AssociationConnector Association="CSAdminBDModel.Equipos_Contratos" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="11.239583333333332" />
           <ConnectorPoint PointX="5.5729166666666661" PointY="11.239583333333332" />

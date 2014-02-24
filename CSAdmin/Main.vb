@@ -2,6 +2,15 @@
 
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         My.Forms.LoginForm.ShowDialog()
+        If My.User.IsAuthenticated = False Then
+            Application.Exit()
+        Else
+            If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) Then
+                Me.Text += "[Admin]"
+            ElseIf My.User.IsInRole(ApplicationServices.BuiltInRole.User) Then
+                Me.Text += "[Usuario]"
+            End If
+        End If
         ToolStripStatusLabel.Text = "Listo"
     End Sub
 

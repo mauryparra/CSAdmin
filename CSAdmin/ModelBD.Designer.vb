@@ -11,7 +11,7 @@
 Option Strict Off
 Option Explicit On
 
-<Assembly: Global.System.Data.Objects.DataClasses.EdmSchemaAttribute("e452ce60-aaec-4b44-9b43-a06ce52a1d1f"),  _
+<Assembly: Global.System.Data.Objects.DataClasses.EdmSchemaAttribute("7bca7e6d-73ca-415e-bef3-138f580fc6cd"),  _
  Assembly: Global.System.Data.Objects.DataClasses.EdmRelationshipAttribute("CSAdminBDModel", "Equipos_Contratos", "Equipos", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Equipos), "Contratos", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos)),  _
  Assembly: Global.System.Data.Objects.DataClasses.EdmRelationshipAttribute("CSAdminBDModel", "Funciones_Contratos", "Funciones", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Funciones), "Contratos", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos)),  _
  Assembly: Global.System.Data.Objects.DataClasses.EdmRelationshipAttribute("CSAdminBDModel", "Personas_Contratos", "Personas", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Contratos", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos)),  _
@@ -22,31 +22,31 @@ Option Explicit On
  Assembly: Global.System.Data.Objects.DataClasses.EdmRelationshipAttribute("CSAdminBDModel", "Usuarios_Personas", "Personas", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Usuarios", Global.System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Usuarios))> 
 
 'Original file name:
-'Generation date: 20/02/2014 11:54:06 a.m.
+'Generation date: 24/02/2014 10:18:58 a.m.
 '''<summary>
-'''There are no comments for CSAdminBDEntities1 in the schema.
+'''There are no comments for CSAdminBDEntities in the schema.
 '''</summary>
-Partial Public Class CSAdminBDEntities1
+Partial Public Class CSAdminBDEntities
     Inherits Global.System.Data.Objects.ObjectContext
     '''<summary>
-    '''Initializes a new CSAdminBDEntities1 object using the connection string found in the 'CSAdminBDEntities1' section of the application configuration file.
+    '''Initializes a new CSAdminBDEntities object using the connection string found in the 'CSAdminBDEntities' section of the application configuration file.
     '''</summary>
     Public Sub New()
-        MyBase.New("name=CSAdminBDEntities1", "CSAdminBDEntities1")
+        MyBase.New("name=CSAdminBDEntities", "CSAdminBDEntities")
         Me.OnContextCreated
     End Sub
     '''<summary>
-    '''Initialize a new CSAdminBDEntities1 object.
+    '''Initialize a new CSAdminBDEntities object.
     '''</summary>
     Public Sub New(ByVal connectionString As String)
-        MyBase.New(connectionString, "CSAdminBDEntities1")
+        MyBase.New(connectionString, "CSAdminBDEntities")
         Me.OnContextCreated
     End Sub
     '''<summary>
-    '''Initialize a new CSAdminBDEntities1 object.
+    '''Initialize a new CSAdminBDEntities object.
     '''</summary>
     Public Sub New(ByVal connection As Global.System.Data.EntityClient.EntityConnection)
-        MyBase.New(connection, "CSAdminBDEntities1")
+        MyBase.New(connection, "CSAdminBDEntities")
         Me.OnContextCreated
     End Sub
     Partial Private Sub OnContextCreated()
@@ -1541,13 +1541,13 @@ Partial Public Class Usuarios
     '''Create a new Usuarios object.
     '''</summary>
     '''<param name="usuario">Initial value of Usuario.</param>
-    '''<param name="contraseña">Initial value of Contraseña.</param>
     '''<param name="rol">Initial value of Rol.</param>
-    Public Shared Function CreateUsuarios(ByVal usuario As String, ByVal contraseña As String, ByVal rol As String) As Usuarios
+    '''<param name="contra">Initial value of Contra.</param>
+    Public Shared Function CreateUsuarios(ByVal usuario As String, ByVal rol As String, ByVal contra As String) As Usuarios
         Dim usuarios As Usuarios = New Usuarios
         usuarios.Usuario = usuario
-        usuarios.Contraseña = contraseña
         usuarios.Rol = rol
+        usuarios.Contra = contra
         Return usuarios
     End Function
     '''<summary>
@@ -1573,28 +1573,6 @@ Partial Public Class Usuarios
     Partial Private Sub OnUsuarioChanged()
         End Sub
     '''<summary>
-    '''There are no comments for Property Contraseña in the schema.
-    '''</summary>
-    <Global.System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable:=false),  _
-     Global.System.Runtime.Serialization.DataMemberAttribute()>  _
-    Public Property Contraseña() As String
-        Get
-            Return Me._Contraseña
-        End Get
-        Set
-            Me.OnContraseñaChanging(value)
-            Me.ReportPropertyChanging("Contraseña")
-            Me._Contraseña = Global.System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false)
-            Me.ReportPropertyChanged("Contraseña")
-            Me.OnContraseñaChanged
-        End Set
-    End Property
-    Private _Contraseña As String
-    Partial Private Sub OnContraseñaChanging(ByVal value As String)
-        End Sub
-    Partial Private Sub OnContraseñaChanged()
-        End Sub
-    '''<summary>
     '''There are no comments for Property Rol in the schema.
     '''</summary>
     <Global.System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable:=false),  _
@@ -1615,6 +1593,28 @@ Partial Public Class Usuarios
     Partial Private Sub OnRolChanging(ByVal value As String)
         End Sub
     Partial Private Sub OnRolChanged()
+        End Sub
+    '''<summary>
+    '''There are no comments for Property Contra in the schema.
+    '''</summary>
+    <Global.System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable:=false),  _
+     Global.System.Runtime.Serialization.DataMemberAttribute()>  _
+    Public Property Contra() As String
+        Get
+            Return Me._Contra
+        End Get
+        Set
+            Me.OnContraChanging(value)
+            Me.ReportPropertyChanging("Contra")
+            Me._Contra = Global.System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false)
+            Me.ReportPropertyChanged("Contra")
+            Me.OnContraChanged
+        End Set
+    End Property
+    Private _Contra As String
+    Partial Private Sub OnContraChanging(ByVal value As String)
+        End Sub
+    Partial Private Sub OnContraChanged()
         End Sub
     '''<summary>
     '''There are no comments for Personas in the schema.
