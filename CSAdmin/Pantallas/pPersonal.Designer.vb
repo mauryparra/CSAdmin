@@ -2,7 +2,7 @@
 Partial Class pPersonal
     Inherits System.Windows.Forms.UserControl
 
-    'UserControl overrides dispose to clean up the component list.
+    'UserControl reemplaza a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,18 +14,18 @@ Partial Class pPersonal
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
+    'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TabControlPersonal = New System.Windows.Forms.TabControl
-        Me.TabPageAlta = New System.Windows.Forms.TabPage
-        Me.TabPageModificar = New System.Windows.Forms.TabPage
-        Me.TabPageBaja = New System.Windows.Forms.TabPage
+        Me.TabControlPersonal = New System.Windows.Forms.TabControl()
+        Me.TabPageAlta = New System.Windows.Forms.TabPage()
+        Me.TabPageModificar = New System.Windows.Forms.TabPage()
+        Me.TabPageBaja = New System.Windows.Forms.TabPage()
         Me.TabControlPersonal.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -70,12 +70,12 @@ Partial Class pPersonal
         Me.TabPageBaja.Text = "Baja"
         Me.TabPageBaja.UseVisualStyleBackColor = True
         '
-        'Personal
+        'pPersonal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TabControlPersonal)
-        Me.Name = "Personal"
+        Me.Name = "pPersonal"
         Me.Size = New System.Drawing.Size(435, 292)
         Me.TabControlPersonal.ResumeLayout(False)
         Me.ResumeLayout(False)

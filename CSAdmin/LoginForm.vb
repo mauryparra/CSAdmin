@@ -1,12 +1,12 @@
 ﻿Public Class LoginForm
 
-    ' TODO: Insert code to perform custom authentication using the provided username and password 
-    ' (See http://go.microsoft.com/fwlink/?LinkId=35339).  
-    ' The custom principal can then be attached to the current thread's principal as follows: 
+    ' TODO: inserte el código para realizar autenticación personalizada usando el nombre de usuario y la contraseña proporcionada 
+    ' (Consulte http://go.microsoft.com/fwlink/?LinkId=35339).  
+    ' El objeto principal personalizado se puede adjuntar al objeto principal del subproceso actual como se indica a continuación: 
     '     My.User.CurrentPrincipal = CustomPrincipal
-    ' where CustomPrincipal is the IPrincipal implementation used to perform authentication. 
-    ' Subsequently, My.User will return identity information encapsulated in the CustomPrincipal object
-    ' such as the username, display name, etc.
+    ' donde CustomPrincipal es la implementación de IPrincipal utilizada para realizar la autenticación. 
+    ' Posteriormente, My.User devolverá la información de identidad encapsulada en el objeto CustomPrincipal
+    ' como el nombre de usuario, nombre para mostrar, etc.
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
         'Login de Prueba
@@ -31,4 +31,5 @@
         Me.Close()
         Application.Exit()
     End Sub
+
 End Class

@@ -1,14 +1,12 @@
-﻿Imports System.Resources
-
-Imports System
+﻿Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
-' General Information about an assembly is controlled through the following 
-' set of attributes. Change these attribute values to modify the information
-' associated with an assembly.
+' La información general sobre un ensamblado se controla mediante el siguiente 
+' conjunto de atributos. Cambie estos atributos para modificar la información
+' asociada con un ensamblado.
 
-' Review the values of the assembly attributes
+' Revisar los valores de los atributos del ensamblado
 
 <Assembly: AssemblyTitle("CSAdmin")> 
 <Assembly: AssemblyDescription("")> 
@@ -17,23 +15,21 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCopyright("Copyright Crecer Sanos ©  2014")> 
 <Assembly: AssemblyTrademark("")> 
 
-<Assembly: ComVisible(False)> 
+<Assembly: ComVisible(False)>
 
-'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("862eb249-3af5-424f-a58e-2478d3c39105")> 
+'El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
+<Assembly: Guid("c0a2075b-c58e-4417-9fed-9913803d0910")> 
 
-' Version information for an assembly consists of the following four values:
+' La información de versión de un ensamblado consta de los cuatro valores siguientes:
 '
-'      Major Version
-'      Minor Version 
-'      Build Number
-'      Revision
+'      Versión principal
+'      Versión secundaria 
+'      Número de compilación
+'      Revisión
 '
-' You can specify all the values or you can default the Build and Revision Numbers 
-' by using the '*' as shown below:
+' Puede especificar todos los valores o usar los valores predeterminados de número de compilación y de revisión 
+' mediante el asterisco ('*'), como se muestra a continuación:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
 <Assembly: AssemblyVersion("1.0.0.0")> 
 <Assembly: AssemblyFileVersion("1.0.0.0")> 
-
-<Assembly: NeutralResourcesLanguageAttribute("es-AR")> 

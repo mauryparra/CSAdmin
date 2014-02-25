@@ -2,7 +2,7 @@
 Partial Class pContratos
     Inherits System.Windows.Forms.UserControl
 
-    'UserControl overrides dispose to clean up the component list.
+    'UserControl reemplaza a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,32 +14,32 @@ Partial Class pContratos
         End Try
     End Sub
 
-    'Required by the Windows Form Designer
+    'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.TabPageNuevo = New System.Windows.Forms.TabPage
-        Me.TabPageModificar = New System.Windows.Forms.TabPage
-        Me.TabPageBaja = New System.Windows.Forms.TabPage
-        Me.TabControl1.SuspendLayout()
+        Me.TabControlContratos = New System.Windows.Forms.TabControl()
+        Me.TabPageNuevo = New System.Windows.Forms.TabPage()
+        Me.TabPageModificar = New System.Windows.Forms.TabPage()
+        Me.TabPageBaja = New System.Windows.Forms.TabPage()
+        Me.TabControlContratos.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TabControl1
+        'TabControlContratos
         '
-        Me.TabControl1.Controls.Add(Me.TabPageNuevo)
-        Me.TabControl1.Controls.Add(Me.TabPageModificar)
-        Me.TabControl1.Controls.Add(Me.TabPageBaja)
-        Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.TabControl1.Name = "TabControl1"
-        Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(435, 292)
-        Me.TabControl1.TabIndex = 0
+        Me.TabControlContratos.Controls.Add(Me.TabPageNuevo)
+        Me.TabControlContratos.Controls.Add(Me.TabPageModificar)
+        Me.TabControlContratos.Controls.Add(Me.TabPageBaja)
+        Me.TabControlContratos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlContratos.Location = New System.Drawing.Point(0, 0)
+        Me.TabControlContratos.Name = "TabControlContratos"
+        Me.TabControlContratos.SelectedIndex = 0
+        Me.TabControlContratos.Size = New System.Drawing.Size(435, 292)
+        Me.TabControlContratos.TabIndex = 0
         '
         'TabPageNuevo
         '
@@ -70,18 +70,18 @@ Partial Class pContratos
         Me.TabPageBaja.Text = "Baja"
         Me.TabPageBaja.UseVisualStyleBackColor = True
         '
-        'Contratos
+        'pContratos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.TabControl1)
-        Me.Name = "Contratos"
+        Me.Controls.Add(Me.TabControlContratos)
+        Me.Name = "pContratos"
         Me.Size = New System.Drawing.Size(435, 292)
-        Me.TabControl1.ResumeLayout(False)
+        Me.TabControlContratos.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents TabControlContratos As System.Windows.Forms.TabControl
     Friend WithEvents TabPageNuevo As System.Windows.Forms.TabPage
     Friend WithEvents TabPageModificar As System.Windows.Forms.TabPage
     Friend WithEvents TabPageBaja As System.Windows.Forms.TabPage

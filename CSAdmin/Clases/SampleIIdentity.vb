@@ -59,7 +59,7 @@ Public Class SampleIIdentity
             MessageBox.Show(result.Usuario.ToString)
         Next
 
-        If Not usuariosQ(0).Usuario = "" Then
+        If usuariosQ.Count > 0 Then
             Select Case usuariosQ(0).Rol
                 Case "ADM"
                     roleValue = ApplicationServices.BuiltInRole.Administrator

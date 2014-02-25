@@ -2,7 +2,7 @@
 Partial Class AcercaDe
     Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
+    'Form reemplaza a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -23,23 +23,23 @@ Partial Class AcercaDe
     Friend WithEvents OKButton As System.Windows.Forms.Button
     Friend WithEvents LabelCopyright As System.Windows.Forms.Label
 
-    'Required by the Windows Form Designer
+    'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
+    'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
+    'Se puede modificar usando el Diseñador de Windows Forms.  
+    'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AcercaDe))
-        Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel
-        Me.LogoPictureBox = New System.Windows.Forms.PictureBox
-        Me.LabelProductName = New System.Windows.Forms.Label
-        Me.LabelVersion = New System.Windows.Forms.Label
-        Me.LabelCopyright = New System.Windows.Forms.Label
-        Me.LabelCompanyName = New System.Windows.Forms.Label
-        Me.TextBoxDescription = New System.Windows.Forms.TextBox
-        Me.OKButton = New System.Windows.Forms.Button
+        Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel()
+        Me.LogoPictureBox = New System.Windows.Forms.PictureBox()
+        Me.LabelProductName = New System.Windows.Forms.Label()
+        Me.LabelVersion = New System.Windows.Forms.Label()
+        Me.LabelCopyright = New System.Windows.Forms.Label()
+        Me.LabelCompanyName = New System.Windows.Forms.Label()
+        Me.TextBoxDescription = New System.Windows.Forms.TextBox()
+        Me.OKButton = New System.Windows.Forms.Button()
         Me.TableLayoutPanel.SuspendLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -90,7 +90,7 @@ Partial Class AcercaDe
         Me.LabelProductName.Name = "LabelProductName"
         Me.LabelProductName.Size = New System.Drawing.Size(257, 17)
         Me.LabelProductName.TabIndex = 0
-        Me.LabelProductName.Text = "Product Name"
+        Me.LabelProductName.Text = "Nombre de producto"
         Me.LabelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelVersion
@@ -102,7 +102,7 @@ Partial Class AcercaDe
         Me.LabelVersion.Name = "LabelVersion"
         Me.LabelVersion.Size = New System.Drawing.Size(257, 17)
         Me.LabelVersion.TabIndex = 0
-        Me.LabelVersion.Text = "Version"
+        Me.LabelVersion.Text = "Versión"
         Me.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelCopyright
@@ -126,7 +126,7 @@ Partial Class AcercaDe
         Me.LabelCompanyName.Name = "LabelCompanyName"
         Me.LabelCompanyName.Size = New System.Drawing.Size(257, 17)
         Me.LabelCompanyName.TabIndex = 0
-        Me.LabelCompanyName.Text = "Company Name"
+        Me.LabelCompanyName.Text = "Nombre de la compañía"
         Me.LabelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TextBoxDescription
@@ -154,7 +154,7 @@ Partial Class AcercaDe
         Me.OKButton.Name = "OKButton"
         Me.OKButton.Size = New System.Drawing.Size(75, 23)
         Me.OKButton.TabIndex = 0
-        Me.OKButton.Text = "&OK"
+        Me.OKButton.Text = "&Aceptar"
         '
         'AcercaDe
         '
@@ -170,7 +170,7 @@ Partial Class AcercaDe
         Me.Padding = New System.Windows.Forms.Padding(9)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Acerca de CSAdmin"
+        Me.Text = "Acerca de CSAdmin "
         Me.TableLayoutPanel.ResumeLayout(False)
         Me.TableLayoutPanel.PerformLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).EndInit()

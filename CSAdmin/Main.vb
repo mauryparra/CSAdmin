@@ -1,5 +1,4 @@
 ﻿Public Class Main
-
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         My.Forms.LoginForm.ShowDialog()
         If My.User.IsAuthenticated = False Then
@@ -31,7 +30,7 @@
         Application.Exit()
     End Sub
 
-    Private Sub AcercaDeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AcercaDeToolStripMenuItem.Click
+    Private Sub AcercaDeCSAdminToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles AcercaDeCSAdminToolStripMenuItem.Click
         My.Forms.AcercaDe.ShowDialog()
     End Sub
 #End Region
