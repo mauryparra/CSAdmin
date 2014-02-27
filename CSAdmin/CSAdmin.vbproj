@@ -208,11 +208,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <EntityDeploy Include="ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelBD.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.config" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

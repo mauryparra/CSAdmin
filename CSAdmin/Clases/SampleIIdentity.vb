@@ -54,13 +54,9 @@ Public Class SampleIIdentity
 
         usuariosQ.Parameters.Add(New ObjectParameter("usuario", username))
         usuariosQ.Parameters.Add(New ObjectParameter("pass", pass))
-        MessageBox.Show(usuariosQ.Count.ToString)
-        For Each result As Usuarios In usuariosQ
-            MessageBox.Show(result.Usuario.ToString)
-        Next
 
-        If usuariosQ.Count > 0 Then
-            Select Case usuariosQ(0).Rol
+        If Not usuariosQ.First.Usuario = "" Then
+            Select Case usuariosQ.First.Rol
                 Case "ADM"
                     roleValue = ApplicationServices.BuiltInRole.Administrator
                 Case "USR"

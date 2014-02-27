@@ -5,9 +5,9 @@
             Application.Exit()
         Else
             If My.User.IsInRole(ApplicationServices.BuiltInRole.Administrator) Then
-                Me.Text += "[Admin]"
+                Me.Text += " [Admin]"
             ElseIf My.User.IsInRole(ApplicationServices.BuiltInRole.User) Then
-                Me.Text += "[Usuario]"
+                Me.Text += " [Usuario]"
             End If
         End If
         ToolStripStatusLabel.Text = "Listo"
