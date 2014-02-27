@@ -51,7 +51,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PersonaId" Type="int" Nullable="false" />
           <Property Name="FechaInicio" Type="datetime" Nullable="false" />
           <Property Name="FechaBaja" Type="datetime" />
@@ -72,9 +72,9 @@
           <Property Name="Ubicacion" Type="nvarchar" Nullable="false" MaxLength="60" />
           <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="40" />
           <Property Name="Correo" Type="nvarchar" MaxLength="30" />
-          <Property Name="Contra" Type="nvarchar" MaxLength="30" />
           <Property Name="Telefono" Type="numeric" Precision="12" />
           <Property Name="CoordinadorId" Type="int" Nullable="false" />
+          <Property Name="Contra" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Funciones">
           <Key>
@@ -88,24 +88,24 @@
             <PropertyRef Name="Id" />
             <PropertyRef Name="IdPersona" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
           <Property Name="Desde" Type="datetime" Nullable="false" />
-          <Property Name="Hasta" Type="datetime" />
+          <Property Name="Hasta" Type="datetime" Nullable="false" />
           <Property Name="Motivo" Type="nvarchar" MaxLength="140" />
         </EntityType>
         <EntityType Name="Personas">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="DNI" Type="numeric" Precision="9" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="numeric" Nullable="false" Precision="9" />
           <Property Name="CUIT" Type="numeric" Precision="11" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
-          <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Apellido" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Direccion" Type="nvarchar" MaxLength="100" />
           <Property Name="Correo" Type="nvarchar" MaxLength="40" />
-          <Property Name="Baja" Type="bit" />
+          <Property Name="Baja" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonasTel">
           <Key>
@@ -113,7 +113,7 @@
             <PropertyRef Name="Tipo" />
           </Key>
           <Property Name="IdPersona" Type="int" Nullable="false" />
-          <Property Name="Tipo" Type="nvarchar" Nullable="false" MaxLength="2" />
+          <Property Name="Tipo" Type="nchar" Nullable="false" MaxLength="2" />
           <Property Name="Numero" Type="numeric" Nullable="false" Precision="12" />
         </EntityType>
         <EntityType Name="SituacionesProfesionales">
@@ -160,11 +160,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Contratos">
-          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Contratos" Type="CSAdminBDModel.Store.Contratos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Contratos">
               <PropertyRef Name="PersonaId" />
@@ -176,7 +178,7 @@
           <End Role="Equipos" Type="CSAdminBDModel.Store.Equipos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Equipos">
               <PropertyRef Name="CoordinadorId" />
@@ -190,7 +192,7 @@
           <End Role="Inasistencias" Type="CSAdminBDModel.Store.Inasistencias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Inasistencias">
               <PropertyRef Name="IdPersona" />
@@ -198,11 +200,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_PersonasTel">
-          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PersonasTel" Type="CSAdminBDModel.Store.PersonasTel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PersonasTel">
               <PropertyRef Name="IdPersona" />
@@ -210,13 +214,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Usuarios">
-          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
           <End Role="Usuarios" Type="CSAdminBDModel.Store.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Usuarios">
               <PropertyRef Name="PersonaId" />
@@ -241,7 +243,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="CSAdminBDEntities" annotation:LazyLoadingEnabled="true" >
+        <EntityContainer Name="CSAdminBDEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Contratos" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Equipos" />
           <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Funciones" />
@@ -287,18 +289,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="PersonaId" Nullable="false" />
-          <Property Type="DateTime" Name="FechaInicio" Nullable="false" />
-          <Property Type="DateTime" Name="FechaBaja" />
-          <Property Type="Boolean" Name="Afectado" Nullable="false" />
-          <Property Type="String" Name="Origen" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CargoId" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CondicionId" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="FuncionId" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="EquipoId" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="Byte" Name="Horas" Nullable="false" />
-          <Property Type="String" Name="Observacion" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
+          <Property Name="FechaBaja" Type="DateTime" />
+          <Property Name="Afectado" Type="Boolean" Nullable="false" />
+          <Property Name="Origen" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="CargoId" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="CondicionId" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="FuncionId" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="EquipoId" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Horas" Type="Byte" Nullable="false" />
+          <Property Name="Observacion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.Equipos_Contratos" FromRole="Contratos" ToRole="Equipos" />
           <NavigationProperty Name="Funciones" Relationship="CSAdminBDModel.Funciones_Contratos" FromRole="Contratos" ToRole="Funciones" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Contratos" FromRole="Contratos" ToRole="Personas" />
@@ -308,22 +310,22 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Ubicacion" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Localidad" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Correo" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Contra" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Telefono" Precision="12" Scale="0" />
-          <Property Type="Int32" Name="CoordinadorId" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Telefono" Type="Decimal" Precision="12" Scale="0" />
+          <Property Name="CoordinadorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Equipos_Contratos" FromRole="Equipos" ToRole="Contratos" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Equipos" FromRole="Equipos" ToRole="Personas" />
+          <Property Type="String" Name="Contra" MaxLength="30" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Funciones">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="String" Name="Id" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Funcion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Funcion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Funciones_Contratos" FromRole="Funciones" ToRole="Contratos" />
         </EntityType>
         <EntityType Name="Inasistencias">
@@ -331,25 +333,25 @@
             <PropertyRef Name="Id" />
             <PropertyRef Name="IdPersona" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="Int32" Name="IdPersona" Nullable="false" />
-          <Property Type="DateTime" Name="Desde" Nullable="false" />
-          <Property Type="DateTime" Name="Hasta" />
-          <Property Type="String" Name="Motivo" MaxLength="140" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Desde" Type="DateTime" Nullable="false" />
+          <Property Name="Hasta" Type="DateTime" Nullable="false" />
+          <Property Name="Motivo" Type="String" MaxLength="140" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Inasistencias" FromRole="Inasistencias" ToRole="Personas" />
         </EntityType>
         <EntityType Name="Personas">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Decimal" Name="DNI" Precision="9" Scale="0" />
-          <Property Type="Decimal" Name="CUIT" Precision="11" Scale="0" />
-          <Property Type="String" Name="Nombre" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Apellido" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Direccion" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Correo" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Baja" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <Property Name="CUIT" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Correo" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Baja" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.Personas_Contratos" FromRole="Personas" ToRole="Contratos" />
           <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.Personas_Equipos" FromRole="Personas" ToRole="Equipos" />
           <NavigationProperty Name="Inasistencias" Relationship="CSAdminBDModel.Personas_Inasistencias" FromRole="Personas" ToRole="Inasistencias" />
@@ -361,9 +363,9 @@
             <PropertyRef Name="IdPersona" />
             <PropertyRef Name="Tipo" />
           </Key>
-          <Property Type="Int32" Name="IdPersona" Nullable="false" />
-          <Property Type="String" Name="Tipo" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Numero" Nullable="false" Precision="12" Scale="0" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="Numero" Type="Decimal" Nullable="false" Precision="12" Scale="0" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_PersonasTel" FromRole="PersonasTel" ToRole="Personas" />
         </EntityType>
         <EntityType Name="SituacionesProfesionales">
@@ -371,25 +373,25 @@
             <PropertyRef Name="CargoAbrev" />
             <PropertyRef Name="CondicionAbrev" />
           </Key>
-          <Property Type="String" Name="CargoAbrev" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Cargo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CondicionAbrev" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Condicion" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CargoAbrev" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Cargo" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CondicionAbrev" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Condicion" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.SituacionesProfesionales_Contratos" FromRole="SituacionesProfesionales" ToRole="Contratos" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="Usuario" />
           </Key>
-          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Contra" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Rol" Nullable="false" MaxLength="3" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PersonaId" Nullable="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Contra" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Rol" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.Personas_Usuarios" FromRole="Usuarios" ToRole="Personas" />
         </EntityType>
         <Association Name="Equipos_Contratos">
-          <End Type="CSAdminBDModel.Equipos" Role="Equipos" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Contratos" Role="Contratos" Multiplicity="*" />
+          <End Role="Equipos" Type="CSAdminBDModel.Equipos" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipos">
               <PropertyRef Name="Id" />
@@ -400,8 +402,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Funciones_Contratos">
-          <End Type="CSAdminBDModel.Funciones" Role="Funciones" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Contratos" Role="Contratos" Multiplicity="*" />
+          <End Role="Funciones" Type="CSAdminBDModel.Funciones" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Funciones">
               <PropertyRef Name="Id" />
@@ -412,11 +414,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Contratos">
-          <End Type="CSAdminBDModel.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Contratos" Role="Contratos" Multiplicity="*" />
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Contratos">
               <PropertyRef Name="PersonaId" />
@@ -424,8 +428,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SituacionesProfesionales_Contratos">
-          <End Type="CSAdminBDModel.SituacionesProfesionales" Role="SituacionesProfesionales" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Contratos" Role="Contratos" Multiplicity="*" />
+          <End Role="SituacionesProfesionales" Type="CSAdminBDModel.SituacionesProfesionales" Multiplicity="1" />
+          <End Role="Contratos" Type="CSAdminBDModel.Contratos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SituacionesProfesionales">
               <PropertyRef Name="CargoAbrev" />
@@ -438,11 +442,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Equipos">
-          <End Type="CSAdminBDModel.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Equipos" Role="Equipos" Multiplicity="*" />
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1" />
+          <End Role="Equipos" Type="CSAdminBDModel.Equipos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Equipos">
               <PropertyRef Name="CoordinadorId" />
@@ -450,11 +454,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Inasistencias">
-          <End Type="CSAdminBDModel.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Inasistencias" Role="Inasistencias" Multiplicity="*" />
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inasistencias" Type="CSAdminBDModel.Inasistencias" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Inasistencias">
               <PropertyRef Name="IdPersona" />
@@ -462,11 +468,13 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_PersonasTel">
-          <End Type="CSAdminBDModel.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CSAdminBDModel.PersonasTel" Role="PersonasTel" Multiplicity="*" />
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PersonasTel" Type="CSAdminBDModel.PersonasTel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PersonasTel">
               <PropertyRef Name="IdPersona" />
@@ -474,11 +482,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Personas_Usuarios">
-          <End Type="CSAdminBDModel.Personas" Role="Personas" Multiplicity="1" />
-          <End Type="CSAdminBDModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+          <End Role="Personas" Type="CSAdminBDModel.Personas" Multiplicity="1" />
+          <End Role="Usuarios" Type="CSAdminBDModel.Usuarios" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Personas">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Usuarios">
               <PropertyRef Name="PersonaId" />
@@ -490,97 +498,97 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities" >
+        <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities">
           <EntitySetMapping Name="Contratos">
             <EntityTypeMapping TypeName="CSAdminBDModel.Contratos">
               <MappingFragment StoreEntitySet="Contratos">
-                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
-                <ScalarProperty Name="Horas" ColumnName="Horas" />
-                <ScalarProperty Name="EquipoId" ColumnName="EquipoId" />
-                <ScalarProperty Name="FuncionId" ColumnName="FuncionId" />
-                <ScalarProperty Name="CondicionId" ColumnName="CondicionId" />
-                <ScalarProperty Name="CargoId" ColumnName="CargoId" />
-                <ScalarProperty Name="Origen" ColumnName="Origen" />
-                <ScalarProperty Name="Afectado" ColumnName="Afectado" />
-                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="Afectado" ColumnName="Afectado" />
+                <ScalarProperty Name="Origen" ColumnName="Origen" />
+                <ScalarProperty Name="CargoId" ColumnName="CargoId" />
+                <ScalarProperty Name="CondicionId" ColumnName="CondicionId" />
+                <ScalarProperty Name="FuncionId" ColumnName="FuncionId" />
+                <ScalarProperty Name="EquipoId" ColumnName="EquipoId" />
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="Observacion" ColumnName="Observacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipos">
             <EntityTypeMapping TypeName="CSAdminBDModel.Equipos">
               <MappingFragment StoreEntitySet="Equipos">
-                <ScalarProperty Name="CoordinadorId" ColumnName="CoordinadorId" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Contra" ColumnName="Contra" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
-                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CoordinadorId" ColumnName="CoordinadorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Funciones">
             <EntityTypeMapping TypeName="CSAdminBDModel.Funciones">
               <MappingFragment StoreEntitySet="Funciones">
-                <ScalarProperty Name="Funcion" ColumnName="Funcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Funcion" ColumnName="Funcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Inasistencias">
             <EntityTypeMapping TypeName="CSAdminBDModel.Inasistencias">
               <MappingFragment StoreEntitySet="Inasistencias">
-                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
-                <ScalarProperty Name="Hasta" ColumnName="Hasta" />
-                <ScalarProperty Name="Desde" ColumnName="Desde" />
-                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Desde" ColumnName="Desde" />
+                <ScalarProperty Name="Hasta" ColumnName="Hasta" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personas">
             <EntityTypeMapping TypeName="CSAdminBDModel.Personas">
               <MappingFragment StoreEntitySet="Personas">
-                <ScalarProperty Name="Baja" ColumnName="Baja" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DNI" ColumnName="DNI" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Baja" ColumnName="Baja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonasTel">
             <EntityTypeMapping TypeName="CSAdminBDModel.PersonasTel">
               <MappingFragment StoreEntitySet="PersonasTel">
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SituacionesProfesionales">
             <EntityTypeMapping TypeName="CSAdminBDModel.SituacionesProfesionales">
               <MappingFragment StoreEntitySet="SituacionesProfesionales">
-                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
-                <ScalarProperty Name="CondicionAbrev" ColumnName="CondicionAbrev" />
-                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
                 <ScalarProperty Name="CargoAbrev" ColumnName="CargoAbrev" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="CondicionAbrev" ColumnName="CondicionAbrev" />
+                <ScalarProperty Name="Condicion" ColumnName="Condicion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="CSAdminBDModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
-                <ScalarProperty Name="Rol" ColumnName="Rol" />
-                <ScalarProperty Name="Contra" ColumnName="Contra" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contra" ColumnName="Contra" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -604,50 +612,52 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model1" >
-        <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5" PointY="4.75" Height="4.0956022135416665" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="2.875" PointY="8.625" Height="2.7494921874999996" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Funciones" Width="1.5" PointX="5" PointY="2.125" Height="1.5956835937499996" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="2.875" PointY="6" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="0.5" PointY="4.125" Height="3.5186979166666648" />
-        <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="0.625" PointY="1.375" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="CSAdminBDModel.SituacionesProfesionales" Width="1.5" PointX="7.5" PointY="4.75" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="2.875" PointY="3.375" Height="1.9802864583333317" />
-        <AssociationConnector Association="CSAdminBDModel.Equipos_Contratos" >
-          <ConnectorPoint PointX="3.625" PointY="8.625" />
-          <ConnectorPoint PointX="3.625" PointY="8.385" />
-          <ConnectorPoint PointX="4.76" PointY="8.385" />
-          <ConnectorPoint PointX="4.76" PointY="7.2928747213541678" />
-          <ConnectorPoint PointX="5" PointY="7.2928747213541678" />
+      <Diagram Name="ModelBD">
+        <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5.25" PointY="7.625" Height="4.0956022135416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="3" PointY="8.875" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Funciones" Width="1.5" PointX="3" PointY="6.5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="3" PointY="11.875" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="0.75" PointY="7.75" Height="3.5186979166666648" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="3" PointY="14.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.SituacionesProfesionales" Width="1.5" PointX="3" PointY="4.375" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3" PointY="16.25" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="CSAdminBDModel.Equipos_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="10.24974609375" />
+          <ConnectorPoint PointX="5.25" PointY="10.24974609375" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Funciones_Contratos" >
-          <ConnectorPoint PointX="5.75" PointY="3.7206835937499996" />
-          <ConnectorPoint PointX="5.75" PointY="4.75" />
+        <AssociationConnector Association="CSAdminBDModel.Funciones_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="7.860341796875" />
+          <ConnectorPoint PointX="5.25" PointY="7.860341796875" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Personas_Contratos" >
-          <ConnectorPoint PointX="2" PointY="5.6776432291666659" />
-          <ConnectorPoint PointX="5" PointY="5.6776432291666659" />
+        <AssociationConnector Association="CSAdminBDModel.Personas_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="8.485341796875" />
+          <ConnectorPoint PointX="5.25" PointY="8.485341796875" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.SituacionesProfesionales_Contratos" >
-          <ConnectorPoint PointX="7.5" PointY="5.7401432291666659" />
-          <ConnectorPoint PointX="6.5" PointY="5.7401432291666659" />
+        <AssociationConnector Association="CSAdminBDModel.SituacionesProfesionales_Contratos" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.3651432291666659" />
+          <ConnectorPoint PointX="6" PointY="5.3651432291666659" />
+          <ConnectorPoint PointX="6" PointY="7.625" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Personas_Equipos" >
-          <ConnectorPoint PointX="1.25" PointY="7.6436979166666648" />
-          <ConnectorPoint PointX="1.25" PointY="9.99974609375" />
-          <ConnectorPoint PointX="2.875" PointY="9.99974609375" />
+        <AssociationConnector Association="CSAdminBDModel.Personas_Equipos" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.071848958333332" />
+          <ConnectorPoint PointX="3" PointY="10.071848958333332" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Personas_Inasistencias" >
-          <ConnectorPoint PointX="2" PointY="6.8218489583333319" />
-          <ConnectorPoint PointX="2.875" PointY="6.8218489583333319" />
+        <AssociationConnector Association="CSAdminBDModel.Personas_Inasistencias" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="11.268697916666664" />
+          <ConnectorPoint PointX="1.5" PointY="12.9612939453125" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="12.9612939453125" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="12.9612939453125" />
+          <ConnectorPoint PointX="3" PointY="12.9612939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Personas_PersonasTel" >
-          <ConnectorPoint PointX="1.3125" PointY="4.125" />
-          <ConnectorPoint PointX="1.3125" PointY="3.1629850260416674" />
+        <AssociationConnector Association="CSAdminBDModel.Personas_PersonasTel" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.9062525" PointY="11.268697916666664" />
+          <ConnectorPoint PointX="1.9062525" PointY="15.143992513020834" />
+          <ConnectorPoint PointX="3" PointY="15.143992513020834" />
         </AssociationConnector>
-        <AssociationConnector Association="CSAdminBDModel.Personas_Usuarios" >
-          <ConnectorPoint PointX="2" PointY="4.7401432291666659" />
-          <ConnectorPoint PointX="2.875" PointY="4.7401432291666659" />
+        <AssociationConnector Association="CSAdminBDModel.Personas_Usuarios" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.0937475" PointY="11.268697916666664" />
+          <ConnectorPoint PointX="1.0937475" PointY="17.240143229166666" />
+          <ConnectorPoint PointX="3" PointY="17.240143229166666" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

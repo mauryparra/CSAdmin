@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("5f2cedb8-1db4-4b2f-ae4d-14ad7585d432")>
+<Assembly: EdmSchemaAttribute("451a7a3a-0274-4a9b-8595-862d0f602595")>
 #Region "Metadatos de relaciones en EDM"
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Equipos_Contratos", "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Equipos), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Funciones_Contratos", "Funciones", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Funciones), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
@@ -872,31 +872,6 @@ Public Partial Class Equipos
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property Contra() As Global.System.String
-        Get
-            Return _Contra
-        End Get
-        Set
-            OnContraChanging(value)
-            ReportPropertyChanging("Contra")
-            _Contra = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("Contra")
-            OnContraChanged()
-        End Set
-    End Property
-
-    Private _Contra As Global.System.String
-    Private Partial Sub OnContraChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnContraChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No hay documentación de metadatos disponible.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
     Public Property Telefono() As Nullable(Of Global.System.Decimal)
         Get
             Return _Telefono
@@ -940,6 +915,31 @@ Public Partial Class Equipos
     End Sub
 
     Private Partial Sub OnCoordinadorIdChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property Contra() As Global.System.String
+        Get
+            Return _Contra
+        End Get
+        Set
+            OnContraChanging(value)
+            ReportPropertyChanging("Contra")
+            _Contra = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("Contra")
+            OnContraChanged()
+        End Set
+    End Property
+
+    Private _Contra As Global.System.String
+    Private Partial Sub OnContraChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnContraChanged()
     End Sub
 
     #End Region
@@ -1119,11 +1119,13 @@ Public Partial Class Inasistencias
     ''' <param name="id">Valor inicial de la propiedad Id.</param>
     ''' <param name="idPersona">Valor inicial de la propiedad IdPersona.</param>
     ''' <param name="desde">Valor inicial de la propiedad Desde.</param>
-    Public Shared Function CreateInasistencias(id As Global.System.Int32, idPersona As Global.System.Int32, desde As Global.System.DateTime) As Inasistencias
+    ''' <param name="hasta">Valor inicial de la propiedad Hasta.</param>
+    Public Shared Function CreateInasistencias(id As Global.System.Int32, idPersona As Global.System.Int32, desde As Global.System.DateTime, hasta As Global.System.DateTime) As Inasistencias
         Dim inasistencias as Inasistencias = New Inasistencias
         inasistencias.Id = id
         inasistencias.IdPersona = idPersona
         inasistencias.Desde = desde
+        inasistencias.Hasta = hasta
         Return inasistencias
     End Function
 
@@ -1213,9 +1215,9 @@ Public Partial Class Inasistencias
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property Hasta() As Nullable(Of Global.System.DateTime)
+    Public Property Hasta() As Global.System.DateTime
         Get
             Return _Hasta
         End Get
@@ -1228,8 +1230,8 @@ Public Partial Class Inasistencias
         End Set
     End Property
 
-    Private _Hasta As Nullable(Of Global.System.DateTime)
-    Private Partial Sub OnHastaChanging(value As Nullable(Of Global.System.DateTime))
+    Private _Hasta As Global.System.DateTime
+    Private Partial Sub OnHastaChanging(value As Global.System.DateTime)
     End Sub
 
     Private Partial Sub OnHastaChanged()
@@ -1312,10 +1314,18 @@ Public Partial Class Personas
     ''' <summary>
     ''' Crear un nuevo objeto Personas.
     ''' </summary>
-    ''' <param name="id">Valor inicial de la propiedad Id.</param>
-    Public Shared Function CreatePersonas(id As Global.System.Int32) As Personas
+    ''' <param name="id">Valor inicial de la propiedad ID.</param>
+    ''' <param name="dNI">Valor inicial de la propiedad DNI.</param>
+    ''' <param name="nombre">Valor inicial de la propiedad Nombre.</param>
+    ''' <param name="apellido">Valor inicial de la propiedad Apellido.</param>
+    ''' <param name="baja">Valor inicial de la propiedad Baja.</param>
+    Public Shared Function CreatePersonas(id As Global.System.Int32, dNI As Global.System.Decimal, nombre As Global.System.String, apellido As Global.System.String, baja As Global.System.Boolean) As Personas
         Dim personas as Personas = New Personas
-        personas.Id = id
+        personas.ID = id
+        personas.DNI = dNI
+        personas.Nombre = nombre
+        personas.Apellido = apellido
+        personas.Baja = baja
         Return personas
     End Function
 
@@ -1328,34 +1338,34 @@ Public Partial Class Personas
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property Id() As Global.System.Int32
+    Public Property ID() As Global.System.Int32
         Get
-            Return _Id
+            Return _ID
         End Get
         Set
-            If (_Id <> Value) Then
-                OnIdChanging(value)
-                ReportPropertyChanging("Id")
-                _Id = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("Id")
-                OnIdChanged()
+            If (_ID <> Value) Then
+                OnIDChanging(value)
+                ReportPropertyChanging("ID")
+                _ID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ID")
+                OnIDChanged()
             End If
         End Set
     End Property
 
-    Private _Id As Global.System.Int32
-    Private Partial Sub OnIdChanging(value As Global.System.Int32)
+    Private _ID As Global.System.Int32
+    Private Partial Sub OnIDChanging(value As Global.System.Int32)
     End Sub
 
-    Private Partial Sub OnIdChanged()
+    Private Partial Sub OnIDChanged()
     End Sub
 
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property DNI() As Nullable(Of Global.System.Decimal)
+    Public Property DNI() As Global.System.Decimal
         Get
             Return _DNI
         End Get
@@ -1368,8 +1378,8 @@ Public Partial Class Personas
         End Set
     End Property
 
-    Private _DNI As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnDNIChanging(value As Nullable(Of Global.System.Decimal))
+    Private _DNI As Global.System.Decimal
+    Private Partial Sub OnDNIChanging(value As Global.System.Decimal)
     End Sub
 
     Private Partial Sub OnDNIChanged()
@@ -1403,7 +1413,7 @@ Public Partial Class Personas
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property Nombre() As Global.System.String
         Get
@@ -1412,7 +1422,7 @@ Public Partial Class Personas
         Set
             OnNombreChanging(value)
             ReportPropertyChanging("Nombre")
-            _Nombre = StructuralObject.SetValidValue(value, true)
+            _Nombre = StructuralObject.SetValidValue(value, false)
             ReportPropertyChanged("Nombre")
             OnNombreChanged()
         End Set
@@ -1428,7 +1438,7 @@ Public Partial Class Personas
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property Apellido() As Global.System.String
         Get
@@ -1437,7 +1447,7 @@ Public Partial Class Personas
         Set
             OnApellidoChanging(value)
             ReportPropertyChanging("Apellido")
-            _Apellido = StructuralObject.SetValidValue(value, true)
+            _Apellido = StructuralObject.SetValidValue(value, false)
             ReportPropertyChanged("Apellido")
             OnApellidoChanged()
         End Set
@@ -1503,9 +1513,9 @@ Public Partial Class Personas
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property Baja() As Nullable(Of Global.System.Boolean)
+    Public Property Baja() As Global.System.Boolean
         Get
             Return _Baja
         End Get
@@ -1518,8 +1528,8 @@ Public Partial Class Personas
         End Set
     End Property
 
-    Private _Baja As Nullable(Of Global.System.Boolean)
-    Private Partial Sub OnBajaChanging(value As Nullable(Of Global.System.Boolean))
+    Private _Baja As Global.System.Boolean
+    Private Partial Sub OnBajaChanging(value As Global.System.Boolean)
     End Sub
 
     Private Partial Sub OnBajaChanged()
