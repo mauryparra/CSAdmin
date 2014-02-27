@@ -61,11 +61,11 @@ Partial Class Main
         'ToolStripContainer.ContentPanel
         '
         Me.ToolStripContainer.ContentPanel.Controls.Add(Me.SplitContainer)
-        Me.ToolStripContainer.ContentPanel.Size = New System.Drawing.Size(584, 296)
+        Me.ToolStripContainer.ContentPanel.Size = New System.Drawing.Size(834, 446)
         Me.ToolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainer.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainer.Name = "ToolStripContainer"
-        Me.ToolStripContainer.Size = New System.Drawing.Size(584, 342)
+        Me.ToolStripContainer.Size = New System.Drawing.Size(834, 492)
         Me.ToolStripContainer.TabIndex = 0
         Me.ToolStripContainer.Text = "ToolStripContainer"
         '
@@ -79,7 +79,7 @@ Partial Class Main
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel, Me.ToolStripProgressBar})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 0)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(584, 22)
+        Me.StatusStrip.Size = New System.Drawing.Size(834, 22)
         Me.StatusStrip.TabIndex = 0
         '
         'ToolStripStatusLabel
@@ -107,7 +107,7 @@ Partial Class Main
         '
         Me.SplitContainer.Panel1.Controls.Add(Me.FlowLayoutPanel)
         Me.SplitContainer.Panel1MinSize = 144
-        Me.SplitContainer.Size = New System.Drawing.Size(584, 296)
+        Me.SplitContainer.Size = New System.Drawing.Size(834, 446)
         Me.SplitContainer.SplitterDistance = 144
         Me.SplitContainer.SplitterWidth = 1
         Me.SplitContainer.TabIndex = 0
@@ -124,7 +124,7 @@ Partial Class Main
         Me.FlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel.Name = "FlowLayoutPanel"
-        Me.FlowLayoutPanel.Size = New System.Drawing.Size(140, 292)
+        Me.FlowLayoutPanel.Size = New System.Drawing.Size(140, 442)
         Me.FlowLayoutPanel.TabIndex = 0
         '
         'RadBtnPersonal
@@ -136,7 +136,7 @@ Partial Class Main
         Me.RadBtnPersonal.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnPersonal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnPersonal.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnPersonal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnPersonal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnPersonal.Location = New System.Drawing.Point(3, 3)
         Me.RadBtnPersonal.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnPersonal.Name = "RadBtnPersonal"
@@ -156,7 +156,7 @@ Partial Class Main
         Me.RadBtnContratos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnContratos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnContratos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnContratos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnContratos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnContratos.Location = New System.Drawing.Point(3, 40)
         Me.RadBtnContratos.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnContratos.Name = "RadBtnContratos"
@@ -175,7 +175,7 @@ Partial Class Main
         Me.RadBtnAsistencia.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnAsistencia.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnAsistencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnAsistencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnAsistencia.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnAsistencia.Location = New System.Drawing.Point(3, 77)
         Me.RadBtnAsistencia.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnAsistencia.Name = "RadBtnAsistencia"
@@ -194,7 +194,7 @@ Partial Class Main
         Me.RadBtnEquipos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnEquipos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnEquipos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnEquipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnEquipos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnEquipos.Location = New System.Drawing.Point(3, 114)
         Me.RadBtnEquipos.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnEquipos.Name = "RadBtnEquipos"
@@ -213,7 +213,7 @@ Partial Class Main
         Me.RadBtnConsultas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnConsultas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnConsultas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnConsultas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnConsultas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnConsultas.Location = New System.Drawing.Point(3, 151)
         Me.RadBtnConsultas.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnConsultas.Name = "RadBtnConsultas"
@@ -232,7 +232,7 @@ Partial Class Main
         Me.RadBtnCertificados.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
         Me.RadBtnCertificados.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.RadBtnCertificados.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnCertificados.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnCertificados.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadBtnCertificados.Location = New System.Drawing.Point(3, 188)
         Me.RadBtnCertificados.MinimumSize = New System.Drawing.Size(134, 30)
         Me.RadBtnCertificados.Name = "RadBtnCertificados"
@@ -249,7 +249,7 @@ Partial Class Main
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.AyudaToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(584, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(834, 24)
         Me.MenuStrip.TabIndex = 0
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -283,9 +283,10 @@ Partial Class Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(584, 342)
+        Me.ClientSize = New System.Drawing.Size(834, 492)
         Me.Controls.Add(Me.ToolStripContainer)
         Me.MainMenuStrip = Me.MenuStrip
+        Me.MinimumSize = New System.Drawing.Size(850, 530)
         Me.Name = "Main"
         Me.Text = "CSAdmin"
         Me.ToolStripContainer.BottomToolStripPanel.ResumeLayout(False)
