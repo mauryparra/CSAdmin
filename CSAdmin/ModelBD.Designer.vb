@@ -18,16 +18,16 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("451a7a3a-0274-4a9b-8595-862d0f602595")>
+<Assembly: EdmSchemaAttribute("ce77c572-0276-481a-aaa2-40744b023eb4")>
 #Region "Metadatos de relaciones en EDM"
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Equipos_Contratos", "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Equipos), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Funciones_Contratos", "Funciones", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Funciones), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Personas_Contratos", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "SituacionesProfesionales_Contratos", "SituacionesProfesionales", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(SituacionesProfesionales), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Personas_Equipos", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Equipos), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Personas_Inasistencias", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Inasistencias", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Inasistencias), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Personas_PersonasTel", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "PersonasTel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PersonasTel), True)>
-<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "Personas_Usuarios", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Usuarios), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_Equipos", "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Equipos), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_Funciones", "Funciones", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Funciones), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(SituacionesProfesionales), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Equipos_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Equipos), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Inasistencias_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Inasistencias", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Inasistencias), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_PersonasTel_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "PersonasTel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PersonasTel), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Usuarios_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Usuarios), True)>
 
 #End Region
 
@@ -331,18 +331,20 @@ Public Partial Class Contratos
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property PersonaId() As Global.System.Int32
         Get
             Return _PersonaId
         End Get
         Set
-            OnPersonaIdChanging(value)
-            ReportPropertyChanging("PersonaId")
-            _PersonaId = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("PersonaId")
-            OnPersonaIdChanged()
+            If (_PersonaId <> Value) Then
+                OnPersonaIdChanging(value)
+                ReportPropertyChanging("PersonaId")
+                _PersonaId = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("PersonaId")
+                OnPersonaIdChanged()
+            End If
         End Set
     End Property
 
@@ -613,13 +615,13 @@ Public Partial Class Contratos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Equipos_Contratos", "Equipos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Equipos", "Equipos")>
     Public Property Equipos() As Equipos
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.Equipos_Contratos", "Equipos").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.FK_Contratos_Equipos", "Equipos").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.Equipos_Contratos", "Equipos").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.FK_Contratos_Equipos", "Equipos").Value = value
         End Set
     End Property
     ''' <summary>
@@ -629,11 +631,11 @@ Public Partial Class Contratos
     <DataMemberAttribute()>
     Public Property EquiposReference() As EntityReference(Of Equipos)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.Equipos_Contratos", "Equipos")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Equipos)("CSAdminBDModel.FK_Contratos_Equipos", "Equipos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Equipos)("CSAdminBDModel.Equipos_Contratos", "Equipos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Equipos)("CSAdminBDModel.FK_Contratos_Equipos", "Equipos", value)
             End If
         End Set
     End Property
@@ -644,13 +646,13 @@ Public Partial Class Contratos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Funciones_Contratos", "Funciones")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Funciones", "Funciones")>
     Public Property Funciones() As Funciones
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.Funciones_Contratos", "Funciones").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.FK_Contratos_Funciones", "Funciones").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.Funciones_Contratos", "Funciones").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.FK_Contratos_Funciones", "Funciones").Value = value
         End Set
     End Property
     ''' <summary>
@@ -660,11 +662,11 @@ Public Partial Class Contratos
     <DataMemberAttribute()>
     Public Property FuncionesReference() As EntityReference(Of Funciones)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.Funciones_Contratos", "Funciones")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Funciones)("CSAdminBDModel.FK_Contratos_Funciones", "Funciones")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Funciones)("CSAdminBDModel.Funciones_Contratos", "Funciones", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Funciones)("CSAdminBDModel.FK_Contratos_Funciones", "Funciones", value)
             End If
         End Set
     End Property
@@ -675,13 +677,13 @@ Public Partial Class Contratos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Contratos", "Personas")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Personas", "Personas")>
     Public Property Personas() As Personas
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Contratos", "Personas").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Contratos_Personas", "Personas").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Contratos", "Personas").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Contratos_Personas", "Personas").Value = value
         End Set
     End Property
     ''' <summary>
@@ -691,11 +693,11 @@ Public Partial Class Contratos
     <DataMemberAttribute()>
     Public Property PersonasReference() As EntityReference(Of Personas)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Contratos", "Personas")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Contratos_Personas", "Personas")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.Personas_Contratos", "Personas", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Contratos_Personas", "Personas", value)
             End If
         End Set
     End Property
@@ -706,13 +708,13 @@ Public Partial Class Contratos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "SituacionesProfesionales_Contratos", "SituacionesProfesionales")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales")>
     Public Property SituacionesProfesionales() As SituacionesProfesionales
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.SituacionesProfesionales_Contratos", "SituacionesProfesionales").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.SituacionesProfesionales_Contratos", "SituacionesProfesionales").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales").Value = value
         End Set
     End Property
     ''' <summary>
@@ -722,11 +724,11 @@ Public Partial Class Contratos
     <DataMemberAttribute()>
     Public Property SituacionesProfesionalesReference() As EntityReference(Of SituacionesProfesionales)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.SituacionesProfesionales_Contratos", "SituacionesProfesionales")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.SituacionesProfesionales_Contratos", "SituacionesProfesionales", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of SituacionesProfesionales)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "SituacionesProfesionales", value)
             End If
         End Set
     End Property
@@ -751,13 +753,13 @@ Public Partial Class Equipos
     ''' <param name="id">Valor inicial de la propiedad Id.</param>
     ''' <param name="ubicacion">Valor inicial de la propiedad Ubicacion.</param>
     ''' <param name="localidad">Valor inicial de la propiedad Localidad.</param>
-    ''' <param name="coordinadorId">Valor inicial de la propiedad CoordinadorId.</param>
-    Public Shared Function CreateEquipos(id As Global.System.String, ubicacion As Global.System.String, localidad As Global.System.String, coordinadorId As Global.System.Int32) As Equipos
+    ''' <param name="coordinadoId">Valor inicial de la propiedad CoordinadoId.</param>
+    Public Shared Function CreateEquipos(id As Global.System.String, ubicacion As Global.System.String, localidad As Global.System.String, coordinadoId As Global.System.Int32) As Equipos
         Dim equipos as Equipos = New Equipos
         equipos.Id = id
         equipos.Ubicacion = ubicacion
         equipos.Localidad = localidad
-        equipos.CoordinadorId = coordinadorId
+        equipos.CoordinadoId = coordinadoId
         Return equipos
     End Function
 
@@ -872,6 +874,31 @@ Public Partial Class Equipos
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
+    Public Property Contra() As Global.System.String
+        Get
+            Return _Contra
+        End Get
+        Set
+            OnContraChanging(value)
+            ReportPropertyChanging("Contra")
+            _Contra = StructuralObject.SetValidValue(value, true)
+            ReportPropertyChanged("Contra")
+            OnContraChanged()
+        End Set
+    End Property
+
+    Private _Contra As Global.System.String
+    Private Partial Sub OnContraChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnContraChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
     Public Property Telefono() As Nullable(Of Global.System.Decimal)
         Get
             Return _Telefono
@@ -897,49 +924,24 @@ Public Partial Class Equipos
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property CoordinadorId() As Global.System.Int32
+    Public Property CoordinadoId() As Global.System.Int32
         Get
-            Return _CoordinadorId
+            Return _CoordinadoId
         End Get
         Set
-            OnCoordinadorIdChanging(value)
-            ReportPropertyChanging("CoordinadorId")
-            _CoordinadorId = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("CoordinadorId")
-            OnCoordinadorIdChanged()
+            OnCoordinadoIdChanging(value)
+            ReportPropertyChanging("CoordinadoId")
+            _CoordinadoId = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("CoordinadoId")
+            OnCoordinadoIdChanged()
         End Set
     End Property
 
-    Private _CoordinadorId As Global.System.Int32
-    Private Partial Sub OnCoordinadorIdChanging(value As Global.System.Int32)
+    Private _CoordinadoId As Global.System.Int32
+    Private Partial Sub OnCoordinadoIdChanging(value As Global.System.Int32)
     End Sub
 
-    Private Partial Sub OnCoordinadorIdChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No hay documentación de metadatos disponible.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-    <DataMemberAttribute()>
-    Public Property Contra() As Global.System.String
-        Get
-            Return _Contra
-        End Get
-        Set
-            OnContraChanging(value)
-            ReportPropertyChanging("Contra")
-            _Contra = StructuralObject.SetValidValue(value, true)
-            ReportPropertyChanged("Contra")
-            OnContraChanged()
-        End Set
-    End Property
-
-    Private _Contra As Global.System.String
-    Private Partial Sub OnContraChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnContraChanged()
+    Private Partial Sub OnCoordinadoIdChanged()
     End Sub
 
     #End Region
@@ -952,14 +954,14 @@ Public Partial Class Equipos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Equipos_Contratos", "Contratos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Equipos", "Contratos")>
      Public Property Contratos() As EntityCollection(Of Contratos)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.Equipos_Contratos", "Contratos")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Equipos", "Contratos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.Equipos_Contratos", "Contratos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Equipos", "Contratos", value)
             End If
         End Set
     End Property
@@ -970,13 +972,13 @@ Public Partial Class Equipos
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Equipos", "Personas")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Equipos_Personas", "Personas")>
     Public Property Personas() As Personas
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Equipos", "Personas").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Equipos_Personas", "Personas").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Equipos", "Personas").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Equipos_Personas", "Personas").Value = value
         End Set
     End Property
     ''' <summary>
@@ -986,11 +988,11 @@ Public Partial Class Equipos
     <DataMemberAttribute()>
     Public Property PersonasReference() As EntityReference(Of Personas)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Equipos", "Personas")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Equipos_Personas", "Personas")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.Personas_Equipos", "Personas", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Equipos_Personas", "Personas", value)
             End If
         End Set
     End Property
@@ -1087,14 +1089,14 @@ Public Partial Class Funciones
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Funciones_Contratos", "Contratos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Funciones", "Contratos")>
      Public Property Contratos() As EntityCollection(Of Contratos)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.Funciones_Contratos", "Contratos")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Funciones", "Contratos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.Funciones_Contratos", "Contratos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Funciones", "Contratos", value)
             End If
         End Set
     End Property
@@ -1119,13 +1121,11 @@ Public Partial Class Inasistencias
     ''' <param name="id">Valor inicial de la propiedad Id.</param>
     ''' <param name="idPersona">Valor inicial de la propiedad IdPersona.</param>
     ''' <param name="desde">Valor inicial de la propiedad Desde.</param>
-    ''' <param name="hasta">Valor inicial de la propiedad Hasta.</param>
-    Public Shared Function CreateInasistencias(id As Global.System.Int32, idPersona As Global.System.Int32, desde As Global.System.DateTime, hasta As Global.System.DateTime) As Inasistencias
+    Public Shared Function CreateInasistencias(id As Global.System.Int32, idPersona As Global.System.Int32, desde As Global.System.DateTime) As Inasistencias
         Dim inasistencias as Inasistencias = New Inasistencias
         inasistencias.Id = id
         inasistencias.IdPersona = idPersona
         inasistencias.Desde = desde
-        inasistencias.Hasta = hasta
         Return inasistencias
     End Function
 
@@ -1215,9 +1215,9 @@ Public Partial Class Inasistencias
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property Hasta() As Global.System.DateTime
+    Public Property Hasta() As Nullable(Of Global.System.DateTime)
         Get
             Return _Hasta
         End Get
@@ -1230,8 +1230,8 @@ Public Partial Class Inasistencias
         End Set
     End Property
 
-    Private _Hasta As Global.System.DateTime
-    Private Partial Sub OnHastaChanging(value As Global.System.DateTime)
+    Private _Hasta As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnHastaChanging(value As Nullable(Of Global.System.DateTime))
     End Sub
 
     Private Partial Sub OnHastaChanged()
@@ -1272,13 +1272,13 @@ Public Partial Class Inasistencias
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Inasistencias", "Personas")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Inasistencias_Personas", "Personas")>
     Public Property Personas() As Personas
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Inasistencias", "Personas").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Inasistencias_Personas", "Personas").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Inasistencias", "Personas").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Inasistencias_Personas", "Personas").Value = value
         End Set
     End Property
     ''' <summary>
@@ -1288,11 +1288,11 @@ Public Partial Class Inasistencias
     <DataMemberAttribute()>
     Public Property PersonasReference() As EntityReference(Of Personas)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Inasistencias", "Personas")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Inasistencias_Personas", "Personas")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.Personas_Inasistencias", "Personas", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Inasistencias_Personas", "Personas", value)
             End If
         End Set
     End Property
@@ -1314,17 +1314,19 @@ Public Partial Class Personas
     ''' <summary>
     ''' Crear un nuevo objeto Personas.
     ''' </summary>
-    ''' <param name="id">Valor inicial de la propiedad ID.</param>
-    ''' <param name="dNI">Valor inicial de la propiedad DNI.</param>
+    ''' <param name="id">Valor inicial de la propiedad Id.</param>
+    ''' <param name="dni">Valor inicial de la propiedad Dni.</param>
     ''' <param name="nombre">Valor inicial de la propiedad Nombre.</param>
     ''' <param name="apellido">Valor inicial de la propiedad Apellido.</param>
+    ''' <param name="direccion">Valor inicial de la propiedad Direccion.</param>
     ''' <param name="baja">Valor inicial de la propiedad Baja.</param>
-    Public Shared Function CreatePersonas(id As Global.System.Int32, dNI As Global.System.Decimal, nombre As Global.System.String, apellido As Global.System.String, baja As Global.System.Boolean) As Personas
+    Public Shared Function CreatePersonas(id As Global.System.Int32, dni As Global.System.Decimal, nombre As Global.System.String, apellido As Global.System.String, direccion As Global.System.String, baja As Global.System.Boolean) As Personas
         Dim personas as Personas = New Personas
-        personas.ID = id
-        personas.DNI = dNI
+        personas.Id = id
+        personas.Dni = dni
         personas.Nombre = nombre
         personas.Apellido = apellido
+        personas.Direccion = direccion
         personas.Baja = baja
         Return personas
     End Function
@@ -1338,26 +1340,26 @@ Public Partial Class Personas
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property ID() As Global.System.Int32
+    Public Property Id() As Global.System.Int32
         Get
-            Return _ID
+            Return _Id
         End Get
         Set
-            If (_ID <> Value) Then
-                OnIDChanging(value)
-                ReportPropertyChanging("ID")
-                _ID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("ID")
-                OnIDChanged()
+            If (_Id <> Value) Then
+                OnIdChanging(value)
+                ReportPropertyChanging("Id")
+                _Id = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("Id")
+                OnIdChanged()
             End If
         End Set
     End Property
 
-    Private _ID As Global.System.Int32
-    Private Partial Sub OnIDChanging(value As Global.System.Int32)
+    Private _Id As Global.System.Int32
+    Private Partial Sub OnIdChanging(value As Global.System.Int32)
     End Sub
 
-    Private Partial Sub OnIDChanged()
+    Private Partial Sub OnIdChanged()
     End Sub
 
     ''' <summary>
@@ -1365,24 +1367,24 @@ Public Partial Class Personas
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property DNI() As Global.System.Decimal
+    Public Property Dni() As Global.System.Decimal
         Get
-            Return _DNI
+            Return _Dni
         End Get
         Set
-            OnDNIChanging(value)
-            ReportPropertyChanging("DNI")
-            _DNI = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("DNI")
-            OnDNIChanged()
+            OnDniChanging(value)
+            ReportPropertyChanging("Dni")
+            _Dni = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("Dni")
+            OnDniChanged()
         End Set
     End Property
 
-    Private _DNI As Global.System.Decimal
-    Private Partial Sub OnDNIChanging(value As Global.System.Decimal)
+    Private _Dni As Global.System.Decimal
+    Private Partial Sub OnDniChanging(value As Global.System.Decimal)
     End Sub
 
-    Private Partial Sub OnDNIChanged()
+    Private Partial Sub OnDniChanged()
     End Sub
 
     ''' <summary>
@@ -1390,24 +1392,24 @@ Public Partial Class Personas
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property CUIT() As Nullable(Of Global.System.Decimal)
+    Public Property Cuit() As Nullable(Of Global.System.Decimal)
         Get
-            Return _CUIT
+            Return _Cuit
         End Get
         Set
-            OnCUITChanging(value)
-            ReportPropertyChanging("CUIT")
-            _CUIT = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("CUIT")
-            OnCUITChanged()
+            OnCuitChanging(value)
+            ReportPropertyChanging("Cuit")
+            _Cuit = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("Cuit")
+            OnCuitChanged()
         End Set
     End Property
 
-    Private _CUIT As Nullable(Of Global.System.Decimal)
-    Private Partial Sub OnCUITChanging(value As Nullable(Of Global.System.Decimal))
+    Private _Cuit As Nullable(Of Global.System.Decimal)
+    Private Partial Sub OnCuitChanging(value As Nullable(Of Global.System.Decimal))
     End Sub
 
-    Private Partial Sub OnCUITChanged()
+    Private Partial Sub OnCuitChanged()
     End Sub
 
     ''' <summary>
@@ -1463,7 +1465,7 @@ Public Partial Class Personas
     ''' <summary>
     ''' No hay documentación de metadatos disponible.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
     Public Property Direccion() As Global.System.String
         Get
@@ -1472,7 +1474,7 @@ Public Partial Class Personas
         Set
             OnDireccionChanging(value)
             ReportPropertyChanging("Direccion")
-            _Direccion = StructuralObject.SetValidValue(value, true)
+            _Direccion = StructuralObject.SetValidValue(value, false)
             ReportPropertyChanged("Direccion")
             OnDireccionChanged()
         End Set
@@ -1545,14 +1547,14 @@ Public Partial Class Personas
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Contratos", "Contratos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_Personas", "Contratos")>
      Public Property Contratos() As EntityCollection(Of Contratos)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.Personas_Contratos", "Contratos")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Personas", "Contratos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.Personas_Contratos", "Contratos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_Personas", "Contratos", value)
             End If
         End Set
     End Property
@@ -1563,14 +1565,14 @@ Public Partial Class Personas
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Equipos", "Equipos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Equipos_Personas", "Equipos")>
      Public Property Equipos() As EntityCollection(Of Equipos)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Equipos)("CSAdminBDModel.Personas_Equipos", "Equipos")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Equipos)("CSAdminBDModel.FK_Equipos_Personas", "Equipos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Equipos)("CSAdminBDModel.Personas_Equipos", "Equipos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Equipos)("CSAdminBDModel.FK_Equipos_Personas", "Equipos", value)
             End If
         End Set
     End Property
@@ -1581,14 +1583,14 @@ Public Partial Class Personas
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Inasistencias", "Inasistencias")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Inasistencias_Personas", "Inasistencias")>
      Public Property Inasistencias() As EntityCollection(Of Inasistencias)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Inasistencias)("CSAdminBDModel.Personas_Inasistencias", "Inasistencias")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Inasistencias)("CSAdminBDModel.FK_Inasistencias_Personas", "Inasistencias")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Inasistencias)("CSAdminBDModel.Personas_Inasistencias", "Inasistencias", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Inasistencias)("CSAdminBDModel.FK_Inasistencias_Personas", "Inasistencias", value)
             End If
         End Set
     End Property
@@ -1599,14 +1601,14 @@ Public Partial Class Personas
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_PersonasTel", "PersonasTel")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_PersonasTel_Personas", "PersonasTel")>
      Public Property PersonasTel() As EntityCollection(Of PersonasTel)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of PersonasTel)("CSAdminBDModel.Personas_PersonasTel", "PersonasTel")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of PersonasTel)("CSAdminBDModel.FK_PersonasTel_Personas", "PersonasTel")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of PersonasTel)("CSAdminBDModel.Personas_PersonasTel", "PersonasTel", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of PersonasTel)("CSAdminBDModel.FK_PersonasTel_Personas", "PersonasTel", value)
             End If
         End Set
     End Property
@@ -1617,14 +1619,27 @@ Public Partial Class Personas
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Usuarios", "Usuarios")>
-     Public Property Usuarios() As EntityCollection(Of Usuarios)
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Usuarios_Personas", "Usuarios")>
+    Public Property Usuarios() As Usuarios
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Usuarios)("CSAdminBDModel.Personas_Usuarios", "Usuarios")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Usuarios)("CSAdminBDModel.FK_Usuarios_Personas", "Usuarios").Value
+        End Get
+        Set
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Usuarios)("CSAdminBDModel.FK_Usuarios_Personas", "Usuarios").Value = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <BrowsableAttribute(False)>
+    <DataMemberAttribute()>
+    Public Property UsuariosReference() As EntityReference(Of Usuarios)
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Usuarios)("CSAdminBDModel.FK_Usuarios_Personas", "Usuarios")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Usuarios)("CSAdminBDModel.Personas_Usuarios", "Usuarios", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Usuarios)("CSAdminBDModel.FK_Usuarios_Personas", "Usuarios", value)
             End If
         End Set
     End Property
@@ -1750,13 +1765,13 @@ Public Partial Class PersonasTel
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_PersonasTel", "Personas")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_PersonasTel_Personas", "Personas")>
     Public Property Personas() As Personas
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_PersonasTel", "Personas").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_PersonasTel_Personas", "Personas").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_PersonasTel", "Personas").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_PersonasTel_Personas", "Personas").Value = value
         End Set
     End Property
     ''' <summary>
@@ -1766,11 +1781,11 @@ Public Partial Class PersonasTel
     <DataMemberAttribute()>
     Public Property PersonasReference() As EntityReference(Of Personas)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_PersonasTel", "Personas")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_PersonasTel_Personas", "Personas")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.Personas_PersonasTel", "Personas", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_PersonasTel_Personas", "Personas", value)
             End If
         End Set
     End Property
@@ -1923,14 +1938,14 @@ Public Partial Class SituacionesProfesionales
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "SituacionesProfesionales_Contratos", "Contratos")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Contratos_SituacionesProfesionales", "Contratos")>
      Public Property Contratos() As EntityCollection(Of Contratos)
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.SituacionesProfesionales_Contratos", "Contratos")
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "Contratos")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.SituacionesProfesionales_Contratos", "Contratos", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Contratos)("CSAdminBDModel.FK_Contratos_SituacionesProfesionales", "Contratos", value)
             End If
         End Set
     End Property
@@ -1952,16 +1967,16 @@ Public Partial Class Usuarios
     ''' <summary>
     ''' Crear un nuevo objeto Usuarios.
     ''' </summary>
+    ''' <param name="idPersona">Valor inicial de la propiedad IdPersona.</param>
     ''' <param name="usuario">Valor inicial de la propiedad Usuario.</param>
     ''' <param name="contra">Valor inicial de la propiedad Contra.</param>
     ''' <param name="rol">Valor inicial de la propiedad Rol.</param>
-    ''' <param name="personaId">Valor inicial de la propiedad PersonaId.</param>
-    Public Shared Function CreateUsuarios(usuario As Global.System.String, contra As Global.System.String, rol As Global.System.String, personaId As Global.System.Int32) As Usuarios
+    Public Shared Function CreateUsuarios(idPersona As Global.System.Int32, usuario As Global.System.String, contra As Global.System.String, rol As Global.System.String) As Usuarios
         Dim usuarios as Usuarios = New Usuarios
+        usuarios.IdPersona = idPersona
         usuarios.Usuario = usuario
         usuarios.Contra = contra
         usuarios.Rol = rol
-        usuarios.PersonaId = personaId
         Return usuarios
     End Function
 
@@ -1974,18 +1989,43 @@ Public Partial Class Usuarios
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
     <DataMemberAttribute()>
+    Public Property IdPersona() As Global.System.Int32
+        Get
+            Return _IdPersona
+        End Get
+        Set
+            If (_IdPersona <> Value) Then
+                OnIdPersonaChanging(value)
+                ReportPropertyChanging("IdPersona")
+                _IdPersona = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("IdPersona")
+                OnIdPersonaChanged()
+            End If
+        End Set
+    End Property
+
+    Private _IdPersona As Global.System.Int32
+    Private Partial Sub OnIdPersonaChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub OnIdPersonaChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
     Public Property Usuario() As Global.System.String
         Get
             Return _Usuario
         End Get
         Set
-            If (_Usuario <> Value) Then
-                OnUsuarioChanging(value)
-                ReportPropertyChanging("Usuario")
-                _Usuario = StructuralObject.SetValidValue(value, false)
-                ReportPropertyChanged("Usuario")
-                OnUsuarioChanged()
-            End If
+            OnUsuarioChanging(value)
+            ReportPropertyChanging("Usuario")
+            _Usuario = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("Usuario")
+            OnUsuarioChanged()
         End Set
     End Property
 
@@ -2046,31 +2086,6 @@ Public Partial Class Usuarios
     Private Partial Sub OnRolChanged()
     End Sub
 
-    ''' <summary>
-    ''' No hay documentación de metadatos disponible.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-    <DataMemberAttribute()>
-    Public Property PersonaId() As Global.System.Int32
-        Get
-            Return _PersonaId
-        End Get
-        Set
-            OnPersonaIdChanging(value)
-            ReportPropertyChanging("PersonaId")
-            _PersonaId = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("PersonaId")
-            OnPersonaIdChanged()
-        End Set
-    End Property
-
-    Private _PersonaId As Global.System.Int32
-    Private Partial Sub OnPersonaIdChanging(value As Global.System.Int32)
-    End Sub
-
-    Private Partial Sub OnPersonaIdChanged()
-    End Sub
-
     #End Region
 
     #Region "Propiedades de navegación"
@@ -2081,13 +2096,13 @@ Public Partial Class Usuarios
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "Personas_Usuarios", "Personas")>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Usuarios_Personas", "Personas")>
     Public Property Personas() As Personas
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Usuarios", "Personas").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Usuarios_Personas", "Personas").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Usuarios", "Personas").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Usuarios_Personas", "Personas").Value = value
         End Set
     End Property
     ''' <summary>
@@ -2097,11 +2112,11 @@ Public Partial Class Usuarios
     <DataMemberAttribute()>
     Public Property PersonasReference() As EntityReference(Of Personas)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.Personas_Usuarios", "Personas")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Personas)("CSAdminBDModel.FK_Usuarios_Personas", "Personas")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.Personas_Usuarios", "Personas", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Usuarios_Personas", "Personas", value)
             End If
         End Set
     End Property
