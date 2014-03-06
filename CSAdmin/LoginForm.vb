@@ -9,7 +9,7 @@
     ' como el nombre de usuario, nombre para mostrar, etc.
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-        'Login de Prueba
+        'Login usando autentificación personalizada contra la BD
         Dim samplePrincipal As New SampleIPrincipal( _
             UsernameTextBox.Text, PasswordTextBox.Text)
         Me.PasswordTextBox.Text = ""

@@ -55,7 +55,7 @@ Public Class SampleIIdentity
         usuariosQ.Parameters.Add(New ObjectParameter("usuario", username))
         usuariosQ.Parameters.Add(New ObjectParameter("pass", pass))
 
-        If Not usuariosQ.First.Usuario = "" Then
+        If usuariosQ.Any Then
             Select Case usuariosQ.First.Rol
                 Case "ADM"
                     roleValue = ApplicationServices.BuiltInRole.Administrator
