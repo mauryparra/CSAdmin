@@ -43,6 +43,23 @@ Partial Class pPersonal
         Me.ALabelDni = New System.Windows.Forms.Label()
         Me.ADataGridViewPer = New System.Windows.Forms.DataGridView()
         Me.TabPageModificar = New System.Windows.Forms.TabPage()
+        Me.MSplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.MButtonCancelar = New System.Windows.Forms.Button()
+        Me.MButtonModificar = New System.Windows.Forms.Button()
+        Me.MButtonTelefonos = New System.Windows.Forms.Button()
+        Me.MTextBoxCorreo = New System.Windows.Forms.TextBox()
+        Me.MTextBoxDireccion = New System.Windows.Forms.TextBox()
+        Me.MTextBoxApellido = New System.Windows.Forms.TextBox()
+        Me.MTextBoxNombre = New System.Windows.Forms.TextBox()
+        Me.MMaskedTextBoxCuit = New System.Windows.Forms.MaskedTextBox()
+        Me.MMaskedTextBoxDni = New System.Windows.Forms.MaskedTextBox()
+        Me.MLabelCorreo = New System.Windows.Forms.Label()
+        Me.MLabelDireccion = New System.Windows.Forms.Label()
+        Me.MLabelApellido = New System.Windows.Forms.Label()
+        Me.MLabelNombre = New System.Windows.Forms.Label()
+        Me.MLabelCuit = New System.Windows.Forms.Label()
+        Me.MLabelDni = New System.Windows.Forms.Label()
+        Me.MDataGridViewPer = New System.Windows.Forms.DataGridView()
         Me.TabPageBaja = New System.Windows.Forms.TabPage()
         Me.BSplitContainer = New System.Windows.Forms.SplitContainer()
         Me.BButtonContratos = New System.Windows.Forms.Button()
@@ -64,6 +81,12 @@ Partial Class pPersonal
         Me.ASplitContainer.Panel2.SuspendLayout()
         Me.ASplitContainer.SuspendLayout()
         CType(Me.ADataGridViewPer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPageModificar.SuspendLayout()
+        CType(Me.MSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.MSplitContainer.Panel1.SuspendLayout()
+        Me.MSplitContainer.Panel2.SuspendLayout()
+        Me.MSplitContainer.SuspendLayout()
+        CType(Me.MDataGridViewPer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageBaja.SuspendLayout()
         CType(Me.BSplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BSplitContainer.Panel1.SuspendLayout()
@@ -205,6 +228,7 @@ Partial Class pPersonal
         'ATextBoxDireccion
         '
         Me.ATextBoxDireccion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ATextBoxDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ATextBoxDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ATextBoxDireccion.Location = New System.Drawing.Point(347, 13)
         Me.ATextBoxDireccion.MaxLength = 100
@@ -214,6 +238,7 @@ Partial Class pPersonal
         '
         'ATextBoxApellido
         '
+        Me.ATextBoxApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ATextBoxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ATextBoxApellido.Location = New System.Drawing.Point(68, 94)
         Me.ATextBoxApellido.MaxLength = 50
@@ -223,6 +248,7 @@ Partial Class pPersonal
         '
         'ATextBoxNombre
         '
+        Me.ATextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.ATextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ATextBoxNombre.Location = New System.Drawing.Point(68, 67)
         Me.ATextBoxNombre.MaxLength = 50
@@ -243,6 +269,7 @@ Partial Class pPersonal
         '
         'AMaskedTextBoxDni
         '
+        Me.AMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.AMaskedTextBoxDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AMaskedTextBoxDni.Location = New System.Drawing.Point(68, 13)
         Me.AMaskedTextBoxDni.Mask = "00,000,000"
@@ -298,7 +325,7 @@ Partial Class pPersonal
         '
         Me.ALabelCuit.AutoSize = True
         Me.ALabelCuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ALabelCuit.Location = New System.Drawing.Point(13, 46)
+        Me.ALabelCuit.Location = New System.Drawing.Point(13, 42)
         Me.ALabelCuit.Name = "ALabelCuit"
         Me.ALabelCuit.Size = New System.Drawing.Size(37, 15)
         Me.ALabelCuit.TabIndex = 1
@@ -330,6 +357,7 @@ Partial Class pPersonal
         '
         'TabPageModificar
         '
+        Me.TabPageModificar.Controls.Add(Me.MSplitContainer)
         Me.TabPageModificar.Location = New System.Drawing.Point(4, 24)
         Me.TabPageModificar.Name = "TabPageModificar"
         Me.TabPageModificar.Padding = New System.Windows.Forms.Padding(3)
@@ -338,11 +366,232 @@ Partial Class pPersonal
         Me.TabPageModificar.Text = "Ver/Modificar"
         Me.TabPageModificar.UseVisualStyleBackColor = True
         '
+        'MSplitContainer
+        '
+        Me.MSplitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.MSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
+        Me.MSplitContainer.IsSplitterFixed = True
+        Me.MSplitContainer.Location = New System.Drawing.Point(3, 3)
+        Me.MSplitContainer.Name = "MSplitContainer"
+        Me.MSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'MSplitContainer.Panel1
+        '
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MButtonCancelar)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MButtonModificar)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MButtonTelefonos)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxCorreo)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxDireccion)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxApellido)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxNombre)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MMaskedTextBoxCuit)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MMaskedTextBoxDni)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelCorreo)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelDireccion)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelApellido)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelNombre)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelCuit)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelDni)
+        '
+        'MSplitContainer.Panel2
+        '
+        Me.MSplitContainer.Panel2.Controls.Add(Me.MDataGridViewPer)
+        Me.MSplitContainer.Size = New System.Drawing.Size(675, 412)
+        Me.MSplitContainer.SplitterDistance = 140
+        Me.MSplitContainer.TabIndex = 1
+        '
+        'MButtonCancelar
+        '
+        Me.MButtonCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MButtonCancelar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
+        Me.MButtonCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DeepPink
+        Me.MButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink
+        Me.MButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.MButtonCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MButtonCancelar.Location = New System.Drawing.Point(568, 73)
+        Me.MButtonCancelar.Name = "MButtonCancelar"
+        Me.MButtonCancelar.Size = New System.Drawing.Size(88, 26)
+        Me.MButtonCancelar.TabIndex = 14
+        Me.MButtonCancelar.Text = "Cancelar"
+        Me.MButtonCancelar.UseVisualStyleBackColor = True
+        '
+        'MButtonModificar
+        '
+        Me.MButtonModificar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MButtonModificar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
+        Me.MButtonModificar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen
+        Me.MButtonModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise
+        Me.MButtonModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.MButtonModificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MButtonModificar.Location = New System.Drawing.Point(568, 34)
+        Me.MButtonModificar.Name = "MButtonModificar"
+        Me.MButtonModificar.Size = New System.Drawing.Size(88, 26)
+        Me.MButtonModificar.TabIndex = 13
+        Me.MButtonModificar.Text = "Modificar"
+        Me.MButtonModificar.UseVisualStyleBackColor = True
+        '
+        'MButtonTelefonos
+        '
+        Me.MButtonTelefonos.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MButtonTelefonos.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
+        Me.MButtonTelefonos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
+        Me.MButtonTelefonos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.MButtonTelefonos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.MButtonTelefonos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MButtonTelefonos.Location = New System.Drawing.Point(383, 67)
+        Me.MButtonTelefonos.Name = "MButtonTelefonos"
+        Me.MButtonTelefonos.Size = New System.Drawing.Size(99, 26)
+        Me.MButtonTelefonos.TabIndex = 12
+        Me.MButtonTelefonos.Text = "&Telefonos"
+        Me.MButtonTelefonos.UseVisualStyleBackColor = True
+        '
+        'MTextBoxCorreo
+        '
+        Me.MTextBoxCorreo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MTextBoxCorreo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxCorreo.Location = New System.Drawing.Point(347, 39)
+        Me.MTextBoxCorreo.MaxLength = 40
+        Me.MTextBoxCorreo.Name = "MTextBoxCorreo"
+        Me.MTextBoxCorreo.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxCorreo.TabIndex = 11
+        '
+        'MTextBoxDireccion
+        '
+        Me.MTextBoxDireccion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MTextBoxDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MTextBoxDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxDireccion.Location = New System.Drawing.Point(347, 13)
+        Me.MTextBoxDireccion.MaxLength = 100
+        Me.MTextBoxDireccion.Name = "MTextBoxDireccion"
+        Me.MTextBoxDireccion.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxDireccion.TabIndex = 10
+        '
+        'MTextBoxApellido
+        '
+        Me.MTextBoxApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MTextBoxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxApellido.Location = New System.Drawing.Point(68, 94)
+        Me.MTextBoxApellido.MaxLength = 50
+        Me.MTextBoxApellido.Name = "MTextBoxApellido"
+        Me.MTextBoxApellido.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxApellido.TabIndex = 9
+        '
+        'MTextBoxNombre
+        '
+        Me.MTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MTextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxNombre.Location = New System.Drawing.Point(68, 67)
+        Me.MTextBoxNombre.MaxLength = 50
+        Me.MTextBoxNombre.Name = "MTextBoxNombre"
+        Me.MTextBoxNombre.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxNombre.TabIndex = 8
+        '
+        'MMaskedTextBoxCuit
+        '
+        Me.MMaskedTextBoxCuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MMaskedTextBoxCuit.Location = New System.Drawing.Point(68, 39)
+        Me.MMaskedTextBoxCuit.Mask = "00-00000000-0"
+        Me.MMaskedTextBoxCuit.Name = "MMaskedTextBoxCuit"
+        Me.MMaskedTextBoxCuit.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.MMaskedTextBoxCuit.Size = New System.Drawing.Size(130, 21)
+        Me.MMaskedTextBoxCuit.TabIndex = 7
+        Me.MMaskedTextBoxCuit.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'MMaskedTextBoxDni
+        '
+        Me.MMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MMaskedTextBoxDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MMaskedTextBoxDni.Location = New System.Drawing.Point(68, 13)
+        Me.MMaskedTextBoxDni.Mask = "00,000,000"
+        Me.MMaskedTextBoxDni.Name = "MMaskedTextBoxDni"
+        Me.MMaskedTextBoxDni.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.MMaskedTextBoxDni.Size = New System.Drawing.Size(130, 21)
+        Me.MMaskedTextBoxDni.TabIndex = 6
+        Me.MMaskedTextBoxDni.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'MLabelCorreo
+        '
+        Me.MLabelCorreo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelCorreo.AutoSize = True
+        Me.MLabelCorreo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelCorreo.Location = New System.Drawing.Point(286, 42)
+        Me.MLabelCorreo.Name = "MLabelCorreo"
+        Me.MLabelCorreo.Size = New System.Drawing.Size(47, 15)
+        Me.MLabelCorreo.TabIndex = 5
+        Me.MLabelCorreo.Text = "Correo:"
+        '
+        'MLabelDireccion
+        '
+        Me.MLabelDireccion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelDireccion.AutoSize = True
+        Me.MLabelDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelDireccion.Location = New System.Drawing.Point(286, 16)
+        Me.MLabelDireccion.Name = "MLabelDireccion"
+        Me.MLabelDireccion.Size = New System.Drawing.Size(62, 15)
+        Me.MLabelDireccion.TabIndex = 4
+        Me.MLabelDireccion.Text = "Dirección:"
+        '
+        'MLabelApellido
+        '
+        Me.MLabelApellido.AutoSize = True
+        Me.MLabelApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelApellido.Location = New System.Drawing.Point(13, 97)
+        Me.MLabelApellido.Name = "MLabelApellido"
+        Me.MLabelApellido.Size = New System.Drawing.Size(54, 15)
+        Me.MLabelApellido.TabIndex = 3
+        Me.MLabelApellido.Text = "Apellido:"
+        '
+        'MLabelNombre
+        '
+        Me.MLabelNombre.AutoSize = True
+        Me.MLabelNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelNombre.Location = New System.Drawing.Point(13, 70)
+        Me.MLabelNombre.Name = "MLabelNombre"
+        Me.MLabelNombre.Size = New System.Drawing.Size(55, 15)
+        Me.MLabelNombre.TabIndex = 2
+        Me.MLabelNombre.Text = "Nombre:"
+        '
+        'MLabelCuit
+        '
+        Me.MLabelCuit.AutoSize = True
+        Me.MLabelCuit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelCuit.Location = New System.Drawing.Point(13, 42)
+        Me.MLabelCuit.Name = "MLabelCuit"
+        Me.MLabelCuit.Size = New System.Drawing.Size(37, 15)
+        Me.MLabelCuit.TabIndex = 1
+        Me.MLabelCuit.Text = "CUIT:"
+        '
+        'MLabelDni
+        '
+        Me.MLabelDni.AutoSize = True
+        Me.MLabelDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelDni.Location = New System.Drawing.Point(13, 16)
+        Me.MLabelDni.Name = "MLabelDni"
+        Me.MLabelDni.Size = New System.Drawing.Size(31, 15)
+        Me.MLabelDni.TabIndex = 0
+        Me.MLabelDni.Text = "DNI:"
+        '
+        'MDataGridViewPer
+        '
+        Me.MDataGridViewPer.AllowUserToAddRows = False
+        Me.MDataGridViewPer.AllowUserToDeleteRows = False
+        Me.MDataGridViewPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.MDataGridViewPer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MDataGridViewPer.Location = New System.Drawing.Point(0, 0)
+        Me.MDataGridViewPer.MultiSelect = False
+        Me.MDataGridViewPer.Name = "MDataGridViewPer"
+        Me.MDataGridViewPer.ReadOnly = True
+        Me.MDataGridViewPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.MDataGridViewPer.Size = New System.Drawing.Size(671, 264)
+        Me.MDataGridViewPer.TabIndex = 0
+        '
         'TabPageBaja
         '
         Me.TabPageBaja.Controls.Add(Me.BSplitContainer)
         Me.TabPageBaja.Location = New System.Drawing.Point(4, 24)
         Me.TabPageBaja.Name = "TabPageBaja"
+        Me.TabPageBaja.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPageBaja.Size = New System.Drawing.Size(681, 418)
         Me.TabPageBaja.TabIndex = 2
         Me.TabPageBaja.Text = "Baja"
@@ -354,7 +603,7 @@ Partial Class pPersonal
         Me.BSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BSplitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1
         Me.BSplitContainer.IsSplitterFixed = True
-        Me.BSplitContainer.Location = New System.Drawing.Point(0, 0)
+        Me.BSplitContainer.Location = New System.Drawing.Point(3, 3)
         Me.BSplitContainer.Name = "BSplitContainer"
         Me.BSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
@@ -375,7 +624,7 @@ Partial Class pPersonal
         'BSplitContainer.Panel2
         '
         Me.BSplitContainer.Panel2.Controls.Add(Me.BDataGridViewPer)
-        Me.BSplitContainer.Size = New System.Drawing.Size(681, 418)
+        Me.BSplitContainer.Size = New System.Drawing.Size(675, 412)
         Me.BSplitContainer.SplitterDistance = 140
         Me.BSplitContainer.TabIndex = 1
         '
@@ -387,10 +636,10 @@ Partial Class pPersonal
         Me.BButtonContratos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BButtonContratos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BButtonContratos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BButtonContratos.Location = New System.Drawing.Point(449, 16)
+        Me.BButtonContratos.Location = New System.Drawing.Point(443, 16)
         Me.BButtonContratos.Name = "BButtonContratos"
         Me.BButtonContratos.Size = New System.Drawing.Size(99, 26)
-        Me.BButtonContratos.TabIndex = 16
+        Me.BButtonContratos.TabIndex = 14
         Me.BButtonContratos.Text = "Contratos"
         Me.BButtonContratos.UseVisualStyleBackColor = True
         '
@@ -402,7 +651,7 @@ Partial Class pPersonal
         Me.BButtonBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
         Me.BButtonBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BButtonBaja.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BButtonBaja.Location = New System.Drawing.Point(449, 55)
+        Me.BButtonBaja.Location = New System.Drawing.Point(443, 55)
         Me.BButtonBaja.Name = "BButtonBaja"
         Me.BButtonBaja.Size = New System.Drawing.Size(99, 26)
         Me.BButtonBaja.TabIndex = 15
@@ -417,44 +666,51 @@ Partial Class pPersonal
         Me.BButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink
         Me.BButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BButtonCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BButtonCancelar.Location = New System.Drawing.Point(449, 96)
+        Me.BButtonCancelar.Location = New System.Drawing.Point(443, 96)
         Me.BButtonCancelar.Name = "BButtonCancelar"
         Me.BButtonCancelar.Size = New System.Drawing.Size(99, 26)
-        Me.BButtonCancelar.TabIndex = 14
+        Me.BButtonCancelar.TabIndex = 16
         Me.BButtonCancelar.Text = "Cancelar"
         Me.BButtonCancelar.UseVisualStyleBackColor = True
         '
         'BTextBoxDireccion
         '
         Me.BTextBoxDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTextBoxDireccion.Location = New System.Drawing.Point(84, 94)
+        Me.BTextBoxDireccion.Location = New System.Drawing.Point(81, 94)
         Me.BTextBoxDireccion.MaxLength = 100
         Me.BTextBoxDireccion.Name = "BTextBoxDireccion"
+        Me.BTextBoxDireccion.ReadOnly = True
         Me.BTextBoxDireccion.Size = New System.Drawing.Size(200, 21)
         Me.BTextBoxDireccion.TabIndex = 10
+        Me.BTextBoxDireccion.TabStop = False
         '
         'BTextBoxApellido
         '
         Me.BTextBoxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTextBoxApellido.Location = New System.Drawing.Point(84, 70)
+        Me.BTextBoxApellido.Location = New System.Drawing.Point(81, 70)
         Me.BTextBoxApellido.MaxLength = 50
         Me.BTextBoxApellido.Name = "BTextBoxApellido"
+        Me.BTextBoxApellido.ReadOnly = True
         Me.BTextBoxApellido.Size = New System.Drawing.Size(201, 21)
         Me.BTextBoxApellido.TabIndex = 9
+        Me.BTextBoxApellido.TabStop = False
         '
         'BTextBoxNombre
         '
         Me.BTextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTextBoxNombre.Location = New System.Drawing.Point(85, 43)
+        Me.BTextBoxNombre.Location = New System.Drawing.Point(82, 43)
         Me.BTextBoxNombre.MaxLength = 50
         Me.BTextBoxNombre.Name = "BTextBoxNombre"
+        Me.BTextBoxNombre.ReadOnly = True
         Me.BTextBoxNombre.Size = New System.Drawing.Size(200, 21)
         Me.BTextBoxNombre.TabIndex = 8
+        Me.BTextBoxNombre.TabStop = False
         '
         'BMaskedTextBoxDni
         '
+        Me.BMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.BMaskedTextBoxDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BMaskedTextBoxDni.Location = New System.Drawing.Point(85, 13)
+        Me.BMaskedTextBoxDni.Location = New System.Drawing.Point(82, 13)
         Me.BMaskedTextBoxDni.Mask = "00,000,000"
         Me.BMaskedTextBoxDni.Name = "BMaskedTextBoxDni"
         Me.BMaskedTextBoxDni.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -466,7 +722,7 @@ Partial Class pPersonal
         '
         Me.BLabelDireccion.AutoSize = True
         Me.BLabelDireccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BLabelDireccion.Location = New System.Drawing.Point(17, 97)
+        Me.BLabelDireccion.Location = New System.Drawing.Point(14, 97)
         Me.BLabelDireccion.Name = "BLabelDireccion"
         Me.BLabelDireccion.Size = New System.Drawing.Size(62, 15)
         Me.BLabelDireccion.TabIndex = 4
@@ -476,7 +732,7 @@ Partial Class pPersonal
         '
         Me.BLabelApellido.AutoSize = True
         Me.BLabelApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BLabelApellido.Location = New System.Drawing.Point(17, 70)
+        Me.BLabelApellido.Location = New System.Drawing.Point(14, 73)
         Me.BLabelApellido.Name = "BLabelApellido"
         Me.BLabelApellido.Size = New System.Drawing.Size(54, 15)
         Me.BLabelApellido.TabIndex = 3
@@ -486,7 +742,7 @@ Partial Class pPersonal
         '
         Me.BLabelNombre.AutoSize = True
         Me.BLabelNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BLabelNombre.Location = New System.Drawing.Point(17, 43)
+        Me.BLabelNombre.Location = New System.Drawing.Point(14, 46)
         Me.BLabelNombre.Name = "BLabelNombre"
         Me.BLabelNombre.Size = New System.Drawing.Size(55, 15)
         Me.BLabelNombre.TabIndex = 2
@@ -496,7 +752,7 @@ Partial Class pPersonal
         '
         Me.BLabelDni.AutoSize = True
         Me.BLabelDni.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BLabelDni.Location = New System.Drawing.Point(17, 16)
+        Me.BLabelDni.Location = New System.Drawing.Point(14, 16)
         Me.BLabelDni.Name = "BLabelDni"
         Me.BLabelDni.Size = New System.Drawing.Size(31, 15)
         Me.BLabelDni.TabIndex = 0
@@ -513,7 +769,7 @@ Partial Class pPersonal
         Me.BDataGridViewPer.Name = "BDataGridViewPer"
         Me.BDataGridViewPer.ReadOnly = True
         Me.BDataGridViewPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.BDataGridViewPer.Size = New System.Drawing.Size(677, 270)
+        Me.BDataGridViewPer.Size = New System.Drawing.Size(671, 264)
         Me.BDataGridViewPer.TabIndex = 0
         '
         'pPersonal
@@ -531,6 +787,13 @@ Partial Class pPersonal
         CType(Me.ASplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ASplitContainer.ResumeLayout(False)
         CType(Me.ADataGridViewPer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageModificar.ResumeLayout(False)
+        Me.MSplitContainer.Panel1.ResumeLayout(False)
+        Me.MSplitContainer.Panel1.PerformLayout()
+        Me.MSplitContainer.Panel2.ResumeLayout(False)
+        CType(Me.MSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.MSplitContainer.ResumeLayout(False)
+        CType(Me.MDataGridViewPer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageBaja.ResumeLayout(False)
         Me.BSplitContainer.Panel1.ResumeLayout(False)
         Me.BSplitContainer.Panel1.PerformLayout()
@@ -576,5 +839,22 @@ Partial Class pPersonal
     Friend WithEvents BLabelDni As System.Windows.Forms.Label
     Friend WithEvents BDataGridViewPer As System.Windows.Forms.DataGridView
     Friend WithEvents BButtonContratos As System.Windows.Forms.Button
+    Friend WithEvents MSplitContainer As System.Windows.Forms.SplitContainer
+    Friend WithEvents MButtonCancelar As System.Windows.Forms.Button
+    Friend WithEvents MButtonModificar As System.Windows.Forms.Button
+    Friend WithEvents MButtonTelefonos As System.Windows.Forms.Button
+    Friend WithEvents MTextBoxCorreo As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxDireccion As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxApellido As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxNombre As System.Windows.Forms.TextBox
+    Friend WithEvents MMaskedTextBoxCuit As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents MMaskedTextBoxDni As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents MLabelCorreo As System.Windows.Forms.Label
+    Friend WithEvents MLabelDireccion As System.Windows.Forms.Label
+    Friend WithEvents MLabelApellido As System.Windows.Forms.Label
+    Friend WithEvents MLabelNombre As System.Windows.Forms.Label
+    Friend WithEvents MLabelCuit As System.Windows.Forms.Label
+    Friend WithEvents MLabelDni As System.Windows.Forms.Label
+    Friend WithEvents MDataGridViewPer As System.Windows.Forms.DataGridView
 
 End Class

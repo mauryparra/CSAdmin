@@ -4,7 +4,8 @@ Imports System.Data.EntityClient
 
 Public Class pPersonal
     Private BDContext As New CSAdminBDEntities()
-    Private aux As Integer = 0
+    ' aux() es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
+    Private aux() As Integer = {0, 0, 0}
 
     Private Sub pPersonal_Load(sender As Object, e As System.EventArgs) Handles Me.Load
         Try
@@ -26,7 +27,10 @@ Public Class pPersonal
                         BDContext.Personas.Where("it.Baja = True")
                     ADataGridViewPer.DataSource = personasQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido")
                 Case 1
-
+                    Dim personasQuery As ObjectQuery(Of Personas) = _
+                        BDContext.Personas
+                    MDataGridViewPer.DataSource = personasQuery.Select( _
+                        "it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja")
                 Case 2
                     Dim personasQuery As ObjectQuery(Of Personas) = _
                         BDContext.Personas.Where("it.Baja = False")
@@ -43,6 +47,7 @@ Public Class pPersonal
     End Sub
 
 #Region "TAB ALTA"
+    ' Se utiliza aux(0)
     Private Sub AButtonTelefonos_Click(sender As System.Object, e As System.EventArgs) Handles AButtonTelefonos.Click
 
     End Sub
@@ -61,10 +66,12 @@ Public Class pPersonal
             End With
             BDContext.AddToPersonas(nuevaPersona)
             BDContext.SaveChanges()
-            MessageBox.Show("Se agrego")
+            MessageBox.Show("Se agrego: " + nuevaPersona.Nombre + " " + nuevaPersona.Apellido, _
+                            "Alta Personas", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Call limpiarForm(ASplitContainer.Panel1)
             AButtonReactivar.Visible = False
             AMaskedTextBoxDni.Focus()
+            aux(0) = 0
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -77,6 +84,7 @@ Public Class pPersonal
         AButtonAceptar.Enabled = True
         AButtonReactivar.Visible = False
         AMaskedTextBoxDni.Focus()
+        aux(0) = 0
     End Sub
 
     Private Sub AButtonReactivar_Click(sender As System.Object, e As System.EventArgs) Handles AButtonReactivar.Click
@@ -87,12 +95,15 @@ Public Class pPersonal
 
             personaQ.First.Baja = False
             BDContext.SaveChanges()
-            MessageBox.Show("Se activo nuevamente la persona")
+            MessageBox.Show("Se activo nuevamente a: " + personaQ.First.Nombre + " " + _
+                            personaQ.First.Apellido, "Alta Personas", _
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
             Call limpiarForm(ASplitContainer.Panel1)
             Call readOnlyForm(ASplitContainer.Panel1, False)
             AButtonAceptar.Enabled = True
             AButtonReactivar.Visible = False
             AMaskedTextBoxDni.Focus()
+            aux(0) = 0
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -100,11 +111,10 @@ Public Class pPersonal
 
     Private Sub ADataGridViewPer_CellMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles ADataGridViewPer.CellMouseDoubleClick
         Try
-            Dim index As Integer = 0
-            index = ADataGridViewPer.SelectedRows.Item(0).Cells(0).Value
+            aux(0) = ADataGridViewPer.SelectedRows.Item(0).Cells(0).Value
             Dim personasQuery As ObjectQuery(Of Personas) = _
                     BDContext.Personas.Where("it.Id = @Id")
-            personasQuery.Parameters.Add(New ObjectParameter("Id", index))
+            personasQuery.Parameters.Add(New ObjectParameter("Id", aux(0)))
 
             Dim personaDesactivada As New CSAdmin.Personas
             With personaDesactivada
@@ -117,8 +127,6 @@ Public Class pPersonal
                 .Correo = personasQuery.First.Correo
                 .Baja = personasQuery.First.Baja
             End With
-
-            aux = index
 
             AMaskedTextBoxDni.Text = personaDesactivada.Dni
             AMaskedTextBoxCuit.Text = personaDesactivada.Cuit
@@ -137,27 +145,39 @@ Public Class pPersonal
 
 #End Region
 
-#Region "BAJA"
+#Region "MODIFICAR"
+    Private Sub MMaskedTextBoxDni_KeyPress(sender As System.Object, e As System.Windows.Forms.KeyPressEventArgs) Handles MMaskedTextBoxDni.KeyPress
 
+    End Sub
+#End Region
+
+#Region "BAJA"
+    ' Se utiliza aux(2)
     Private Sub BButtonCancelar_Click(sender As System.Object, e As System.EventArgs) Handles BButtonCancelar.Click
         ' Limpia el fomrulario.
         Call limpiarForm(BSplitContainer.Panel1)
         Call readOnlyForm(BSplitContainer.Panel1, False)
         BMaskedTextBoxDni.Focus()
+        aux(2) = 0
     End Sub
 
     Private Sub BButtonBaja_Click(sender As System.Object, e As System.EventArgs) Handles BButtonBaja.Click
         Try
-            Dim personaQ As ObjectQuery(Of Personas) = _
+            If Not aux(2) = 0 Then
+                Dim personaQ As ObjectQuery(Of Personas) = _
                 BDContext.Personas.Where("it.Id = @Id")
-            personaQ.Parameters.Add(New ObjectParameter("Id", aux))
+                personaQ.Parameters.Add(New ObjectParameter("Id", aux))
 
-            personaQ.First.Baja = True
-            BDContext.SaveChanges()
-            MessageBox.Show("Se dio de baja a: " + personaQ.First.Nombre)
-            Call limpiarForm(BSplitContainer.Panel1)
-            Call readOnlyForm(BSplitContainer.Panel1, False)
-            BMaskedTextBoxDni.Focus()
+                personaQ.First.Baja = True
+                BDContext.SaveChanges()
+                MessageBox.Show("Se dio de baja a: " + personaQ.First.Nombre, _
+                                "Baja Personas", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Call limpiarForm(BSplitContainer.Panel1)
+                Call readOnlyForm(BSplitContainer.Panel1, False)
+                BMaskedTextBoxDni.Focus()
+                aux(2) = 0
+            End If
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -169,11 +189,10 @@ Public Class pPersonal
 
     Private Sub BDataGridViewPer_CellMouseDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles BDataGridViewPer.CellMouseDoubleClick
         Try
-            Dim index As Integer = 0
-            index = BDataGridViewPer.SelectedRows.Item(0).Cells(0).Value
+            aux(2) = BDataGridViewPer.SelectedRows.Item(0).Cells(0).Value
             Dim personaQuery As ObjectQuery(Of Personas) = _
                     BDContext.Personas.Where("it.Id = @Id")
-            personaQuery.Parameters.Add(New ObjectParameter("Id", index))
+            personaQuery.Parameters.Add(New ObjectParameter("Id", aux(2)))
 
             Dim personaActivada As New CSAdmin.Personas
             With personaActivada
@@ -187,8 +206,6 @@ Public Class pPersonal
                 .Baja = personaQuery.First.Baja
             End With
 
-            aux = index
-
             BMaskedTextBoxDni.Text = personaActivada.Dni
             BTextBoxNombre.Text = personaActivada.Nombre
             BTextBoxApellido.Text = personaActivada.Apellido
@@ -197,6 +214,31 @@ Public Class pPersonal
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
+    End Sub
+
+    Private Sub BMaskedTextBoxDni_KeyPress(sender As System.Object, e As System.Windows.Forms.KeyPressEventArgs) Handles BMaskedTextBoxDni.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            Try
+                Dim personaQuery As ObjectQuery(Of Personas) = _
+                    BDContext.Personas.Where("it.Dni = @Dni")
+                personaQuery.Parameters.Add(New ObjectParameter("Dni", CInt(BMaskedTextBoxDni.Text)))
+
+                If personaQuery.Any Then
+                    BTextBoxNombre.Text = personaQuery.First.Nombre
+                    BTextBoxApellido.Text = personaQuery.First.Apellido
+                    BTextBoxDireccion.Text = personaQuery.First.Direccion
+                    aux(2) = personaQuery.First.Id
+                Else
+                    MessageBox.Show("No se encontro ninguna persona con DNI: " + BMaskedTextBoxDni.Text, _
+                                "Baja Personas", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Call limpiarForm(BSplitContainer.Panel1)
+                    BMaskedTextBoxDni.Focus()
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        End If
     End Sub
 
 #End Region
