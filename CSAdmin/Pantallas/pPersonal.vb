@@ -15,7 +15,6 @@ Public Class pPersonal
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-
         AButtonReactivar.Visible = False
     End Sub
 
@@ -91,7 +90,7 @@ Public Class pPersonal
         Try
             Dim personaQ As ObjectQuery(Of Personas) = _
                 BDContext.Personas.Where("it.Id = @Id")
-            personaQ.Parameters.Add(New ObjectParameter("Id", aux))
+            personaQ.Parameters.Add(New ObjectParameter("Id", aux(0)))
 
             personaQ.First.Baja = False
             BDContext.SaveChanges()
@@ -116,38 +115,107 @@ Public Class pPersonal
                     BDContext.Personas.Where("it.Id = @Id")
             personasQuery.Parameters.Add(New ObjectParameter("Id", aux(0)))
 
-            Dim personaDesactivada As New CSAdmin.Personas
-            With personaDesactivada
-                .Id = personasQuery.First.Id
-                .Dni = personasQuery.First.Dni
-                .Cuit = personasQuery.First.Cuit
-                .Nombre = personasQuery.First.Nombre
-                .Apellido = personasQuery.First.Apellido
-                .Direccion = personasQuery.First.Direccion
-                .Correo = personasQuery.First.Correo
-                .Baja = personasQuery.First.Baja
-            End With
-
-            AMaskedTextBoxDni.Text = personaDesactivada.Dni
-            AMaskedTextBoxCuit.Text = personaDesactivada.Cuit
-            ATextBoxNombre.Text = personaDesactivada.Nombre
-            ATextBoxApellido.Text = personaDesactivada.Apellido
-            ATextBoxDireccion.Text = personaDesactivada.Direccion
-            ATextBoxCorreo.Text = personaDesactivada.Correo
+            AMaskedTextBoxDni.Text = personasQuery.First.Dni
+            AMaskedTextBoxCuit.Text = personasQuery.First.Cuit
+            ATextBoxNombre.Text = personasQuery.First.Nombre
+            ATextBoxApellido.Text = personasQuery.First.Apellido
+            ATextBoxDireccion.Text = personasQuery.First.Direccion
+            ATextBoxCorreo.Text = personasQuery.First.Correo
             Call readOnlyForm(ASplitContainer.Panel1, True)
             AButtonAceptar.Enabled = False
             AButtonReactivar.Visible = True
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
-
     End Sub
 
 #End Region
 
 #Region "MODIFICAR"
+    ' Se utiliza aux(1)
     Private Sub MMaskedTextBoxDni_KeyPress(sender As System.Object, e As System.Windows.Forms.KeyPressEventArgs) Handles MMaskedTextBoxDni.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            Try
+                Dim personaQuery As ObjectQuery(Of Personas) = _
+                    BDContext.Personas.Where("it.Dni = @Dni")
+                personaQuery.Parameters.Add(New ObjectParameter("Dni", CInt(MMaskedTextBoxDni.Text)))
 
+                If personaQuery.Any Then
+                    MMaskedTextBoxCuit.Text = personaQuery.First.Cuit
+                    MTextBoxNombre.Text = personaQuery.First.Nombre
+                    MTextBoxApellido.Text = personaQuery.First.Apellido
+                    MTextBoxDireccion.Text = personaQuery.First.Direccion
+                    MTextBoxCorreo.Text = personaQuery.First.Correo
+                    aux(1) = personaQuery.First.Id
+                Else
+                    MessageBox.Show("No se encontro ninguna persona con DNI: " + MMaskedTextBoxDni.Text, _
+                                "Modificar Personas", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Call limpiarForm(MSplitContainer.Panel1)
+                    MMaskedTextBoxDni.Focus()
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        End If
+    End Sub
+
+    Private Sub MButtonModificar_Click(sender As System.Object, e As System.EventArgs) Handles MButtonModificar.Click
+        Try
+            If aux(1) <> 0 Then
+                Dim personaQuery As ObjectQuery(Of CSAdmin.Personas) = _
+                                BDContext.Personas.Where("it.Id = @Id")
+                personaQuery.Parameters.Add(New ObjectParameter("Id", aux(1)))
+                personaQuery.First.Dni = MMaskedTextBoxDni.Text
+                personaQuery.First.Cuit = MMaskedTextBoxCuit.Text
+                personaQuery.First.Nombre = MTextBoxNombre.Text
+                personaQuery.First.Apellido = MTextBoxApellido.Text
+                personaQuery.First.Direccion = MTextBoxDireccion.Text
+                personaQuery.First.Correo = MTextBoxCorreo.Text
+                BDContext.SaveChanges()
+                MessageBox.Show("Se modifico: " + personaQuery.First.Nombre + " " + personaQuery.First.Apellido, _
+                                "Modificación de Personas", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Call limpiarForm(MSplitContainer.Panel1)
+                MMaskedTextBoxDni.Focus()
+                aux(1) = 0
+            Else
+                MessageBox.Show("Actualmente no se esta editando ninguna Persona", "Modificación de Personas", _
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MMaskedTextBoxDni.Focus()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub MButtonCancelar_Click(sender As System.Object, e As System.EventArgs) Handles MButtonCancelar.Click
+        ' Limpia el fomrulario.
+        Call limpiarForm(MSplitContainer.Panel1)
+        Call readOnlyForm(MSplitContainer.Panel1, False)
+        MMaskedTextBoxDni.Focus()
+        aux(1) = 0
+    End Sub
+
+    Private Sub MButtonTelefonos_Click(sender As System.Object, e As System.EventArgs) Handles MButtonTelefonos.Click
+
+    End Sub
+
+    Private Sub MDataGridViewPer_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles MDataGridViewPer.CellDoubleClick
+        Try
+            aux(1) = MDataGridViewPer.SelectedRows.Item(0).Cells(0).Value
+            Dim personasQuery As ObjectQuery(Of Personas) = _
+                    BDContext.Personas.Where("it.Id = @Id")
+            personasQuery.Parameters.Add(New ObjectParameter("Id", aux(1)))
+
+            MMaskedTextBoxDni.Text = personasQuery.First.Dni
+            MMaskedTextBoxCuit.Text = personasQuery.First.Cuit
+            MTextBoxNombre.Text = personasQuery.First.Nombre
+            MTextBoxApellido.Text = personasQuery.First.Apellido
+            MTextBoxDireccion.Text = personasQuery.First.Direccion
+            MTextBoxCorreo.Text = personasQuery.First.Correo
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
     End Sub
 #End Region
 
@@ -163,10 +231,10 @@ Public Class pPersonal
 
     Private Sub BButtonBaja_Click(sender As System.Object, e As System.EventArgs) Handles BButtonBaja.Click
         Try
-            If Not aux(2) = 0 Then
+            If aux(2) <> 0 Then
                 Dim personaQ As ObjectQuery(Of Personas) = _
                 BDContext.Personas.Where("it.Id = @Id")
-                personaQ.Parameters.Add(New ObjectParameter("Id", aux))
+                personaQ.Parameters.Add(New ObjectParameter("Id", aux(2)))
 
                 personaQ.First.Baja = True
                 BDContext.SaveChanges()
@@ -194,22 +262,10 @@ Public Class pPersonal
                     BDContext.Personas.Where("it.Id = @Id")
             personaQuery.Parameters.Add(New ObjectParameter("Id", aux(2)))
 
-            Dim personaActivada As New CSAdmin.Personas
-            With personaActivada
-                .Id = personaQuery.First.Id
-                .Dni = personaQuery.First.Dni
-                .Cuit = personaQuery.First.Cuit
-                .Nombre = personaQuery.First.Nombre
-                .Apellido = personaQuery.First.Apellido
-                .Direccion = personaQuery.First.Direccion
-                .Correo = personaQuery.First.Correo
-                .Baja = personaQuery.First.Baja
-            End With
-
-            BMaskedTextBoxDni.Text = personaActivada.Dni
-            BTextBoxNombre.Text = personaActivada.Nombre
-            BTextBoxApellido.Text = personaActivada.Apellido
-            BTextBoxDireccion.Text = personaActivada.Direccion
+            BMaskedTextBoxDni.Text = personaQuery.First.Dni
+            BTextBoxNombre.Text = personaQuery.First.Nombre
+            BTextBoxApellido.Text = personaQuery.First.Apellido
+            BTextBoxDireccion.Text = personaQuery.First.Direccion
             Call readOnlyForm(BSplitContainer.Panel1, True)
         Catch ex As Exception
             MessageBox.Show(ex.Message)
