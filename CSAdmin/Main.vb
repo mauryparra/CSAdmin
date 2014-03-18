@@ -1,4 +1,6 @@
 ﻿Public Class Main
+    Friend BDContext As New CSAdminBDEntities()
+
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         My.Forms.LoginForm.ShowDialog()
         If My.User.IsAuthenticated = False Then

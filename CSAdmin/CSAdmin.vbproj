@@ -171,6 +171,12 @@
     <Compile Include="Pantallas\pPersonal.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Pantallas\TelPopUp.Designer.vb">
+      <DependentUpon>TelPopUp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas\TelPopUp.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AcercaDe.resx">
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pPersonal.resx">
       <DependentUpon>pPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\TelPopUp.resx">
+      <DependentUpon>TelPopUp.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
