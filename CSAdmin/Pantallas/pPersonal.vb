@@ -47,7 +47,7 @@ Public Class pPersonal
         End Try
     End Sub
 
-#Region "TAB ALTA"
+#Region "ALTA"
     ' Se utiliza aux(0)
 
     ' En caso de que se este reactivando

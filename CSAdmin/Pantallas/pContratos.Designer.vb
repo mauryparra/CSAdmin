@@ -38,7 +38,7 @@ Partial Class pContratos
         Me.TabControlContratos.Location = New System.Drawing.Point(0, 0)
         Me.TabControlContratos.Name = "TabControlContratos"
         Me.TabControlContratos.SelectedIndex = 0
-        Me.TabControlContratos.Size = New System.Drawing.Size(435, 292)
+        Me.TabControlContratos.Size = New System.Drawing.Size(689, 446)
         Me.TabControlContratos.TabIndex = 0
         '
         'TabPageNuevo
@@ -46,7 +46,7 @@ Partial Class pContratos
         Me.TabPageNuevo.Location = New System.Drawing.Point(4, 22)
         Me.TabPageNuevo.Name = "TabPageNuevo"
         Me.TabPageNuevo.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageNuevo.Size = New System.Drawing.Size(427, 266)
+        Me.TabPageNuevo.Size = New System.Drawing.Size(681, 420)
         Me.TabPageNuevo.TabIndex = 0
         Me.TabPageNuevo.Text = "Nuevo"
         Me.TabPageNuevo.UseVisualStyleBackColor = True
@@ -76,7 +76,7 @@ Partial Class pContratos
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TabControlContratos)
         Me.Name = "pContratos"
-        Me.Size = New System.Drawing.Size(435, 292)
+        Me.Size = New System.Drawing.Size(689, 446)
         Me.TabControlContratos.ResumeLayout(False)
         Me.ResumeLayout(False)
 

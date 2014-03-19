@@ -23,11 +23,11 @@ Partial Class TelPopUp
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.SplitContainer = New System.Windows.Forms.SplitContainer()
+        Me.MaskedTextBoxTel = New System.Windows.Forms.MaskedTextBox()
         Me.ButtonAgregar = New System.Windows.Forms.Button()
         Me.ComboBoxTipo = New System.Windows.Forms.ComboBox()
         Me.LabelTelefono = New System.Windows.Forms.Label()
         Me.DataGridViewTel = New System.Windows.Forms.DataGridView()
-        Me.MaskedTextBoxTel = New System.Windows.Forms.MaskedTextBox()
         CType(Me.SplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer.Panel1.SuspendLayout()
         Me.SplitContainer.Panel2.SuspendLayout()
@@ -56,6 +56,16 @@ Partial Class TelPopUp
         Me.SplitContainer.Size = New System.Drawing.Size(284, 122)
         Me.SplitContainer.SplitterDistance = 42
         Me.SplitContainer.TabIndex = 1
+        '
+        'MaskedTextBoxTel
+        '
+        Me.MaskedTextBoxTel.Location = New System.Drawing.Point(70, 10)
+        Me.MaskedTextBoxTel.Mask = "(999) 000-0000"
+        Me.MaskedTextBoxTel.Name = "MaskedTextBoxTel"
+        Me.MaskedTextBoxTel.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.MaskedTextBoxTel.Size = New System.Drawing.Size(100, 20)
+        Me.MaskedTextBoxTel.TabIndex = 2
+        Me.MaskedTextBoxTel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'ButtonAgregar
         '
@@ -102,15 +112,6 @@ Partial Class TelPopUp
         Me.DataGridViewTel.ReadOnly = True
         Me.DataGridViewTel.Size = New System.Drawing.Size(284, 76)
         Me.DataGridViewTel.TabIndex = 0
-        '
-        'MaskedTextBoxTel
-        '
-        Me.MaskedTextBoxTel.Location = New System.Drawing.Point(70, 10)
-        Me.MaskedTextBoxTel.Mask = "(999) 000-0000"
-        Me.MaskedTextBoxTel.Name = "MaskedTextBoxTel"
-        Me.MaskedTextBoxTel.Size = New System.Drawing.Size(100, 20)
-        Me.MaskedTextBoxTel.TabIndex = 2
-        Me.MaskedTextBoxTel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'TelPopUp
         '
