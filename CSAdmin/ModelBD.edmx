@@ -4,12 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="CSAdminBDModelStoreContainer">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Store.Funciones" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Inasistencias" EntityType="CSAdminBDModel.Store.Inasistencias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Localidades" EntityType="CSAdminBDModel.Store.Localidades" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Personas" EntityType="CSAdminBDModel.Store.Personas" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PersonasTel" EntityType="CSAdminBDModel.Store.PersonasTel" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SituacionesProfesionales" EntityType="CSAdminBDModel.Store.SituacionesProfesionales" store:Type="Tables" Schema="dbo" />
@@ -29,6 +30,10 @@
           <AssociationSet Name="FK_Contratos_SituacionesProfesionales" Association="CSAdminBDModel.Store.FK_Contratos_SituacionesProfesionales">
             <End Role="SituacionesProfesionales" EntitySet="SituacionesProfesionales" />
             <End Role="Contratos" EntitySet="Contratos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipos_Localidades" Association="CSAdminBDModel.Store.FK_Equipos_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Equipos" EntitySet="Equipos" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipos_Personas" Association="CSAdminBDModel.Store.FK_Equipos_Personas">
             <End Role="Personas" EntitySet="Personas" />
@@ -71,7 +76,7 @@
           </Key>
           <Property Name="Id" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="Ubicacion" Type="nvarchar" Nullable="false" MaxLength="60" />
-          <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="40" />
+          <Property Name="LocalidadId" Type="int" Nullable="false" />
           <Property Name="Correo" Type="nvarchar" MaxLength="30" />
           <Property Name="Contra" Type="nvarchar" MaxLength="30" />
           <Property Name="Telefono" Type="numeric" Precision="12" />
@@ -94,6 +99,13 @@
           <Property Name="Desde" Type="date" Nullable="false" />
           <Property Name="Hasta" Type="date" />
           <Property Name="Motivo" Type="nvarchar" MaxLength="140" />
+        </EntityType>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Localidad" Type="nvarchar" Nullable="false" MaxLength="40" />
         </EntityType>
         <EntityType Name="Personas">
           <Key>
@@ -188,6 +200,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Equipos_Localidades">
+          <End Role="Localidades" Type="CSAdminBDModel.Store.Localidades" Multiplicity="1" />
+          <End Role="Equipos" Type="CSAdminBDModel.Store.Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="LocalidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Equipos_Personas">
           <End Role="Personas" Type="CSAdminBDModel.Store.Personas" Multiplicity="1" />
           <End Role="Equipos" Type="CSAdminBDModel.Store.Equipos" Multiplicity="*" />
@@ -242,8 +266,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -288,6 +311,11 @@
             <End Role="Personas" EntitySet="Personas" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <EntitySet Name="Localidades" EntityType="CSAdminBDModel.Localidades" />
+          <AssociationSet Name="FK_Equipos_Localidades" Association="CSAdminBDModel.FK_Equipos_Localidades">
+            <End Role="Localidades" EntitySet="Localidades" />
+            <End Role="Equipos" EntitySet="Equipos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contratos">
           <Key>
@@ -317,13 +345,14 @@
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
-          <Property Name="Localidad" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
           <Property Name="Correo" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="Contra" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="Telefono" Type="Decimal" Precision="12" Scale="0" />
           <Property Name="CoordinadoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contratos" Relationship="CSAdminBDModel.FK_Contratos_Equipos" FromRole="Equipos" ToRole="Contratos" />
           <NavigationProperty Name="Personas" Relationship="CSAdminBDModel.FK_Equipos_Personas" FromRole="Equipos" ToRole="Personas" />
+          <Property Type="Int32" Name="LocalidadId" Nullable="false" />
+          <NavigationProperty Name="Localidades" Relationship="CSAdminBDModel.FK_Equipos_Localidades" FromRole="Equipos" ToRole="Localidades" />
         </EntityType>
         <EntityType Name="Funciones">
           <Key>
@@ -500,6 +529,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Localidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Localidad" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.FK_Equipos_Localidades" FromRole="Localidades" ToRole="Equipos" />
+        </EntityType>
+        <Association Name="FK_Equipos_Localidades">
+          <End Type="CSAdminBDModel.Localidades" Role="Localidades" Multiplicity="1" />
+          <End Type="CSAdminBDModel.Equipos" Role="Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Equipos">
+              <PropertyRef Name="LocalidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -527,9 +576,9 @@
           <EntitySetMapping Name="Equipos">
             <EntityTypeMapping TypeName="CSAdminBDModel.Equipos">
               <MappingFragment StoreEntitySet="Equipos">
+                <ScalarProperty Name="LocalidadId" ColumnName="LocalidadId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
-                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Contra" ColumnName="Contra" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -599,6 +648,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Localidades">
+            <EntityTypeMapping TypeName="CSAdminBDModel.Localidades">
+              <MappingFragment StoreEntitySet="Localidades">
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -621,7 +678,7 @@
     <Diagrams>
       <Diagram Name="ModelBD">
         <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5.75" PointY="4" Height="4.0956022135416665" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="5.75" PointY="8.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="5.75" PointY="8.75" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Funciones" Width="1.5" PointX="8.25" PointY="5.125" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="3.625" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="1.125" PointY="5.25" Height="3.5186979166666648" IsExpanded="true" />
@@ -645,9 +702,9 @@
           <ConnectorPoint PointX="7.25" PointY="4.3026432291666659" />
         </AssociationConnector>
         <AssociationConnector Association="CSAdminBDModel.FK_Equipos_Personas" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.8662296758099557" PointY="8.7686979166666639" />
-          <ConnectorPoint PointX="1.8662296758099557" PointY="10.6797900390625" />
-          <ConnectorPoint PointX="5.75" PointY="10.6797900390625" />
+          <ConnectorPoint PointX="1.875" PointY="8.7686979166666639" />
+          <ConnectorPoint PointX="1.875" PointY="10.775940755208334" />
+          <ConnectorPoint PointX="5.75" PointY="10.775940755208334" />
         </AssociationConnector>
         <AssociationConnector Association="CSAdminBDModel.FK_Inasistencias_Personas" ManuallyRouted="false">
           <ConnectorPoint PointX="2.625" PointY="8.1968489583333319" />
@@ -661,6 +718,11 @@
           <ConnectorPoint PointX="2.625" PointY="5.9239294377853877" />
           <ConnectorPoint PointX="4.5318728456080581" PointY="5.9239294377853877" />
           <ConnectorPoint PointX="4.5318728456080581" PointY="4.6052864583333317" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="CSAdminBDModel.Localidades" Width="1.5" PointX="8.25" PointY="9.875" Height="1.5956835937499996" />
+        <AssociationConnector Association="CSAdminBDModel.FK_Equipos_Localidades" >
+          <ConnectorPoint PointX="8.25" PointY="10.672841796875" />
+          <ConnectorPoint PointX="7.25" PointY="10.672841796875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

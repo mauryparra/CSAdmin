@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("ce77c572-0276-481a-aaa2-40744b023eb4")>
+<Assembly: EdmSchemaAttribute("e277302d-1065-4608-ae9c-d8025ef2b8ed")>
 #Region "Metadatos de relaciones en EDM"
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_Equipos", "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Equipos), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Contratos_Funciones", "Funciones", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Funciones), "Contratos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Contratos), True)>
@@ -28,6 +28,7 @@ Imports System.Xml.Serialization
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Inasistencias_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Inasistencias", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Inasistencias), True)>
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_PersonasTel_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "PersonasTel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(PersonasTel), True)>
 <Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Usuarios_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Personas), "Usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Usuarios), True)>
+<Assembly: EdmRelationshipAttribute("CSAdminBDModel", "FK_Equipos_Localidades", "Localidades", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Localidades), "Equipos", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Equipos), True)>
 
 #End Region
 
@@ -191,6 +192,20 @@ Public Partial Class CSAdminBDEntities
 
     Private _Usuarios As ObjectSet(Of Usuarios)
 
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    Public ReadOnly Property Localidades() As ObjectSet(Of Localidades)
+        Get
+            If (_Localidades Is Nothing) Then
+                _Localidades = MyBase.CreateObjectSet(Of Localidades)("Localidades")
+            End If
+            Return _Localidades
+        End Get
+    End Property
+
+    Private _Localidades As ObjectSet(Of Localidades)
+
     #End Region
 
     #Region "Métodos AddTo"
@@ -249,6 +264,13 @@ Public Partial Class CSAdminBDEntities
     ''' </summary>
     Public Sub AddToUsuarios(ByVal usuarios As Usuarios)
         MyBase.AddObject("Usuarios", usuarios)
+    End Sub
+
+    ''' <summary>
+    ''' Método desusado para agregar un nuevo objeto al EntitySet Localidades. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet(Of T) asociada.
+    ''' </summary>
+    Public Sub AddToLocalidades(ByVal localidades As Localidades)
+        MyBase.AddObject("Localidades", localidades)
     End Sub
 
     #End Region
@@ -752,14 +774,14 @@ Public Partial Class Equipos
     ''' </summary>
     ''' <param name="id">Valor inicial de la propiedad Id.</param>
     ''' <param name="ubicacion">Valor inicial de la propiedad Ubicacion.</param>
-    ''' <param name="localidad">Valor inicial de la propiedad Localidad.</param>
     ''' <param name="coordinadoId">Valor inicial de la propiedad CoordinadoId.</param>
-    Public Shared Function CreateEquipos(id As Global.System.String, ubicacion As Global.System.String, localidad As Global.System.String, coordinadoId As Global.System.Int32) As Equipos
+    ''' <param name="localidadId">Valor inicial de la propiedad LocalidadId.</param>
+    Public Shared Function CreateEquipos(id As Global.System.String, ubicacion As Global.System.String, coordinadoId As Global.System.Int32, localidadId As Global.System.Int32) As Equipos
         Dim equipos as Equipos = New Equipos
         equipos.Id = id
         equipos.Ubicacion = ubicacion
-        equipos.Localidad = localidad
         equipos.CoordinadoId = coordinadoId
+        equipos.LocalidadId = localidadId
         Return equipos
     End Function
 
@@ -817,31 +839,6 @@ Public Partial Class Equipos
     End Sub
 
     Private Partial Sub OnUbicacionChanged()
-    End Sub
-
-    ''' <summary>
-    ''' No hay documentación de metadatos disponible.
-    ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-    <DataMemberAttribute()>
-    Public Property Localidad() As Global.System.String
-        Get
-            Return _Localidad
-        End Get
-        Set
-            OnLocalidadChanging(value)
-            ReportPropertyChanging("Localidad")
-            _Localidad = StructuralObject.SetValidValue(value, false)
-            ReportPropertyChanged("Localidad")
-            OnLocalidadChanged()
-        End Set
-    End Property
-
-    Private _Localidad As Global.System.String
-    Private Partial Sub OnLocalidadChanging(value As Global.System.String)
-    End Sub
-
-    Private Partial Sub OnLocalidadChanged()
     End Sub
 
     ''' <summary>
@@ -944,6 +941,31 @@ Public Partial Class Equipos
     Private Partial Sub OnCoordinadoIdChanged()
     End Sub
 
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property LocalidadId() As Global.System.Int32
+        Get
+            Return _LocalidadId
+        End Get
+        Set
+            OnLocalidadIdChanging(value)
+            ReportPropertyChanging("LocalidadId")
+            _LocalidadId = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("LocalidadId")
+            OnLocalidadIdChanged()
+        End Set
+    End Property
+
+    Private _LocalidadId As Global.System.Int32
+    Private Partial Sub OnLocalidadIdChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub OnLocalidadIdChanged()
+    End Sub
+
     #End Region
 
     #Region "Propiedades de navegación"
@@ -993,6 +1015,37 @@ Public Partial Class Equipos
         Set
             If (Not value Is Nothing)
                 CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Equipos_Personas", "Personas", value)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Equipos_Localidades", "Localidades")>
+    Public Property Localidades() As Localidades
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Localidades)("CSAdminBDModel.FK_Equipos_Localidades", "Localidades").Value
+        End Get
+        Set
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Localidades)("CSAdminBDModel.FK_Equipos_Localidades", "Localidades").Value = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <BrowsableAttribute(False)>
+    <DataMemberAttribute()>
+    Public Property LocalidadesReference() As EntityReference(Of Localidades)
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Localidades)("CSAdminBDModel.FK_Equipos_Localidades", "Localidades")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Localidades)("CSAdminBDModel.FK_Equipos_Localidades", "Localidades", value)
             End If
         End Set
     End Property
@@ -1293,6 +1346,110 @@ Public Partial Class Inasistencias
         Set
             If (Not value Is Nothing)
                 CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Personas)("CSAdminBDModel.FK_Inasistencias_Personas", "Personas", value)
+            End If
+        End Set
+    End Property
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No hay documentación de metadatos disponible.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="CSAdminBDModel", Name:="Localidades")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class Localidades
+    Inherits EntityObject
+    #Region "Método de generador"
+
+    ''' <summary>
+    ''' Crear un nuevo objeto Localidades.
+    ''' </summary>
+    ''' <param name="id">Valor inicial de la propiedad Id.</param>
+    ''' <param name="localidad">Valor inicial de la propiedad Localidad.</param>
+    Public Shared Function CreateLocalidades(id As Global.System.Int32, localidad As Global.System.String) As Localidades
+        Dim localidades as Localidades = New Localidades
+        localidades.Id = id
+        localidades.Localidad = localidad
+        Return localidades
+    End Function
+
+    #End Region
+
+    #Region "Propiedades primitivas"
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property Id() As Global.System.Int32
+        Get
+            Return _Id
+        End Get
+        Set
+            If (_Id <> Value) Then
+                OnIdChanging(value)
+                ReportPropertyChanging("Id")
+                _Id = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("Id")
+                OnIdChanged()
+            End If
+        End Set
+    End Property
+
+    Private _Id As Global.System.Int32
+    Private Partial Sub OnIdChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub OnIdChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property Localidad() As Global.System.String
+        Get
+            Return _Localidad
+        End Get
+        Set
+            OnLocalidadChanging(value)
+            ReportPropertyChanging("Localidad")
+            _Localidad = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("Localidad")
+            OnLocalidadChanged()
+        End Set
+    End Property
+
+    Private _Localidad As Global.System.String
+    Private Partial Sub OnLocalidadChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OnLocalidadChanged()
+    End Sub
+
+    #End Region
+
+    #Region "Propiedades de navegación"
+
+    ''' <summary>
+    ''' No hay documentación de metadatos disponible.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("CSAdminBDModel", "FK_Equipos_Localidades", "Equipos")>
+     Public Property Equipos() As EntityCollection(Of Equipos)
+        Get
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Equipos)("CSAdminBDModel.FK_Equipos_Localidades", "Equipos")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Equipos)("CSAdminBDModel.FK_Equipos_Localidades", "Equipos", value)
             End If
         End Set
     End Property
