@@ -39,6 +39,7 @@ Partial Class Main
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeCSAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RadBtnAdmin = New System.Windows.Forms.RadioButton()
         Me.ToolStripContainer.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainer.ContentPanel.SuspendLayout()
         Me.ToolStripContainer.TopToolStripPanel.SuspendLayout()
@@ -120,6 +121,7 @@ Partial Class Main
         Me.FlowLayoutPanel.Controls.Add(Me.RadBtnEquipos)
         Me.FlowLayoutPanel.Controls.Add(Me.RadBtnConsultas)
         Me.FlowLayoutPanel.Controls.Add(Me.RadBtnCertificados)
+        Me.FlowLayoutPanel.Controls.Add(Me.RadBtnAdmin)
         Me.FlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.FlowLayoutPanel.Location = New System.Drawing.Point(0, 0)
@@ -279,6 +281,25 @@ Partial Class Main
         Me.AcercaDeCSAdminToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.AcercaDeCSAdminToolStripMenuItem.Text = "&Acerca de CSAdmin"
         '
+        'RadBtnAdmin
+        '
+        Me.RadBtnAdmin.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadBtnAdmin.AutoSize = True
+        Me.RadBtnAdmin.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
+        Me.RadBtnAdmin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
+        Me.RadBtnAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.RadBtnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadBtnAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnAdmin.Location = New System.Drawing.Point(3, 225)
+        Me.RadBtnAdmin.MinimumSize = New System.Drawing.Size(134, 30)
+        Me.RadBtnAdmin.Name = "RadBtnAdmin"
+        Me.RadBtnAdmin.Padding = New System.Windows.Forms.Padding(2, 2, 2, 1)
+        Me.RadBtnAdmin.Size = New System.Drawing.Size(134, 31)
+        Me.RadBtnAdmin.TabIndex = 6
+        Me.RadBtnAdmin.Text = "&Admin"
+        Me.RadBtnAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadBtnAdmin.UseVisualStyleBackColor = True
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -325,5 +346,6 @@ Partial Class Main
     Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AyudaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AcercaDeCSAdminToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RadBtnAdmin As System.Windows.Forms.RadioButton
 
 End Class

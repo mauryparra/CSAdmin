@@ -136,6 +136,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Pantallas\pAdmin.Designer.vb">
+      <DependentUpon>pAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas\pAdmin.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Pantallas\pAsistencia.Designer.vb">
       <DependentUpon>pAsistencia.vb</DependentUpon>
     </Compile>
@@ -194,6 +200,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\pAdmin.resx">
+      <DependentUpon>pAdmin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pAsistencia.resx">
       <DependentUpon>pAsistencia.vb</DependentUpon>

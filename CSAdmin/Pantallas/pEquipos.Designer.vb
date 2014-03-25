@@ -52,6 +52,20 @@ Partial Class pEquipos
         Me.BButtonBaja = New System.Windows.Forms.Button()
         Me.BButtonCancelar = New System.Windows.Forms.Button()
         Me.BDataGridViewEquipos = New System.Windows.Forms.DataGridView()
+        Me.MComboBoxCoordinador = New System.Windows.Forms.ComboBox()
+        Me.MLabelCoordinador = New System.Windows.Forms.Label()
+        Me.MMaskedTextBoxTelefono = New System.Windows.Forms.MaskedTextBox()
+        Me.MLabelTelefono = New System.Windows.Forms.Label()
+        Me.MComboBoxLocalidad = New System.Windows.Forms.ComboBox()
+        Me.MLabelLocalidad = New System.Windows.Forms.Label()
+        Me.MTextBoxCorreo = New System.Windows.Forms.TextBox()
+        Me.MTextBoxContra = New System.Windows.Forms.TextBox()
+        Me.MTextBoxUbicacion = New System.Windows.Forms.TextBox()
+        Me.MTextBoxNombre = New System.Windows.Forms.TextBox()
+        Me.MLabelCorreo = New System.Windows.Forms.Label()
+        Me.MLabelContra = New System.Windows.Forms.Label()
+        Me.MLabelUbicacion = New System.Windows.Forms.Label()
+        Me.MLabelNombre = New System.Windows.Forms.Label()
         Me.TabControlPersonal.SuspendLayout()
         Me.TabPageAlta.SuspendLayout()
         CType(Me.ASplitContainer, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,6 +360,20 @@ Partial Class pEquipos
         '
         'MSplitContainer.Panel1
         '
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MComboBoxCoordinador)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelCoordinador)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MMaskedTextBoxTelefono)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelTelefono)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MComboBoxLocalidad)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelLocalidad)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxCorreo)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxContra)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxUbicacion)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MTextBoxNombre)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelCorreo)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelContra)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelUbicacion)
+        Me.MSplitContainer.Panel1.Controls.Add(Me.MLabelNombre)
         Me.MSplitContainer.Panel1.Controls.Add(Me.MButtonCancelar)
         Me.MSplitContainer.Panel1.Controls.Add(Me.MButtonModificar)
         '
@@ -477,6 +505,152 @@ Partial Class pEquipos
         Me.BDataGridViewEquipos.Size = New System.Drawing.Size(671, 264)
         Me.BDataGridViewEquipos.TabIndex = 0
         '
+        'MComboBoxCoordinador
+        '
+        Me.MComboBoxCoordinador.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MComboBoxCoordinador.FormattingEnabled = True
+        Me.MComboBoxCoordinador.Location = New System.Drawing.Point(357, 97)
+        Me.MComboBoxCoordinador.Name = "MComboBoxCoordinador"
+        Me.MComboBoxCoordinador.Size = New System.Drawing.Size(200, 23)
+        Me.MComboBoxCoordinador.TabIndex = 14
+        '
+        'MLabelCoordinador
+        '
+        Me.MLabelCoordinador.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelCoordinador.AutoSize = True
+        Me.MLabelCoordinador.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelCoordinador.Location = New System.Drawing.Point(273, 101)
+        Me.MLabelCoordinador.Name = "MLabelCoordinador"
+        Me.MLabelCoordinador.Size = New System.Drawing.Size(78, 15)
+        Me.MLabelCoordinador.TabIndex = 13
+        Me.MLabelCoordinador.Text = "Coordinador:"
+        '
+        'MMaskedTextBoxTelefono
+        '
+        Me.MMaskedTextBoxTelefono.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MMaskedTextBoxTelefono.Location = New System.Drawing.Point(357, 70)
+        Me.MMaskedTextBoxTelefono.Mask = "(999) 000-0000"
+        Me.MMaskedTextBoxTelefono.Name = "MMaskedTextBoxTelefono"
+        Me.MMaskedTextBoxTelefono.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
+        Me.MMaskedTextBoxTelefono.Size = New System.Drawing.Size(200, 21)
+        Me.MMaskedTextBoxTelefono.TabIndex = 12
+        Me.MMaskedTextBoxTelefono.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'MLabelTelefono
+        '
+        Me.MLabelTelefono.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelTelefono.AutoSize = True
+        Me.MLabelTelefono.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelTelefono.Location = New System.Drawing.Point(286, 73)
+        Me.MLabelTelefono.Name = "MLabelTelefono"
+        Me.MLabelTelefono.Size = New System.Drawing.Size(58, 15)
+        Me.MLabelTelefono.TabIndex = 11
+        Me.MLabelTelefono.Text = "Teléfono:"
+        '
+        'MComboBoxLocalidad
+        '
+        Me.MComboBoxLocalidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.MComboBoxLocalidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.MComboBoxLocalidad.FormattingEnabled = True
+        Me.MComboBoxLocalidad.Location = New System.Drawing.Point(77, 70)
+        Me.MComboBoxLocalidad.Name = "MComboBoxLocalidad"
+        Me.MComboBoxLocalidad.Size = New System.Drawing.Size(200, 23)
+        Me.MComboBoxLocalidad.TabIndex = 6
+        '
+        'MLabelLocalidad
+        '
+        Me.MLabelLocalidad.AutoSize = True
+        Me.MLabelLocalidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelLocalidad.Location = New System.Drawing.Point(9, 73)
+        Me.MLabelLocalidad.Name = "MLabelLocalidad"
+        Me.MLabelLocalidad.Size = New System.Drawing.Size(64, 15)
+        Me.MLabelLocalidad.TabIndex = 5
+        Me.MLabelLocalidad.Text = "Localidad:"
+        '
+        'MTextBoxCorreo
+        '
+        Me.MTextBoxCorreo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MTextBoxCorreo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxCorreo.Location = New System.Drawing.Point(357, 14)
+        Me.MTextBoxCorreo.MaxLength = 30
+        Me.MTextBoxCorreo.Name = "MTextBoxCorreo"
+        Me.MTextBoxCorreo.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxCorreo.TabIndex = 8
+        '
+        'MTextBoxContra
+        '
+        Me.MTextBoxContra.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MTextBoxContra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxContra.Location = New System.Drawing.Point(357, 44)
+        Me.MTextBoxContra.MaxLength = 30
+        Me.MTextBoxContra.Name = "MTextBoxContra"
+        Me.MTextBoxContra.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxContra.TabIndex = 10
+        '
+        'MTextBoxUbicacion
+        '
+        Me.MTextBoxUbicacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MTextBoxUbicacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxUbicacion.Location = New System.Drawing.Point(77, 42)
+        Me.MTextBoxUbicacion.MaxLength = 60
+        Me.MTextBoxUbicacion.Name = "MTextBoxUbicacion"
+        Me.MTextBoxUbicacion.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxUbicacion.TabIndex = 4
+        '
+        'MTextBoxNombre
+        '
+        Me.MTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.MTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.MTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.MTextBoxNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MTextBoxNombre.Location = New System.Drawing.Point(77, 15)
+        Me.MTextBoxNombre.MaxLength = 20
+        Me.MTextBoxNombre.Name = "MTextBoxNombre"
+        Me.MTextBoxNombre.Size = New System.Drawing.Size(200, 21)
+        Me.MTextBoxNombre.TabIndex = 2
+        '
+        'MLabelCorreo
+        '
+        Me.MLabelCorreo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelCorreo.AutoSize = True
+        Me.MLabelCorreo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelCorreo.Location = New System.Drawing.Point(286, 17)
+        Me.MLabelCorreo.Name = "MLabelCorreo"
+        Me.MLabelCorreo.Size = New System.Drawing.Size(47, 15)
+        Me.MLabelCorreo.TabIndex = 7
+        Me.MLabelCorreo.Text = "Correo:"
+        '
+        'MLabelContra
+        '
+        Me.MLabelContra.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MLabelContra.AutoSize = True
+        Me.MLabelContra.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelContra.Location = New System.Drawing.Point(286, 46)
+        Me.MLabelContra.Name = "MLabelContra"
+        Me.MLabelContra.Size = New System.Drawing.Size(73, 15)
+        Me.MLabelContra.TabIndex = 9
+        Me.MLabelContra.Text = "Contraseña:"
+        '
+        'MLabelUbicacion
+        '
+        Me.MLabelUbicacion.AutoSize = True
+        Me.MLabelUbicacion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelUbicacion.Location = New System.Drawing.Point(9, 44)
+        Me.MLabelUbicacion.Name = "MLabelUbicacion"
+        Me.MLabelUbicacion.Size = New System.Drawing.Size(65, 15)
+        Me.MLabelUbicacion.TabIndex = 3
+        Me.MLabelUbicacion.Text = "Ubicación:"
+        '
+        'MLabelNombre
+        '
+        Me.MLabelNombre.AutoSize = True
+        Me.MLabelNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MLabelNombre.Location = New System.Drawing.Point(9, 17)
+        Me.MLabelNombre.Name = "MLabelNombre"
+        Me.MLabelNombre.Size = New System.Drawing.Size(55, 15)
+        Me.MLabelNombre.TabIndex = 1
+        Me.MLabelNombre.Text = "Nombre:"
+        '
         'pEquipos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -494,6 +668,7 @@ Partial Class pEquipos
         CType(Me.ADataGridViewEquipos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageModificar.ResumeLayout(False)
         Me.MSplitContainer.Panel1.ResumeLayout(False)
+        Me.MSplitContainer.Panel1.PerformLayout()
         Me.MSplitContainer.Panel2.ResumeLayout(False)
         CType(Me.MSplitContainer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MSplitContainer.ResumeLayout(False)
@@ -537,5 +712,19 @@ Partial Class pEquipos
     Friend WithEvents ALabelTelefono As System.Windows.Forms.Label
     Friend WithEvents AComboBoxCoordinador As System.Windows.Forms.ComboBox
     Friend WithEvents ALabelCoordinador As System.Windows.Forms.Label
+    Friend WithEvents MComboBoxCoordinador As System.Windows.Forms.ComboBox
+    Friend WithEvents MLabelCoordinador As System.Windows.Forms.Label
+    Friend WithEvents MMaskedTextBoxTelefono As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents MLabelTelefono As System.Windows.Forms.Label
+    Friend WithEvents MComboBoxLocalidad As System.Windows.Forms.ComboBox
+    Friend WithEvents MLabelLocalidad As System.Windows.Forms.Label
+    Friend WithEvents MTextBoxCorreo As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxContra As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxUbicacion As System.Windows.Forms.TextBox
+    Friend WithEvents MTextBoxNombre As System.Windows.Forms.TextBox
+    Friend WithEvents MLabelCorreo As System.Windows.Forms.Label
+    Friend WithEvents MLabelContra As System.Windows.Forms.Label
+    Friend WithEvents MLabelUbicacion As System.Windows.Forms.Label
+    Friend WithEvents MLabelNombre As System.Windows.Forms.Label
 
 End Class

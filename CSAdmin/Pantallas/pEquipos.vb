@@ -53,7 +53,9 @@ Public Class pEquipos
                 .LocalidadId = AComboBoxLocalidad.SelectedValue
                 .Correo = ATextBoxCorreo.Text
                 .Contra = ATextBoxContra.Text
-                .Telefono = AMaskedTextBoxTelefono.Text
+                If Not AMaskedTextBoxTelefono.Text = "" Then
+                    .Telefono = AMaskedTextBoxTelefono.Text
+                End If
                 .CoordinadoId = AComboBoxCoordinador.SelectedValue
             End With
 
@@ -72,5 +74,13 @@ Public Class pEquipos
         Call limpiarForm(ASplitContainer.Panel1)
         ATextBoxNombre.Focus()
     End Sub
+#End Region
+
+#Region "MODIFICAR"
+
+#End Region
+
+#Region "BAJA"
+
 #End Region
 End Class
