@@ -94,6 +94,15 @@
             SplitContainer.Panel2.Controls.Add(pantallaCertificados)
         End If
     End Sub
+
+    Private Sub RadBtnAdmin_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadBtnAdmin.CheckedChanged
+        If RadBtnAdmin.Checked Then
+            Call limpiarPanel()
+            Dim pantallaAdmin As New pAdmin
+            pantallaAdmin.Dock = DockStyle.Fill
+            SplitContainer.Panel2.Controls.Add(pantallaAdmin)
+        End If
+    End Sub
 #End Region
 #End Region
 End Class

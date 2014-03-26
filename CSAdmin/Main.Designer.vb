@@ -34,12 +34,12 @@ Partial Class Main
         Me.RadBtnEquipos = New System.Windows.Forms.RadioButton()
         Me.RadBtnConsultas = New System.Windows.Forms.RadioButton()
         Me.RadBtnCertificados = New System.Windows.Forms.RadioButton()
+        Me.RadBtnAdmin = New System.Windows.Forms.RadioButton()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeCSAdminToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RadBtnAdmin = New System.Windows.Forms.RadioButton()
         Me.ToolStripContainer.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainer.ContentPanel.SuspendLayout()
         Me.ToolStripContainer.TopToolStripPanel.SuspendLayout()
@@ -245,6 +245,25 @@ Partial Class Main
         Me.RadBtnCertificados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadBtnCertificados.UseVisualStyleBackColor = True
         '
+        'RadBtnAdmin
+        '
+        Me.RadBtnAdmin.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadBtnAdmin.AutoSize = True
+        Me.RadBtnAdmin.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
+        Me.RadBtnAdmin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
+        Me.RadBtnAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
+        Me.RadBtnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadBtnAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadBtnAdmin.Location = New System.Drawing.Point(3, 225)
+        Me.RadBtnAdmin.MinimumSize = New System.Drawing.Size(134, 30)
+        Me.RadBtnAdmin.Name = "RadBtnAdmin"
+        Me.RadBtnAdmin.Padding = New System.Windows.Forms.Padding(2, 2, 2, 1)
+        Me.RadBtnAdmin.Size = New System.Drawing.Size(134, 31)
+        Me.RadBtnAdmin.TabIndex = 6
+        Me.RadBtnAdmin.Text = "&Admin"
+        Me.RadBtnAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadBtnAdmin.UseVisualStyleBackColor = True
+        '
         'MenuStrip
         '
         Me.MenuStrip.Dock = System.Windows.Forms.DockStyle.None
@@ -280,25 +299,6 @@ Partial Class Main
         Me.AcercaDeCSAdminToolStripMenuItem.Name = "AcercaDeCSAdminToolStripMenuItem"
         Me.AcercaDeCSAdminToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.AcercaDeCSAdminToolStripMenuItem.Text = "&Acerca de CSAdmin"
-        '
-        'RadBtnAdmin
-        '
-        Me.RadBtnAdmin.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadBtnAdmin.AutoSize = True
-        Me.RadBtnAdmin.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen
-        Me.RadBtnAdmin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue
-        Me.RadBtnAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue
-        Me.RadBtnAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadBtnAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadBtnAdmin.Location = New System.Drawing.Point(3, 225)
-        Me.RadBtnAdmin.MinimumSize = New System.Drawing.Size(134, 30)
-        Me.RadBtnAdmin.Name = "RadBtnAdmin"
-        Me.RadBtnAdmin.Padding = New System.Windows.Forms.Padding(2, 2, 2, 1)
-        Me.RadBtnAdmin.Size = New System.Drawing.Size(134, 31)
-        Me.RadBtnAdmin.TabIndex = 6
-        Me.RadBtnAdmin.Text = "&Admin"
-        Me.RadBtnAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadBtnAdmin.UseVisualStyleBackColor = True
         '
         'Main
         '
