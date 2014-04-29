@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Permissions;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CSAdminApp
@@ -29,7 +32,27 @@ namespace CSAdminApp
 
         private void Main_Load(object sender, EventArgs e)
         {
+            LoginForm loginForm = new LoginForm();
+            loginForm.ShowDialog();
 
+
+            Array wbirFields = Enum.GetValues(typeof(WindowsBuiltInRole));
+            
+            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
+            {
+                if (WindowsPrincipal.IsInRole((WindowsBuiltInRole)0x220)) // 0x220 = BUILTIN\Administrators
+                {
+                    this.Text += " [Admin]";
+                }
+                else
+                {
+                    this.Text += " [Usuaurio]";
+                }
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
     }
 }

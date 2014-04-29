@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CSAdminApp.Clases;
 
 namespace CSAdminApp
 {
@@ -18,6 +19,18 @@ namespace CSAdminApp
 
         private void OK_Click(object sender, EventArgs e)
         {
+            try
+            {
+                SampleIPrincipal samplePrincipal = new SampleIPrincipal(this.UsernameTextBox.Text, this.PasswordTextBox.Text);
+                this.PasswordTextBox.Clear();
+                if (true)
+                { 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
