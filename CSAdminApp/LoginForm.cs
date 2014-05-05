@@ -23,15 +23,26 @@ namespace CSAdminApp
             {
                 SampleIPrincipal samplePrincipal = new SampleIPrincipal(this.UsernameTextBox.Text, this.PasswordTextBox.Text);
                 this.PasswordTextBox.Clear();
-                if (true)
-                { 
+                if (!samplePrincipal.Identity.IsAuthenticated)
+                {
+                    // Usuario No Validado
+                    MessageBox.Show("Usuario o contraseña incorrecta, intente nuevamente.",
+                            "Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    this.PasswordTextBox.Focus();
                 }
+                else
+                {
+                    // Usuario Validado, se actualiza CurrentPrincipal
+                    System.Threading.Thread.CurrentPrincipal = samplePrincipal;
+                    this.Close();
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
 
         private void Cancel_Click(object sender, EventArgs e)

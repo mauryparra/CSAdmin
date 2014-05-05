@@ -143,6 +143,7 @@
             this.radioButtonAdmin.Text = "&Admin";
             this.radioButtonAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonAdmin.UseVisualStyleBackColor = true;
+            this.radioButtonAdmin.CheckedChanged += new System.EventHandler(this.radioButtonAdmin_CheckedChanged);
             // 
             // radioButtonCertificados
             // 
@@ -162,6 +163,7 @@
             this.radioButtonCertificados.Text = "Ce&rtificados";
             this.radioButtonCertificados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonCertificados.UseVisualStyleBackColor = true;
+            this.radioButtonCertificados.CheckedChanged += new System.EventHandler(this.radioButtonCertificados_CheckedChanged);
             // 
             // radioButtonConsultas
             // 
@@ -181,6 +183,7 @@
             this.radioButtonConsultas.Text = "&Consultas";
             this.radioButtonConsultas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonConsultas.UseVisualStyleBackColor = true;
+            this.radioButtonConsultas.CheckedChanged += new System.EventHandler(this.radioButtonConsultas_CheckedChanged);
             // 
             // radioButtonEquipos
             // 
@@ -200,6 +203,7 @@
             this.radioButtonEquipos.Text = "&Equipos";
             this.radioButtonEquipos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonEquipos.UseVisualStyleBackColor = true;
+            this.radioButtonEquipos.CheckedChanged += new System.EventHandler(this.radioButtonEquipos_CheckedChanged);
             // 
             // radioButtonAsistencia
             // 
@@ -219,6 +223,7 @@
             this.radioButtonAsistencia.Text = "A&sistencia";
             this.radioButtonAsistencia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonAsistencia.UseVisualStyleBackColor = true;
+            this.radioButtonAsistencia.CheckedChanged += new System.EventHandler(this.radioButtonAsistencia_CheckedChanged);
             // 
             // radioButtonContratos
             // 
@@ -238,6 +243,7 @@
             this.radioButtonContratos.Text = "&Contratos";
             this.radioButtonContratos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonContratos.UseVisualStyleBackColor = true;
+            this.radioButtonContratos.CheckedChanged += new System.EventHandler(this.radioButtonContratos_CheckedChanged);
             // 
             // radioButtonPersonal
             // 
@@ -259,6 +265,7 @@
             this.radioButtonPersonal.Text = "&Personal";
             this.radioButtonPersonal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radioButtonPersonal.UseVisualStyleBackColor = true;
+            this.radioButtonPersonal.CheckedChanged += new System.EventHandler(this.radioButtonPersonal_CheckedChanged);
             // 
             // menuStrip
             // 
