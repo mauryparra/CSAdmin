@@ -39,10 +39,19 @@ namespace CSAdminApp
             {
                 Application.Exit();
             }
-            this.toolStripStatusLabel.Text = "Listo";
+            toolStripStatusLabel.Text = "Listo";
         }
 
         #region GUI
+
+        // Elimina las pantallas que se agregan al Panel2 del SplitContainer
+        private void limpiarPanel()
+        {
+            foreach (Control ctrl in splitContainer.Panel2.Controls)
+            {
+                splitContainer.Panel2.Controls.Remove(ctrl);
+            }
+        }
 
         #region Menu Principal
 
@@ -65,37 +74,112 @@ namespace CSAdminApp
 
         private void radioButtonPersonal_CheckedChanged(object sender, EventArgs e)
         {
+            if (radioButtonPersonal.Checked)
+            {
+                // Barra de estado
+                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar.MarqueeAnimationSpeed = 30;
+                toolStripProgressBar.Visible = true;
 
+                this.limpiarPanel();
+
+                // codigo pantalla
+                Pantallas.pPersonal pantallaPersonal = new Pantallas.pPersonal();
+                pantallaPersonal.Dock = DockStyle.Fill;
+                splitContainer.Panel2.Controls.Add(pantallaPersonal);
+
+                toolStripProgressBar.Visible = false;
+            }
         }
 
         private void radioButtonContratos_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         private void radioButtonAsistencia_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         private void radioButtonEquipos_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         private void radioButtonConsultas_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         private void radioButtonCertificados_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         private void radioButtonAdmin_CheckedChanged(object sender, EventArgs e)
         {
+            // Barra de estado
+            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+            toolStripProgressBar.MarqueeAnimationSpeed = 30;
+            toolStripProgressBar.Visible = true;
 
+            this.limpiarPanel();
+
+            // codigo pantalla
+
+
+            toolStripProgressBar.Visible = false;
         }
 
         #endregion
