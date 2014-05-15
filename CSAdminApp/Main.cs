@@ -14,6 +14,8 @@ namespace CSAdminApp
 {
     public partial class Main : Form
     {
+        public static Clases.CSAdminBDEntities BDContext = new Clases.CSAdminBDEntities();
+        
         public Main()
         {
             InitializeComponent();

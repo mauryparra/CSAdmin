@@ -30,10 +30,7 @@
         {
             this.tabControlPersonal = new System.Windows.Forms.TabControl();
             this.tabPageAlta = new System.Windows.Forms.TabPage();
-            this.tabPageModificar = new System.Windows.Forms.TabPage();
-            this.tabPageBaja = new System.Windows.Forms.TabPage();
             this.aSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.aDataGridViewPer = new System.Windows.Forms.DataGridView();
             this.aButtonReactivar = new System.Windows.Forms.Button();
             this.aButtonCancelar = new System.Windows.Forms.Button();
             this.aButtonAceptar = new System.Windows.Forms.Button();
@@ -50,6 +47,9 @@
             this.aLabelNombre = new System.Windows.Forms.Label();
             this.aLabelCuit = new System.Windows.Forms.Label();
             this.aLabelDni = new System.Windows.Forms.Label();
+            this.aDataGridViewPer = new System.Windows.Forms.DataGridView();
+            this.tabPageModificar = new System.Windows.Forms.TabPage();
+            this.tabPageBaja = new System.Windows.Forms.TabPage();
             this.tabControlPersonal.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aSplitContainer)).BeginInit();
@@ -71,6 +71,7 @@
             this.tabControlPersonal.SelectedIndex = 0;
             this.tabControlPersonal.Size = new System.Drawing.Size(689, 446);
             this.tabControlPersonal.TabIndex = 0;
+            this.tabControlPersonal.SelectedIndexChanged += new System.EventHandler(this.tabControlPersonal_SelectedIndexChanged);
             // 
             // tabPageAlta
             // 
@@ -82,25 +83,6 @@
             this.tabPageAlta.TabIndex = 0;
             this.tabPageAlta.Text = "Alta";
             this.tabPageAlta.UseVisualStyleBackColor = true;
-            // 
-            // tabPageModificar
-            // 
-            this.tabPageModificar.Location = new System.Drawing.Point(4, 24);
-            this.tabPageModificar.Name = "tabPageModificar";
-            this.tabPageModificar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageModificar.Size = new System.Drawing.Size(681, 418);
-            this.tabPageModificar.TabIndex = 1;
-            this.tabPageModificar.Text = "Ver/Modificar";
-            this.tabPageModificar.UseVisualStyleBackColor = true;
-            // 
-            // tabPageBaja
-            // 
-            this.tabPageBaja.Location = new System.Drawing.Point(4, 24);
-            this.tabPageBaja.Name = "tabPageBaja";
-            this.tabPageBaja.Size = new System.Drawing.Size(681, 418);
-            this.tabPageBaja.TabIndex = 2;
-            this.tabPageBaja.Text = "Baja";
-            this.tabPageBaja.UseVisualStyleBackColor = true;
             // 
             // aSplitContainer
             // 
@@ -138,20 +120,6 @@
             this.aSplitContainer.SplitterDistance = 140;
             this.aSplitContainer.TabIndex = 0;
             // 
-            // aDataGridViewPer
-            // 
-            this.aDataGridViewPer.AllowUserToAddRows = false;
-            this.aDataGridViewPer.AllowUserToDeleteRows = false;
-            this.aDataGridViewPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.aDataGridViewPer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aDataGridViewPer.Location = new System.Drawing.Point(0, 0);
-            this.aDataGridViewPer.MultiSelect = false;
-            this.aDataGridViewPer.Name = "aDataGridViewPer";
-            this.aDataGridViewPer.ReadOnly = true;
-            this.aDataGridViewPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.aDataGridViewPer.Size = new System.Drawing.Size(671, 264);
-            this.aDataGridViewPer.TabIndex = 0;
-            // 
             // aButtonReactivar
             // 
             this.aButtonReactivar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -166,6 +134,7 @@
             this.aButtonReactivar.TabIndex = 31;
             this.aButtonReactivar.Text = "Reactivar";
             this.aButtonReactivar.UseVisualStyleBackColor = true;
+            this.aButtonReactivar.Click += new System.EventHandler(this.aButtonReactivar_Click);
             // 
             // aButtonCancelar
             // 
@@ -181,6 +150,7 @@
             this.aButtonCancelar.TabIndex = 30;
             this.aButtonCancelar.Text = "Cancelar";
             this.aButtonCancelar.UseVisualStyleBackColor = true;
+            this.aButtonCancelar.Click += new System.EventHandler(this.aButtonCancelar_Click);
             // 
             // aButtonAceptar
             // 
@@ -196,6 +166,7 @@
             this.aButtonAceptar.TabIndex = 29;
             this.aButtonAceptar.Text = "Aceptar";
             this.aButtonAceptar.UseVisualStyleBackColor = true;
+            this.aButtonAceptar.Click += new System.EventHandler(this.aButtonAceptar_Click);
             // 
             // aButtonTelefonos
             // 
@@ -211,6 +182,7 @@
             this.aButtonTelefonos.TabIndex = 28;
             this.aButtonTelefonos.Text = "&Telefonos";
             this.aButtonTelefonos.UseVisualStyleBackColor = true;
+            this.aButtonTelefonos.Click += new System.EventHandler(this.aButtonTelefonos_Click);
             // 
             // aTextBoxCorreo
             // 
@@ -275,6 +247,7 @@
             this.aMaskedTextBoxDni.Size = new System.Drawing.Size(130, 21);
             this.aMaskedTextBoxDni.TabIndex = 22;
             this.aMaskedTextBoxDni.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.aMaskedTextBoxDni.Leave += new System.EventHandler(this.aMaskedTextBoxDni_Leave);
             // 
             // aLabelCorreo
             // 
@@ -338,6 +311,40 @@
             this.aLabelDni.TabIndex = 16;
             this.aLabelDni.Text = "DNI:";
             // 
+            // aDataGridViewPer
+            // 
+            this.aDataGridViewPer.AllowUserToAddRows = false;
+            this.aDataGridViewPer.AllowUserToDeleteRows = false;
+            this.aDataGridViewPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.aDataGridViewPer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.aDataGridViewPer.Location = new System.Drawing.Point(0, 0);
+            this.aDataGridViewPer.MultiSelect = false;
+            this.aDataGridViewPer.Name = "aDataGridViewPer";
+            this.aDataGridViewPer.ReadOnly = true;
+            this.aDataGridViewPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.aDataGridViewPer.Size = new System.Drawing.Size(671, 264);
+            this.aDataGridViewPer.TabIndex = 0;
+            this.aDataGridViewPer.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.aDataGridViewPer_CellMouseDoubleClick);
+            // 
+            // tabPageModificar
+            // 
+            this.tabPageModificar.Location = new System.Drawing.Point(4, 24);
+            this.tabPageModificar.Name = "tabPageModificar";
+            this.tabPageModificar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageModificar.Size = new System.Drawing.Size(681, 418);
+            this.tabPageModificar.TabIndex = 1;
+            this.tabPageModificar.Text = "Ver/Modificar";
+            this.tabPageModificar.UseVisualStyleBackColor = true;
+            // 
+            // tabPageBaja
+            // 
+            this.tabPageBaja.Location = new System.Drawing.Point(4, 24);
+            this.tabPageBaja.Name = "tabPageBaja";
+            this.tabPageBaja.Size = new System.Drawing.Size(681, 418);
+            this.tabPageBaja.TabIndex = 2;
+            this.tabPageBaja.Text = "Baja";
+            this.tabPageBaja.UseVisualStyleBackColor = true;
+            // 
             // pPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,6 +352,7 @@
             this.Controls.Add(this.tabControlPersonal);
             this.Name = "pPersonal";
             this.Size = new System.Drawing.Size(689, 446);
+            this.Load += new System.EventHandler(this.pPersonal_Load);
             this.tabControlPersonal.ResumeLayout(false);
             this.tabPageAlta.ResumeLayout(false);
             this.aSplitContainer.Panel1.ResumeLayout(false);
