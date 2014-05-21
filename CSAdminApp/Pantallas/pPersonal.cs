@@ -18,6 +18,7 @@ namespace CSAdminApp.Pantallas
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
         private int[] aux = {0, 0, 0};
         protected Personas nuevaPersona;
+        bool soloLectura = false;
 
         public pPersonal()
         {
@@ -44,22 +45,27 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
+                ObjectQuery<Personas> personaQ;
                 switch (tabControlPersonal.SelectedIndex)
                 {
                     case 0:
                         Personas nuevaPersona = new Personas();
-                        ObjectQuery<Personas> personaQuery =
+                        personaQ =
                             Main.BDContext.Personas.Where("it.Baja = True");
-                        aDataGridViewPer.DataSource = personaQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                        aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
                         break;
 
                     case 1:
-                        // TODO
+                        personaQ =
+                            Main.BDContext.Personas;
+                        mDataGridViewPer.DataSource = personaQ.Select(
+                            "it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
                         break;
 
                     case 2:
-
-                        //TODO
+                        personaQ =
+                            Main.BDContext.Personas.Where("it.Baja = False");
+                        bDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
                         break;
 
                     default:
@@ -82,17 +88,14 @@ namespace CSAdminApp.Pantallas
 
         // En caso de que se este reactivando
         // un usuario no se puede añadir informacion
-        bool soloLectura = false;
+        
 
         private void aButtonTelefonos_Click(object sender, EventArgs e)
         {
-            // TODO
-            /*Dim tel As TelPopUp = New TelPopUp(nuevaPersona, soloLectura)
-            With tel
-                .StartPosition = FormStartPosition.CenterParent
-                .aux = aux(0)
-            End With
-            tel.ShowDialog()*/
+            telPopUp tel = new telPopUp(nuevaPersona, soloLectura);
+            tel.StartPosition = FormStartPosition.CenterParent;
+            tel.aux = aux[0];
+            tel.ShowDialog();
         }
 
         private void aButtonAceptar_Click(object sender, EventArgs e)
@@ -232,6 +235,216 @@ namespace CSAdminApp.Pantallas
             }
         }
 
-#endregion
+#endregion    
+
+#region MODIFICAR
+        // Se utiliza aux[1]
+        private void mMaskedTextBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    ObjectQuery<Personas> personaQ =
+                        Main.BDContext.Personas.Where("it.Dni = @Dni");
+                    personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(mMaskedTextBoxDni.Text)));
+
+                    if (personaQ.Any())
+                    {
+                        mMaskedTextBoxCuit.Text = Convert.ToString(personaQ.First().Cuit);
+                        mTextBoxNombre.Text = personaQ.First().Nombre;
+                        mTextBoxApellido.Text = personaQ.First().Apellido;
+                        mTextBoxDireccion.Text = personaQ.First().Direccion;
+                        mTextBoxCorreo.Text = personaQ.First().Correo;
+                        aux[1] = personaQ.First().Id;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontro ninguna persona con DNI: " + mMaskedTextBoxDni.Text,
+                                "Modificar Personas",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FunmPC.limpiarForm(mSplitContainer.Panel1);
+                        mMaskedTextBoxDni.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void mButtonModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aux[1] != 0)
+                {
+                   ObjectQuery<Personas> personaQ =
+                        Main.BDContext.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                    personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
+                    personaQ.First().Cuit = Convert.ToInt64(mMaskedTextBoxCuit.Text);
+                    personaQ.First().Nombre = mTextBoxNombre.Text;
+                    personaQ.First().Apellido = mTextBoxApellido.Text;
+                    personaQ.First().Direccion = mTextBoxDireccion.Text;
+                    personaQ.First().Correo = mTextBoxCorreo.Text;
+                    Main.BDContext.SaveChanges();
+                    MessageBox.Show("Se modifico: " + personaQ.First().Nombre + " " + personaQ.First().Apellido,
+                                "Modificación de Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FunmPC.limpiarForm(mSplitContainer.Panel1);
+                    mMaskedTextBoxDni.Focus();
+                    aux[1] = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Actualmente no se esta editando ninguna Persona", "Modificación de Personas", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    mMaskedTextBoxDni.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void mButtonCancelar_Click(object sender, EventArgs e)
+        {
+            // Limpia el formulario.
+            FunmPC.limpiarForm(mSplitContainer.Panel1);
+            FunmPC.readOnlyForm(mSplitContainer.Panel1, false);
+            mMaskedTextBoxDni.Focus();
+            aux[1] = 0;
+        }
+
+        private void mButtonTelefonos_Click(object sender, EventArgs e)
+        {
+            telPopUp tel = new telPopUp(nuevaPersona, soloLectura);
+            tel.StartPosition = FormStartPosition.CenterParent;
+            tel.aux = aux[1];
+            tel.ShowDialog();
+        }
+
+        private void mDataGridViewPer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                aux[1] =Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                ObjectQuery<Personas> personasQ =
+                    Main.BDContext.Personas.Where("it.Id = @Id");
+                personasQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+
+                mMaskedTextBoxDni.Text = Convert.ToString(personasQ.First().Dni);
+                mMaskedTextBoxCuit.Text = Convert.ToString(personasQ.First().Cuit);
+                mTextBoxNombre.Text = personasQ.First().Nombre;
+                mTextBoxApellido.Text = personasQ.First().Apellido;
+                mTextBoxDireccion.Text = personasQ.First().Direccion;
+                mTextBoxCorreo.Text = personasQ.First().Correo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+#endregion 
+
+#region BAJA
+        // Se utiliza aux[2]
+        private void bButtonBaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aux[2] != 0)
+                {
+                    ObjectQuery<Personas> personaQ =
+                        Main.BDContext.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+
+                    personaQ.First().Baja = true;
+                    Main.BDContext.SaveChanges();
+                    MessageBox.Show("Se dio de baja a: " + personaQ.First().Nombre,
+                                "Baja Personas",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FunmPC.limpiarForm(bSplitContainer.Panel1);
+                    FunmPC.readOnlyForm(bSplitContainer.Panel1, false);
+                    bMaskedTextBoxDni.Focus();
+                    aux[2] = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void bButtonCancelar_Click(object sender, EventArgs e)
+        {
+            // Limpia el formulario
+            FunmPC.limpiarForm(bSplitContainer.Panel1);
+            FunmPC.readOnlyForm(bSplitContainer.Panel1, false);
+            bMaskedTextBoxDni.Focus();
+            aux[2] = 0;
+        }
+
+        private void bButtonContratos_Click(object sender, EventArgs e)
+        {
+            // TODO Contratos Personal
+        }
+
+        private void bMaskedTextBoxDni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    ObjectQuery<Personas> personaQ =
+                    Main.BDContext.Personas.Where("it.Dni = @Dni");
+                    personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(bMaskedTextBoxDni.Text)));
+
+                    if (personaQ.Any())
+                    {
+                        bTextBoxNombre.Text = personaQ.First().Nombre;
+                        bTextBoxApellido.Text = personaQ.First().Apellido;
+                        bTextBoxDireccion.Text = personaQ.First().Direccion;
+                        aux[2] = personaQ.First().Id;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontro ninguna persona con DNI: " + bMaskedTextBoxDni.Text,
+                                    "Baja Personas",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FunmPC.limpiarForm(bSplitContainer.Panel1);
+                        bMaskedTextBoxDni.Focus();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void bDataGridViewPer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                ObjectQuery<Personas> personaQ =
+                    Main.BDContext.Personas.Where("it.Id = @Id");
+                personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+
+                bMaskedTextBoxDni.Text = Convert.ToString(personaQ.First().Dni);
+                bTextBoxNombre.Text = personaQ.First().Nombre;
+                bTextBoxApellido.Text = personaQ.First().Apellido;
+                bTextBoxDireccion.Text = personaQ.First().Direccion;
+                FunmPC.readOnlyForm(bSplitContainer.Panel1, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+#endregion  
     }
 }
