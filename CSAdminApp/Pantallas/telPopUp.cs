@@ -16,8 +16,10 @@ namespace CSAdminApp.Pantallas
     public partial class telPopUp : Form
     {
         internal Int32 aux = 0;
+        internal BindingSource bs = new BindingSource();
         internal Clases.Personas persona;
         private bool soloLectura;
+        
 
         public telPopUp(Personas per, bool modo)
         {
@@ -48,7 +50,8 @@ namespace CSAdminApp.Pantallas
                 ObjectQuery<PersonasTel> personasTelQ =
                     Main.BDContext.PersonasTel.Where("it.IdPersona = @Id");
                 personasTelQ.Parameters.Add(new ObjectParameter("Id", aux));
-                dataGridViewTel.DataSource = personasTelQ.Select("it.Tipo, it.Numero");
+                bs.DataSource = personasTelQ.Select("it.Tipo, it.Numero");
+                dataGridViewTel.DataSource = bs;
 
             }
             catch (Exception ex)
@@ -61,14 +64,18 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                // TODO Revisar cuando se cargan 2 personas al agregar numero de télefono
+                // TODO Revisar restricciones telefonos
                 PersonasTel nuevoTel = new PersonasTel();
                 nuevoTel.Numero = Decimal.Parse(maskedTextBoxTel.Text);
                 nuevoTel.Tipo = comboBoxTipo.SelectedItem.ToString();
 
                 persona.PersonasTel.Add(nuevoTel);
-                MessageBox.Show("Se agregó el numero de Tel");
-                FunmPC.limpiarForm(this);
+                MessageBox.Show("Se agregó el numero de Tel: " + nuevoTel.Numero.ToString());
+                FunmPC.limpiarForm(splitContainer.Panel1);
+                maskedTextBoxTel.Focus();
+
+                // TODO Refresco dinamico de datagrid
+                bs.ResetBindings(false);
             }
             catch (Exception ex)
             {

@@ -93,6 +93,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBD.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas\pEquipos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pantallas\pEquipos.Designer.cs">
+      <DependentUpon>pEquipos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas\pPersonal.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\pEquipos.resx">
+      <DependentUpon>pEquipos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pPersonal.resx">
       <DependentUpon>pPersonal.cs</DependentUpon>

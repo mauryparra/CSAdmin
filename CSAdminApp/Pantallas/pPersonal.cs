@@ -49,7 +49,7 @@ namespace CSAdminApp.Pantallas
                 switch (tabControlPersonal.SelectedIndex)
                 {
                     case 0:
-                        Personas nuevaPersona = new Personas();
+                        nuevaPersona = new Personas();
                         personaQ =
                             Main.BDContext.Personas.Where("it.Baja = True");
                         aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");

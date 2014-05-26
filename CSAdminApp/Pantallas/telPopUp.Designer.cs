@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.dataGridViewTel = new System.Windows.Forms.DataGridView();
             this.maskedTextBoxTel = new System.Windows.Forms.MaskedTextBox();
             this.buttonAgregar = new System.Windows.Forms.Button();
             this.comboBoxTipo = new System.Windows.Forms.ComboBox();
             this.labelTelefono = new System.Windows.Forms.Label();
+            this.dataGridViewTel = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -62,18 +62,6 @@
             this.splitContainer.Size = new System.Drawing.Size(284, 122);
             this.splitContainer.SplitterDistance = 42;
             this.splitContainer.TabIndex = 1;
-            // 
-            // dataGridViewTel
-            // 
-            this.dataGridViewTel.AllowUserToAddRows = false;
-            this.dataGridViewTel.AllowUserToDeleteRows = false;
-            this.dataGridViewTel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewTel.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewTel.Name = "dataGridViewTel";
-            this.dataGridViewTel.ReadOnly = true;
-            this.dataGridViewTel.Size = new System.Drawing.Size(284, 76);
-            this.dataGridViewTel.TabIndex = 1;
             // 
             // maskedTextBoxTel
             // 
@@ -121,6 +109,18 @@
             this.labelTelefono.Size = new System.Drawing.Size(52, 13);
             this.labelTelefono.TabIndex = 5;
             this.labelTelefono.Text = "Teléfono:";
+            // 
+            // dataGridViewTel
+            // 
+            this.dataGridViewTel.AllowUserToAddRows = false;
+            this.dataGridViewTel.AllowUserToDeleteRows = false;
+            this.dataGridViewTel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTel.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewTel.Name = "dataGridViewTel";
+            this.dataGridViewTel.ReadOnly = true;
+            this.dataGridViewTel.Size = new System.Drawing.Size(284, 76);
+            this.dataGridViewTel.TabIndex = 1;
             // 
             // telPopUp
             // 
