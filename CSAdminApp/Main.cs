@@ -42,6 +42,24 @@ namespace CSAdminApp
                 Application.Exit();
             }
             toolStripStatusLabel.Text = "Listo";
+
+            // Carga pantalla por defecto
+            if (radioButtonPersonal.Checked)
+            {
+                // Barra de estado
+                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar.MarqueeAnimationSpeed = 30;
+                toolStripProgressBar.Visible = true;
+
+                this.limpiarPanel();
+
+                // codigo pantalla
+                Pantallas.pPersonal pantallaPersonal = new Pantallas.pPersonal();
+                pantallaPersonal.Dock = DockStyle.Fill;
+                splitContainer.Panel2.Controls.Add(pantallaPersonal);
+
+                toolStripProgressBar.Visible = false;
+            }
         }
 
         #region GUI
@@ -126,17 +144,22 @@ namespace CSAdminApp
 
         private void radioButtonEquipos_CheckedChanged(object sender, EventArgs e)
         {
-            // Barra de estado
-            toolStripProgressBar.Style = ProgressBarStyle.Marquee;
-            toolStripProgressBar.MarqueeAnimationSpeed = 30;
-            toolStripProgressBar.Visible = true;
+            if (radioButtonEquipos.Checked)
+            {
+                // Barra de estado
+                toolStripProgressBar.Style = ProgressBarStyle.Marquee;
+                toolStripProgressBar.MarqueeAnimationSpeed = 30;
+                toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
+                this.limpiarPanel();
 
-            // codigo pantalla
+                // codigo pantalla
+                Pantallas.pEquipos pantallaEquipos = new Pantallas.pEquipos();
+                pantallaEquipos.Dock = DockStyle.Fill;
+                splitContainer.Panel2.Controls.Add(pantallaEquipos);
 
-
-            toolStripProgressBar.Visible = false;
+                toolStripProgressBar.Visible = false;
+            }
         }
 
         private void radioButtonConsultas_CheckedChanged(object sender, EventArgs e)
