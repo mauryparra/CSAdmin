@@ -229,6 +229,7 @@
             this.aButtonCancelar.TabIndex = 16;
             this.aButtonCancelar.Text = "Cancelar";
             this.aButtonCancelar.UseVisualStyleBackColor = true;
+            this.aButtonCancelar.Click += new System.EventHandler(this.aButtonCancelar_Click);
             // 
             // aButtonAceptar
             // 
@@ -244,6 +245,7 @@
             this.aButtonAceptar.TabIndex = 15;
             this.aButtonAceptar.Text = "Aceptar";
             this.aButtonAceptar.UseVisualStyleBackColor = true;
+            this.aButtonAceptar.Click += new System.EventHandler(this.aButtonAceptar_Click);
             // 
             // aTextBoxCorreo
             // 
@@ -286,6 +288,7 @@
             this.aTextBoxNombre.Name = "aTextBoxNombre";
             this.aTextBoxNombre.Size = new System.Drawing.Size(200, 21);
             this.aTextBoxNombre.TabIndex = 2;
+            this.aTextBoxNombre.Validating += new System.ComponentModel.CancelEventHandler(this.aTextBoxNombre_Validating);
             // 
             // aLabelCorreo
             // 
