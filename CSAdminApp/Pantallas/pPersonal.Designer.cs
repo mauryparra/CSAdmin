@@ -229,6 +229,7 @@
             // aTextBoxCorreo
             // 
             this.aTextBoxCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxCorreo.BackColor = System.Drawing.Color.Honeydew;
             this.aTextBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxCorreo.Location = new System.Drawing.Point(347, 39);
             this.aTextBoxCorreo.MaxLength = 40;
@@ -239,6 +240,7 @@
             // aTextBoxDireccion
             // 
             this.aTextBoxDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxDireccion.BackColor = System.Drawing.Color.MistyRose;
             this.aTextBoxDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aTextBoxDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxDireccion.Location = new System.Drawing.Point(347, 13);
@@ -249,6 +251,7 @@
             // 
             // aTextBoxApellido
             // 
+            this.aTextBoxApellido.BackColor = System.Drawing.Color.MistyRose;
             this.aTextBoxApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aTextBoxApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxApellido.Location = new System.Drawing.Point(68, 94);
@@ -259,6 +262,7 @@
             // 
             // aTextBoxNombre
             // 
+            this.aTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.aTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxNombre.Location = new System.Drawing.Point(68, 67);
@@ -269,6 +273,7 @@
             // 
             // aMaskedTextBoxCuit
             // 
+            this.aMaskedTextBoxCuit.BackColor = System.Drawing.Color.Honeydew;
             this.aMaskedTextBoxCuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aMaskedTextBoxCuit.Location = new System.Drawing.Point(68, 39);
             this.aMaskedTextBoxCuit.Mask = "00-00000000-0";
@@ -280,6 +285,7 @@
             // 
             // aMaskedTextBoxDni
             // 
+            this.aMaskedTextBoxDni.BackColor = System.Drawing.Color.MistyRose;
             this.aMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aMaskedTextBoxDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aMaskedTextBoxDni.Location = new System.Drawing.Point(68, 13);
@@ -422,7 +428,7 @@
             this.mButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink;
             this.mButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonCancelar.Location = new System.Drawing.Point(569, 77);
+            this.mButtonCancelar.Location = new System.Drawing.Point(568, 73);
             this.mButtonCancelar.Name = "mButtonCancelar";
             this.mButtonCancelar.Size = new System.Drawing.Size(88, 26);
             this.mButtonCancelar.TabIndex = 29;
@@ -438,7 +444,7 @@
             this.mButtonModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.mButtonModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonModificar.Location = new System.Drawing.Point(569, 38);
+            this.mButtonModificar.Location = new System.Drawing.Point(568, 34);
             this.mButtonModificar.Name = "mButtonModificar";
             this.mButtonModificar.Size = new System.Drawing.Size(88, 26);
             this.mButtonModificar.TabIndex = 28;
@@ -454,7 +460,7 @@
             this.mButtonTelefonos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.mButtonTelefonos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonTelefonos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonTelefonos.Location = new System.Drawing.Point(384, 70);
+            this.mButtonTelefonos.Location = new System.Drawing.Point(383, 67);
             this.mButtonTelefonos.Name = "mButtonTelefonos";
             this.mButtonTelefonos.Size = new System.Drawing.Size(99, 26);
             this.mButtonTelefonos.TabIndex = 27;
@@ -465,8 +471,9 @@
             // mTextBoxCorreo
             // 
             this.mTextBoxCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBoxCorreo.BackColor = System.Drawing.Color.Honeydew;
             this.mTextBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTextBoxCorreo.Location = new System.Drawing.Point(348, 42);
+            this.mTextBoxCorreo.Location = new System.Drawing.Point(347, 39);
             this.mTextBoxCorreo.MaxLength = 40;
             this.mTextBoxCorreo.Name = "mTextBoxCorreo";
             this.mTextBoxCorreo.Size = new System.Drawing.Size(200, 21);
@@ -475,9 +482,10 @@
             // mTextBoxDireccion
             // 
             this.mTextBoxDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBoxDireccion.BackColor = System.Drawing.Color.MistyRose;
             this.mTextBoxDireccion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTextBoxDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTextBoxDireccion.Location = new System.Drawing.Point(348, 16);
+            this.mTextBoxDireccion.Location = new System.Drawing.Point(347, 13);
             this.mTextBoxDireccion.MaxLength = 100;
             this.mTextBoxDireccion.Name = "mTextBoxDireccion";
             this.mTextBoxDireccion.Size = new System.Drawing.Size(200, 21);
@@ -485,9 +493,10 @@
             // 
             // mTextBoxApellido
             // 
+            this.mTextBoxApellido.BackColor = System.Drawing.Color.MistyRose;
             this.mTextBoxApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTextBoxApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTextBoxApellido.Location = new System.Drawing.Point(69, 97);
+            this.mTextBoxApellido.Location = new System.Drawing.Point(68, 94);
             this.mTextBoxApellido.MaxLength = 50;
             this.mTextBoxApellido.Name = "mTextBoxApellido";
             this.mTextBoxApellido.Size = new System.Drawing.Size(200, 21);
@@ -495,9 +504,10 @@
             // 
             // mTextBoxNombre
             // 
+            this.mTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.mTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mTextBoxNombre.Location = new System.Drawing.Point(69, 70);
+            this.mTextBoxNombre.Location = new System.Drawing.Point(68, 67);
             this.mTextBoxNombre.MaxLength = 50;
             this.mTextBoxNombre.Name = "mTextBoxNombre";
             this.mTextBoxNombre.Size = new System.Drawing.Size(200, 21);
@@ -505,8 +515,9 @@
             // 
             // mMaskedTextBoxCuit
             // 
+            this.mMaskedTextBoxCuit.BackColor = System.Drawing.Color.Honeydew;
             this.mMaskedTextBoxCuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mMaskedTextBoxCuit.Location = new System.Drawing.Point(69, 42);
+            this.mMaskedTextBoxCuit.Location = new System.Drawing.Point(68, 39);
             this.mMaskedTextBoxCuit.Mask = "00-00000000-0";
             this.mMaskedTextBoxCuit.Name = "mMaskedTextBoxCuit";
             this.mMaskedTextBoxCuit.PromptChar = ' ';
@@ -516,9 +527,10 @@
             // 
             // mMaskedTextBoxDni
             // 
+            this.mMaskedTextBoxDni.BackColor = System.Drawing.Color.MistyRose;
             this.mMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mMaskedTextBoxDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mMaskedTextBoxDni.Location = new System.Drawing.Point(69, 16);
+            this.mMaskedTextBoxDni.Location = new System.Drawing.Point(68, 13);
             this.mMaskedTextBoxDni.Mask = "00,000,000";
             this.mMaskedTextBoxDni.Name = "mMaskedTextBoxDni";
             this.mMaskedTextBoxDni.PromptChar = ' ';
@@ -532,7 +544,7 @@
             this.mLabelCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabelCorreo.AutoSize = true;
             this.mLabelCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelCorreo.Location = new System.Drawing.Point(287, 45);
+            this.mLabelCorreo.Location = new System.Drawing.Point(286, 42);
             this.mLabelCorreo.Name = "mLabelCorreo";
             this.mLabelCorreo.Size = new System.Drawing.Size(47, 15);
             this.mLabelCorreo.TabIndex = 20;
@@ -543,7 +555,7 @@
             this.mLabelDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabelDireccion.AutoSize = true;
             this.mLabelDireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelDireccion.Location = new System.Drawing.Point(287, 19);
+            this.mLabelDireccion.Location = new System.Drawing.Point(286, 16);
             this.mLabelDireccion.Name = "mLabelDireccion";
             this.mLabelDireccion.Size = new System.Drawing.Size(62, 15);
             this.mLabelDireccion.TabIndex = 19;
@@ -553,7 +565,7 @@
             // 
             this.mLabelApellido.AutoSize = true;
             this.mLabelApellido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelApellido.Location = new System.Drawing.Point(14, 100);
+            this.mLabelApellido.Location = new System.Drawing.Point(13, 97);
             this.mLabelApellido.Name = "mLabelApellido";
             this.mLabelApellido.Size = new System.Drawing.Size(54, 15);
             this.mLabelApellido.TabIndex = 18;
@@ -563,7 +575,7 @@
             // 
             this.mLabelNombre.AutoSize = true;
             this.mLabelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelNombre.Location = new System.Drawing.Point(14, 73);
+            this.mLabelNombre.Location = new System.Drawing.Point(13, 70);
             this.mLabelNombre.Name = "mLabelNombre";
             this.mLabelNombre.Size = new System.Drawing.Size(55, 15);
             this.mLabelNombre.TabIndex = 17;
@@ -573,7 +585,7 @@
             // 
             this.mLabelCuit.AutoSize = true;
             this.mLabelCuit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelCuit.Location = new System.Drawing.Point(14, 45);
+            this.mLabelCuit.Location = new System.Drawing.Point(13, 42);
             this.mLabelCuit.Name = "mLabelCuit";
             this.mLabelCuit.Size = new System.Drawing.Size(37, 15);
             this.mLabelCuit.TabIndex = 16;
@@ -583,7 +595,7 @@
             // 
             this.mLabelDni.AutoSize = true;
             this.mLabelDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelDni.Location = new System.Drawing.Point(14, 19);
+            this.mLabelDni.Location = new System.Drawing.Point(13, 16);
             this.mLabelDni.Name = "mLabelDni";
             this.mLabelDni.Size = new System.Drawing.Size(31, 15);
             this.mLabelDni.TabIndex = 15;
@@ -728,6 +740,7 @@
             // 
             // bMaskedTextBoxDni
             // 
+            this.bMaskedTextBoxDni.BackColor = System.Drawing.Color.MistyRose;
             this.bMaskedTextBoxDni.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bMaskedTextBoxDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bMaskedTextBoxDni.Location = new System.Drawing.Point(83, 13);

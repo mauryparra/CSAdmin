@@ -69,9 +69,8 @@
             this.mDataGridViewEquipos = new System.Windows.Forms.DataGridView();
             this.tabPageBaja = new System.Windows.Forms.TabPage();
             this.bSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.bButtonBaja = new System.Windows.Forms.Button();
-            this.bButtonCancelar = new System.Windows.Forms.Button();
-            this.bDataGridViewEquipos = new System.Windows.Forms.DataGridView();
+            this.bTextBoxCoordinador = new System.Windows.Forms.TextBox();
+            this.bTextBoxLocalidad = new System.Windows.Forms.TextBox();
             this.bLabelCoordinador = new System.Windows.Forms.Label();
             this.bMaskedTextBoxTelefono = new System.Windows.Forms.MaskedTextBox();
             this.bLabelTelefono = new System.Windows.Forms.Label();
@@ -84,8 +83,9 @@
             this.bLabelContra = new System.Windows.Forms.Label();
             this.bLabelUbicacion = new System.Windows.Forms.Label();
             this.bLabelNombre = new System.Windows.Forms.Label();
-            this.bTextBoxLocalidad = new System.Windows.Forms.TextBox();
-            this.bTextBoxCoordinador = new System.Windows.Forms.TextBox();
+            this.bButtonBaja = new System.Windows.Forms.Button();
+            this.bButtonCancelar = new System.Windows.Forms.Button();
+            this.bDataGridViewEquipos = new System.Windows.Forms.DataGridView();
             this.tabControlEquipos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aSplitContainer)).BeginInit();
@@ -171,6 +171,7 @@
             // aComboBoxCoordinador
             // 
             this.aComboBoxCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aComboBoxCoordinador.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxCoordinador.FormattingEnabled = true;
             this.aComboBoxCoordinador.Location = new System.Drawing.Point(357, 97);
             this.aComboBoxCoordinador.Name = "aComboBoxCoordinador";
@@ -191,6 +192,7 @@
             // aMaskedTextBoxTelefono
             // 
             this.aMaskedTextBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aMaskedTextBoxTelefono.BackColor = System.Drawing.Color.Honeydew;
             this.aMaskedTextBoxTelefono.Location = new System.Drawing.Point(357, 70);
             this.aMaskedTextBoxTelefono.Mask = "(999) 000-0000";
             this.aMaskedTextBoxTelefono.Name = "aMaskedTextBoxTelefono";
@@ -214,6 +216,7 @@
             // 
             this.aComboBoxLocalidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.aComboBoxLocalidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.aComboBoxLocalidad.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxLocalidad.FormattingEnabled = true;
             this.aComboBoxLocalidad.Location = new System.Drawing.Point(77, 70);
             this.aComboBoxLocalidad.Name = "aComboBoxLocalidad";
@@ -265,6 +268,7 @@
             // aTextBoxCorreo
             // 
             this.aTextBoxCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxCorreo.BackColor = System.Drawing.Color.Honeydew;
             this.aTextBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxCorreo.Location = new System.Drawing.Point(357, 14);
             this.aTextBoxCorreo.MaxLength = 30;
@@ -275,6 +279,7 @@
             // aTextBoxContra
             // 
             this.aTextBoxContra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.aTextBoxContra.BackColor = System.Drawing.Color.Honeydew;
             this.aTextBoxContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxContra.Location = new System.Drawing.Point(357, 44);
             this.aTextBoxContra.MaxLength = 30;
@@ -284,6 +289,7 @@
             // 
             // aTextBoxUbicacion
             // 
+            this.aTextBoxUbicacion.BackColor = System.Drawing.Color.MistyRose;
             this.aTextBoxUbicacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aTextBoxUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxUbicacion.Location = new System.Drawing.Point(77, 42);
@@ -296,6 +302,7 @@
             // 
             this.aTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.aTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.aTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.aTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.aTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aTextBoxNombre.Location = new System.Drawing.Point(77, 15);
@@ -411,6 +418,7 @@
             // mComboBoxCoordinador
             // 
             this.mComboBoxCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBoxCoordinador.BackColor = System.Drawing.Color.MistyRose;
             this.mComboBoxCoordinador.FormattingEnabled = true;
             this.mComboBoxCoordinador.Location = new System.Drawing.Point(357, 97);
             this.mComboBoxCoordinador.Name = "mComboBoxCoordinador";
@@ -431,6 +439,7 @@
             // mMaskedTextBoxTelefono
             // 
             this.mMaskedTextBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mMaskedTextBoxTelefono.BackColor = System.Drawing.Color.Honeydew;
             this.mMaskedTextBoxTelefono.Location = new System.Drawing.Point(357, 70);
             this.mMaskedTextBoxTelefono.Mask = "(999) 000-0000";
             this.mMaskedTextBoxTelefono.Name = "mMaskedTextBoxTelefono";
@@ -454,6 +463,7 @@
             // 
             this.mComboBoxLocalidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.mComboBoxLocalidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxLocalidad.BackColor = System.Drawing.Color.MistyRose;
             this.mComboBoxLocalidad.FormattingEnabled = true;
             this.mComboBoxLocalidad.Location = new System.Drawing.Point(77, 70);
             this.mComboBoxLocalidad.Name = "mComboBoxLocalidad";
@@ -473,6 +483,7 @@
             // mTextBoxCorreo
             // 
             this.mTextBoxCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBoxCorreo.BackColor = System.Drawing.Color.Honeydew;
             this.mTextBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTextBoxCorreo.Location = new System.Drawing.Point(357, 14);
             this.mTextBoxCorreo.MaxLength = 30;
@@ -483,6 +494,7 @@
             // mTextBoxContra
             // 
             this.mTextBoxContra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBoxContra.BackColor = System.Drawing.Color.Honeydew;
             this.mTextBoxContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTextBoxContra.Location = new System.Drawing.Point(357, 44);
             this.mTextBoxContra.MaxLength = 30;
@@ -492,6 +504,7 @@
             // 
             // mTextBoxUbicacion
             // 
+            this.mTextBoxUbicacion.BackColor = System.Drawing.Color.MistyRose;
             this.mTextBoxUbicacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTextBoxUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTextBoxUbicacion.Location = new System.Drawing.Point(77, 42);
@@ -504,6 +517,7 @@
             // 
             this.mTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.mTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.mTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.mTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mTextBoxNombre.Location = new System.Drawing.Point(77, 15);
@@ -650,52 +664,30 @@
             this.bSplitContainer.SplitterDistance = 140;
             this.bSplitContainer.TabIndex = 1;
             // 
-            // bButtonBaja
+            // bTextBoxCoordinador
             // 
-            this.bButtonBaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bButtonBaja.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
-            this.bButtonBaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
-            this.bButtonBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
-            this.bButtonBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bButtonBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bButtonBaja.Location = new System.Drawing.Point(567, 33);
-            this.bButtonBaja.Name = "bButtonBaja";
-            this.bButtonBaja.Size = new System.Drawing.Size(91, 26);
-            this.bButtonBaja.TabIndex = 15;
-            this.bButtonBaja.Text = "Baja";
-            this.bButtonBaja.UseVisualStyleBackColor = true;
-            this.bButtonBaja.Click += new System.EventHandler(this.bButtonBaja_Click);
+            this.bTextBoxCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bTextBoxCoordinador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxCoordinador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxCoordinador.Location = new System.Drawing.Point(357, 97);
+            this.bTextBoxCoordinador.MaxLength = 60;
+            this.bTextBoxCoordinador.Name = "bTextBoxCoordinador";
+            this.bTextBoxCoordinador.ReadOnly = true;
+            this.bTextBoxCoordinador.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxCoordinador.TabIndex = 14;
+            this.bTextBoxCoordinador.TabStop = false;
             // 
-            // bButtonCancelar
+            // bTextBoxLocalidad
             // 
-            this.bButtonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bButtonCancelar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
-            this.bButtonCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DeepPink;
-            this.bButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink;
-            this.bButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bButtonCancelar.Location = new System.Drawing.Point(567, 73);
-            this.bButtonCancelar.Name = "bButtonCancelar";
-            this.bButtonCancelar.Size = new System.Drawing.Size(91, 26);
-            this.bButtonCancelar.TabIndex = 16;
-            this.bButtonCancelar.Text = "Cancelar";
-            this.bButtonCancelar.UseVisualStyleBackColor = true;
-            this.bButtonCancelar.Click += new System.EventHandler(this.bButtonCancelar_Click);
-            // 
-            // bDataGridViewEquipos
-            // 
-            this.bDataGridViewEquipos.AllowUserToAddRows = false;
-            this.bDataGridViewEquipos.AllowUserToDeleteRows = false;
-            this.bDataGridViewEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.bDataGridViewEquipos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bDataGridViewEquipos.Location = new System.Drawing.Point(0, 0);
-            this.bDataGridViewEquipos.MultiSelect = false;
-            this.bDataGridViewEquipos.Name = "bDataGridViewEquipos";
-            this.bDataGridViewEquipos.ReadOnly = true;
-            this.bDataGridViewEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.bDataGridViewEquipos.Size = new System.Drawing.Size(671, 264);
-            this.bDataGridViewEquipos.TabIndex = 0;
-            this.bDataGridViewEquipos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.bDataGridViewEquipos_CellMouseDoubleClick);
+            this.bTextBoxLocalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxLocalidad.Location = new System.Drawing.Point(77, 71);
+            this.bTextBoxLocalidad.MaxLength = 60;
+            this.bTextBoxLocalidad.Name = "bTextBoxLocalidad";
+            this.bTextBoxLocalidad.ReadOnly = true;
+            this.bTextBoxLocalidad.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxLocalidad.TabIndex = 6;
+            this.bTextBoxLocalidad.TabStop = false;
             // 
             // bLabelCoordinador
             // 
@@ -782,6 +774,7 @@
             // 
             this.bTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.bTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.bTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.bTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.bTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bTextBoxNombre.Location = new System.Drawing.Point(77, 15);
@@ -834,30 +827,52 @@
             this.bLabelNombre.TabIndex = 1;
             this.bLabelNombre.Text = "Nombre:";
             // 
-            // bTextBoxLocalidad
+            // bButtonBaja
             // 
-            this.bTextBoxLocalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.bTextBoxLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bTextBoxLocalidad.Location = new System.Drawing.Point(77, 71);
-            this.bTextBoxLocalidad.MaxLength = 60;
-            this.bTextBoxLocalidad.Name = "bTextBoxLocalidad";
-            this.bTextBoxLocalidad.ReadOnly = true;
-            this.bTextBoxLocalidad.Size = new System.Drawing.Size(200, 21);
-            this.bTextBoxLocalidad.TabIndex = 6;
-            this.bTextBoxLocalidad.TabStop = false;
+            this.bButtonBaja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bButtonBaja.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
+            this.bButtonBaja.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.bButtonBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
+            this.bButtonBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bButtonBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bButtonBaja.Location = new System.Drawing.Point(567, 33);
+            this.bButtonBaja.Name = "bButtonBaja";
+            this.bButtonBaja.Size = new System.Drawing.Size(91, 26);
+            this.bButtonBaja.TabIndex = 15;
+            this.bButtonBaja.Text = "Baja";
+            this.bButtonBaja.UseVisualStyleBackColor = true;
+            this.bButtonBaja.Click += new System.EventHandler(this.bButtonBaja_Click);
             // 
-            // bTextBoxCoordinador
+            // bButtonCancelar
             // 
-            this.bTextBoxCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bTextBoxCoordinador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.bTextBoxCoordinador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bTextBoxCoordinador.Location = new System.Drawing.Point(357, 97);
-            this.bTextBoxCoordinador.MaxLength = 60;
-            this.bTextBoxCoordinador.Name = "bTextBoxCoordinador";
-            this.bTextBoxCoordinador.ReadOnly = true;
-            this.bTextBoxCoordinador.Size = new System.Drawing.Size(200, 21);
-            this.bTextBoxCoordinador.TabIndex = 14;
-            this.bTextBoxCoordinador.TabStop = false;
+            this.bButtonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bButtonCancelar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
+            this.bButtonCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DeepPink;
+            this.bButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink;
+            this.bButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bButtonCancelar.Location = new System.Drawing.Point(567, 73);
+            this.bButtonCancelar.Name = "bButtonCancelar";
+            this.bButtonCancelar.Size = new System.Drawing.Size(91, 26);
+            this.bButtonCancelar.TabIndex = 16;
+            this.bButtonCancelar.Text = "Cancelar";
+            this.bButtonCancelar.UseVisualStyleBackColor = true;
+            this.bButtonCancelar.Click += new System.EventHandler(this.bButtonCancelar_Click);
+            // 
+            // bDataGridViewEquipos
+            // 
+            this.bDataGridViewEquipos.AllowUserToAddRows = false;
+            this.bDataGridViewEquipos.AllowUserToDeleteRows = false;
+            this.bDataGridViewEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bDataGridViewEquipos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bDataGridViewEquipos.Location = new System.Drawing.Point(0, 0);
+            this.bDataGridViewEquipos.MultiSelect = false;
+            this.bDataGridViewEquipos.Name = "bDataGridViewEquipos";
+            this.bDataGridViewEquipos.ReadOnly = true;
+            this.bDataGridViewEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.bDataGridViewEquipos.Size = new System.Drawing.Size(671, 264);
+            this.bDataGridViewEquipos.TabIndex = 0;
+            this.bDataGridViewEquipos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.bDataGridViewEquipos_CellMouseDoubleClick);
             // 
             // pEquipos
             // 

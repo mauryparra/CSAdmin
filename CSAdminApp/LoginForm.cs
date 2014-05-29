@@ -15,12 +15,14 @@ namespace CSAdminApp
         public LoginForm()
         {
             InitializeComponent();
+            progressBar.Visible = false;
         }
 
         private void OK_Click(object sender, EventArgs e)
         {
             try
             {
+                progressBar.Visible = true;
                 SampleIPrincipal samplePrincipal = new SampleIPrincipal(this.UsernameTextBox.Text, this.PasswordTextBox.Text);
                 this.PasswordTextBox.Clear();
                 if (!samplePrincipal.Identity.IsAuthenticated)
@@ -37,7 +39,7 @@ namespace CSAdminApp
                     System.Threading.Thread.CurrentPrincipal = samplePrincipal;
                     this.Close();
                 }
-
+                progressBar.Visible = false;
             }
             catch (Exception ex)
             {

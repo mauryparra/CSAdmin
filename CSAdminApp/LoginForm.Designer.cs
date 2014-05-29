@@ -36,6 +36,7 @@
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.LogoPictureBox = new System.Windows.Forms.PictureBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +115,14 @@
             this.LogoPictureBox.TabIndex = 7;
             this.LogoPictureBox.TabStop = false;
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(198, 129);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(197, 23);
+            this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar.TabIndex = 13;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.OK;
@@ -121,6 +130,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
             this.ClientSize = new System.Drawing.Size(401, 192);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.PasswordTextBox);
@@ -150,5 +160,6 @@
         internal System.Windows.Forms.Label PasswordLabel;
         internal System.Windows.Forms.Label UsernameLabel;
         internal System.Windows.Forms.PictureBox LogoPictureBox;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }

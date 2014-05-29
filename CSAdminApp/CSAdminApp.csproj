@@ -159,10 +159,10 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="CSAdminBD.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="CSAdminBD_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>CSAdminBD.mdf</DependentUpon>
     </Content>
   </ItemGroup>
