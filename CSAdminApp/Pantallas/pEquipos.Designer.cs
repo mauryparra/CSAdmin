@@ -71,7 +71,21 @@
             this.bSplitContainer = new System.Windows.Forms.SplitContainer();
             this.bButtonBaja = new System.Windows.Forms.Button();
             this.bButtonCancelar = new System.Windows.Forms.Button();
-            this.BDataGridViewEquipos = new System.Windows.Forms.DataGridView();
+            this.bDataGridViewEquipos = new System.Windows.Forms.DataGridView();
+            this.bLabelCoordinador = new System.Windows.Forms.Label();
+            this.bMaskedTextBoxTelefono = new System.Windows.Forms.MaskedTextBox();
+            this.bLabelTelefono = new System.Windows.Forms.Label();
+            this.bLabelLocalidad = new System.Windows.Forms.Label();
+            this.bTextBoxCorreo = new System.Windows.Forms.TextBox();
+            this.bTextBoxContra = new System.Windows.Forms.TextBox();
+            this.bTextBoxUbicacion = new System.Windows.Forms.TextBox();
+            this.bTextBoxNombre = new System.Windows.Forms.TextBox();
+            this.bLabelCorreo = new System.Windows.Forms.Label();
+            this.bLabelContra = new System.Windows.Forms.Label();
+            this.bLabelUbicacion = new System.Windows.Forms.Label();
+            this.bLabelNombre = new System.Windows.Forms.Label();
+            this.bTextBoxLocalidad = new System.Windows.Forms.TextBox();
+            this.bTextBoxCoordinador = new System.Windows.Forms.TextBox();
             this.tabControlEquipos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aSplitContainer)).BeginInit();
@@ -90,7 +104,7 @@
             this.bSplitContainer.Panel1.SuspendLayout();
             this.bSplitContainer.Panel2.SuspendLayout();
             this.bSplitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BDataGridViewEquipos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bDataGridViewEquipos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlEquipos
@@ -105,6 +119,7 @@
             this.tabControlEquipos.SelectedIndex = 0;
             this.tabControlEquipos.Size = new System.Drawing.Size(689, 446);
             this.tabControlEquipos.TabIndex = 2;
+            this.tabControlEquipos.SelectedIndexChanged += new System.EventHandler(this.tabControlEquipos_SelectedIndexChanged);
             // 
             // tabPageAlta
             // 
@@ -400,7 +415,7 @@
             this.mComboBoxCoordinador.Location = new System.Drawing.Point(357, 97);
             this.mComboBoxCoordinador.Name = "mComboBoxCoordinador";
             this.mComboBoxCoordinador.Size = new System.Drawing.Size(200, 23);
-            this.mComboBoxCoordinador.TabIndex = 14;
+            this.mComboBoxCoordinador.TabIndex = 13;
             // 
             // mLabelCoordinador
             // 
@@ -496,6 +511,8 @@
             this.mTextBoxNombre.Name = "mTextBoxNombre";
             this.mTextBoxNombre.Size = new System.Drawing.Size(200, 21);
             this.mTextBoxNombre.TabIndex = 2;
+            this.mTextBoxNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mTextBoxNombre_KeyDown);
+            this.mTextBoxNombre.Validating += new System.ComponentModel.CancelEventHandler(this.mTextBoxNombre_Validating);
             // 
             // mLabelCorreo
             // 
@@ -550,9 +567,10 @@
             this.mButtonCancelar.Location = new System.Drawing.Point(568, 73);
             this.mButtonCancelar.Name = "mButtonCancelar";
             this.mButtonCancelar.Size = new System.Drawing.Size(88, 26);
-            this.mButtonCancelar.TabIndex = 14;
+            this.mButtonCancelar.TabIndex = 15;
             this.mButtonCancelar.Text = "Cancelar";
             this.mButtonCancelar.UseVisualStyleBackColor = true;
+            this.mButtonCancelar.Click += new System.EventHandler(this.mButtonCancelar_Click);
             // 
             // mButtonModificar
             // 
@@ -565,9 +583,10 @@
             this.mButtonModificar.Location = new System.Drawing.Point(568, 34);
             this.mButtonModificar.Name = "mButtonModificar";
             this.mButtonModificar.Size = new System.Drawing.Size(88, 26);
-            this.mButtonModificar.TabIndex = 13;
+            this.mButtonModificar.TabIndex = 14;
             this.mButtonModificar.Text = "Modificar";
             this.mButtonModificar.UseVisualStyleBackColor = true;
+            this.mButtonModificar.Click += new System.EventHandler(this.mButtonModificar_Click);
             // 
             // mDataGridViewEquipos
             // 
@@ -582,6 +601,7 @@
             this.mDataGridViewEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mDataGridViewEquipos.Size = new System.Drawing.Size(671, 264);
             this.mDataGridViewEquipos.TabIndex = 0;
+            this.mDataGridViewEquipos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewEquipos_CellMouseDoubleClick);
             // 
             // tabPageBaja
             // 
@@ -606,12 +626,26 @@
             // 
             // bSplitContainer.Panel1
             // 
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxCoordinador);
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxLocalidad);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelCoordinador);
+            this.bSplitContainer.Panel1.Controls.Add(this.bMaskedTextBoxTelefono);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelTelefono);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelLocalidad);
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxCorreo);
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxContra);
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxUbicacion);
+            this.bSplitContainer.Panel1.Controls.Add(this.bTextBoxNombre);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelCorreo);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelContra);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelUbicacion);
+            this.bSplitContainer.Panel1.Controls.Add(this.bLabelNombre);
             this.bSplitContainer.Panel1.Controls.Add(this.bButtonBaja);
             this.bSplitContainer.Panel1.Controls.Add(this.bButtonCancelar);
             // 
             // bSplitContainer.Panel2
             // 
-            this.bSplitContainer.Panel2.Controls.Add(this.BDataGridViewEquipos);
+            this.bSplitContainer.Panel2.Controls.Add(this.bDataGridViewEquipos);
             this.bSplitContainer.Size = new System.Drawing.Size(675, 412);
             this.bSplitContainer.SplitterDistance = 140;
             this.bSplitContainer.TabIndex = 1;
@@ -624,12 +658,13 @@
             this.bButtonBaja.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.bButtonBaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bButtonBaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bButtonBaja.Location = new System.Drawing.Point(443, 55);
+            this.bButtonBaja.Location = new System.Drawing.Point(567, 33);
             this.bButtonBaja.Name = "bButtonBaja";
-            this.bButtonBaja.Size = new System.Drawing.Size(99, 26);
+            this.bButtonBaja.Size = new System.Drawing.Size(91, 26);
             this.bButtonBaja.TabIndex = 15;
             this.bButtonBaja.Text = "Baja";
             this.bButtonBaja.UseVisualStyleBackColor = true;
+            this.bButtonBaja.Click += new System.EventHandler(this.bButtonBaja_Click);
             // 
             // bButtonCancelar
             // 
@@ -639,26 +674,190 @@
             this.bButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink;
             this.bButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bButtonCancelar.Location = new System.Drawing.Point(443, 96);
+            this.bButtonCancelar.Location = new System.Drawing.Point(567, 73);
             this.bButtonCancelar.Name = "bButtonCancelar";
-            this.bButtonCancelar.Size = new System.Drawing.Size(99, 26);
+            this.bButtonCancelar.Size = new System.Drawing.Size(91, 26);
             this.bButtonCancelar.TabIndex = 16;
             this.bButtonCancelar.Text = "Cancelar";
             this.bButtonCancelar.UseVisualStyleBackColor = true;
+            this.bButtonCancelar.Click += new System.EventHandler(this.bButtonCancelar_Click);
             // 
-            // BDataGridViewEquipos
+            // bDataGridViewEquipos
             // 
-            this.BDataGridViewEquipos.AllowUserToAddRows = false;
-            this.BDataGridViewEquipos.AllowUserToDeleteRows = false;
-            this.BDataGridViewEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BDataGridViewEquipos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BDataGridViewEquipos.Location = new System.Drawing.Point(0, 0);
-            this.BDataGridViewEquipos.MultiSelect = false;
-            this.BDataGridViewEquipos.Name = "BDataGridViewEquipos";
-            this.BDataGridViewEquipos.ReadOnly = true;
-            this.BDataGridViewEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.BDataGridViewEquipos.Size = new System.Drawing.Size(671, 264);
-            this.BDataGridViewEquipos.TabIndex = 0;
+            this.bDataGridViewEquipos.AllowUserToAddRows = false;
+            this.bDataGridViewEquipos.AllowUserToDeleteRows = false;
+            this.bDataGridViewEquipos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.bDataGridViewEquipos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bDataGridViewEquipos.Location = new System.Drawing.Point(0, 0);
+            this.bDataGridViewEquipos.MultiSelect = false;
+            this.bDataGridViewEquipos.Name = "bDataGridViewEquipos";
+            this.bDataGridViewEquipos.ReadOnly = true;
+            this.bDataGridViewEquipos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.bDataGridViewEquipos.Size = new System.Drawing.Size(671, 264);
+            this.bDataGridViewEquipos.TabIndex = 0;
+            this.bDataGridViewEquipos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.bDataGridViewEquipos_CellMouseDoubleClick);
+            // 
+            // bLabelCoordinador
+            // 
+            this.bLabelCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bLabelCoordinador.AutoSize = true;
+            this.bLabelCoordinador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelCoordinador.Location = new System.Drawing.Point(273, 101);
+            this.bLabelCoordinador.Name = "bLabelCoordinador";
+            this.bLabelCoordinador.Size = new System.Drawing.Size(78, 15);
+            this.bLabelCoordinador.TabIndex = 13;
+            this.bLabelCoordinador.Text = "Coordinador:";
+            // 
+            // bMaskedTextBoxTelefono
+            // 
+            this.bMaskedTextBoxTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bMaskedTextBoxTelefono.Location = new System.Drawing.Point(357, 70);
+            this.bMaskedTextBoxTelefono.Mask = "(999) 000-0000";
+            this.bMaskedTextBoxTelefono.Name = "bMaskedTextBoxTelefono";
+            this.bMaskedTextBoxTelefono.PromptChar = ' ';
+            this.bMaskedTextBoxTelefono.ReadOnly = true;
+            this.bMaskedTextBoxTelefono.Size = new System.Drawing.Size(200, 21);
+            this.bMaskedTextBoxTelefono.TabIndex = 12;
+            this.bMaskedTextBoxTelefono.TabStop = false;
+            this.bMaskedTextBoxTelefono.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // bLabelTelefono
+            // 
+            this.bLabelTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bLabelTelefono.AutoSize = true;
+            this.bLabelTelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelTelefono.Location = new System.Drawing.Point(286, 73);
+            this.bLabelTelefono.Name = "bLabelTelefono";
+            this.bLabelTelefono.Size = new System.Drawing.Size(58, 15);
+            this.bLabelTelefono.TabIndex = 11;
+            this.bLabelTelefono.Text = "Teléfono:";
+            // 
+            // bLabelLocalidad
+            // 
+            this.bLabelLocalidad.AutoSize = true;
+            this.bLabelLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelLocalidad.Location = new System.Drawing.Point(9, 73);
+            this.bLabelLocalidad.Name = "bLabelLocalidad";
+            this.bLabelLocalidad.Size = new System.Drawing.Size(64, 15);
+            this.bLabelLocalidad.TabIndex = 5;
+            this.bLabelLocalidad.Text = "Localidad:";
+            // 
+            // bTextBoxCorreo
+            // 
+            this.bTextBoxCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bTextBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxCorreo.Location = new System.Drawing.Point(357, 14);
+            this.bTextBoxCorreo.MaxLength = 30;
+            this.bTextBoxCorreo.Name = "bTextBoxCorreo";
+            this.bTextBoxCorreo.ReadOnly = true;
+            this.bTextBoxCorreo.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxCorreo.TabIndex = 8;
+            this.bTextBoxCorreo.TabStop = false;
+            // 
+            // bTextBoxContra
+            // 
+            this.bTextBoxContra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bTextBoxContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxContra.Location = new System.Drawing.Point(357, 44);
+            this.bTextBoxContra.MaxLength = 30;
+            this.bTextBoxContra.Name = "bTextBoxContra";
+            this.bTextBoxContra.ReadOnly = true;
+            this.bTextBoxContra.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxContra.TabIndex = 10;
+            this.bTextBoxContra.TabStop = false;
+            // 
+            // bTextBoxUbicacion
+            // 
+            this.bTextBoxUbicacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxUbicacion.Location = new System.Drawing.Point(77, 42);
+            this.bTextBoxUbicacion.MaxLength = 60;
+            this.bTextBoxUbicacion.Name = "bTextBoxUbicacion";
+            this.bTextBoxUbicacion.ReadOnly = true;
+            this.bTextBoxUbicacion.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxUbicacion.TabIndex = 4;
+            this.bTextBoxUbicacion.TabStop = false;
+            // 
+            // bTextBoxNombre
+            // 
+            this.bTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.bTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.bTextBoxNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxNombre.Location = new System.Drawing.Point(77, 15);
+            this.bTextBoxNombre.MaxLength = 20;
+            this.bTextBoxNombre.Name = "bTextBoxNombre";
+            this.bTextBoxNombre.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxNombre.TabIndex = 2;
+            this.bTextBoxNombre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bTextBoxNombre_KeyDown);
+            this.bTextBoxNombre.Validating += new System.ComponentModel.CancelEventHandler(this.bTextBoxNombre_Validating);
+            // 
+            // bLabelCorreo
+            // 
+            this.bLabelCorreo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bLabelCorreo.AutoSize = true;
+            this.bLabelCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelCorreo.Location = new System.Drawing.Point(286, 17);
+            this.bLabelCorreo.Name = "bLabelCorreo";
+            this.bLabelCorreo.Size = new System.Drawing.Size(47, 15);
+            this.bLabelCorreo.TabIndex = 7;
+            this.bLabelCorreo.Text = "Correo:";
+            // 
+            // bLabelContra
+            // 
+            this.bLabelContra.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bLabelContra.AutoSize = true;
+            this.bLabelContra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelContra.Location = new System.Drawing.Point(286, 46);
+            this.bLabelContra.Name = "bLabelContra";
+            this.bLabelContra.Size = new System.Drawing.Size(73, 15);
+            this.bLabelContra.TabIndex = 9;
+            this.bLabelContra.Text = "Contraseña:";
+            // 
+            // bLabelUbicacion
+            // 
+            this.bLabelUbicacion.AutoSize = true;
+            this.bLabelUbicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelUbicacion.Location = new System.Drawing.Point(9, 44);
+            this.bLabelUbicacion.Name = "bLabelUbicacion";
+            this.bLabelUbicacion.Size = new System.Drawing.Size(65, 15);
+            this.bLabelUbicacion.TabIndex = 3;
+            this.bLabelUbicacion.Text = "Ubicación:";
+            // 
+            // bLabelNombre
+            // 
+            this.bLabelNombre.AutoSize = true;
+            this.bLabelNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bLabelNombre.Location = new System.Drawing.Point(9, 17);
+            this.bLabelNombre.Name = "bLabelNombre";
+            this.bLabelNombre.Size = new System.Drawing.Size(55, 15);
+            this.bLabelNombre.TabIndex = 1;
+            this.bLabelNombre.Text = "Nombre:";
+            // 
+            // bTextBoxLocalidad
+            // 
+            this.bTextBoxLocalidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxLocalidad.Location = new System.Drawing.Point(77, 71);
+            this.bTextBoxLocalidad.MaxLength = 60;
+            this.bTextBoxLocalidad.Name = "bTextBoxLocalidad";
+            this.bTextBoxLocalidad.ReadOnly = true;
+            this.bTextBoxLocalidad.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxLocalidad.TabIndex = 6;
+            this.bTextBoxLocalidad.TabStop = false;
+            // 
+            // bTextBoxCoordinador
+            // 
+            this.bTextBoxCoordinador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bTextBoxCoordinador.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bTextBoxCoordinador.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bTextBoxCoordinador.Location = new System.Drawing.Point(357, 97);
+            this.bTextBoxCoordinador.MaxLength = 60;
+            this.bTextBoxCoordinador.Name = "bTextBoxCoordinador";
+            this.bTextBoxCoordinador.ReadOnly = true;
+            this.bTextBoxCoordinador.Size = new System.Drawing.Size(200, 21);
+            this.bTextBoxCoordinador.TabIndex = 14;
+            this.bTextBoxCoordinador.TabStop = false;
             // 
             // pEquipos
             // 
@@ -685,10 +884,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewEquipos)).EndInit();
             this.tabPageBaja.ResumeLayout(false);
             this.bSplitContainer.Panel1.ResumeLayout(false);
+            this.bSplitContainer.Panel1.PerformLayout();
             this.bSplitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bSplitContainer)).EndInit();
             this.bSplitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BDataGridViewEquipos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bDataGridViewEquipos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -738,6 +938,20 @@
         internal System.Windows.Forms.SplitContainer bSplitContainer;
         internal System.Windows.Forms.Button bButtonBaja;
         internal System.Windows.Forms.Button bButtonCancelar;
-        internal System.Windows.Forms.DataGridView BDataGridViewEquipos;
+        internal System.Windows.Forms.DataGridView bDataGridViewEquipos;
+        internal System.Windows.Forms.Label bLabelCoordinador;
+        internal System.Windows.Forms.MaskedTextBox bMaskedTextBoxTelefono;
+        internal System.Windows.Forms.Label bLabelTelefono;
+        internal System.Windows.Forms.Label bLabelLocalidad;
+        internal System.Windows.Forms.TextBox bTextBoxCorreo;
+        internal System.Windows.Forms.TextBox bTextBoxContra;
+        internal System.Windows.Forms.TextBox bTextBoxUbicacion;
+        internal System.Windows.Forms.TextBox bTextBoxNombre;
+        internal System.Windows.Forms.Label bLabelCorreo;
+        internal System.Windows.Forms.Label bLabelContra;
+        internal System.Windows.Forms.Label bLabelUbicacion;
+        internal System.Windows.Forms.Label bLabelNombre;
+        internal System.Windows.Forms.TextBox bTextBoxCoordinador;
+        internal System.Windows.Forms.TextBox bTextBoxLocalidad;
     }
 }
