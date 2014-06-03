@@ -20,9 +20,9 @@ namespace CSAdminApp
 
         private void OK_Click(object sender, EventArgs e)
         {
+            progressBar.Visible = true;
             try
             {
-                progressBar.Visible = true;
                 SampleIPrincipal samplePrincipal = new SampleIPrincipal(this.UsernameTextBox.Text, this.PasswordTextBox.Text);
                 this.PasswordTextBox.Clear();
                 if (!samplePrincipal.Identity.IsAuthenticated)

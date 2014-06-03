@@ -202,6 +202,9 @@ namespace CSAdminApp
             this.limpiarPanel();
 
             // codigo pantalla
+            Pantallas.pAdmin pantallaAdmin = new Pantallas.pAdmin();
+            pantallaAdmin.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(pantallaAdmin);
 
 
             toolStripProgressBar.Visible = false;
