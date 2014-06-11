@@ -16,42 +16,6 @@ namespace CSAdminApp.Pantallas
             InitializeComponent();
         }
 
-        private void aButtonGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                entityDataSource.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
-            }
-        }
-
-        private void aButtonActualizar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                entityDataSource.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
-            }
-        }
-
-        private void aButtonCancelar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                entityDataSource.CancelChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
-            }
-        }
-
         private void entityDataSource_DataError(object sender, EFWinforms.DataErrorEventArgs e)
         {
             MessageBox.Show("Error Detectado:\r\n" + e.Exception.Message);
@@ -64,6 +28,7 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.SaveChanges();
+                MessageBox.Show("Se guardaron los datos", "Admin Funciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -76,6 +41,7 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.Refresh();
+                MessageBox.Show("Se recargaron los datos", "Admin Funciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -88,6 +54,87 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.CancelChanges();
+                MessageBox.Show("Se revirtieron los datos", "Admin Funciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void sButtonGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.SaveChanges();
+                MessageBox.Show("Se guardaron los datos", "Admin Situaciones Profesionales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void sButtonRecargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.Refresh();
+                MessageBox.Show("Se recargaron los datos", "Admin Situaciones Profesionales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void sButtonCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.CancelChanges();
+                MessageBox.Show("Se revirtieron los datos", "Admin Situaciones Profesionales", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        // TODO mejorar seleccion de persona para usuario
+
+        private void uButtonGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.SaveChanges();
+                MessageBox.Show("Se guardaron los datos", "Admin Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void uButtonRecargar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.Refresh();
+                MessageBox.Show("Se recargaron los datos", "Admin Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void uButtonCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                entityDataSource.CancelChanges();
+                MessageBox.Show("Se revirtieron los datos", "Admin Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -100,6 +147,7 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.SaveChanges();
+                MessageBox.Show("Se guardaron los datos", "Admin Localidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -112,6 +160,7 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.Refresh();
+                MessageBox.Show("Se recargaron los datos", "Admin Localidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -124,11 +173,17 @@ namespace CSAdminApp.Pantallas
             try
             {
                 entityDataSource.CancelChanges();
+                MessageBox.Show("Se revirtieron los datos", "Admin Localidades", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
             }
+        }
+
+        private void dataGridViewUsuarios_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Error Detectado:\r\n" + e.Exception.Message);
         }
     }
 }

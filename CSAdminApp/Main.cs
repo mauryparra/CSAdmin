@@ -122,7 +122,9 @@ namespace CSAdminApp
             this.limpiarPanel();
 
             // codigo pantalla
-
+            Pantallas.pContratos pantallaContratos = new Pantallas.pContratos();
+            pantallaContratos.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(pantallaContratos);
 
             toolStripProgressBar.Visible = false;
         }
