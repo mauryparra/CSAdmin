@@ -34,6 +34,7 @@
             this.aButtonGuardar = new System.Windows.Forms.Button();
             this.aGroupBoxContrato = new System.Windows.Forms.GroupBox();
             this.aGroupBoxDestino = new System.Windows.Forms.GroupBox();
+            this.aNumericUpDownHoras = new System.Windows.Forms.NumericUpDown();
             this.aLabelSede = new System.Windows.Forms.Label();
             this.aTextBoxSede = new System.Windows.Forms.TextBox();
             this.aLabelHoras = new System.Windows.Forms.Label();
@@ -66,15 +67,17 @@
             this.aLabelDNI = new System.Windows.Forms.Label();
             this.tabPageModificar = new System.Windows.Forms.TabPage();
             this.tabPageEliminar = new System.Windows.Forms.TabPage();
-            this.aNumericUpDownHoras = new System.Windows.Forms.NumericUpDown();
+            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             this.aGroupBoxContrato.SuspendLayout();
             this.aGroupBoxDestino.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.aNumericUpDownHoras)).BeginInit();
             this.aGroupBoxSitPro.SuspendLayout();
             this.aGroupBoxOrigen.SuspendLayout();
             this.aGroupBoxPersona.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.aNumericUpDownHoras)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlContratos
@@ -147,6 +150,7 @@
             this.aGroupBoxContrato.Controls.Add(this.label2);
             this.aGroupBoxContrato.Controls.Add(this.label1);
             this.aGroupBoxContrato.Controls.Add(this.aDateTimePickerInicio);
+            this.aGroupBoxContrato.Controls.Add(this.shapeContainer2);
             this.aGroupBoxContrato.Location = new System.Drawing.Point(17, 129);
             this.aGroupBoxContrato.Name = "aGroupBoxContrato";
             this.aGroupBoxContrato.Size = new System.Drawing.Size(641, 254);
@@ -174,6 +178,30 @@
             this.aGroupBoxDestino.TabIndex = 6;
             this.aGroupBoxDestino.TabStop = false;
             this.aGroupBoxDestino.Text = "Destino";
+            // 
+            // aNumericUpDownHoras
+            // 
+            this.aNumericUpDownHoras.BackColor = System.Drawing.Color.MistyRose;
+            this.aNumericUpDownHoras.Location = new System.Drawing.Point(385, 50);
+            this.aNumericUpDownHoras.Maximum = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            this.aNumericUpDownHoras.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.aNumericUpDownHoras.Name = "aNumericUpDownHoras";
+            this.aNumericUpDownHoras.Size = new System.Drawing.Size(68, 21);
+            this.aNumericUpDownHoras.TabIndex = 9;
+            this.aNumericUpDownHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.aNumericUpDownHoras.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             // 
             // aLabelSede
             // 
@@ -207,6 +235,7 @@
             // 
             // aTextBoxObs
             // 
+            this.aTextBoxObs.BackColor = System.Drawing.Color.Honeydew;
             this.aTextBoxObs.Location = new System.Drawing.Point(93, 80);
             this.aTextBoxObs.Name = "aTextBoxObs";
             this.aTextBoxObs.Size = new System.Drawing.Size(211, 21);
@@ -224,6 +253,7 @@
             // aComboBoxFuncion
             // 
             this.aComboBoxFuncion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.aComboBoxFuncion.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxFuncion.DisplayMember = "Funciones.Id";
             this.aComboBoxFuncion.FormattingEnabled = true;
             this.aComboBoxFuncion.Location = new System.Drawing.Point(93, 49);
@@ -244,6 +274,7 @@
             // aComboBoxEquipo
             // 
             this.aComboBoxEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.aComboBoxEquipo.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxEquipo.DisplayMember = "Equipos.Id";
             this.aComboBoxEquipo.FormattingEnabled = true;
             this.aComboBoxEquipo.Location = new System.Drawing.Point(93, 19);
@@ -278,6 +309,7 @@
             // 
             // aComboBoxCargo
             // 
+            this.aComboBoxCargo.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxCargo.FormattingEnabled = true;
             this.aComboBoxCargo.Location = new System.Drawing.Point(55, 22);
             this.aComboBoxCargo.Name = "aComboBoxCargo";
@@ -287,6 +319,7 @@
             // 
             // aComboBoxCondicion
             // 
+            this.aComboBoxCondicion.BackColor = System.Drawing.Color.MistyRose;
             this.aComboBoxCondicion.FormattingEnabled = true;
             this.aComboBoxCondicion.Location = new System.Drawing.Point(219, 22);
             this.aComboBoxCondicion.Name = "aComboBoxCondicion";
@@ -326,6 +359,7 @@
             // 
             this.aComboBoxOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.aComboBoxOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.aComboBoxOrigen.BackColor = System.Drawing.Color.Honeydew;
             this.aComboBoxOrigen.Enabled = false;
             this.aComboBoxOrigen.FormattingEnabled = true;
             this.aComboBoxOrigen.Items.AddRange(new object[] {
@@ -340,12 +374,13 @@
             // aCheckBoxAfectado
             // 
             this.aCheckBoxAfectado.AutoSize = true;
+            this.aCheckBoxAfectado.BackColor = System.Drawing.Color.Honeydew;
             this.aCheckBoxAfectado.Location = new System.Drawing.Point(6, 27);
             this.aCheckBoxAfectado.Name = "aCheckBoxAfectado";
             this.aCheckBoxAfectado.Size = new System.Drawing.Size(73, 19);
             this.aCheckBoxAfectado.TabIndex = 0;
             this.aCheckBoxAfectado.Text = "Afectado";
-            this.aCheckBoxAfectado.UseVisualStyleBackColor = true;
+            this.aCheckBoxAfectado.UseVisualStyleBackColor = false;
             this.aCheckBoxAfectado.CheckedChanged += new System.EventHandler(this.aCheckBoxAfectado_CheckedChanged);
             // 
             // aDateTimePickerBaja
@@ -509,28 +544,36 @@
             this.tabPageEliminar.Text = "Eliminar";
             this.tabPageEliminar.UseVisualStyleBackColor = true;
             // 
-            // aNumericUpDownHoras
+            // rectangleShape1
             // 
-            this.aNumericUpDownHoras.Location = new System.Drawing.Point(385, 50);
-            this.aNumericUpDownHoras.Maximum = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
-            this.aNumericUpDownHoras.Minimum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.aNumericUpDownHoras.Name = "aNumericUpDownHoras";
-            this.aNumericUpDownHoras.Size = new System.Drawing.Size(68, 21);
-            this.aNumericUpDownHoras.TabIndex = 9;
-            this.aNumericUpDownHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.aNumericUpDownHoras.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
+            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
+            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
+            this.rectangleShape1.BorderWidth = 3;
+            this.rectangleShape1.Location = new System.Drawing.Point(83, 12);
+            this.rectangleShape1.Name = "rectangleShape1";
+            this.rectangleShape1.Size = new System.Drawing.Size(103, 25);
+            // 
+            // shapeContainer2
+            // 
+            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape2,
+            this.rectangleShape1});
+            this.shapeContainer2.Size = new System.Drawing.Size(635, 234);
+            this.shapeContainer2.TabIndex = 7;
+            this.shapeContainer2.TabStop = false;
+            // 
+            // rectangleShape2
+            // 
+            this.rectangleShape2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
+            this.rectangleShape2.BorderColor = System.Drawing.Color.Honeydew;
+            this.rectangleShape2.BorderWidth = 3;
+            this.rectangleShape2.Location = new System.Drawing.Point(437, 12);
+            this.rectangleShape2.Name = "rectangleShape2";
+            this.rectangleShape2.Size = new System.Drawing.Size(103, 25);
             // 
             // pContratos
             // 
@@ -546,13 +589,13 @@
             this.aGroupBoxContrato.PerformLayout();
             this.aGroupBoxDestino.ResumeLayout(false);
             this.aGroupBoxDestino.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.aNumericUpDownHoras)).EndInit();
             this.aGroupBoxSitPro.ResumeLayout(false);
             this.aGroupBoxSitPro.PerformLayout();
             this.aGroupBoxOrigen.ResumeLayout(false);
             this.aGroupBoxOrigen.PerformLayout();
             this.aGroupBoxPersona.ResumeLayout(false);
             this.aGroupBoxPersona.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.aNumericUpDownHoras)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -598,5 +641,8 @@
         internal System.Windows.Forms.Button aButtonCancelar;
         internal System.Windows.Forms.Button aButtonGuardar;
         private System.Windows.Forms.NumericUpDown aNumericUpDownHoras;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
     }
 }

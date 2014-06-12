@@ -127,10 +127,24 @@ namespace CSAdminApp.Pantallas
                     Main.BDContext.Personas.Where("it.Dni = @Dni");
                     personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
 
-                    aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
-                    aTextBoxNombre.Text = personas.First().Nombre;
-                    aTextBoxApellido.Text = personas.First().Apellido;
-                    aux[0] = personas.First().Id;
+                    if (personas.Any())
+                    {
+                        aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
+                        aTextBoxNombre.Text = personas.First().Nombre;
+                        aTextBoxApellido.Text = personas.First().Apellido;
+                        aux[0] = personas.First().Id;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        FunmPC.limpiarForm(aGroupBoxPersona);
+                        FunmPC.limpiarForm(aGroupBoxDestino);
+                        aCheckBoxAfectado.Checked = false;
+                        aNumericUpDownHoras.Value = 25;
+                        aMaskedTextBoxDNI.Focus();
+                        aux[0] = 0;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -149,10 +163,24 @@ namespace CSAdminApp.Pantallas
                         Main.BDContext.Personas.Where("it.Dni = @Dni");
                     personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
 
-                    aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
-                    aTextBoxNombre.Text = personas.First().Nombre;
-                    aTextBoxApellido.Text = personas.First().Apellido;
-                    aux[0] = personas.First().Id;
+                    if (personas.Any())
+                    {
+                        aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
+                        aTextBoxNombre.Text = personas.First().Nombre;
+                        aTextBoxApellido.Text = personas.First().Apellido;
+                        aux[0] = personas.First().Id;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        FunmPC.limpiarForm(aGroupBoxPersona);
+                        FunmPC.limpiarForm(aGroupBoxDestino);
+                        aCheckBoxAfectado.Checked = false;
+                        aNumericUpDownHoras.Value = 25;
+                        aMaskedTextBoxDNI.Focus();
+                        aux[0] = 0;
+                    }
                 }
             }
             catch (Exception ex)
