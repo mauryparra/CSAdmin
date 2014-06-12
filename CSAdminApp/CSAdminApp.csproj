@@ -100,6 +100,12 @@
     <Compile Include="Pantallas\pAdmin.Designer.cs">
       <DependentUpon>pAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas\pAsistencia.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pantallas\pAsistencia.Designer.cs">
+      <DependentUpon>pAsistencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas\pContratos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pAdmin.resx">
       <DependentUpon>pAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\pAsistencia.resx">
+      <DependentUpon>pAsistencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pContratos.resx">
       <DependentUpon>pContratos.cs</DependentUpon>

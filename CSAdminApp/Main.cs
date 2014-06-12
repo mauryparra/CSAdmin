@@ -139,7 +139,9 @@ namespace CSAdminApp
             this.limpiarPanel();
 
             // codigo pantalla
-
+            Pantallas.pAsistencia pantallaAsistencia = new Pantallas.pAsistencia();
+            pantallaAsistencia.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(pantallaAsistencia);
 
             toolStripProgressBar.Visible = false;
         }

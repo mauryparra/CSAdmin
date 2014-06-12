@@ -56,6 +56,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.aDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
+            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.aGroupBoxPersona = new System.Windows.Forms.GroupBox();
             this.aTextBoxApellido = new System.Windows.Forms.TextBox();
             this.aLabelApellido = new System.Windows.Forms.Label();
@@ -67,9 +70,6 @@
             this.aLabelDNI = new System.Windows.Forms.Label();
             this.tabPageModificar = new System.Windows.Forms.TabPage();
             this.tabPageEliminar = new System.Windows.Forms.TabPage();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             this.aGroupBoxContrato.SuspendLayout();
@@ -423,6 +423,37 @@
             this.aDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
             this.aDateTimePickerInicio.TabIndex = 0;
             // 
+            // shapeContainer2
+            // 
+            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
+            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer2.Name = "shapeContainer2";
+            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.rectangleShape2,
+            this.rectangleShape1});
+            this.shapeContainer2.Size = new System.Drawing.Size(635, 234);
+            this.shapeContainer2.TabIndex = 7;
+            this.shapeContainer2.TabStop = false;
+            // 
+            // rectangleShape2
+            // 
+            this.rectangleShape2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
+            this.rectangleShape2.BorderColor = System.Drawing.Color.Aquamarine;
+            this.rectangleShape2.BorderWidth = 3;
+            this.rectangleShape2.Location = new System.Drawing.Point(437, 12);
+            this.rectangleShape2.Name = "rectangleShape2";
+            this.rectangleShape2.Size = new System.Drawing.Size(102, 24);
+            // 
+            // rectangleShape1
+            // 
+            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
+            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
+            this.rectangleShape1.BorderWidth = 3;
+            this.rectangleShape1.Location = new System.Drawing.Point(84, 13);
+            this.rectangleShape1.Name = "rectangleShape1";
+            this.rectangleShape1.Size = new System.Drawing.Size(102, 24);
+            // 
             // aGroupBoxPersona
             // 
             this.aGroupBoxPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -543,37 +574,6 @@
             this.tabPageEliminar.TabIndex = 2;
             this.tabPageEliminar.Text = "Eliminar";
             this.tabPageEliminar.UseVisualStyleBackColor = true;
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.Location = new System.Drawing.Point(83, 12);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(103, 25);
-            // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape2,
-            this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(635, 234);
-            this.shapeContainer2.TabIndex = 7;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape2.BorderColor = System.Drawing.Color.Honeydew;
-            this.rectangleShape2.BorderWidth = 3;
-            this.rectangleShape2.Location = new System.Drawing.Point(437, 12);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(103, 25);
             // 
             // pContratos
             // 
