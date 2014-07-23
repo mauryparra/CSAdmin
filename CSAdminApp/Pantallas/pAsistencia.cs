@@ -17,11 +17,32 @@ namespace CSAdminApp.Pantallas
     {
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
         private int[] aux = { 0, 0};
+        private AutoCompleteStringCollection autocomNombres = new AutoCompleteStringCollection();
+
+        // key = NombreCompleto, value = Id
+        private Dictionary<string, int> nombresDict = new Dictionary<string, int>();
 
         public pAsistencia()
         {
             InitializeComponent();
         }
+
+        private void pAsistencia_Load(object sender, EventArgs e)
+        {
+            foreach (Clases.Personas persona in Main.BDContext.Personas)
+            {
+                if (persona.Baja == false)
+                {
+                    autocomNombres.Add(persona.NombreCompleto);
+
+                    nombresDict.Add(persona.NombreCompleto, persona.Id);
+                }
+            }
+
+            rTextBoxNombre.AutoCompleteCustomSource = autocomNombres;
+        }
+
+#region Registro
 
         private void rTextBoxMotivo_TextChanged(object sender, EventArgs e)
         {
@@ -95,5 +116,132 @@ namespace CSAdminApp.Pantallas
                 MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
             }
         }
+
+        private void rMaskedTextBoxDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                try
+                {
+                    ObjectQuery<Personas> personas =
+                        Main.BDContext.Personas.Where("it.Dni = @Dni");
+                    personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(rMaskedTextBoxDNI.Text)));
+
+                    if (personas.Any())
+                    {
+                        rTextBoxNombre.Text = personas.First().NombreCompleto;
+                        aux[0] = personas.First().Id;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay ninguna persona con ese DNI", "Asistencias",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        FunmPC.limpiarForm(rGroupBoxPersona);
+                        FunmPC.limpiarForm(rGroupBoxInasistencia);
+                        rDateTimePickerHasta.Checked = false;
+                        rTextBoxNombre.Focus();
+                        aux[0] = 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+                }
+            }
+        }
+
+        private void rTextBoxNombre_Validated(object sender, EventArgs e)
+        {
+            if (rTextBoxNombre.Text.Length > 0)
+            {
+                try
+                {
+                    if (nombresDict.ContainsKey(rTextBoxNombre.Text))
+                    {
+                        ObjectQuery<Personas> personas =
+                            Main.BDContext.Personas.Where("it.Id = @Id");
+                        personas.Parameters.Add(new ObjectParameter("Id", nombresDict[rTextBoxNombre.Text]));
+
+                        rMaskedTextBoxDNI.Text = personas.First().Dni.ToString();
+                        aux[0] = nombresDict[rTextBoxNombre.Text];
+                    }
+                    else
+                    {
+                        MessageBox.Show("No hay ninguna persona con ese nombre", "Asistencias",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        FunmPC.limpiarForm(rGroupBoxPersona);
+                        FunmPC.limpiarForm(rGroupBoxInasistencia);
+                        rDateTimePickerHasta.Checked = false;
+                        rTextBoxNombre.Focus();
+                        aux[0] = 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+                }
+            }
+        }
+#endregion
+
+#region Modificacion
+
+        private void mTextBoxMotivo_TextChanged(object sender, EventArgs e)
+        {
+            mLabelCaracteres.Text = Convert.ToString(140 - mTextBoxMotivo.Text.Length);
+        }
+
+        private void mButtonCancelar_Click(object sender, EventArgs e)
+        {
+            FunmPC.limpiarForm(mGroupBoxPersona);
+            FunmPC.limpiarForm(mGroupBoxInasistencia);
+            mDateTimePickerHasta.Checked = false;
+            toolStripTextBoxFiltro.Focus();
+            aux[1] = 0;
+        }
+
+        private void mButtonModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mDataGridViewAsistencia_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                // Datos Persona
+                aux[1] = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[1].Value);
+                ObjectQuery<Personas> personaQ =
+                    Main.BDContext.Personas.Where("it.Id = @Id");
+                personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+
+                mTextBoxNombre.Text = personaQ.First().NombreCompleto;
+                mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+
+                // Datos Inasistencia
+                int auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
+                ObjectQuery<Inasistencias> inasistenciaQ =
+                    Main.BDContext.Inasistencias.Where("it.Id = @Id");
+                inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+
+                mDateTimePickerDesde.Value = inasistenciaQ.First().Desde;
+                if (inasistenciaQ.First().Hasta != null)
+                {
+                    mDateTimePickerHasta.Value = (DateTime)inasistenciaQ.First().Hasta;
+                    mDateTimePickerHasta.Checked = true;
+                }
+                else
+                {
+                    mDateTimePickerHasta.Value = DateTime.Now;
+                    mDateTimePickerHasta.Checked = false;
+                }
+                mTextBoxMotivo.Text = inasistenciaQ.First().Motivo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+#endregion
     }
 }
