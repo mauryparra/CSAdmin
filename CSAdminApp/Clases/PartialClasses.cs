@@ -9,7 +9,12 @@ namespace CSAdminApp.Clases
     {
         public string NombreCompleto
         {
-            get { return this.Nombre + " " + this.Apellido; }
+            get { return string.Format("{0} {1}", Nombre, Apellido); }
+        }
+
+        public override string ToString()
+        {
+            return NombreCompleto;
         }
     }
 }
