@@ -26,5 +26,14 @@ namespace CSAdminApp.Clases
                 item.ReadOnly = estado;
             }
         }
+
+        /// <summary>
+        /// Compara 2 fechas.
+        /// Devuelve true si date2 es mayor o igual que date1.
+        /// </summary>
+        public static bool compareDates(DateTime date1, DateTime date2)
+        {
+            return (date2.Date >= date1.Date);
+        }
     }
 }
