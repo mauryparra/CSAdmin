@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pAsistencia));
             this.tabControlAsistencia = new System.Windows.Forms.TabControl();
             this.tabPageRegistrar = new System.Windows.Forms.TabPage();
@@ -63,7 +63,25 @@
             this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.tabPageModificar = new System.Windows.Forms.TabPage();
             this.splitContainerModificar = new System.Windows.Forms.SplitContainer();
+            this.mEntityBindingNavigator = new EFWinforms.EntityBindingNavigator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.mDataGridViewAsistencia = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.personasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desdeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hastaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.motivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mButtonCancelar = new System.Windows.Forms.Button();
+            this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
+            this.mTextBoxNombre = new System.Windows.Forms.TextBox();
+            this.mLabelNombre = new System.Windows.Forms.Label();
+            this.mMaskedTextBoxDNI = new System.Windows.Forms.MaskedTextBox();
+            this.mLabelDNI = new System.Windows.Forms.Label();
             this.mButtonModificar = new System.Windows.Forms.Button();
             this.mGroupBoxInasistencia = new System.Windows.Forms.GroupBox();
             this.mLabelCaracteres = new System.Windows.Forms.Label();
@@ -76,23 +94,7 @@
             this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
-            this.mTextBoxNombre = new System.Windows.Forms.TextBox();
-            this.mLabelNombre = new System.Windows.Forms.Label();
-            this.mMaskedTextBoxDNI = new System.Windows.Forms.MaskedTextBox();
-            this.mLabelDNI = new System.Windows.Forms.Label();
-            this.mEntityBindingNavigator = new EFWinforms.EntityBindingNavigator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
-            this.mDataGridViewAsistencia = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desdeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hastaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.motivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControlAsistencia.SuspendLayout();
             this.tabPageRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRegistro)).BeginInit();
@@ -107,10 +109,11 @@
             this.splitContainerModificar.Panel1.SuspendLayout();
             this.splitContainerModificar.Panel2.SuspendLayout();
             this.splitContainerModificar.SuspendLayout();
-            this.mGroupBoxInasistencia.SuspendLayout();
-            this.mGroupBoxPersona.SuspendLayout();
             this.mEntityBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewAsistencia)).BeginInit();
+            this.mGroupBoxPersona.SuspendLayout();
+            this.mGroupBoxInasistencia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlAsistencia
@@ -248,7 +251,9 @@
             // rDateTimePickerHasta
             // 
             this.rDateTimePickerHasta.Checked = false;
+            this.errorProvider.SetError(this.rDateTimePickerHasta, "La fecha debe ser igual o mayor a la fecha de inicio.");
             this.rDateTimePickerHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.errorProvider.SetIconPadding(this.rDateTimePickerHasta, 10);
             this.rDateTimePickerHasta.Location = new System.Drawing.Point(101, 61);
             this.rDateTimePickerHasta.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.rDateTimePickerHasta.Name = "rDateTimePickerHasta";
@@ -276,7 +281,9 @@
             // 
             // rDateTimePickerDesde
             // 
+            this.errorProvider.SetError(this.rDateTimePickerDesde, "La fecha debe ser menor o igual a la fecha de finalización");
             this.rDateTimePickerDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.errorProvider.SetIconPadding(this.rDateTimePickerDesde, 10);
             this.rDateTimePickerDesde.Location = new System.Drawing.Point(101, 25);
             this.rDateTimePickerDesde.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.rDateTimePickerDesde.Name = "rDateTimePickerDesde";
@@ -421,8 +428,8 @@
             // dniDataGridViewTextBoxColumn
             // 
             this.dniDataGridViewTextBoxColumn.DataPropertyName = "Dni";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dniDataGridViewTextBoxColumn.HeaderText = "Dni";
             this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
             this.dniDataGridViewTextBoxColumn.ReadOnly = true;
@@ -488,6 +495,137 @@
             this.splitContainerModificar.SplitterDistance = 195;
             this.splitContainerModificar.TabIndex = 6;
             // 
+            // mEntityBindingNavigator
+            // 
+            this.mEntityBindingNavigator.DataMember = "Inasistencias";
+            this.mEntityBindingNavigator.DataSource = this.entityDataSource;
+            this.mEntityBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.mEntityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripTextBoxFiltro,
+            this.toolStripLabel2,
+            this.toolStripComboBoxCampos,
+            this.toolStripButtonFiltrar});
+            this.mEntityBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.mEntityBindingNavigator.Name = "mEntityBindingNavigator";
+            this.mEntityBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.mEntityBindingNavigator.ShowAddRemoveButtons = false;
+            this.mEntityBindingNavigator.ShowNavigationButtons = false;
+            this.mEntityBindingNavigator.ShowSaveUndoRefreshButtons = false;
+            this.mEntityBindingNavigator.Size = new System.Drawing.Size(671, 25);
+            this.mEntityBindingNavigator.TabIndex = 3;
+            this.mEntityBindingNavigator.Text = "entityBindingNavigator1";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(40, 22);
+            this.toolStripLabel1.Text = "Filtrar:";
+            // 
+            // toolStripTextBoxFiltro
+            // 
+            this.toolStripTextBoxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBoxFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBoxFiltro.BackColor = System.Drawing.Color.MistyRose;
+            this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
+            this.toolStripTextBoxFiltro.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(20, 22);
+            this.toolStripLabel2.Text = "en";
+            // 
+            // toolStripComboBoxCampos
+            // 
+            this.toolStripComboBoxCampos.BackColor = System.Drawing.Color.MistyRose;
+            this.toolStripComboBoxCampos.Items.AddRange(new object[] {
+            "Nombre",
+            "DNI"});
+            this.toolStripComboBoxCampos.Name = "toolStripComboBoxCampos";
+            this.toolStripComboBoxCampos.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxCampos.Text = "Nombre";
+            // 
+            // toolStripButtonFiltrar
+            // 
+            this.toolStripButtonFiltrar.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.toolStripButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFiltrar.Image")));
+            this.toolStripButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
+            this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
+            this.toolStripButtonFiltrar.Text = "Filtrar";
+            this.toolStripButtonFiltrar.Click += new System.EventHandler(this.toolStripButtonFiltrar_Click);
+            // 
+            // mDataGridViewAsistencia
+            // 
+            this.mDataGridViewAsistencia.AllowUserToAddRows = false;
+            this.mDataGridViewAsistencia.AllowUserToDeleteRows = false;
+            this.mDataGridViewAsistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mDataGridViewAsistencia.AutoGenerateColumns = false;
+            this.mDataGridViewAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mDataGridViewAsistencia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.idPersonaDataGridViewTextBoxColumn,
+            this.personasDataGridViewTextBoxColumn,
+            this.desdeDataGridViewTextBoxColumn,
+            this.hastaDataGridViewTextBoxColumn,
+            this.motivoDataGridViewTextBoxColumn});
+            this.mDataGridViewAsistencia.DataMember = "Inasistencias";
+            this.mDataGridViewAsistencia.DataSource = this.entityDataSource;
+            this.mDataGridViewAsistencia.Location = new System.Drawing.Point(0, 28);
+            this.mDataGridViewAsistencia.Name = "mDataGridViewAsistencia";
+            this.mDataGridViewAsistencia.ReadOnly = true;
+            this.mDataGridViewAsistencia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.mDataGridViewAsistencia.Size = new System.Drawing.Size(671, 163);
+            this.mDataGridViewAsistencia.TabIndex = 2;
+            this.mDataGridViewAsistencia.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewAsistencia_CellMouseDoubleClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idPersonaDataGridViewTextBoxColumn
+            // 
+            this.idPersonaDataGridViewTextBoxColumn.DataPropertyName = "IdPersona";
+            this.idPersonaDataGridViewTextBoxColumn.HeaderText = "IdPersona";
+            this.idPersonaDataGridViewTextBoxColumn.Name = "idPersonaDataGridViewTextBoxColumn";
+            this.idPersonaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idPersonaDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // personasDataGridViewTextBoxColumn
+            // 
+            this.personasDataGridViewTextBoxColumn.DataPropertyName = "Personas";
+            this.personasDataGridViewTextBoxColumn.HeaderText = "Personas";
+            this.personasDataGridViewTextBoxColumn.Name = "personasDataGridViewTextBoxColumn";
+            this.personasDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // desdeDataGridViewTextBoxColumn
+            // 
+            this.desdeDataGridViewTextBoxColumn.DataPropertyName = "Desde";
+            this.desdeDataGridViewTextBoxColumn.HeaderText = "Desde";
+            this.desdeDataGridViewTextBoxColumn.Name = "desdeDataGridViewTextBoxColumn";
+            this.desdeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hastaDataGridViewTextBoxColumn
+            // 
+            this.hastaDataGridViewTextBoxColumn.DataPropertyName = "Hasta";
+            this.hastaDataGridViewTextBoxColumn.HeaderText = "Hasta";
+            this.hastaDataGridViewTextBoxColumn.Name = "hastaDataGridViewTextBoxColumn";
+            this.hastaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // motivoDataGridViewTextBoxColumn
+            // 
+            this.motivoDataGridViewTextBoxColumn.DataPropertyName = "Motivo";
+            this.motivoDataGridViewTextBoxColumn.HeaderText = "Motivo";
+            this.motivoDataGridViewTextBoxColumn.Name = "motivoDataGridViewTextBoxColumn";
+            this.motivoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // mButtonCancelar
             // 
             this.mButtonCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -503,6 +641,62 @@
             this.mButtonCancelar.Text = "&Cancelar";
             this.mButtonCancelar.UseVisualStyleBackColor = true;
             this.mButtonCancelar.Click += new System.EventHandler(this.mButtonCancelar_Click);
+            // 
+            // mGroupBoxPersona
+            // 
+            this.mGroupBoxPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mGroupBoxPersona.Controls.Add(this.mTextBoxNombre);
+            this.mGroupBoxPersona.Controls.Add(this.mLabelNombre);
+            this.mGroupBoxPersona.Controls.Add(this.mMaskedTextBoxDNI);
+            this.mGroupBoxPersona.Controls.Add(this.mLabelDNI);
+            this.mGroupBoxPersona.Location = new System.Drawing.Point(3, 3);
+            this.mGroupBoxPersona.Name = "mGroupBoxPersona";
+            this.mGroupBoxPersona.Size = new System.Drawing.Size(665, 69);
+            this.mGroupBoxPersona.TabIndex = 5;
+            this.mGroupBoxPersona.TabStop = false;
+            this.mGroupBoxPersona.Text = "Persona";
+            // 
+            // mTextBoxNombre
+            // 
+            this.mTextBoxNombre.BackColor = System.Drawing.SystemColors.Control;
+            this.mTextBoxNombre.Location = new System.Drawing.Point(156, 27);
+            this.mTextBoxNombre.Name = "mTextBoxNombre";
+            this.mTextBoxNombre.ReadOnly = true;
+            this.mTextBoxNombre.Size = new System.Drawing.Size(220, 21);
+            this.mTextBoxNombre.TabIndex = 1;
+            // 
+            // mLabelNombre
+            // 
+            this.mLabelNombre.AutoSize = true;
+            this.mLabelNombre.Location = new System.Drawing.Point(34, 30);
+            this.mLabelNombre.Name = "mLabelNombre";
+            this.mLabelNombre.Size = new System.Drawing.Size(116, 15);
+            this.mLabelNombre.TabIndex = 0;
+            this.mLabelNombre.Text = "Nombres y Apellido:";
+            // 
+            // mMaskedTextBoxDNI
+            // 
+            this.mMaskedTextBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mMaskedTextBoxDNI.BackColor = System.Drawing.SystemColors.Control;
+            this.mMaskedTextBoxDNI.Location = new System.Drawing.Point(474, 27);
+            this.mMaskedTextBoxDNI.Mask = "99.999.999";
+            this.mMaskedTextBoxDNI.Name = "mMaskedTextBoxDNI";
+            this.mMaskedTextBoxDNI.PromptChar = ' ';
+            this.mMaskedTextBoxDNI.ReadOnly = true;
+            this.mMaskedTextBoxDNI.Size = new System.Drawing.Size(124, 21);
+            this.mMaskedTextBoxDNI.TabIndex = 3;
+            this.mMaskedTextBoxDNI.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // mLabelDNI
+            // 
+            this.mLabelDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelDNI.AutoSize = true;
+            this.mLabelDNI.Location = new System.Drawing.Point(437, 30);
+            this.mLabelDNI.Name = "mLabelDNI";
+            this.mLabelDNI.Size = new System.Drawing.Size(31, 15);
+            this.mLabelDNI.TabIndex = 2;
+            this.mLabelDNI.Text = "DNI:";
             // 
             // mButtonModificar
             // 
@@ -576,13 +770,16 @@
             // mDateTimePickerHasta
             // 
             this.mDateTimePickerHasta.Checked = false;
+            this.errorProvider.SetError(this.mDateTimePickerHasta, "La fecha debe ser igual o mayor a la fecha de inicio.");
             this.mDateTimePickerHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.errorProvider.SetIconPadding(this.mDateTimePickerHasta, 10);
             this.mDateTimePickerHasta.Location = new System.Drawing.Point(101, 61);
             this.mDateTimePickerHasta.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.mDateTimePickerHasta.Name = "mDateTimePickerHasta";
             this.mDateTimePickerHasta.ShowCheckBox = true;
             this.mDateTimePickerHasta.Size = new System.Drawing.Size(99, 21);
             this.mDateTimePickerHasta.TabIndex = 3;
+            this.mDateTimePickerHasta.Validating += new System.ComponentModel.CancelEventHandler(this.mDateTimePickerHasta_Validating);
             // 
             // mLabelHasta
             // 
@@ -604,12 +801,15 @@
             // 
             // mDateTimePickerDesde
             // 
+            this.errorProvider.SetError(this.mDateTimePickerDesde, "La fecha debe ser menor o igual a la fecha de finalización");
             this.mDateTimePickerDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.errorProvider.SetIconPadding(this.mDateTimePickerDesde, 10);
             this.mDateTimePickerDesde.Location = new System.Drawing.Point(101, 25);
             this.mDateTimePickerDesde.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
             this.mDateTimePickerDesde.Name = "mDateTimePickerDesde";
             this.mDateTimePickerDesde.Size = new System.Drawing.Size(99, 21);
             this.mDateTimePickerDesde.TabIndex = 1;
+            this.mDateTimePickerDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mDateTimePickerDesde_Validating);
             // 
             // shapeContainer2
             // 
@@ -641,180 +841,9 @@
             this.rectangleShape4.Name = "rectangleShape1";
             this.rectangleShape4.Size = new System.Drawing.Size(102, 24);
             // 
-            // mGroupBoxPersona
+            // errorProvider
             // 
-            this.mGroupBoxPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mGroupBoxPersona.Controls.Add(this.mTextBoxNombre);
-            this.mGroupBoxPersona.Controls.Add(this.mLabelNombre);
-            this.mGroupBoxPersona.Controls.Add(this.mMaskedTextBoxDNI);
-            this.mGroupBoxPersona.Controls.Add(this.mLabelDNI);
-            this.mGroupBoxPersona.Location = new System.Drawing.Point(3, 3);
-            this.mGroupBoxPersona.Name = "mGroupBoxPersona";
-            this.mGroupBoxPersona.Size = new System.Drawing.Size(665, 69);
-            this.mGroupBoxPersona.TabIndex = 5;
-            this.mGroupBoxPersona.TabStop = false;
-            this.mGroupBoxPersona.Text = "Persona";
-            // 
-            // mTextBoxNombre
-            // 
-            this.mTextBoxNombre.BackColor = System.Drawing.SystemColors.Control;
-            this.mTextBoxNombre.Location = new System.Drawing.Point(156, 27);
-            this.mTextBoxNombre.Name = "mTextBoxNombre";
-            this.mTextBoxNombre.ReadOnly = true;
-            this.mTextBoxNombre.Size = new System.Drawing.Size(220, 21);
-            this.mTextBoxNombre.TabIndex = 1;
-            // 
-            // mLabelNombre
-            // 
-            this.mLabelNombre.AutoSize = true;
-            this.mLabelNombre.Location = new System.Drawing.Point(34, 30);
-            this.mLabelNombre.Name = "mLabelNombre";
-            this.mLabelNombre.Size = new System.Drawing.Size(116, 15);
-            this.mLabelNombre.TabIndex = 0;
-            this.mLabelNombre.Text = "Nombres y Apellido:";
-            // 
-            // mMaskedTextBoxDNI
-            // 
-            this.mMaskedTextBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mMaskedTextBoxDNI.BackColor = System.Drawing.SystemColors.Control;
-            this.mMaskedTextBoxDNI.Location = new System.Drawing.Point(474, 27);
-            this.mMaskedTextBoxDNI.Mask = "99.999.999";
-            this.mMaskedTextBoxDNI.Name = "mMaskedTextBoxDNI";
-            this.mMaskedTextBoxDNI.PromptChar = ' ';
-            this.mMaskedTextBoxDNI.ReadOnly = true;
-            this.mMaskedTextBoxDNI.Size = new System.Drawing.Size(124, 21);
-            this.mMaskedTextBoxDNI.TabIndex = 3;
-            this.mMaskedTextBoxDNI.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            // 
-            // mLabelDNI
-            // 
-            this.mLabelDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelDNI.AutoSize = true;
-            this.mLabelDNI.Location = new System.Drawing.Point(437, 30);
-            this.mLabelDNI.Name = "mLabelDNI";
-            this.mLabelDNI.Size = new System.Drawing.Size(31, 15);
-            this.mLabelDNI.TabIndex = 2;
-            this.mLabelDNI.Text = "DNI:";
-            // 
-            // mEntityBindingNavigator
-            // 
-            this.mEntityBindingNavigator.DataMember = "Inasistencias";
-            this.mEntityBindingNavigator.DataSource = this.entityDataSource;
-            this.mEntityBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.mEntityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripTextBoxFiltro,
-            this.toolStripLabel2,
-            this.toolStripComboBoxCampos,
-            this.toolStripButtonFiltrar});
-            this.mEntityBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.mEntityBindingNavigator.Name = "mEntityBindingNavigator";
-            this.mEntityBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.mEntityBindingNavigator.ShowAddRemoveButtons = false;
-            this.mEntityBindingNavigator.ShowNavigationButtons = false;
-            this.mEntityBindingNavigator.ShowSaveUndoRefreshButtons = false;
-            this.mEntityBindingNavigator.Size = new System.Drawing.Size(671, 25);
-            this.mEntityBindingNavigator.TabIndex = 3;
-            this.mEntityBindingNavigator.Text = "entityBindingNavigator1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(40, 22);
-            this.toolStripLabel1.Text = "Filtrar:";
-            // 
-            // toolStripTextBoxFiltro
-            // 
-            this.toolStripTextBoxFiltro.BackColor = System.Drawing.Color.MistyRose;
-            this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
-            this.toolStripTextBoxFiltro.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(20, 22);
-            this.toolStripLabel2.Text = "en";
-            // 
-            // toolStripComboBoxCampos
-            // 
-            this.toolStripComboBoxCampos.BackColor = System.Drawing.Color.MistyRose;
-            this.toolStripComboBoxCampos.Items.AddRange(new object[] {
-            "Nombre",
-            "DNI"});
-            this.toolStripComboBoxCampos.Name = "toolStripComboBoxCampos";
-            this.toolStripComboBoxCampos.Size = new System.Drawing.Size(121, 25);
-            this.toolStripComboBoxCampos.Text = "Nombre";
-            // 
-            // toolStripButtonFiltrar
-            // 
-            this.toolStripButtonFiltrar.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFiltrar.Image")));
-            this.toolStripButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
-            this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
-            this.toolStripButtonFiltrar.Text = "Filtrar";
-            // 
-            // mDataGridViewAsistencia
-            // 
-            this.mDataGridViewAsistencia.AllowUserToAddRows = false;
-            this.mDataGridViewAsistencia.AllowUserToDeleteRows = false;
-            this.mDataGridViewAsistencia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mDataGridViewAsistencia.AutoGenerateColumns = false;
-            this.mDataGridViewAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mDataGridViewAsistencia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.idPersonaDataGridViewTextBoxColumn,
-            this.desdeDataGridViewTextBoxColumn,
-            this.hastaDataGridViewTextBoxColumn,
-            this.motivoDataGridViewTextBoxColumn});
-            this.mDataGridViewAsistencia.DataMember = "Inasistencias";
-            this.mDataGridViewAsistencia.DataSource = this.entityDataSource;
-            this.mDataGridViewAsistencia.Location = new System.Drawing.Point(0, 28);
-            this.mDataGridViewAsistencia.Name = "mDataGridViewAsistencia";
-            this.mDataGridViewAsistencia.ReadOnly = true;
-            this.mDataGridViewAsistencia.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.mDataGridViewAsistencia.Size = new System.Drawing.Size(671, 163);
-            this.mDataGridViewAsistencia.TabIndex = 2;
-            this.mDataGridViewAsistencia.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewAsistencia_CellMouseDoubleClick);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idPersonaDataGridViewTextBoxColumn
-            // 
-            this.idPersonaDataGridViewTextBoxColumn.DataPropertyName = "IdPersona";
-            this.idPersonaDataGridViewTextBoxColumn.HeaderText = "IdPersona";
-            this.idPersonaDataGridViewTextBoxColumn.Name = "idPersonaDataGridViewTextBoxColumn";
-            this.idPersonaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // desdeDataGridViewTextBoxColumn
-            // 
-            this.desdeDataGridViewTextBoxColumn.DataPropertyName = "Desde";
-            this.desdeDataGridViewTextBoxColumn.HeaderText = "Desde";
-            this.desdeDataGridViewTextBoxColumn.Name = "desdeDataGridViewTextBoxColumn";
-            this.desdeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hastaDataGridViewTextBoxColumn
-            // 
-            this.hastaDataGridViewTextBoxColumn.DataPropertyName = "Hasta";
-            this.hastaDataGridViewTextBoxColumn.HeaderText = "Hasta";
-            this.hastaDataGridViewTextBoxColumn.Name = "hastaDataGridViewTextBoxColumn";
-            this.hastaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // motivoDataGridViewTextBoxColumn
-            // 
-            this.motivoDataGridViewTextBoxColumn.DataPropertyName = "Motivo";
-            this.motivoDataGridViewTextBoxColumn.HeaderText = "Motivo";
-            this.motivoDataGridViewTextBoxColumn.Name = "motivoDataGridViewTextBoxColumn";
-            this.motivoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.errorProvider.ContainerControl = this;
             // 
             // pAsistencia
             // 
@@ -841,13 +870,14 @@
             this.splitContainerModificar.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerModificar)).EndInit();
             this.splitContainerModificar.ResumeLayout(false);
-            this.mGroupBoxInasistencia.ResumeLayout(false);
-            this.mGroupBoxInasistencia.PerformLayout();
-            this.mGroupBoxPersona.ResumeLayout(false);
-            this.mGroupBoxPersona.PerformLayout();
             this.mEntityBindingNavigator.ResumeLayout(false);
             this.mEntityBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewAsistencia)).EndInit();
+            this.mGroupBoxPersona.ResumeLayout(false);
+            this.mGroupBoxPersona.PerformLayout();
+            this.mGroupBoxInasistencia.ResumeLayout(false);
+            this.mGroupBoxInasistencia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -913,8 +943,10 @@
         private System.Windows.Forms.DataGridView mDataGridViewAsistencia;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idPersonaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn personasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn desdeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hastaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn motivoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

@@ -17,6 +17,8 @@ namespace CSAdminApp.Pantallas
     {
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
         private int[] aux = { 0, 0};
+        private int auxInasistencia = 0;
+
         private AutoCompleteStringCollection autocomNombres = new AutoCompleteStringCollection();
 
         // key = NombreCompleto, value = Id
@@ -40,6 +42,8 @@ namespace CSAdminApp.Pantallas
             }
 
             rTextBoxNombre.AutoCompleteCustomSource = autocomNombres;
+            toolStripTextBoxFiltro.AutoCompleteCustomSource = autocomNombres;
+            errorProvider.Clear();
         }
 
 #region Registro
@@ -195,14 +199,63 @@ namespace CSAdminApp.Pantallas
         {
             FunmPC.limpiarForm(mGroupBoxPersona);
             FunmPC.limpiarForm(mGroupBoxInasistencia);
+            mDateTimePickerDesde.Value = DateTime.Now;
+            mDateTimePickerHasta.Value = DateTime.Now;
             mDateTimePickerHasta.Checked = false;
             toolStripTextBoxFiltro.Focus();
+            mGroupBoxInasistencia.Text = "Inasistencia";
+            errorProvider.Clear();
             aux[1] = 0;
+            auxInasistencia = 0;
         }
 
         private void mButtonModificar_Click(object sender, EventArgs e)
         {
+            if (aux[1] != 0)
+            {
+                try
+                {
+                    ObjectQuery<Inasistencias> inasistenciaQ =
+                            Main.BDContext.Inasistencias.Where("it.Id = @Id");
+                    inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
 
+                    inasistenciaQ.First().Desde = mDateTimePickerDesde.Value;
+                    if (mDateTimePickerHasta.Checked == true)
+                    {
+                        inasistenciaQ.First().Hasta = mDateTimePickerHasta.Value;
+                    }
+                    else
+                    {
+                        inasistenciaQ.First().Hasta = null;
+                    }
+                    inasistenciaQ.First().Motivo = mTextBoxMotivo.Text;
+
+                    Main.BDContext.SaveChanges();
+                    MessageBox.Show("Se han modificado los datos de la insasistencia.", "Asistencias",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    entityDataSource.Refresh();
+
+                    // Limpiar Form
+                    FunmPC.limpiarForm(mGroupBoxPersona);
+                    FunmPC.limpiarForm(mGroupBoxInasistencia);
+                    mDateTimePickerDesde.Value = DateTime.Now;
+                    mDateTimePickerHasta.Value = DateTime.Now;
+                    mDateTimePickerHasta.Checked = false;
+                    toolStripTextBoxFiltro.Focus();
+                    mGroupBoxInasistencia.Text = "Inasistencia";
+                    aux[1] = 0;
+                    auxInasistencia = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay ninguna inasistencia seleccionada", "Asistencias",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void mDataGridViewAsistencia_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -219,7 +272,7 @@ namespace CSAdminApp.Pantallas
                 mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
 
                 // Datos Inasistencia
-                int auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
+                auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
                 ObjectQuery<Inasistencias> inasistenciaQ =
                     Main.BDContext.Inasistencias.Where("it.Id = @Id");
                 inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
@@ -236,10 +289,58 @@ namespace CSAdminApp.Pantallas
                     mDateTimePickerHasta.Checked = false;
                 }
                 mTextBoxMotivo.Text = inasistenciaQ.First().Motivo;
+                mGroupBoxInasistencia.Text = "Inasistencia - ID: " + inasistenciaQ.First().Id.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void mDateTimePickerDesde_Validating(object sender, CancelEventArgs e)
+        {
+            if (mDateTimePickerHasta.Checked == true)
+            {
+                if (FunmPC.compareDates(mDateTimePickerDesde.Value, mDateTimePickerHasta.Value))
+                {
+                    errorProvider.Clear();
+                }
+                else
+                {
+                    errorProvider.SetError(mDateTimePickerDesde, "La fecha debe ser menor o igual a la fecha de finalización");
+                }
+            }
+            
+        }
+
+        private void mDateTimePickerHasta_Validating(object sender, CancelEventArgs e)
+        {
+            if (mDateTimePickerHasta.Checked == true)
+            {
+                if (FunmPC.compareDates(mDateTimePickerDesde.Value, mDateTimePickerHasta.Value))
+                {
+                    errorProvider.Clear();
+                }
+                else
+                {
+                    errorProvider.SetError(mDateTimePickerHasta, "La fecha debe ser igual o mayor a la fecha de inicio");
+                }
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        private void toolStripButtonFiltrar_Click(object sender, EventArgs e)
+        {
+            if (toolStripComboBoxCampos.SelectedText == "Nombre")
+            {
+                // TODO Filtrar por nombre
+            }
+            else if (toolStripComboBoxCampos.SelectedText == "DNI")
+            {
+                // TODO Filtrar por DNI
             }
         }
 #endregion
