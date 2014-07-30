@@ -334,13 +334,53 @@ namespace CSAdminApp.Pantallas
 
         private void toolStripButtonFiltrar_Click(object sender, EventArgs e)
         {
-            if (toolStripComboBoxCampos.SelectedText == "Nombre")
+            try
             {
-                // TODO Filtrar por nombre
+                if (toolStripTextBoxFiltro.Text.Length > 0)
+                {
+                    if (toolStripComboBoxCampos.SelectedIndex == 0)
+                    {
+                        if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
+                        {
+                            aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                            ObjectQuery<Inasistencias> inasistenciasQF =
+                                Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
+                            inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                            var bindinglist = entityDataSource.CreateView(inasistenciasQF);
+                            mDataGridViewAsistencia.DataSource = bindinglist;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron registros con ese nombre");
+                            toolStripTextBoxFiltro.Focus();
+                        }
+
+                    }
+                    else if (toolStripComboBoxCampos.SelectedIndex == 1)
+                    {
+                        ObjectQuery<Personas> personaQF =
+                            Main.BDContext.Personas.Where("it.DNI = @Dni");
+                        personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                        if (personaQF.Any())
+                        {
+                            aux[1] = personaQF.First().Id;
+                            ObjectQuery<Inasistencias> inasistenciaQF =
+                                Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
+                            inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                            var bindinglist = entityDataSource.CreateView(inasistenciaQF);
+                            mDataGridViewAsistencia.DataSource = bindinglist;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontraron registros con ese DNI");
+                            toolStripTextBoxFiltro.Focus();
+                        }
+                    }
+                }
             }
-            else if (toolStripComboBoxCampos.SelectedText == "DNI")
+            catch (Exception ex)
             {
-                // TODO Filtrar por DNI
+                MessageBox.Show(ex.Message);
             }
         }
 #endregion

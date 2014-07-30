@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pAsistencia));
             this.tabControlAsistencia = new System.Windows.Forms.TabControl();
             this.tabPageRegistrar = new System.Windows.Forms.TabPage();
@@ -69,6 +69,7 @@
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
             this.mDataGridViewAsistencia = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -428,8 +429,8 @@
             // dniDataGridViewTextBoxColumn
             // 
             this.dniDataGridViewTextBoxColumn.DataPropertyName = "Dni";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.NullValue = null;
+            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.dniDataGridViewTextBoxColumn.HeaderText = "Dni";
             this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
             this.dniDataGridViewTextBoxColumn.ReadOnly = true;
@@ -505,7 +506,8 @@
             this.toolStripTextBoxFiltro,
             this.toolStripLabel2,
             this.toolStripComboBoxCampos,
-            this.toolStripButtonFiltrar});
+            this.toolStripButtonFiltrar,
+            this.toolStripButtonLimpiar});
             this.mEntityBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.mEntityBindingNavigator.Name = "mEntityBindingNavigator";
             this.mEntityBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
@@ -552,10 +554,22 @@
             this.toolStripButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFiltrar.Image")));
             this.toolStripButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFiltrar.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
             this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
             this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
             this.toolStripButtonFiltrar.Text = "Filtrar";
             this.toolStripButtonFiltrar.Click += new System.EventHandler(this.toolStripButtonFiltrar_Click);
+            // 
+            // toolStripButtonLimpiar
+            // 
+            this.toolStripButtonLimpiar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.toolStripButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLimpiar.Image")));
+            this.toolStripButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLimpiar.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
+            this.toolStripButtonLimpiar.Name = "toolStripButtonLimpiar";
+            this.toolStripButtonLimpiar.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButtonLimpiar.Text = "Limpiar";
             // 
             // mDataGridViewAsistencia
             // 
@@ -948,5 +962,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hastaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn motivoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLimpiar;
     }
 }

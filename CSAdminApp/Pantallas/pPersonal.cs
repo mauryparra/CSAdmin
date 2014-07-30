@@ -103,7 +103,14 @@ namespace CSAdminApp.Pantallas
             try
             {
                 nuevaPersona.Dni = Decimal.Parse(aMaskedTextBoxDni.Text);
-                nuevaPersona.Cuit = Decimal.Parse(aMaskedTextBoxCuit.Text);
+                if (aMaskedTextBoxCuit.Text.Length > 0)
+                {
+                    nuevaPersona.Cuit = Decimal.Parse(aMaskedTextBoxCuit.Text);
+                }
+                else
+                {
+                    nuevaPersona.Cuit = null;
+                }
                 nuevaPersona.Nombre = aTextBoxNombre.Text;
                 nuevaPersona.Apellido = aTextBoxApellido.Text;
                 nuevaPersona.Direccion = aTextBoxDireccion.Text;
@@ -284,7 +291,14 @@ namespace CSAdminApp.Pantallas
                         Main.BDContext.Personas.Where("it.Id = @Id");
                     personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
                     personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
-                    personaQ.First().Cuit = Convert.ToInt64(mMaskedTextBoxCuit.Text);
+                    if (mMaskedTextBoxCuit.Text.Length > 0)
+                    {
+                        personaQ.First().Cuit = Convert.ToInt64(mMaskedTextBoxCuit.Text);
+                    }
+                    else
+                    {
+                        personaQ.First().Cuit = null;
+                    }
                     personaQ.First().Nombre = mTextBoxNombre.Text;
                     personaQ.First().Apellido = mTextBoxApellido.Text;
                     personaQ.First().Direccion = mTextBoxDireccion.Text;
