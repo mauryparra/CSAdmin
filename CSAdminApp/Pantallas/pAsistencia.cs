@@ -219,10 +219,10 @@ namespace CSAdminApp.Pantallas
                             Main.BDContext.Inasistencias.Where("it.Id = @Id");
                     inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
 
-                    inasistenciaQ.First().Desde = mDateTimePickerDesde.Value;
+                    inasistenciaQ.First().Desde = mDateTimePickerDesde.Value.Date;
                     if (mDateTimePickerHasta.Checked == true)
                     {
-                        inasistenciaQ.First().Hasta = mDateTimePickerHasta.Value;
+                        inasistenciaQ.First().Hasta = mDateTimePickerHasta.Value.Date;
                     }
                     else
                     {
@@ -238,8 +238,8 @@ namespace CSAdminApp.Pantallas
                     // Limpiar Form
                     FunmPC.limpiarForm(mGroupBoxPersona);
                     FunmPC.limpiarForm(mGroupBoxInasistencia);
-                    mDateTimePickerDesde.Value = DateTime.Now;
-                    mDateTimePickerHasta.Value = DateTime.Now;
+                    mDateTimePickerDesde.Value = DateTime.Now.Date;
+                    mDateTimePickerHasta.Value = DateTime.Now.Date;
                     mDateTimePickerHasta.Checked = false;
                     toolStripTextBoxFiltro.Focus();
                     mGroupBoxInasistencia.Text = "Inasistencia";
@@ -338,43 +338,47 @@ namespace CSAdminApp.Pantallas
             {
                 if (toolStripTextBoxFiltro.Text.Length > 0)
                 {
-                    if (toolStripComboBoxCampos.SelectedIndex == 0)
+                    switch (toolStripComboBoxCampos.SelectedIndex)
                     {
-                        if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
-                        {
-                            aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
-                            ObjectQuery<Inasistencias> inasistenciasQF =
-                                Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
-                            inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                            var bindinglist = entityDataSource.CreateView(inasistenciasQF);
-                            mDataGridViewAsistencia.DataSource = bindinglist;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron registros con ese nombre");
-                            toolStripTextBoxFiltro.Focus();
-                        }
+                        case 0:
+                            if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
+                            {
+                                aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                                ObjectQuery<Inasistencias> inasistenciasQF =
+                                    Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
+                                inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                var bindinglist = entityDataSource.CreateView(inasistenciasQF);
+                                mDataGridViewAsistencia.DataSource = bindinglist;
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontraron registros con ese nombre");
+                                toolStripTextBoxFiltro.Focus();
+                            }                                                            
+                            break;
 
-                    }
-                    else if (toolStripComboBoxCampos.SelectedIndex == 1)
-                    {
-                        ObjectQuery<Personas> personaQF =
-                            Main.BDContext.Personas.Where("it.DNI = @Dni");
-                        personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
-                        if (personaQF.Any())
-                        {
-                            aux[1] = personaQF.First().Id;
-                            ObjectQuery<Inasistencias> inasistenciaQF =
-                                Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
-                            inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                            var bindinglist = entityDataSource.CreateView(inasistenciaQF);
-                            mDataGridViewAsistencia.DataSource = bindinglist;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontraron registros con ese DNI");
-                            toolStripTextBoxFiltro.Focus();
-                        }
+                        case 1:
+                            ObjectQuery<Personas> personaQF =
+                                Main.BDContext.Personas.Where("it.DNI = @Dni");
+                            personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                            if (personaQF.Any())
+                            {
+                                aux[1] = personaQF.First().Id;
+                                ObjectQuery<Inasistencias> inasistenciaQF =
+                                    Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
+                                inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                var bindinglist = entityDataSource.CreateView(inasistenciaQF);
+                                mDataGridViewAsistencia.DataSource = bindinglist;
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontraron registros con ese DNI");
+                                toolStripTextBoxFiltro.Focus();
+                            }
+                            break;
+
+                        default:
+                            break;
                     }
                 }
             }
@@ -382,6 +386,13 @@ namespace CSAdminApp.Pantallas
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void toolStripButtonLimpiar_Click(object sender, EventArgs e)
+        {
+            toolStripTextBoxFiltro.Clear();
+            mDataGridViewAsistencia.DataSource = entityDataSource;
+            mDataGridViewAsistencia.DataMember = "Inasistencias";
         }
 #endregion
     }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pAsistencia));
             this.tabControlAsistencia = new System.Windows.Forms.TabControl();
             this.tabPageRegistrar = new System.Windows.Forms.TabPage();
@@ -338,7 +338,7 @@
             // 
             // rTextBoxNombre
             // 
-            this.rTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.rTextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.rTextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.rTextBoxNombre.BackColor = System.Drawing.Color.MistyRose;
             this.rTextBoxNombre.Location = new System.Drawing.Point(156, 27);
@@ -429,8 +429,8 @@
             // dniDataGridViewTextBoxColumn
             // 
             this.dniDataGridViewTextBoxColumn.DataPropertyName = "Dni";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dniDataGridViewTextBoxColumn.HeaderText = "Dni";
             this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
             this.dniDataGridViewTextBoxColumn.ReadOnly = true;
@@ -526,7 +526,7 @@
             // 
             // toolStripTextBoxFiltro
             // 
-            this.toolStripTextBoxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBoxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.toolStripTextBoxFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.toolStripTextBoxFiltro.BackColor = System.Drawing.Color.MistyRose;
             this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
@@ -570,6 +570,7 @@
             this.toolStripButtonLimpiar.Name = "toolStripButtonLimpiar";
             this.toolStripButtonLimpiar.Size = new System.Drawing.Size(51, 22);
             this.toolStripButtonLimpiar.Text = "Limpiar";
+            this.toolStripButtonLimpiar.Click += new System.EventHandler(this.toolStripButtonLimpiar_Click);
             // 
             // mDataGridViewAsistencia
             // 
