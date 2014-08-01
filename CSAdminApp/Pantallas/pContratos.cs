@@ -60,6 +60,8 @@ namespace CSAdminApp.Pantallas
             }
         }
 
+
+        // TODO quitar afectado y usar condicion!
         private void aCheckBoxAfectado_CheckedChanged(object sender, EventArgs e)
         {
             if (aCheckBoxAfectado.Checked)
@@ -223,7 +225,7 @@ namespace CSAdminApp.Pantallas
                     }
                     else
                     {
-                        nuevoContrato.Origen = null;
+                        nuevoContrato.Origen = "";
                     }
                     nuevoContrato.CargoId = aComboBoxCargo.SelectedValue.ToString();
                     nuevoContrato.CondicionId = aComboBoxCondicion.SelectedItem.ToString();
