@@ -106,6 +106,12 @@
     <Compile Include="Pantallas\pAsistencia.Designer.cs">
       <DependentUpon>pAsistencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas\passwordPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas\passwordPrompt.Designer.cs">
+      <DependentUpon>passwordPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas\pContratos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pAsistencia.resx">
       <DependentUpon>pAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\passwordPrompt.resx">
+      <DependentUpon>passwordPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pContratos.resx">
       <DependentUpon>pContratos.cs</DependentUpon>

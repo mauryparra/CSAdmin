@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pAsistencia));
             this.tabControlAsistencia = new System.Windows.Forms.TabControl();
             this.tabPageRegistrar = new System.Windows.Forms.TabPage();
@@ -96,6 +96,7 @@
             this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.mButtonEliminar = new System.Windows.Forms.Button();
             this.tabControlAsistencia.SuspendLayout();
             this.tabPageRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRegistro)).BeginInit();
@@ -429,8 +430,8 @@
             // dniDataGridViewTextBoxColumn
             // 
             this.dniDataGridViewTextBoxColumn.DataPropertyName = "Dni";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.NullValue = null;
+            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.dniDataGridViewTextBoxColumn.HeaderText = "Dni";
             this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
             this.dniDataGridViewTextBoxColumn.ReadOnly = true;
@@ -488,6 +489,7 @@
             // 
             // splitContainerModificar.Panel2
             // 
+            this.splitContainerModificar.Panel2.Controls.Add(this.mButtonEliminar);
             this.splitContainerModificar.Panel2.Controls.Add(this.mButtonCancelar);
             this.splitContainerModificar.Panel2.Controls.Add(this.mGroupBoxPersona);
             this.splitContainerModificar.Panel2.Controls.Add(this.mButtonModificar);
@@ -860,6 +862,23 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // mButtonEliminar
+            // 
+            this.mButtonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.mButtonEliminar.Enabled = false;
+            this.mButtonEliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
+            this.mButtonEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.mButtonEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
+            this.mButtonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mButtonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mButtonEliminar.Location = new System.Drawing.Point(40, 180);
+            this.mButtonEliminar.Name = "mButtonEliminar";
+            this.mButtonEliminar.Size = new System.Drawing.Size(88, 26);
+            this.mButtonEliminar.TabIndex = 40;
+            this.mButtonEliminar.Text = "&Eliminar";
+            this.mButtonEliminar.UseVisualStyleBackColor = true;
+            this.mButtonEliminar.Click += new System.EventHandler(this.mButtonEliminar_Click);
+            // 
             // pAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -964,5 +983,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn motivoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.ToolStripButton toolStripButtonLimpiar;
+        internal System.Windows.Forms.Button mButtonEliminar;
     }
 }

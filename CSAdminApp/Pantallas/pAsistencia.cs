@@ -41,6 +41,7 @@ namespace CSAdminApp.Pantallas
                 }
             }
 
+            mButtonEliminar.Enabled = false;
             rTextBoxNombre.AutoCompleteCustomSource = autocomNombres;
             toolStripTextBoxFiltro.AutoCompleteCustomSource = autocomNombres;
             errorProvider.Clear();
@@ -204,6 +205,7 @@ namespace CSAdminApp.Pantallas
             mDateTimePickerHasta.Checked = false;
             toolStripTextBoxFiltro.Focus();
             mGroupBoxInasistencia.Text = "Inasistencia";
+            mButtonEliminar.Enabled = false;
             errorProvider.Clear();
             aux[1] = 0;
             auxInasistencia = 0;
@@ -243,6 +245,7 @@ namespace CSAdminApp.Pantallas
                     mDateTimePickerHasta.Checked = false;
                     toolStripTextBoxFiltro.Focus();
                     mGroupBoxInasistencia.Text = "Inasistencia";
+                    mButtonEliminar.Enabled = false;
                     aux[1] = 0;
                     auxInasistencia = 0;
                 }
@@ -255,6 +258,44 @@ namespace CSAdminApp.Pantallas
             {
                 MessageBox.Show("No hay ninguna inasistencia seleccionada", "Asistencias",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void mButtonEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aux[1] != 0)
+                {
+                    passwordPrompt passprompt = new passwordPrompt();
+                    DialogResult dr = passprompt.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        ObjectQuery<Inasistencias> borrarInasistencia =
+                            Main.BDContext.Inasistencias.Where("it.Id = @Id");
+                        borrarInasistencia.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+                        Main.BDContext.Inasistencias.DeleteObject(borrarInasistencia.First());
+                        Main.BDContext.SaveChanges();
+                        MessageBox.Show("Inasistencia eliminada");
+                        entityDataSource.Refresh();
+
+                        // Limpiar Form
+                        FunmPC.limpiarForm(mGroupBoxPersona);
+                        FunmPC.limpiarForm(mGroupBoxInasistencia);
+                        mDateTimePickerDesde.Value = DateTime.Now.Date;
+                        mDateTimePickerHasta.Value = DateTime.Now.Date;
+                        mDateTimePickerHasta.Checked = false;
+                        toolStripTextBoxFiltro.Focus();
+                        mGroupBoxInasistencia.Text = "Inasistencia";
+                        mButtonEliminar.Enabled = false;
+                        aux[1] = 0;
+                        auxInasistencia = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
             }
         }
 
@@ -290,6 +331,7 @@ namespace CSAdminApp.Pantallas
                 }
                 mTextBoxMotivo.Text = inasistenciaQ.First().Motivo;
                 mGroupBoxInasistencia.Text = "Inasistencia - ID: " + inasistenciaQ.First().Id.ToString();
+                mButtonEliminar.Enabled = true;
             }
             catch (Exception ex)
             {
