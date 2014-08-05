@@ -323,20 +323,18 @@ namespace CSAdminApp.Clases
         /// <param name="id">Valor inicial de la propiedad Id.</param>
         /// <param name="personaId">Valor inicial de la propiedad PersonaId.</param>
         /// <param name="fechaInicio">Valor inicial de la propiedad FechaInicio.</param>
-        /// <param name="afectado">Valor inicial de la propiedad Afectado.</param>
         /// <param name="origen">Valor inicial de la propiedad Origen.</param>
         /// <param name="cargoId">Valor inicial de la propiedad CargoId.</param>
         /// <param name="condicionId">Valor inicial de la propiedad CondicionId.</param>
         /// <param name="funcionId">Valor inicial de la propiedad FuncionId.</param>
         /// <param name="equipoId">Valor inicial de la propiedad EquipoId.</param>
         /// <param name="horas">Valor inicial de la propiedad Horas.</param>
-        public static Contratos CreateContratos(global::System.Int32 id, global::System.Int32 personaId, global::System.DateTime fechaInicio, global::System.Boolean afectado, global::System.String origen, global::System.String cargoId, global::System.String condicionId, global::System.String funcionId, global::System.String equipoId, global::System.Byte horas)
+        public static Contratos CreateContratos(global::System.Int32 id, global::System.Int32 personaId, global::System.DateTime fechaInicio, global::System.String origen, global::System.String cargoId, global::System.String condicionId, global::System.String funcionId, global::System.String equipoId, global::System.Byte horas)
         {
             Contratos contratos = new Contratos();
             contratos.Id = id;
             contratos.PersonaId = personaId;
             contratos.FechaInicio = fechaInicio;
-            contratos.Afectado = afectado;
             contratos.Origen = origen;
             contratos.CargoId = cargoId;
             contratos.CondicionId = condicionId;
@@ -451,30 +449,6 @@ namespace CSAdminApp.Clases
         private Nullable<global::System.DateTime> _FechaBaja;
         partial void OnFechaBajaChanging(Nullable<global::System.DateTime> value);
         partial void OnFechaBajaChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean Afectado
-        {
-            get
-            {
-                return _Afectado;
-            }
-            set
-            {
-                OnAfectadoChanging(value);
-                ReportPropertyChanging("Afectado");
-                _Afectado = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Afectado");
-                OnAfectadoChanged();
-            }
-        }
-        private global::System.Boolean _Afectado;
-        partial void OnAfectadoChanging(global::System.Boolean value);
-        partial void OnAfectadoChanged();
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
