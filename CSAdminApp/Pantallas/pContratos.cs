@@ -60,23 +60,6 @@ namespace CSAdminApp.Pantallas
             }
         }
 
-
-        // TODO quitar afectado y usar condicion!
-        private void aCheckBoxAfectado_CheckedChanged(object sender, EventArgs e)
-        {
-            if (aCheckBoxAfectado.Checked)
-            {
-                aComboBoxOrigen.Enabled = true;
-                aComboBoxOrigen.Focus();
-            }
-            else
-            {
-                aComboBoxOrigen.Enabled = false;
-                aComboBoxOrigen.SelectedIndex = -1;
-                aComboBoxCargo.Focus();
-            }
-        }
-
         private void aComboBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -142,7 +125,6 @@ namespace CSAdminApp.Pantallas
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         FunmPC.limpiarForm(aGroupBoxPersona);
                         FunmPC.limpiarForm(aGroupBoxDestino);
-                        aCheckBoxAfectado.Checked = false;
                         aNumericUpDownHoras.Value = 25;
                         aMaskedTextBoxDNI.Focus();
                         aux[0] = 0;
@@ -178,7 +160,6 @@ namespace CSAdminApp.Pantallas
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         FunmPC.limpiarForm(aGroupBoxPersona);
                         FunmPC.limpiarForm(aGroupBoxDestino);
-                        aCheckBoxAfectado.Checked = false;
                         aNumericUpDownHoras.Value = 25;
                         aMaskedTextBoxDNI.Focus();
                         aux[0] = 0;
@@ -195,9 +176,9 @@ namespace CSAdminApp.Pantallas
         {
             FunmPC.limpiarForm(aGroupBoxPersona);
             FunmPC.limpiarForm(aGroupBoxDestino);
-            aCheckBoxAfectado.Checked = false;
             aNumericUpDownHoras.Value = 25;
             aMaskedTextBoxDNI.Focus();
+            aComboBoxOrigen.SelectedIndex = -1;
             aux[0] = 0;
         }
 
@@ -218,15 +199,8 @@ namespace CSAdminApp.Pantallas
                     {
                         nuevoContrato.FechaBaja = null;
                     }
-                    nuevoContrato.Afectado = aCheckBoxAfectado.Checked;
-                    if (aCheckBoxAfectado.Checked)
-                    {
-                        nuevoContrato.Origen = aComboBoxOrigen.Text;
-                    }
-                    else
-                    {
-                        nuevoContrato.Origen = "";
-                    }
+                    nuevoContrato.Origen = aComboBoxOrigen.Text;
+                    
                     nuevoContrato.CargoId = aComboBoxCargo.SelectedValue.ToString();
                     nuevoContrato.CondicionId = aComboBoxCondicion.SelectedItem.ToString();
                     nuevoContrato.FuncionId = aComboBoxFuncion.SelectedValue.ToString();
@@ -240,9 +214,9 @@ namespace CSAdminApp.Pantallas
                                     "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FunmPC.limpiarForm(aGroupBoxPersona);
                     FunmPC.limpiarForm(aGroupBoxDestino);
-                    aCheckBoxAfectado.Checked = false;
                     aNumericUpDownHoras.Value = 25;
                     aMaskedTextBoxDNI.Focus();
+                    aComboBoxOrigen.SelectedIndex = -1;
                     aux[0] = 0;
                 }
                 catch (Exception ex)
