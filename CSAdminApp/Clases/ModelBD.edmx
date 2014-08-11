@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="CSAdminBDModelStoreContainer">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" Schema="dbo" />
@@ -61,7 +61,6 @@
           <Property Name="PersonaId" Type="int" Nullable="false" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
           <Property Name="FechaBaja" Type="date" />
-          <Property Name="Afectado" Type="bit" Nullable="false" />
           <Property Name="Origen" Type="nvarchar" Nullable="false" MaxLength="60" />
           <Property Name="CargoId" Type="nchar" Nullable="false" MaxLength="8" />
           <Property Name="CondicionId" Type="nchar" Nullable="false" MaxLength="8" />
@@ -266,8 +265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -327,7 +325,6 @@
           <Property Name="PersonaId" Type="Int32" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
           <Property Name="FechaBaja" Type="DateTime" />
-          <Property Name="Afectado" Type="Boolean" Nullable="false" />
           <Property Name="Origen" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
           <Property Name="CargoId" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="true" />
           <Property Name="CondicionId" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="true" />
@@ -563,7 +560,6 @@
                 <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
-                <ScalarProperty Name="Afectado" ColumnName="Afectado" />
                 <ScalarProperty Name="Origen" ColumnName="Origen" />
                 <ScalarProperty Name="CargoId" ColumnName="CargoId" />
                 <ScalarProperty Name="CondicionId" ColumnName="CondicionId" />
@@ -678,7 +674,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="ModelBD">
-        <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5.75" PointY="3.625" Height="4.0956022135416648" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Contratos" Width="1.5" PointX="5.75" PointY="3.625" Height="3.9033007812499996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Equipos" Width="1.5" PointX="5.75" PointY="8.5" Height="2.9417936197916639" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Funciones" Width="1.5" PointX="8.875" PointY="5.625" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="3.5" PointY="5.375" Height="2.1725878906249996" IsExpanded="true" />
@@ -689,15 +685,15 @@
         <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3.5" PointY="0.875" Height="1.9802864583333317" IsExpanded="true" />
         <AssociationConnector Association="CSAdminBDModel.FK_Contratos_Equipos" ManuallyRouted="false">
           <ConnectorPoint PointX="6.5" PointY="8.5" />
-          <ConnectorPoint PointX="6.5" PointY="7.7206022135416648" />
+          <ConnectorPoint PointX="6.5" PointY="7.52830078125" />
         </AssociationConnector>
         <AssociationConnector Association="CSAdminBDModel.FK_Contratos_Funciones" ManuallyRouted="false">
           <ConnectorPoint PointX="8.875" PointY="6.422841796875" />
           <ConnectorPoint PointX="7.25" PointY="6.422841796875" />
         </AssociationConnector>
         <AssociationConnector Association="CSAdminBDModel.FK_Contratos_Personas" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.375" PointY="4.8428739583333336" />
-          <ConnectorPoint PointX="5.75" PointY="4.8428739583333336" />
+          <ConnectorPoint PointX="2.375" PointY="5.0158842563943891" />
+          <ConnectorPoint PointX="5.75" PointY="5.0158842563943891" />
         </AssociationConnector>
         <AssociationConnector Association="CSAdminBDModel.FK_Contratos_SituacionesProfesionales" ManuallyRouted="false">
           <ConnectorPoint PointX="8.875" PointY="4.4901432291666659" />

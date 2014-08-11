@@ -17,8 +17,15 @@ namespace CSAdminApp.Pantallas
     {
         List<string> cargos = new List<string>();
         List<string> condiciones = new List<string>();
+
+        private AutoCompleteStringCollection autocomNombres = new AutoCompleteStringCollection();
+
+        // key = NombreCompleto, value = Id
+        private Dictionary<string, int> nombresDict = new Dictionary<string, int>();
+
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
-        private int[] aux = { 0, 0, 0 };
+        private int[] aux = { 0, 0 };
+        private int auxContratoId = 0;
 
         public pContratos()
         {
@@ -48,11 +55,32 @@ namespace CSAdminApp.Pantallas
                 aComboBoxEquipo.DisplayMember = "Id";
                 aComboBoxEquipo.ValueMember = "Id";
 
+                mComboBoxEquipo.DataSource = equipos;
+                mComboBoxEquipo.DisplayMember = "Id";
+                mComboBoxEquipo.ValueMember = "Id";
+
                 ObjectQuery<Funciones> funciones =
                     Main.BDContext.Funciones;
                 aComboBoxFuncion.DataSource = funciones;
                 aComboBoxFuncion.DisplayMember = "Funcion";
                 aComboBoxFuncion.ValueMember = "Id";
+
+                mComboBoxFuncion.DataSource = funciones;
+                mComboBoxFuncion.DisplayMember = "Funcion";
+                mComboBoxFuncion.ValueMember = "Id";
+
+
+                foreach (Clases.Personas persona in Main.BDContext.Personas)
+                {
+                    if (persona.Baja == false)
+                    {
+                        autocomNombres.Add(persona.NombreCompleto);
+
+                        nombresDict.Add(persona.NombreCompleto, persona.Id);
+                    }
+                }
+
+                toolStripTextBoxFiltro.AutoCompleteCustomSource = autocomNombres;
             }
             catch (Exception ex)
             {
@@ -60,22 +88,7 @@ namespace CSAdminApp.Pantallas
             }
         }
 
-
-        // TODO quitar afectado y usar condicion!
-        private void aCheckBoxAfectado_CheckedChanged(object sender, EventArgs e)
-        {
-            if (aCheckBoxAfectado.Checked)
-            {
-                aComboBoxOrigen.Enabled = true;
-                aComboBoxOrigen.Focus();
-            }
-            else
-            {
-                aComboBoxOrigen.Enabled = false;
-                aComboBoxOrigen.SelectedIndex = -1;
-                aComboBoxCargo.Focus();
-            }
-        }
+#region Alta
 
         private void aComboBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -142,7 +155,6 @@ namespace CSAdminApp.Pantallas
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         FunmPC.limpiarForm(aGroupBoxPersona);
                         FunmPC.limpiarForm(aGroupBoxDestino);
-                        aCheckBoxAfectado.Checked = false;
                         aNumericUpDownHoras.Value = 25;
                         aMaskedTextBoxDNI.Focus();
                         aux[0] = 0;
@@ -178,7 +190,6 @@ namespace CSAdminApp.Pantallas
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         FunmPC.limpiarForm(aGroupBoxPersona);
                         FunmPC.limpiarForm(aGroupBoxDestino);
-                        aCheckBoxAfectado.Checked = false;
                         aNumericUpDownHoras.Value = 25;
                         aMaskedTextBoxDNI.Focus();
                         aux[0] = 0;
@@ -195,9 +206,9 @@ namespace CSAdminApp.Pantallas
         {
             FunmPC.limpiarForm(aGroupBoxPersona);
             FunmPC.limpiarForm(aGroupBoxDestino);
-            aCheckBoxAfectado.Checked = false;
             aNumericUpDownHoras.Value = 25;
             aMaskedTextBoxDNI.Focus();
+            aComboBoxOrigen.SelectedIndex = -1;
             aux[0] = 0;
         }
 
@@ -218,15 +229,8 @@ namespace CSAdminApp.Pantallas
                     {
                         nuevoContrato.FechaBaja = null;
                     }
-                    nuevoContrato.Afectado = aCheckBoxAfectado.Checked;
-                    if (aCheckBoxAfectado.Checked)
-                    {
-                        nuevoContrato.Origen = aComboBoxOrigen.Text;
-                    }
-                    else
-                    {
-                        nuevoContrato.Origen = "";
-                    }
+                    nuevoContrato.Origen = aComboBoxOrigen.Text;
+                    
                     nuevoContrato.CargoId = aComboBoxCargo.SelectedValue.ToString();
                     nuevoContrato.CondicionId = aComboBoxCondicion.SelectedItem.ToString();
                     nuevoContrato.FuncionId = aComboBoxFuncion.SelectedValue.ToString();
@@ -240,9 +244,9 @@ namespace CSAdminApp.Pantallas
                                     "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FunmPC.limpiarForm(aGroupBoxPersona);
                     FunmPC.limpiarForm(aGroupBoxDestino);
-                    aCheckBoxAfectado.Checked = false;
                     aNumericUpDownHoras.Value = 25;
                     aMaskedTextBoxDNI.Focus();
+                    aComboBoxOrigen.SelectedIndex = -1;
                     aux[0] = 0;
                 }
                 catch (Exception ex)
@@ -253,5 +257,289 @@ namespace CSAdminApp.Pantallas
             else MessageBox.Show("No se ha seleccionado ninguna persona",
                             "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
+
+#endregion
+
+#region Modificar
+        private void mDataGridViewContratos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            // en aux se guarda el Id de persona
+            aux[1] = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[1].Value);
+
+            ObjectQuery<Personas> personaQ =
+                    Main.BDContext.Personas.Where("it.Id = @Id");
+            personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+
+            mTextBoxNombre.Text = personaQ.First().NombreCompleto;
+            mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+
+            // Datos Contrato
+            auxContratoId = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[0].Value);
+
+            ObjectQuery<Contratos> contratoQ =
+                Main.BDContext.Contratos.Where("it.Id = @Id");
+            contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+
+            mDateTimePickerInicio.Value = contratoQ.First().FechaInicio;
+            if (contratoQ.First().FechaBaja.HasValue)
+            {
+                mDateTimePickerBaja.Value = (DateTime)contratoQ.First().FechaBaja;
+                mDateTimePickerBaja.Checked = true;
+            }
+            else
+            {
+                mDateTimePickerBaja.Value = DateTime.Now.Date;
+                mDateTimePickerBaja.Checked = false;
+            }
+
+            mComboBoxOrigen.Text = contratoQ.First().Origen;
+
+            // Carga de combobox para Cargo y Condicion
+            ObjectQuery<SituacionesProfesionales> sitProf =
+                    Main.BDContext.SituacionesProfesionales;
+            foreach (var sit in sitProf)
+            {
+                if (!cargos.Contains(sit.CargoAbrev))
+                {
+                    cargos.Add(sit.CargoAbrev);
+                }
+            }
+            mComboBoxCargo.DataSource = cargos;
+            mComboBoxCargo.SelectedItem = contratoQ.First().CargoId;
+
+            condiciones.Clear();
+            ObjectQuery<SituacionesProfesionales> sitCond =
+               Main.BDContext.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
+            sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+
+            foreach (var cond in sitCond)
+            {
+                if (!condiciones.Contains(cond.CondicionAbrev))
+                {
+                    condiciones.Add(cond.CondicionAbrev);
+                }
+            }
+
+            mComboBoxCondicion.DataSource = null;
+            mComboBoxCondicion.DataSource = condiciones;
+
+            mComboBoxCondicion.SelectedItem = contratoQ.First().CondicionId;
+
+            mComboBoxEquipo.SelectedValue = contratoQ.First().EquipoId;
+            mComboBoxFuncion.SelectedValue = contratoQ.First().FuncionId;
+            mNumericUpDownHoras.Value = contratoQ.First().Horas;
+            mTextBoxObs.Text = contratoQ.First().Observacion;
+            mButtonEliminar.Enabled = true;
+        }
+
+        private void mButtonCancelar_Click(object sender, EventArgs e)
+        {
+            aux[1] = 0;
+            auxContratoId = 0;
+            FunmPC.limpiarForm(mGroupBoxPersona);
+            FunmPC.limpiarForm(mGroupBoxContrato);
+            mNumericUpDownHoras.Value = 25;
+            mComboBoxOrigen.SelectedIndex = -1;
+            mDateTimePickerInicio.Value = DateTime.Now.Date;
+            mDateTimePickerBaja.Value = DateTime.Now.Date;
+            mDateTimePickerBaja.Checked = false;
+            mButtonEliminar.Enabled = false;
+        }
+
+        private void mButtonModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aux[1] != 0)
+                {
+                    ObjectQuery<Contratos> contratosQ =
+                        Main.BDContext.Contratos.Where("it.Id = @Id");
+                    contratosQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+
+                    contratosQ.First().FechaInicio = mDateTimePickerInicio.Value;
+                    if (mDateTimePickerBaja.Checked)
+                    {
+                        contratosQ.First().FechaBaja = mDateTimePickerBaja.Value;
+                    }
+                    else
+                    {
+                        contratosQ.First().FechaBaja = null;
+                    }
+
+                    contratosQ.First().Origen = mComboBoxOrigen.Text;
+                    contratosQ.First().EquipoId = (string)mComboBoxEquipo.SelectedValue;
+                    contratosQ.First().FuncionId = (string)mComboBoxFuncion.SelectedValue;
+                    contratosQ.First().Horas = Convert.ToByte(mNumericUpDownHoras.Value);
+                    contratosQ.First().Observacion = mTextBoxObs.Text;
+
+                    Main.BDContext.SaveChanges();
+                    MessageBox.Show("Se han modificado los datos del contrato.", "Contratos",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    entityDataSource.Refresh();
+
+                    // Limpiar Form
+                    FunmPC.limpiarForm(mGroupBoxPersona);
+                    FunmPC.limpiarForm(mGroupBoxContrato);
+                    mDateTimePickerInicio.Value = DateTime.Now.Date;
+                    mDateTimePickerBaja.Value = DateTime.Now.Date;
+                    mDateTimePickerBaja.Checked = false;
+                    mNumericUpDownHoras.Value = 25;
+                    mComboBoxOrigen.SelectedIndex = -1;
+                    toolStripTextBoxFiltro.Focus();
+                    mButtonEliminar.Enabled = false;
+                    aux[1] = 0;
+                    auxContratoId = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void mButtonEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (aux[1] != 0)
+                {
+                    passwordPrompt passprompt = new passwordPrompt();
+                    DialogResult dr = passprompt.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        ObjectQuery<Contratos> contratoQ =
+                            Main.BDContext.Contratos.Where("it.Id = @Id");
+                        contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+                        Main.BDContext.Contratos.DeleteObject(contratoQ.First());
+                        Main.BDContext.SaveChanges();
+                        MessageBox.Show("Contrato eliminado");
+                        entityDataSource.Refresh();
+
+                        // Limpiar Form
+                        FunmPC.limpiarForm(mGroupBoxPersona);
+                        FunmPC.limpiarForm(mGroupBoxContrato);
+                        mDateTimePickerInicio.Value = DateTime.Now.Date;
+                        mDateTimePickerBaja.Value = DateTime.Now.Date;
+                        mDateTimePickerBaja.Checked = false;
+                        mNumericUpDownHoras.Value = 25;
+                        mComboBoxOrigen.SelectedIndex = -1;
+                        toolStripTextBoxFiltro.Focus();
+                        mButtonEliminar.Enabled = false;
+                        aux[1] = 0;
+                        auxContratoId = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void mComboBoxCargo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                condiciones.Clear();
+                ObjectQuery<SituacionesProfesionales> sitCond =
+                   Main.BDContext.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
+                sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+
+                foreach (var cond in sitCond)
+                {
+                    if (!condiciones.Contains(cond.CondicionAbrev))
+                    {
+                        condiciones.Add(cond.CondicionAbrev);
+                    }
+                }
+
+                mComboBoxCondicion.DataSource = null;
+                mComboBoxCondicion.DataSource = condiciones;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " / " + ex.InnerException.Message);
+            }
+        }
+
+        private void toolStripButtonFiltrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (toolStripTextBoxFiltro.Text.Length > 0)
+                {
+
+                    // TODO agregar filtro de activos o inactivos
+                    switch (toolStripComboBoxCampos.SelectedIndex)
+                    {
+                        case 0:
+                            if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
+                            {
+                                aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                                ObjectQuery<Contratos> ContratosQF =
+                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
+                                ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                var bindinglist = entityDataSource.CreateView(ContratosQF);
+                                mDataGridViewContratos.DataSource = bindinglist;
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontraron registros con ese nombre");
+                                toolStripTextBoxFiltro.Focus();
+                            }
+                            break;
+
+                        case 1:
+                            ObjectQuery<Personas> personaQF =
+                                Main.BDContext.Personas.Where("it.DNI = @Dni");
+                            personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                            if (personaQF.Any())
+                            {
+                                aux[1] = personaQF.First().Id;
+                                ObjectQuery<Contratos> contratosQF =
+                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
+                                contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                var bindinglist = entityDataSource.CreateView(contratosQF);
+                                mDataGridViewContratos.DataSource = bindinglist;
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontraron registros con ese DNI");
+                                toolStripTextBoxFiltro.Focus();
+                            }
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void toolStripButtonLimpiar_Click(object sender, EventArgs e)
+        {
+            toolStripTextBoxFiltro.Clear();
+            mDataGridViewContratos.DataSource = entityDataSource;
+            mDataGridViewContratos.DataMember = "Contratos";
+        }
+
+        private void toolStripButtonActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (toolStripButtonActivos.Checked)
+            {
+                toolStripButtonActivos.Text = "Todos";
+                toolStripButtonActivos.BackColor = Color.MistyRose;
+            }
+            else
+            {
+                toolStripButtonActivos.Text = "Activos";
+                toolStripButtonActivos.BackColor = Color.MediumTurquoise;
+            }
+        }
+#endregion
     }
 }
