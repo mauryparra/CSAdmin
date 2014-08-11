@@ -78,7 +78,9 @@
             this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonActivos = new System.Windows.Forms.ToolStripButton();
             this.mDataGridViewContratos = new System.Windows.Forms.DataGridView();
+            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.mButtonEliminar = new System.Windows.Forms.Button();
             this.mButtonCancelar = new System.Windows.Forms.Button();
             this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
@@ -87,19 +89,20 @@
             this.mMaskedTextBoxDNI = new System.Windows.Forms.MaskedTextBox();
             this.mLabelDNI = new System.Windows.Forms.Label();
             this.mButtonModificar = new System.Windows.Forms.Button();
-            this.mGroupBoxInasistencia = new System.Windows.Forms.GroupBox();
-            this.mLabelCaracteres = new System.Windows.Forms.Label();
-            this.mTextBoxMotivo = new System.Windows.Forms.TextBox();
-            this.mLabelMotivo = new System.Windows.Forms.Label();
-            this.mDateTimePickerHasta = new System.Windows.Forms.DateTimePicker();
-            this.mLabelHasta = new System.Windows.Forms.Label();
-            this.mLabelDesde = new System.Windows.Forms.Label();
-            this.mDateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
+            this.mGroupBoxContrato = new System.Windows.Forms.GroupBox();
+            this.mTextBoxObs = new System.Windows.Forms.TextBox();
+            this.mLabelOrigen = new System.Windows.Forms.Label();
+            this.mDateTimePickerBaja = new System.Windows.Forms.DateTimePicker();
+            this.mLabelBaja = new System.Windows.Forms.Label();
+            this.mLabelInicio = new System.Windows.Forms.Label();
+            this.mDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaBaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Origen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -107,29 +110,20 @@
             this.CondicionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FuncionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personaIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaInicioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaBajaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.origenDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cargoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.condicionIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcionIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.equipoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.equiposDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.equiposReferenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcionesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.funcionesReferenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.personasReferenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.situacionesProfesionalesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStripButtonActivos = new System.Windows.Forms.ToolStripButton();
+            this.mComboBoxOrigen = new System.Windows.Forms.ComboBox();
+            this.mComboBoxCargo = new System.Windows.Forms.ComboBox();
+            this.mComboBoxCondicion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mComboBoxFuncion = new System.Windows.Forms.ComboBox();
+            this.mLabelFuncion = new System.Windows.Forms.Label();
+            this.mComboBoxEquipo = new System.Windows.Forms.ComboBox();
+            this.mLabelEquipo = new System.Windows.Forms.Label();
+            this.mNumericUpDownHoras = new System.Windows.Forms.NumericUpDown();
+            this.mLabelHoras = new System.Windows.Forms.Label();
+            this.mLabelObs = new System.Windows.Forms.Label();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             this.aGroupBoxContrato.SuspendLayout();
@@ -146,7 +140,8 @@
             this.mEntityBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewContratos)).BeginInit();
             this.mGroupBoxPersona.SuspendLayout();
-            this.mGroupBoxInasistencia.SuspendLayout();
+            this.mGroupBoxContrato.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mNumericUpDownHoras)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlContratos
@@ -249,6 +244,7 @@
             // 
             // aNumericUpDownHoras
             // 
+            this.aNumericUpDownHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.aNumericUpDownHoras.BackColor = System.Drawing.Color.MistyRose;
             this.aNumericUpDownHoras.Location = new System.Drawing.Point(385, 50);
             this.aNumericUpDownHoras.Maximum = new decimal(new int[] {
@@ -625,7 +621,7 @@
             // 
             this.splitContainerModificar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.splitContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerModificar.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainerModificar.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainerModificar.IsSplitterFixed = true;
             this.splitContainerModificar.Location = new System.Drawing.Point(3, 3);
             this.splitContainerModificar.Name = "splitContainerModificar";
@@ -642,9 +638,9 @@
             this.splitContainerModificar.Panel2.Controls.Add(this.mButtonCancelar);
             this.splitContainerModificar.Panel2.Controls.Add(this.mGroupBoxPersona);
             this.splitContainerModificar.Panel2.Controls.Add(this.mButtonModificar);
-            this.splitContainerModificar.Panel2.Controls.Add(this.mGroupBoxInasistencia);
+            this.splitContainerModificar.Panel2.Controls.Add(this.mGroupBoxContrato);
             this.splitContainerModificar.Size = new System.Drawing.Size(675, 412);
-            this.splitContainerModificar.SplitterDistance = 195;
+            this.splitContainerModificar.SplitterDistance = 170;
             this.splitContainerModificar.TabIndex = 7;
             // 
             // mEntityBindingNavigator
@@ -709,6 +705,7 @@
             this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
             this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
             this.toolStripButtonFiltrar.Text = "Filtrar";
+            this.toolStripButtonFiltrar.Click += new System.EventHandler(this.toolStripButtonFiltrar_Click);
             // 
             // toolStripButtonLimpiar
             // 
@@ -720,6 +717,22 @@
             this.toolStripButtonLimpiar.Name = "toolStripButtonLimpiar";
             this.toolStripButtonLimpiar.Size = new System.Drawing.Size(51, 22);
             this.toolStripButtonLimpiar.Text = "Limpiar";
+            this.toolStripButtonLimpiar.Click += new System.EventHandler(this.toolStripButtonLimpiar_Click);
+            // 
+            // toolStripButtonActivos
+            // 
+            this.toolStripButtonActivos.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.toolStripButtonActivos.Checked = true;
+            this.toolStripButtonActivos.CheckOnClick = true;
+            this.toolStripButtonActivos.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.toolStripButtonActivos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonActivos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonActivos.Image")));
+            this.toolStripButtonActivos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonActivos.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
+            this.toolStripButtonActivos.Name = "toolStripButtonActivos";
+            this.toolStripButtonActivos.Size = new System.Drawing.Size(44, 22);
+            this.toolStripButtonActivos.Text = "Todos";
+            this.toolStripButtonActivos.CheckedChanged += new System.EventHandler(this.toolStripButtonActivos_CheckedChanged);
             // 
             // mDataGridViewContratos
             // 
@@ -741,33 +754,21 @@
             this.CondicionId,
             this.FuncionId,
             this.EquipoId,
-            this.idDataGridViewTextBoxColumn,
-            this.personaIdDataGridViewTextBoxColumn,
-            this.fechaInicioDataGridViewTextBoxColumn,
-            this.fechaBajaDataGridViewTextBoxColumn,
-            this.origenDataGridViewTextBoxColumn,
-            this.cargoIdDataGridViewTextBoxColumn,
-            this.condicionIdDataGridViewTextBoxColumn,
-            this.funcionIdDataGridViewTextBoxColumn,
-            this.equipoIdDataGridViewTextBoxColumn,
             this.horasDataGridViewTextBoxColumn,
-            this.observacionDataGridViewTextBoxColumn,
-            this.equiposDataGridViewTextBoxColumn,
-            this.equiposReferenceDataGridViewTextBoxColumn,
-            this.funcionesDataGridViewTextBoxColumn,
-            this.funcionesReferenceDataGridViewTextBoxColumn,
-            this.personasDataGridViewTextBoxColumn,
-            this.personasReferenceDataGridViewTextBoxColumn,
-            this.situacionesProfesionalesDataGridViewTextBoxColumn,
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn});
+            this.observacionDataGridViewTextBoxColumn});
             this.mDataGridViewContratos.DataMember = "Contratos";
             this.mDataGridViewContratos.DataSource = this.entityDataSource;
-            this.mDataGridViewContratos.Location = new System.Drawing.Point(0, 28);
+            this.mDataGridViewContratos.Location = new System.Drawing.Point(0, 27);
             this.mDataGridViewContratos.Name = "mDataGridViewContratos";
             this.mDataGridViewContratos.ReadOnly = true;
             this.mDataGridViewContratos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.mDataGridViewContratos.Size = new System.Drawing.Size(671, 163);
+            this.mDataGridViewContratos.Size = new System.Drawing.Size(671, 138);
             this.mDataGridViewContratos.TabIndex = 2;
+            this.mDataGridViewContratos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewContratos_CellMouseDoubleClick);
+            // 
+            // entityDataSource
+            // 
+            this.entityDataSource.ObjectContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
             // 
             // mButtonEliminar
             // 
@@ -778,12 +779,13 @@
             this.mButtonEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.mButtonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonEliminar.Location = new System.Drawing.Point(40, 180);
+            this.mButtonEliminar.Location = new System.Drawing.Point(40, 207);
             this.mButtonEliminar.Name = "mButtonEliminar";
             this.mButtonEliminar.Size = new System.Drawing.Size(88, 26);
             this.mButtonEliminar.TabIndex = 40;
             this.mButtonEliminar.Text = "&Eliminar";
             this.mButtonEliminar.UseVisualStyleBackColor = true;
+            this.mButtonEliminar.Click += new System.EventHandler(this.mButtonEliminar_Click);
             // 
             // mButtonCancelar
             // 
@@ -793,12 +795,13 @@
             this.mButtonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.HotPink;
             this.mButtonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonCancelar.Location = new System.Drawing.Point(563, 180);
+            this.mButtonCancelar.Location = new System.Drawing.Point(563, 207);
             this.mButtonCancelar.Name = "mButtonCancelar";
             this.mButtonCancelar.Size = new System.Drawing.Size(88, 26);
             this.mButtonCancelar.TabIndex = 39;
             this.mButtonCancelar.Text = "&Cancelar";
             this.mButtonCancelar.UseVisualStyleBackColor = true;
+            this.mButtonCancelar.Click += new System.EventHandler(this.mButtonCancelar_Click);
             // 
             // mGroupBoxPersona
             // 
@@ -810,7 +813,7 @@
             this.mGroupBoxPersona.Controls.Add(this.mLabelDNI);
             this.mGroupBoxPersona.Location = new System.Drawing.Point(3, 3);
             this.mGroupBoxPersona.Name = "mGroupBoxPersona";
-            this.mGroupBoxPersona.Size = new System.Drawing.Size(665, 69);
+            this.mGroupBoxPersona.Size = new System.Drawing.Size(665, 55);
             this.mGroupBoxPersona.TabIndex = 5;
             this.mGroupBoxPersona.TabStop = false;
             this.mGroupBoxPersona.Text = "Persona";
@@ -818,7 +821,7 @@
             // mTextBoxNombre
             // 
             this.mTextBoxNombre.BackColor = System.Drawing.SystemColors.Control;
-            this.mTextBoxNombre.Location = new System.Drawing.Point(156, 27);
+            this.mTextBoxNombre.Location = new System.Drawing.Point(156, 21);
             this.mTextBoxNombre.Name = "mTextBoxNombre";
             this.mTextBoxNombre.ReadOnly = true;
             this.mTextBoxNombre.Size = new System.Drawing.Size(220, 21);
@@ -827,7 +830,7 @@
             // mLabelNombre
             // 
             this.mLabelNombre.AutoSize = true;
-            this.mLabelNombre.Location = new System.Drawing.Point(34, 30);
+            this.mLabelNombre.Location = new System.Drawing.Point(34, 24);
             this.mLabelNombre.Name = "mLabelNombre";
             this.mLabelNombre.Size = new System.Drawing.Size(116, 15);
             this.mLabelNombre.TabIndex = 0;
@@ -837,7 +840,7 @@
             // 
             this.mMaskedTextBoxDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mMaskedTextBoxDNI.BackColor = System.Drawing.SystemColors.Control;
-            this.mMaskedTextBoxDNI.Location = new System.Drawing.Point(474, 27);
+            this.mMaskedTextBoxDNI.Location = new System.Drawing.Point(474, 21);
             this.mMaskedTextBoxDNI.Mask = "99.999.999";
             this.mMaskedTextBoxDNI.Name = "mMaskedTextBoxDNI";
             this.mMaskedTextBoxDNI.PromptChar = ' ';
@@ -850,7 +853,7 @@
             // 
             this.mLabelDNI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.mLabelDNI.AutoSize = true;
-            this.mLabelDNI.Location = new System.Drawing.Point(437, 30);
+            this.mLabelDNI.Location = new System.Drawing.Point(437, 24);
             this.mLabelDNI.Name = "mLabelDNI";
             this.mLabelDNI.Size = new System.Drawing.Size(31, 15);
             this.mLabelDNI.TabIndex = 2;
@@ -864,102 +867,101 @@
             this.mButtonModificar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
             this.mButtonModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.mButtonModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonModificar.Location = new System.Drawing.Point(469, 180);
+            this.mButtonModificar.Location = new System.Drawing.Point(469, 207);
             this.mButtonModificar.Name = "mButtonModificar";
             this.mButtonModificar.Size = new System.Drawing.Size(88, 26);
             this.mButtonModificar.TabIndex = 38;
             this.mButtonModificar.Text = "&Modificar";
             this.mButtonModificar.UseVisualStyleBackColor = true;
+            this.mButtonModificar.Click += new System.EventHandler(this.mButtonModificar_Click);
             // 
-            // mGroupBoxInasistencia
+            // mGroupBoxContrato
             // 
-            this.mGroupBoxInasistencia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.mGroupBoxContrato.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mGroupBoxInasistencia.Controls.Add(this.mLabelCaracteres);
-            this.mGroupBoxInasistencia.Controls.Add(this.mTextBoxMotivo);
-            this.mGroupBoxInasistencia.Controls.Add(this.mLabelMotivo);
-            this.mGroupBoxInasistencia.Controls.Add(this.mDateTimePickerHasta);
-            this.mGroupBoxInasistencia.Controls.Add(this.mLabelHasta);
-            this.mGroupBoxInasistencia.Controls.Add(this.mLabelDesde);
-            this.mGroupBoxInasistencia.Controls.Add(this.mDateTimePickerDesde);
-            this.mGroupBoxInasistencia.Controls.Add(this.shapeContainer1);
-            this.mGroupBoxInasistencia.Location = new System.Drawing.Point(3, 78);
-            this.mGroupBoxInasistencia.Name = "mGroupBoxInasistencia";
-            this.mGroupBoxInasistencia.Size = new System.Drawing.Size(665, 98);
-            this.mGroupBoxInasistencia.TabIndex = 6;
-            this.mGroupBoxInasistencia.TabStop = false;
-            this.mGroupBoxInasistencia.Text = "Contrato";
+            this.mGroupBoxContrato.Controls.Add(this.mLabelObs);
+            this.mGroupBoxContrato.Controls.Add(this.mNumericUpDownHoras);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelHoras);
+            this.mGroupBoxContrato.Controls.Add(this.mComboBoxFuncion);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelFuncion);
+            this.mGroupBoxContrato.Controls.Add(this.mComboBoxEquipo);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelEquipo);
+            this.mGroupBoxContrato.Controls.Add(this.mComboBoxCargo);
+            this.mGroupBoxContrato.Controls.Add(this.mComboBoxCondicion);
+            this.mGroupBoxContrato.Controls.Add(this.label3);
+            this.mGroupBoxContrato.Controls.Add(this.label4);
+            this.mGroupBoxContrato.Controls.Add(this.mComboBoxOrigen);
+            this.mGroupBoxContrato.Controls.Add(this.mTextBoxObs);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelOrigen);
+            this.mGroupBoxContrato.Controls.Add(this.mDateTimePickerBaja);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelBaja);
+            this.mGroupBoxContrato.Controls.Add(this.mLabelInicio);
+            this.mGroupBoxContrato.Controls.Add(this.mDateTimePickerInicio);
+            this.mGroupBoxContrato.Controls.Add(this.shapeContainer1);
+            this.mGroupBoxContrato.Location = new System.Drawing.Point(3, 64);
+            this.mGroupBoxContrato.Name = "mGroupBoxContrato";
+            this.mGroupBoxContrato.Size = new System.Drawing.Size(665, 139);
+            this.mGroupBoxContrato.TabIndex = 6;
+            this.mGroupBoxContrato.TabStop = false;
+            this.mGroupBoxContrato.Text = "Contrato";
             // 
-            // mLabelCaracteres
+            // mTextBoxObs
             // 
-            this.mLabelCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelCaracteres.AutoSize = true;
-            this.mLabelCaracteres.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mLabelCaracteres.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.mLabelCaracteres.Location = new System.Drawing.Point(620, 15);
-            this.mLabelCaracteres.Name = "mLabelCaracteres";
-            this.mLabelCaracteres.Size = new System.Drawing.Size(31, 15);
-            this.mLabelCaracteres.TabIndex = 10;
-            this.mLabelCaracteres.Text = "140";
+            this.mTextBoxObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mTextBoxObs.BackColor = System.Drawing.Color.Honeydew;
+            this.mTextBoxObs.Location = new System.Drawing.Point(436, 106);
+            this.mTextBoxObs.MaxLength = 140;
+            this.mTextBoxObs.Name = "mTextBoxObs";
+            this.mTextBoxObs.Size = new System.Drawing.Size(223, 21);
+            this.mTextBoxObs.TabIndex = 4;
             // 
-            // mTextBoxMotivo
+            // mLabelOrigen
             // 
-            this.mTextBoxMotivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mTextBoxMotivo.BackColor = System.Drawing.Color.Honeydew;
-            this.mTextBoxMotivo.Location = new System.Drawing.Point(358, 33);
-            this.mTextBoxMotivo.MaxLength = 140;
-            this.mTextBoxMotivo.Multiline = true;
-            this.mTextBoxMotivo.Name = "mTextBoxMotivo";
-            this.mTextBoxMotivo.Size = new System.Drawing.Size(290, 54);
-            this.mTextBoxMotivo.TabIndex = 4;
+            this.mLabelOrigen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelOrigen.AutoSize = true;
+            this.mLabelOrigen.Location = new System.Drawing.Point(9, 89);
+            this.mLabelOrigen.Name = "mLabelOrigen";
+            this.mLabelOrigen.Size = new System.Drawing.Size(47, 15);
+            this.mLabelOrigen.TabIndex = 8;
+            this.mLabelOrigen.Text = "Origen:";
             // 
-            // mLabelMotivo
+            // mDateTimePickerBaja
             // 
-            this.mLabelMotivo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelMotivo.AutoSize = true;
-            this.mLabelMotivo.Location = new System.Drawing.Point(306, 30);
-            this.mLabelMotivo.Name = "mLabelMotivo";
-            this.mLabelMotivo.Size = new System.Drawing.Size(46, 15);
-            this.mLabelMotivo.TabIndex = 8;
-            this.mLabelMotivo.Text = "Motivo:";
+            this.mDateTimePickerBaja.Checked = false;
+            this.mDateTimePickerBaja.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.mDateTimePickerBaja.Location = new System.Drawing.Point(66, 56);
+            this.mDateTimePickerBaja.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.mDateTimePickerBaja.Name = "mDateTimePickerBaja";
+            this.mDateTimePickerBaja.ShowCheckBox = true;
+            this.mDateTimePickerBaja.Size = new System.Drawing.Size(99, 21);
+            this.mDateTimePickerBaja.TabIndex = 3;
             // 
-            // mDateTimePickerHasta
+            // mLabelBaja
             // 
-            this.mDateTimePickerHasta.Checked = false;
-            this.mDateTimePickerHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.mDateTimePickerHasta.Location = new System.Drawing.Point(101, 61);
-            this.mDateTimePickerHasta.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.mDateTimePickerHasta.Name = "mDateTimePickerHasta";
-            this.mDateTimePickerHasta.ShowCheckBox = true;
-            this.mDateTimePickerHasta.Size = new System.Drawing.Size(99, 21);
-            this.mDateTimePickerHasta.TabIndex = 3;
+            this.mLabelBaja.AutoSize = true;
+            this.mLabelBaja.Location = new System.Drawing.Point(9, 61);
+            this.mLabelBaja.Name = "mLabelBaja";
+            this.mLabelBaja.Size = new System.Drawing.Size(35, 15);
+            this.mLabelBaja.TabIndex = 2;
+            this.mLabelBaja.Text = "Baja:";
             // 
-            // mLabelHasta
+            // mLabelInicio
             // 
-            this.mLabelHasta.AutoSize = true;
-            this.mLabelHasta.Location = new System.Drawing.Point(34, 66);
-            this.mLabelHasta.Name = "mLabelHasta";
-            this.mLabelHasta.Size = new System.Drawing.Size(42, 15);
-            this.mLabelHasta.TabIndex = 2;
-            this.mLabelHasta.Text = "Hasta:";
+            this.mLabelInicio.AutoSize = true;
+            this.mLabelInicio.Location = new System.Drawing.Point(9, 25);
+            this.mLabelInicio.Name = "mLabelInicio";
+            this.mLabelInicio.Size = new System.Drawing.Size(39, 15);
+            this.mLabelInicio.TabIndex = 0;
+            this.mLabelInicio.Text = "Inicio:";
             // 
-            // mLabelDesde
+            // mDateTimePickerInicio
             // 
-            this.mLabelDesde.AutoSize = true;
-            this.mLabelDesde.Location = new System.Drawing.Point(34, 30);
-            this.mLabelDesde.Name = "mLabelDesde";
-            this.mLabelDesde.Size = new System.Drawing.Size(46, 15);
-            this.mLabelDesde.TabIndex = 0;
-            this.mLabelDesde.Text = "Desde:";
-            // 
-            // mDateTimePickerDesde
-            // 
-            this.mDateTimePickerDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.mDateTimePickerDesde.Location = new System.Drawing.Point(101, 25);
-            this.mDateTimePickerDesde.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.mDateTimePickerDesde.Name = "mDateTimePickerDesde";
-            this.mDateTimePickerDesde.Size = new System.Drawing.Size(99, 21);
-            this.mDateTimePickerDesde.TabIndex = 1;
+            this.mDateTimePickerInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.mDateTimePickerInicio.Location = new System.Drawing.Point(66, 20);
+            this.mDateTimePickerInicio.MinDate = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.mDateTimePickerInicio.Name = "mDateTimePickerInicio";
+            this.mDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
+            this.mDateTimePickerInicio.TabIndex = 1;
             // 
             // shapeContainer1
             // 
@@ -969,7 +971,7 @@
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.rectangleShape3,
             this.rectangleShape4});
-            this.shapeContainer1.Size = new System.Drawing.Size(659, 78);
+            this.shapeContainer1.Size = new System.Drawing.Size(659, 119);
             this.shapeContainer1.TabIndex = 11;
             this.shapeContainer1.TabStop = false;
             // 
@@ -978,7 +980,7 @@
             this.rectangleShape3.BackColor = System.Drawing.Color.Transparent;
             this.rectangleShape3.BorderColor = System.Drawing.Color.Aquamarine;
             this.rectangleShape3.BorderWidth = 3;
-            this.rectangleShape3.Location = new System.Drawing.Point(96, 42);
+            this.rectangleShape3.Location = new System.Drawing.Point(62, 37);
             this.rectangleShape3.Name = "rectangleShape2";
             this.rectangleShape3.Size = new System.Drawing.Size(102, 24);
             // 
@@ -987,9 +989,15 @@
             this.rectangleShape4.BackColor = System.Drawing.Color.Transparent;
             this.rectangleShape4.BorderColor = System.Drawing.Color.MistyRose;
             this.rectangleShape4.BorderWidth = 3;
-            this.rectangleShape4.Location = new System.Drawing.Point(96, 6);
+            this.rectangleShape4.Location = new System.Drawing.Point(62, 1);
             this.rectangleShape4.Name = "rectangleShape1";
             this.rectangleShape4.Size = new System.Drawing.Size(102, 24);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Personas";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Personas";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             // 
             // Id
             // 
@@ -1004,18 +1012,26 @@
             this.PersonaId.HeaderText = "PersonaId";
             this.PersonaId.Name = "PersonaId";
             this.PersonaId.ReadOnly = true;
+            this.PersonaId.Visible = false;
+            // 
+            // Personas
+            // 
+            this.Personas.DataPropertyName = "Personas";
+            this.Personas.HeaderText = "Personas";
+            this.Personas.Name = "Personas";
+            this.Personas.ReadOnly = true;
             // 
             // FechaInicio
             // 
             this.FechaInicio.DataPropertyName = "FechaInicio";
-            this.FechaInicio.HeaderText = "FechaInicio";
+            this.FechaInicio.HeaderText = "Fecha Inicio";
             this.FechaInicio.Name = "FechaInicio";
             this.FechaInicio.ReadOnly = true;
             // 
             // FechaBaja
             // 
             this.FechaBaja.DataPropertyName = "FechaBaja";
-            this.FechaBaja.HeaderText = "FechaBaja";
+            this.FechaBaja.HeaderText = "Fecha Baja";
             this.FechaBaja.Name = "FechaBaja";
             this.FechaBaja.ReadOnly = true;
             // 
@@ -1029,110 +1045,30 @@
             // CargoId
             // 
             this.CargoId.DataPropertyName = "CargoId";
-            this.CargoId.HeaderText = "CargoId";
+            this.CargoId.HeaderText = "Cargo";
             this.CargoId.Name = "CargoId";
             this.CargoId.ReadOnly = true;
             // 
             // CondicionId
             // 
             this.CondicionId.DataPropertyName = "CondicionId";
-            this.CondicionId.HeaderText = "CondicionId";
+            this.CondicionId.HeaderText = "Condicion";
             this.CondicionId.Name = "CondicionId";
             this.CondicionId.ReadOnly = true;
             // 
             // FuncionId
             // 
             this.FuncionId.DataPropertyName = "FuncionId";
-            this.FuncionId.HeaderText = "FuncionId";
+            this.FuncionId.HeaderText = "Funcion";
             this.FuncionId.Name = "FuncionId";
             this.FuncionId.ReadOnly = true;
             // 
             // EquipoId
             // 
             this.EquipoId.DataPropertyName = "EquipoId";
-            this.EquipoId.HeaderText = "EquipoId";
+            this.EquipoId.HeaderText = "Equipo";
             this.EquipoId.Name = "EquipoId";
             this.EquipoId.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Personas";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Personas";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // Personas
-            // 
-            this.Personas.DataPropertyName = "Personas";
-            this.Personas.HeaderText = "Personas";
-            this.Personas.Name = "Personas";
-            this.Personas.ReadOnly = true;
-            // 
-            // entityDataSource
-            // 
-            this.entityDataSource.ObjectContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // personaIdDataGridViewTextBoxColumn
-            // 
-            this.personaIdDataGridViewTextBoxColumn.DataPropertyName = "PersonaId";
-            this.personaIdDataGridViewTextBoxColumn.HeaderText = "PersonaId";
-            this.personaIdDataGridViewTextBoxColumn.Name = "personaIdDataGridViewTextBoxColumn";
-            this.personaIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaInicioDataGridViewTextBoxColumn
-            // 
-            this.fechaInicioDataGridViewTextBoxColumn.DataPropertyName = "FechaInicio";
-            this.fechaInicioDataGridViewTextBoxColumn.HeaderText = "FechaInicio";
-            this.fechaInicioDataGridViewTextBoxColumn.Name = "fechaInicioDataGridViewTextBoxColumn";
-            this.fechaInicioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaBajaDataGridViewTextBoxColumn
-            // 
-            this.fechaBajaDataGridViewTextBoxColumn.DataPropertyName = "FechaBaja";
-            this.fechaBajaDataGridViewTextBoxColumn.HeaderText = "FechaBaja";
-            this.fechaBajaDataGridViewTextBoxColumn.Name = "fechaBajaDataGridViewTextBoxColumn";
-            this.fechaBajaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // origenDataGridViewTextBoxColumn
-            // 
-            this.origenDataGridViewTextBoxColumn.DataPropertyName = "Origen";
-            this.origenDataGridViewTextBoxColumn.HeaderText = "Origen";
-            this.origenDataGridViewTextBoxColumn.Name = "origenDataGridViewTextBoxColumn";
-            this.origenDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cargoIdDataGridViewTextBoxColumn
-            // 
-            this.cargoIdDataGridViewTextBoxColumn.DataPropertyName = "CargoId";
-            this.cargoIdDataGridViewTextBoxColumn.HeaderText = "CargoId";
-            this.cargoIdDataGridViewTextBoxColumn.Name = "cargoIdDataGridViewTextBoxColumn";
-            this.cargoIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // condicionIdDataGridViewTextBoxColumn
-            // 
-            this.condicionIdDataGridViewTextBoxColumn.DataPropertyName = "CondicionId";
-            this.condicionIdDataGridViewTextBoxColumn.HeaderText = "CondicionId";
-            this.condicionIdDataGridViewTextBoxColumn.Name = "condicionIdDataGridViewTextBoxColumn";
-            this.condicionIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // funcionIdDataGridViewTextBoxColumn
-            // 
-            this.funcionIdDataGridViewTextBoxColumn.DataPropertyName = "FuncionId";
-            this.funcionIdDataGridViewTextBoxColumn.HeaderText = "FuncionId";
-            this.funcionIdDataGridViewTextBoxColumn.Name = "funcionIdDataGridViewTextBoxColumn";
-            this.funcionIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // equipoIdDataGridViewTextBoxColumn
-            // 
-            this.equipoIdDataGridViewTextBoxColumn.DataPropertyName = "EquipoId";
-            this.equipoIdDataGridViewTextBoxColumn.HeaderText = "EquipoId";
-            this.equipoIdDataGridViewTextBoxColumn.Name = "equipoIdDataGridViewTextBoxColumn";
-            this.equipoIdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // horasDataGridViewTextBoxColumn
             // 
@@ -1148,73 +1084,148 @@
             this.observacionDataGridViewTextBoxColumn.Name = "observacionDataGridViewTextBoxColumn";
             this.observacionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // equiposDataGridViewTextBoxColumn
+            // mComboBoxOrigen
             // 
-            this.equiposDataGridViewTextBoxColumn.DataPropertyName = "Equipos";
-            this.equiposDataGridViewTextBoxColumn.HeaderText = "Equipos";
-            this.equiposDataGridViewTextBoxColumn.Name = "equiposDataGridViewTextBoxColumn";
-            this.equiposDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mComboBoxOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.mComboBoxOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxOrigen.BackColor = System.Drawing.Color.Honeydew;
+            this.mComboBoxOrigen.FormattingEnabled = true;
+            this.mComboBoxOrigen.Items.AddRange(new object[] {
+            "Ministerio de Educación",
+            "Ministerio de Salud",
+            "Ministerio de Infraestructura"});
+            this.mComboBoxOrigen.Location = new System.Drawing.Point(62, 86);
+            this.mComboBoxOrigen.Name = "mComboBoxOrigen";
+            this.mComboBoxOrigen.Size = new System.Drawing.Size(270, 23);
+            this.mComboBoxOrigen.TabIndex = 12;
             // 
-            // equiposReferenceDataGridViewTextBoxColumn
+            // mComboBoxCargo
             // 
-            this.equiposReferenceDataGridViewTextBoxColumn.DataPropertyName = "EquiposReference";
-            this.equiposReferenceDataGridViewTextBoxColumn.HeaderText = "EquiposReference";
-            this.equiposReferenceDataGridViewTextBoxColumn.Name = "equiposReferenceDataGridViewTextBoxColumn";
-            this.equiposReferenceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mComboBoxCargo.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxCargo.FormattingEnabled = true;
+            this.mComboBoxCargo.Location = new System.Drawing.Point(253, 20);
+            this.mComboBoxCargo.Name = "mComboBoxCargo";
+            this.mComboBoxCargo.Size = new System.Drawing.Size(79, 23);
+            this.mComboBoxCargo.TabIndex = 14;
+            this.mComboBoxCargo.SelectedIndexChanged += new System.EventHandler(this.mComboBoxCargo_SelectedIndexChanged);
             // 
-            // funcionesDataGridViewTextBoxColumn
+            // mComboBoxCondicion
             // 
-            this.funcionesDataGridViewTextBoxColumn.DataPropertyName = "Funciones";
-            this.funcionesDataGridViewTextBoxColumn.HeaderText = "Funciones";
-            this.funcionesDataGridViewTextBoxColumn.Name = "funcionesDataGridViewTextBoxColumn";
-            this.funcionesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mComboBoxCondicion.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxCondicion.FormattingEnabled = true;
+            this.mComboBoxCondicion.Location = new System.Drawing.Point(253, 58);
+            this.mComboBoxCondicion.Name = "mComboBoxCondicion";
+            this.mComboBoxCondicion.Size = new System.Drawing.Size(79, 23);
+            this.mComboBoxCondicion.TabIndex = 16;
             // 
-            // funcionesReferenceDataGridViewTextBoxColumn
+            // label3
             // 
-            this.funcionesReferenceDataGridViewTextBoxColumn.DataPropertyName = "FuncionesReference";
-            this.funcionesReferenceDataGridViewTextBoxColumn.HeaderText = "FuncionesReference";
-            this.funcionesReferenceDataGridViewTextBoxColumn.Name = "funcionesReferenceDataGridViewTextBoxColumn";
-            this.funcionesReferenceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(182, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 15);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Cargo:";
             // 
-            // personasDataGridViewTextBoxColumn
+            // label4
             // 
-            this.personasDataGridViewTextBoxColumn.DataPropertyName = "Personas";
-            this.personasDataGridViewTextBoxColumn.HeaderText = "Personas";
-            this.personasDataGridViewTextBoxColumn.Name = "personasDataGridViewTextBoxColumn";
-            this.personasDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(182, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Condición:";
             // 
-            // personasReferenceDataGridViewTextBoxColumn
+            // mComboBoxFuncion
             // 
-            this.personasReferenceDataGridViewTextBoxColumn.DataPropertyName = "PersonasReference";
-            this.personasReferenceDataGridViewTextBoxColumn.HeaderText = "PersonasReference";
-            this.personasReferenceDataGridViewTextBoxColumn.Name = "personasReferenceDataGridViewTextBoxColumn";
-            this.personasReferenceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mComboBoxFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBoxFuncion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxFuncion.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxFuncion.DisplayMember = "Funciones.Id";
+            this.mComboBoxFuncion.FormattingEnabled = true;
+            this.mComboBoxFuncion.Location = new System.Drawing.Point(436, 50);
+            this.mComboBoxFuncion.Name = "mComboBoxFuncion";
+            this.mComboBoxFuncion.Size = new System.Drawing.Size(157, 23);
+            this.mComboBoxFuncion.TabIndex = 20;
+            this.mComboBoxFuncion.ValueMember = "Funciones.Id";
             // 
-            // situacionesProfesionalesDataGridViewTextBoxColumn
+            // mLabelFuncion
             // 
-            this.situacionesProfesionalesDataGridViewTextBoxColumn.DataPropertyName = "SituacionesProfesionales";
-            this.situacionesProfesionalesDataGridViewTextBoxColumn.HeaderText = "SituacionesProfesionales";
-            this.situacionesProfesionalesDataGridViewTextBoxColumn.Name = "situacionesProfesionalesDataGridViewTextBoxColumn";
-            this.situacionesProfesionalesDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mLabelFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelFuncion.AutoSize = true;
+            this.mLabelFuncion.Location = new System.Drawing.Point(376, 50);
+            this.mLabelFuncion.Name = "mLabelFuncion";
+            this.mLabelFuncion.Size = new System.Drawing.Size(54, 15);
+            this.mLabelFuncion.TabIndex = 19;
+            this.mLabelFuncion.Text = "Función:";
             // 
-            // situacionesProfesionalesReferenceDataGridViewTextBoxColumn
+            // mComboBoxEquipo
             // 
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn.DataPropertyName = "SituacionesProfesionalesReference";
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn.HeaderText = "SituacionesProfesionalesReference";
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn.Name = "situacionesProfesionalesReferenceDataGridViewTextBoxColumn";
-            this.situacionesProfesionalesReferenceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mComboBoxEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBoxEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxEquipo.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxEquipo.DisplayMember = "Equipos.Id";
+            this.mComboBoxEquipo.FormattingEnabled = true;
+            this.mComboBoxEquipo.Location = new System.Drawing.Point(436, 20);
+            this.mComboBoxEquipo.Name = "mComboBoxEquipo";
+            this.mComboBoxEquipo.Size = new System.Drawing.Size(157, 23);
+            this.mComboBoxEquipo.TabIndex = 18;
+            this.mComboBoxEquipo.ValueMember = "Equipos.Id";
             // 
-            // toolStripButtonActivos
+            // mLabelEquipo
             // 
-            this.toolStripButtonActivos.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripButtonActivos.CheckOnClick = true;
-            this.toolStripButtonActivos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonActivos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonActivos.Image")));
-            this.toolStripButtonActivos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonActivos.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
-            this.toolStripButtonActivos.Name = "toolStripButtonActivos";
-            this.toolStripButtonActivos.Size = new System.Drawing.Size(50, 22);
-            this.toolStripButtonActivos.Text = "Activos";
+            this.mLabelEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelEquipo.AutoSize = true;
+            this.mLabelEquipo.Location = new System.Drawing.Point(381, 23);
+            this.mLabelEquipo.Name = "mLabelEquipo";
+            this.mLabelEquipo.Size = new System.Drawing.Size(49, 15);
+            this.mLabelEquipo.TabIndex = 17;
+            this.mLabelEquipo.Text = "Equipo:";
+            // 
+            // mNumericUpDownHoras
+            // 
+            this.mNumericUpDownHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNumericUpDownHoras.BackColor = System.Drawing.Color.MistyRose;
+            this.mNumericUpDownHoras.Location = new System.Drawing.Point(436, 79);
+            this.mNumericUpDownHoras.Maximum = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            this.mNumericUpDownHoras.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.mNumericUpDownHoras.Name = "mNumericUpDownHoras";
+            this.mNumericUpDownHoras.Size = new System.Drawing.Size(68, 21);
+            this.mNumericUpDownHoras.TabIndex = 22;
+            this.mNumericUpDownHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mNumericUpDownHoras.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // mLabelHoras
+            // 
+            this.mLabelHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelHoras.AutoSize = true;
+            this.mLabelHoras.Location = new System.Drawing.Point(387, 81);
+            this.mLabelHoras.Name = "mLabelHoras";
+            this.mLabelHoras.Size = new System.Drawing.Size(43, 15);
+            this.mLabelHoras.TabIndex = 21;
+            this.mLabelHoras.Text = "Horas:";
+            // 
+            // mLabelObs
+            // 
+            this.mLabelObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelObs.AutoSize = true;
+            this.mLabelObs.Location = new System.Drawing.Point(352, 109);
+            this.mLabelObs.Name = "mLabelObs";
+            this.mLabelObs.Size = new System.Drawing.Size(78, 15);
+            this.mLabelObs.TabIndex = 23;
+            this.mLabelObs.Text = "Observación:";
             // 
             // pContratos
             // 
@@ -1247,8 +1258,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewContratos)).EndInit();
             this.mGroupBoxPersona.ResumeLayout(false);
             this.mGroupBoxPersona.PerformLayout();
-            this.mGroupBoxInasistencia.ResumeLayout(false);
-            this.mGroupBoxInasistencia.PerformLayout();
+            this.mGroupBoxContrato.ResumeLayout(false);
+            this.mGroupBoxContrato.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mNumericUpDownHoras)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1304,6 +1316,27 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonFiltrar;
         private System.Windows.Forms.ToolStripButton toolStripButtonLimpiar;
         private System.Windows.Forms.DataGridView mDataGridViewContratos;
+        private EFWinforms.EntityDataSource entityDataSource;
+        internal System.Windows.Forms.Button mButtonEliminar;
+        internal System.Windows.Forms.Button mButtonCancelar;
+        private System.Windows.Forms.GroupBox mGroupBoxPersona;
+        private System.Windows.Forms.TextBox mTextBoxNombre;
+        private System.Windows.Forms.Label mLabelNombre;
+        private System.Windows.Forms.MaskedTextBox mMaskedTextBoxDNI;
+        private System.Windows.Forms.Label mLabelDNI;
+        internal System.Windows.Forms.Button mButtonModificar;
+        private System.Windows.Forms.GroupBox mGroupBoxContrato;
+        private System.Windows.Forms.TextBox mTextBoxObs;
+        private System.Windows.Forms.Label mLabelOrigen;
+        private System.Windows.Forms.DateTimePicker mDateTimePickerBaja;
+        private System.Windows.Forms.Label mLabelBaja;
+        private System.Windows.Forms.Label mLabelInicio;
+        private System.Windows.Forms.DateTimePicker mDateTimePickerInicio;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
+        private System.Windows.Forms.ToolStripButton toolStripButtonActivos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Personas;
@@ -1314,46 +1347,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CondicionId;
         private System.Windows.Forms.DataGridViewTextBoxColumn FuncionId;
         private System.Windows.Forms.DataGridViewTextBoxColumn EquipoId;
-        private EFWinforms.EntityDataSource entityDataSource;
-        internal System.Windows.Forms.Button mButtonEliminar;
-        internal System.Windows.Forms.Button mButtonCancelar;
-        private System.Windows.Forms.GroupBox mGroupBoxPersona;
-        private System.Windows.Forms.TextBox mTextBoxNombre;
-        private System.Windows.Forms.Label mLabelNombre;
-        private System.Windows.Forms.MaskedTextBox mMaskedTextBoxDNI;
-        private System.Windows.Forms.Label mLabelDNI;
-        internal System.Windows.Forms.Button mButtonModificar;
-        private System.Windows.Forms.GroupBox mGroupBoxInasistencia;
-        private System.Windows.Forms.Label mLabelCaracteres;
-        private System.Windows.Forms.TextBox mTextBoxMotivo;
-        private System.Windows.Forms.Label mLabelMotivo;
-        private System.Windows.Forms.DateTimePicker mDateTimePickerHasta;
-        private System.Windows.Forms.Label mLabelHasta;
-        private System.Windows.Forms.Label mLabelDesde;
-        private System.Windows.Forms.DateTimePicker mDateTimePickerDesde;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
-        private System.Windows.Forms.ToolStripButton toolStripButtonActivos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn personaIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaInicioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fechaBajaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn origenDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cargoIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn condicionIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn funcionIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn equipoIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn horasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn observacionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn equiposDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn equiposReferenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn funcionesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn funcionesReferenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn personasDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn personasReferenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn situacionesProfesionalesDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn situacionesProfesionalesReferenceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.ComboBox mComboBoxOrigen;
+        private System.Windows.Forms.Label mLabelObs;
+        private System.Windows.Forms.NumericUpDown mNumericUpDownHoras;
+        private System.Windows.Forms.Label mLabelHoras;
+        private System.Windows.Forms.ComboBox mComboBoxFuncion;
+        private System.Windows.Forms.Label mLabelFuncion;
+        private System.Windows.Forms.ComboBox mComboBoxEquipo;
+        private System.Windows.Forms.Label mLabelEquipo;
+        private System.Windows.Forms.ComboBox mComboBoxCargo;
+        private System.Windows.Forms.ComboBox mComboBoxCondicion;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
