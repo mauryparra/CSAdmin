@@ -49,7 +49,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EFWinforms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="EFWinforms">
+      <HintPath>.\EFWinforms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
@@ -106,6 +109,12 @@
     <Compile Include="Pantallas\pAsistencia.Designer.cs">
       <DependentUpon>pAsistencia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas\passwordPrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas\passwordPrompt.Designer.cs">
+      <DependentUpon>passwordPrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas\pContratos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pAsistencia.resx">
       <DependentUpon>pAsistencia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas\passwordPrompt.resx">
+      <DependentUpon>passwordPrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas\pContratos.resx">
       <DependentUpon>pContratos.cs</DependentUpon>
