@@ -476,11 +476,22 @@ namespace CSAdminApp.Pantallas
                             if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
                             {
                                 aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
-                                ObjectQuery<Contratos> ContratosQF =
-                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
-                                ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                var bindinglist = entityDataSource.CreateView(ContratosQF);
-                                mDataGridViewContratos.DataSource = bindinglist;
+                                if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                                {
+                                    ObjectQuery<Contratos> ContratosQF =
+                                        Main.BDContext.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
+                                    ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(ContratosQF);
+                                    mDataGridViewContratos.DataSource = bindinglist;
+                                }
+                                else
+                                {
+                                    ObjectQuery<Contratos> ContratosQF =
+                                        Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
+                                    ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(ContratosQF);
+                                    mDataGridViewContratos.DataSource = bindinglist;
+                                }
                             }
                             else
                             {
@@ -496,11 +507,23 @@ namespace CSAdminApp.Pantallas
                             if (personaQF.Any())
                             {
                                 aux[1] = personaQF.First().Id;
-                                ObjectQuery<Contratos> contratosQF =
+                                if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                                {
+                                    ObjectQuery<Contratos> contratosQF =
+                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
+                                    contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(contratosQF);
+                                    mDataGridViewContratos.DataSource = bindinglist;
+                                }
+                                else
+                                {
+                                    ObjectQuery<Contratos> contratosQF =
                                     Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
-                                contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                var bindinglist = entityDataSource.CreateView(contratosQF);
-                                mDataGridViewContratos.DataSource = bindinglist;
+                                    contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(contratosQF);
+                                    mDataGridViewContratos.DataSource = bindinglist;
+                                }
+                                
                             }
                             else
                             {
@@ -531,14 +554,16 @@ namespace CSAdminApp.Pantallas
         {
             if (toolStripButtonActivos.Checked)
             {
-                toolStripButtonActivos.Text = "Todos";
-                toolStripButtonActivos.BackColor = Color.MistyRose;
+                ObjectQuery<Contratos> contratosQ =
+                                    Main.BDContext.Contratos.Where("it.FechaBaja IS NULL");
+                mDataGridViewContratos.DataSource = entityDataSource.CreateView(contratosQ);
             }
             else
             {
-                toolStripButtonActivos.Text = "Activos";
-                toolStripButtonActivos.BackColor = Color.MediumTurquoise;
+                mDataGridViewContratos.DataSource = entityDataSource;
+                mDataGridViewContratos.DataMember = "Contratos";
             }
+            
         }
 #endregion
     }
