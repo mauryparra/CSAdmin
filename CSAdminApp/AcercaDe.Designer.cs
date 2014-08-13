@@ -117,6 +117,7 @@ namespace CSAdminApp
             this.mainPicture.Location = new System.Drawing.Point(23, 76);
             this.mainPicture.Name = "mainPicture";
             this.mainPicture.Size = new System.Drawing.Size(128, 128);
+            this.mainPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mainPicture.TabIndex = 6;
             this.mainPicture.TabStop = false;
             // 

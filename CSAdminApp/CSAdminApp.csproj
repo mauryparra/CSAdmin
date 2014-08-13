@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CSAdmin.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EFWinforms">
       <HintPath>.\EFWinforms.dll</HintPath>
@@ -180,6 +183,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EntityDeploy Include="Clases\ModelBD.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -199,6 +203,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="CSAdmin.ico" />
     <Content Include="CSAdminBD.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

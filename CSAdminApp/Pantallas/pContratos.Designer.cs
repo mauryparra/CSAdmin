@@ -80,26 +80,6 @@
             this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonActivos = new System.Windows.Forms.ToolStripButton();
             this.mDataGridViewContratos = new System.Windows.Forms.DataGridView();
-            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
-            this.mButtonEliminar = new System.Windows.Forms.Button();
-            this.mButtonCancelar = new System.Windows.Forms.Button();
-            this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
-            this.mTextBoxNombre = new System.Windows.Forms.TextBox();
-            this.mLabelNombre = new System.Windows.Forms.Label();
-            this.mMaskedTextBoxDNI = new System.Windows.Forms.MaskedTextBox();
-            this.mLabelDNI = new System.Windows.Forms.Label();
-            this.mButtonModificar = new System.Windows.Forms.Button();
-            this.mGroupBoxContrato = new System.Windows.Forms.GroupBox();
-            this.mTextBoxObs = new System.Windows.Forms.TextBox();
-            this.mLabelOrigen = new System.Windows.Forms.Label();
-            this.mDateTimePickerBaja = new System.Windows.Forms.DateTimePicker();
-            this.mLabelBaja = new System.Windows.Forms.Label();
-            this.mLabelInicio = new System.Windows.Forms.Label();
-            this.mDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,18 +92,38 @@
             this.EquipoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mComboBoxOrigen = new System.Windows.Forms.ComboBox();
-            this.mComboBoxCargo = new System.Windows.Forms.ComboBox();
-            this.mComboBoxCondicion = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
+            this.mButtonEliminar = new System.Windows.Forms.Button();
+            this.mButtonCancelar = new System.Windows.Forms.Button();
+            this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
+            this.mTextBoxNombre = new System.Windows.Forms.TextBox();
+            this.mLabelNombre = new System.Windows.Forms.Label();
+            this.mMaskedTextBoxDNI = new System.Windows.Forms.MaskedTextBox();
+            this.mLabelDNI = new System.Windows.Forms.Label();
+            this.mButtonModificar = new System.Windows.Forms.Button();
+            this.mGroupBoxContrato = new System.Windows.Forms.GroupBox();
+            this.mLabelObs = new System.Windows.Forms.Label();
+            this.mNumericUpDownHoras = new System.Windows.Forms.NumericUpDown();
+            this.mLabelHoras = new System.Windows.Forms.Label();
             this.mComboBoxFuncion = new System.Windows.Forms.ComboBox();
             this.mLabelFuncion = new System.Windows.Forms.Label();
             this.mComboBoxEquipo = new System.Windows.Forms.ComboBox();
             this.mLabelEquipo = new System.Windows.Forms.Label();
-            this.mNumericUpDownHoras = new System.Windows.Forms.NumericUpDown();
-            this.mLabelHoras = new System.Windows.Forms.Label();
-            this.mLabelObs = new System.Windows.Forms.Label();
+            this.mComboBoxCargo = new System.Windows.Forms.ComboBox();
+            this.mComboBoxCondicion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mComboBoxOrigen = new System.Windows.Forms.ComboBox();
+            this.mTextBoxObs = new System.Windows.Forms.TextBox();
+            this.mLabelOrigen = new System.Windows.Forms.Label();
+            this.mDateTimePickerBaja = new System.Windows.Forms.DateTimePicker();
+            this.mLabelBaja = new System.Windows.Forms.Label();
+            this.mLabelInicio = new System.Windows.Forms.Label();
+            this.mDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             this.aGroupBoxContrato.SuspendLayout();
@@ -721,17 +721,15 @@
             // 
             // toolStripButtonActivos
             // 
-            this.toolStripButtonActivos.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripButtonActivos.Checked = true;
+            this.toolStripButtonActivos.BackColor = System.Drawing.Color.Transparent;
             this.toolStripButtonActivos.CheckOnClick = true;
-            this.toolStripButtonActivos.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripButtonActivos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonActivos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonActivos.Image")));
             this.toolStripButtonActivos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonActivos.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
             this.toolStripButtonActivos.Name = "toolStripButtonActivos";
-            this.toolStripButtonActivos.Size = new System.Drawing.Size(44, 22);
-            this.toolStripButtonActivos.Text = "Todos";
+            this.toolStripButtonActivos.Size = new System.Drawing.Size(50, 22);
+            this.toolStripButtonActivos.Text = "Activos";
             this.toolStripButtonActivos.CheckedChanged += new System.EventHandler(this.toolStripButtonActivos_CheckedChanged);
             // 
             // mDataGridViewContratos
@@ -765,6 +763,91 @@
             this.mDataGridViewContratos.Size = new System.Drawing.Size(671, 138);
             this.mDataGridViewContratos.TabIndex = 2;
             this.mDataGridViewContratos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewContratos_CellMouseDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // PersonaId
+            // 
+            this.PersonaId.DataPropertyName = "PersonaId";
+            this.PersonaId.HeaderText = "PersonaId";
+            this.PersonaId.Name = "PersonaId";
+            this.PersonaId.ReadOnly = true;
+            this.PersonaId.Visible = false;
+            // 
+            // Personas
+            // 
+            this.Personas.DataPropertyName = "Personas";
+            this.Personas.HeaderText = "Personas";
+            this.Personas.Name = "Personas";
+            this.Personas.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.DataPropertyName = "FechaInicio";
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaBaja
+            // 
+            this.FechaBaja.DataPropertyName = "FechaBaja";
+            this.FechaBaja.HeaderText = "Fecha Baja";
+            this.FechaBaja.Name = "FechaBaja";
+            this.FechaBaja.ReadOnly = true;
+            // 
+            // Origen
+            // 
+            this.Origen.DataPropertyName = "Origen";
+            this.Origen.HeaderText = "Origen";
+            this.Origen.Name = "Origen";
+            this.Origen.ReadOnly = true;
+            // 
+            // CargoId
+            // 
+            this.CargoId.DataPropertyName = "CargoId";
+            this.CargoId.HeaderText = "Cargo";
+            this.CargoId.Name = "CargoId";
+            this.CargoId.ReadOnly = true;
+            // 
+            // CondicionId
+            // 
+            this.CondicionId.DataPropertyName = "CondicionId";
+            this.CondicionId.HeaderText = "Condicion";
+            this.CondicionId.Name = "CondicionId";
+            this.CondicionId.ReadOnly = true;
+            // 
+            // FuncionId
+            // 
+            this.FuncionId.DataPropertyName = "FuncionId";
+            this.FuncionId.HeaderText = "Funcion";
+            this.FuncionId.Name = "FuncionId";
+            this.FuncionId.ReadOnly = true;
+            // 
+            // EquipoId
+            // 
+            this.EquipoId.DataPropertyName = "EquipoId";
+            this.EquipoId.HeaderText = "Equipo";
+            this.EquipoId.Name = "EquipoId";
+            this.EquipoId.ReadOnly = true;
+            // 
+            // horasDataGridViewTextBoxColumn
+            // 
+            this.horasDataGridViewTextBoxColumn.DataPropertyName = "Horas";
+            this.horasDataGridViewTextBoxColumn.HeaderText = "Horas";
+            this.horasDataGridViewTextBoxColumn.Name = "horasDataGridViewTextBoxColumn";
+            this.horasDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // observacionDataGridViewTextBoxColumn
+            // 
+            this.observacionDataGridViewTextBoxColumn.DataPropertyName = "Observacion";
+            this.observacionDataGridViewTextBoxColumn.HeaderText = "Observacion";
+            this.observacionDataGridViewTextBoxColumn.Name = "observacionDataGridViewTextBoxColumn";
+            this.observacionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // entityDataSource
             // 
@@ -905,6 +988,149 @@
             this.mGroupBoxContrato.TabStop = false;
             this.mGroupBoxContrato.Text = "Contrato";
             // 
+            // mLabelObs
+            // 
+            this.mLabelObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelObs.AutoSize = true;
+            this.mLabelObs.Location = new System.Drawing.Point(352, 109);
+            this.mLabelObs.Name = "mLabelObs";
+            this.mLabelObs.Size = new System.Drawing.Size(78, 15);
+            this.mLabelObs.TabIndex = 23;
+            this.mLabelObs.Text = "Observación:";
+            // 
+            // mNumericUpDownHoras
+            // 
+            this.mNumericUpDownHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mNumericUpDownHoras.BackColor = System.Drawing.Color.MistyRose;
+            this.mNumericUpDownHoras.Location = new System.Drawing.Point(436, 79);
+            this.mNumericUpDownHoras.Maximum = new decimal(new int[] {
+            45,
+            0,
+            0,
+            0});
+            this.mNumericUpDownHoras.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.mNumericUpDownHoras.Name = "mNumericUpDownHoras";
+            this.mNumericUpDownHoras.Size = new System.Drawing.Size(68, 21);
+            this.mNumericUpDownHoras.TabIndex = 22;
+            this.mNumericUpDownHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mNumericUpDownHoras.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            // 
+            // mLabelHoras
+            // 
+            this.mLabelHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelHoras.AutoSize = true;
+            this.mLabelHoras.Location = new System.Drawing.Point(387, 81);
+            this.mLabelHoras.Name = "mLabelHoras";
+            this.mLabelHoras.Size = new System.Drawing.Size(43, 15);
+            this.mLabelHoras.TabIndex = 21;
+            this.mLabelHoras.Text = "Horas:";
+            // 
+            // mComboBoxFuncion
+            // 
+            this.mComboBoxFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBoxFuncion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxFuncion.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxFuncion.DisplayMember = "Funciones.Id";
+            this.mComboBoxFuncion.FormattingEnabled = true;
+            this.mComboBoxFuncion.Location = new System.Drawing.Point(436, 50);
+            this.mComboBoxFuncion.Name = "mComboBoxFuncion";
+            this.mComboBoxFuncion.Size = new System.Drawing.Size(157, 23);
+            this.mComboBoxFuncion.TabIndex = 20;
+            this.mComboBoxFuncion.ValueMember = "Funciones.Id";
+            // 
+            // mLabelFuncion
+            // 
+            this.mLabelFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelFuncion.AutoSize = true;
+            this.mLabelFuncion.Location = new System.Drawing.Point(376, 50);
+            this.mLabelFuncion.Name = "mLabelFuncion";
+            this.mLabelFuncion.Size = new System.Drawing.Size(54, 15);
+            this.mLabelFuncion.TabIndex = 19;
+            this.mLabelFuncion.Text = "Función:";
+            // 
+            // mComboBoxEquipo
+            // 
+            this.mComboBoxEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mComboBoxEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxEquipo.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxEquipo.DisplayMember = "Equipos.Id";
+            this.mComboBoxEquipo.FormattingEnabled = true;
+            this.mComboBoxEquipo.Location = new System.Drawing.Point(436, 20);
+            this.mComboBoxEquipo.Name = "mComboBoxEquipo";
+            this.mComboBoxEquipo.Size = new System.Drawing.Size(157, 23);
+            this.mComboBoxEquipo.TabIndex = 18;
+            this.mComboBoxEquipo.ValueMember = "Equipos.Id";
+            // 
+            // mLabelEquipo
+            // 
+            this.mLabelEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.mLabelEquipo.AutoSize = true;
+            this.mLabelEquipo.Location = new System.Drawing.Point(381, 23);
+            this.mLabelEquipo.Name = "mLabelEquipo";
+            this.mLabelEquipo.Size = new System.Drawing.Size(49, 15);
+            this.mLabelEquipo.TabIndex = 17;
+            this.mLabelEquipo.Text = "Equipo:";
+            // 
+            // mComboBoxCargo
+            // 
+            this.mComboBoxCargo.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxCargo.FormattingEnabled = true;
+            this.mComboBoxCargo.Location = new System.Drawing.Point(253, 20);
+            this.mComboBoxCargo.Name = "mComboBoxCargo";
+            this.mComboBoxCargo.Size = new System.Drawing.Size(79, 23);
+            this.mComboBoxCargo.TabIndex = 14;
+            this.mComboBoxCargo.SelectedIndexChanged += new System.EventHandler(this.mComboBoxCargo_SelectedIndexChanged);
+            // 
+            // mComboBoxCondicion
+            // 
+            this.mComboBoxCondicion.BackColor = System.Drawing.Color.MistyRose;
+            this.mComboBoxCondicion.FormattingEnabled = true;
+            this.mComboBoxCondicion.Location = new System.Drawing.Point(253, 58);
+            this.mComboBoxCondicion.Name = "mComboBoxCondicion";
+            this.mComboBoxCondicion.Size = new System.Drawing.Size(79, 23);
+            this.mComboBoxCondicion.TabIndex = 16;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(182, 23);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 15);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Cargo:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(182, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 15);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Condición:";
+            // 
+            // mComboBoxOrigen
+            // 
+            this.mComboBoxOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.mComboBoxOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.mComboBoxOrigen.BackColor = System.Drawing.Color.Honeydew;
+            this.mComboBoxOrigen.FormattingEnabled = true;
+            this.mComboBoxOrigen.Items.AddRange(new object[] {
+            "Ministerio de Educación",
+            "Ministerio de Salud",
+            "Ministerio de Infraestructura"});
+            this.mComboBoxOrigen.Location = new System.Drawing.Point(62, 86);
+            this.mComboBoxOrigen.Name = "mComboBoxOrigen";
+            this.mComboBoxOrigen.Size = new System.Drawing.Size(270, 23);
+            this.mComboBoxOrigen.TabIndex = 12;
+            // 
             // mTextBoxObs
             // 
             this.mTextBoxObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -998,234 +1224,6 @@
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Personas";
             this.dataGridViewTextBoxColumn1.HeaderText = "Personas";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // PersonaId
-            // 
-            this.PersonaId.DataPropertyName = "PersonaId";
-            this.PersonaId.HeaderText = "PersonaId";
-            this.PersonaId.Name = "PersonaId";
-            this.PersonaId.ReadOnly = true;
-            this.PersonaId.Visible = false;
-            // 
-            // Personas
-            // 
-            this.Personas.DataPropertyName = "Personas";
-            this.Personas.HeaderText = "Personas";
-            this.Personas.Name = "Personas";
-            this.Personas.ReadOnly = true;
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.DataPropertyName = "FechaInicio";
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaBaja
-            // 
-            this.FechaBaja.DataPropertyName = "FechaBaja";
-            this.FechaBaja.HeaderText = "Fecha Baja";
-            this.FechaBaja.Name = "FechaBaja";
-            this.FechaBaja.ReadOnly = true;
-            // 
-            // Origen
-            // 
-            this.Origen.DataPropertyName = "Origen";
-            this.Origen.HeaderText = "Origen";
-            this.Origen.Name = "Origen";
-            this.Origen.ReadOnly = true;
-            // 
-            // CargoId
-            // 
-            this.CargoId.DataPropertyName = "CargoId";
-            this.CargoId.HeaderText = "Cargo";
-            this.CargoId.Name = "CargoId";
-            this.CargoId.ReadOnly = true;
-            // 
-            // CondicionId
-            // 
-            this.CondicionId.DataPropertyName = "CondicionId";
-            this.CondicionId.HeaderText = "Condicion";
-            this.CondicionId.Name = "CondicionId";
-            this.CondicionId.ReadOnly = true;
-            // 
-            // FuncionId
-            // 
-            this.FuncionId.DataPropertyName = "FuncionId";
-            this.FuncionId.HeaderText = "Funcion";
-            this.FuncionId.Name = "FuncionId";
-            this.FuncionId.ReadOnly = true;
-            // 
-            // EquipoId
-            // 
-            this.EquipoId.DataPropertyName = "EquipoId";
-            this.EquipoId.HeaderText = "Equipo";
-            this.EquipoId.Name = "EquipoId";
-            this.EquipoId.ReadOnly = true;
-            // 
-            // horasDataGridViewTextBoxColumn
-            // 
-            this.horasDataGridViewTextBoxColumn.DataPropertyName = "Horas";
-            this.horasDataGridViewTextBoxColumn.HeaderText = "Horas";
-            this.horasDataGridViewTextBoxColumn.Name = "horasDataGridViewTextBoxColumn";
-            this.horasDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // observacionDataGridViewTextBoxColumn
-            // 
-            this.observacionDataGridViewTextBoxColumn.DataPropertyName = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.HeaderText = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.Name = "observacionDataGridViewTextBoxColumn";
-            this.observacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mComboBoxOrigen
-            // 
-            this.mComboBoxOrigen.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.mComboBoxOrigen.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.mComboBoxOrigen.BackColor = System.Drawing.Color.Honeydew;
-            this.mComboBoxOrigen.FormattingEnabled = true;
-            this.mComboBoxOrigen.Items.AddRange(new object[] {
-            "Ministerio de Educación",
-            "Ministerio de Salud",
-            "Ministerio de Infraestructura"});
-            this.mComboBoxOrigen.Location = new System.Drawing.Point(62, 86);
-            this.mComboBoxOrigen.Name = "mComboBoxOrigen";
-            this.mComboBoxOrigen.Size = new System.Drawing.Size(270, 23);
-            this.mComboBoxOrigen.TabIndex = 12;
-            // 
-            // mComboBoxCargo
-            // 
-            this.mComboBoxCargo.BackColor = System.Drawing.Color.MistyRose;
-            this.mComboBoxCargo.FormattingEnabled = true;
-            this.mComboBoxCargo.Location = new System.Drawing.Point(253, 20);
-            this.mComboBoxCargo.Name = "mComboBoxCargo";
-            this.mComboBoxCargo.Size = new System.Drawing.Size(79, 23);
-            this.mComboBoxCargo.TabIndex = 14;
-            this.mComboBoxCargo.SelectedIndexChanged += new System.EventHandler(this.mComboBoxCargo_SelectedIndexChanged);
-            // 
-            // mComboBoxCondicion
-            // 
-            this.mComboBoxCondicion.BackColor = System.Drawing.Color.MistyRose;
-            this.mComboBoxCondicion.FormattingEnabled = true;
-            this.mComboBoxCondicion.Location = new System.Drawing.Point(253, 58);
-            this.mComboBoxCondicion.Name = "mComboBoxCondicion";
-            this.mComboBoxCondicion.Size = new System.Drawing.Size(79, 23);
-            this.mComboBoxCondicion.TabIndex = 16;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(182, 23);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Cargo:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(182, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 15);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Condición:";
-            // 
-            // mComboBoxFuncion
-            // 
-            this.mComboBoxFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mComboBoxFuncion.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.mComboBoxFuncion.BackColor = System.Drawing.Color.MistyRose;
-            this.mComboBoxFuncion.DisplayMember = "Funciones.Id";
-            this.mComboBoxFuncion.FormattingEnabled = true;
-            this.mComboBoxFuncion.Location = new System.Drawing.Point(436, 50);
-            this.mComboBoxFuncion.Name = "mComboBoxFuncion";
-            this.mComboBoxFuncion.Size = new System.Drawing.Size(157, 23);
-            this.mComboBoxFuncion.TabIndex = 20;
-            this.mComboBoxFuncion.ValueMember = "Funciones.Id";
-            // 
-            // mLabelFuncion
-            // 
-            this.mLabelFuncion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelFuncion.AutoSize = true;
-            this.mLabelFuncion.Location = new System.Drawing.Point(376, 50);
-            this.mLabelFuncion.Name = "mLabelFuncion";
-            this.mLabelFuncion.Size = new System.Drawing.Size(54, 15);
-            this.mLabelFuncion.TabIndex = 19;
-            this.mLabelFuncion.Text = "Función:";
-            // 
-            // mComboBoxEquipo
-            // 
-            this.mComboBoxEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mComboBoxEquipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.mComboBoxEquipo.BackColor = System.Drawing.Color.MistyRose;
-            this.mComboBoxEquipo.DisplayMember = "Equipos.Id";
-            this.mComboBoxEquipo.FormattingEnabled = true;
-            this.mComboBoxEquipo.Location = new System.Drawing.Point(436, 20);
-            this.mComboBoxEquipo.Name = "mComboBoxEquipo";
-            this.mComboBoxEquipo.Size = new System.Drawing.Size(157, 23);
-            this.mComboBoxEquipo.TabIndex = 18;
-            this.mComboBoxEquipo.ValueMember = "Equipos.Id";
-            // 
-            // mLabelEquipo
-            // 
-            this.mLabelEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelEquipo.AutoSize = true;
-            this.mLabelEquipo.Location = new System.Drawing.Point(381, 23);
-            this.mLabelEquipo.Name = "mLabelEquipo";
-            this.mLabelEquipo.Size = new System.Drawing.Size(49, 15);
-            this.mLabelEquipo.TabIndex = 17;
-            this.mLabelEquipo.Text = "Equipo:";
-            // 
-            // mNumericUpDownHoras
-            // 
-            this.mNumericUpDownHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mNumericUpDownHoras.BackColor = System.Drawing.Color.MistyRose;
-            this.mNumericUpDownHoras.Location = new System.Drawing.Point(436, 79);
-            this.mNumericUpDownHoras.Maximum = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
-            this.mNumericUpDownHoras.Minimum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            0});
-            this.mNumericUpDownHoras.Name = "mNumericUpDownHoras";
-            this.mNumericUpDownHoras.Size = new System.Drawing.Size(68, 21);
-            this.mNumericUpDownHoras.TabIndex = 22;
-            this.mNumericUpDownHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.mNumericUpDownHoras.Value = new decimal(new int[] {
-            25,
-            0,
-            0,
-            0});
-            // 
-            // mLabelHoras
-            // 
-            this.mLabelHoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelHoras.AutoSize = true;
-            this.mLabelHoras.Location = new System.Drawing.Point(387, 81);
-            this.mLabelHoras.Name = "mLabelHoras";
-            this.mLabelHoras.Size = new System.Drawing.Size(43, 15);
-            this.mLabelHoras.TabIndex = 21;
-            this.mLabelHoras.Text = "Horas:";
-            // 
-            // mLabelObs
-            // 
-            this.mLabelObs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.mLabelObs.AutoSize = true;
-            this.mLabelObs.Location = new System.Drawing.Point(352, 109);
-            this.mLabelObs.Name = "mLabelObs";
-            this.mLabelObs.Size = new System.Drawing.Size(78, 15);
-            this.mLabelObs.TabIndex = 23;
-            this.mLabelObs.Text = "Observación:";
             // 
             // pContratos
             // 
