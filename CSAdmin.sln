@@ -5,6 +5,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CSAdmin", "CSAdmin\CSAdmin.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSAdminApp", "CSAdminApp\CSAdminApp.csproj", "{35820E05-D45C-4DB2-86BD-177B05A6AB9E}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{6DAF1AFC-1E3A-49A6-8CEA-A88B3AB0DCBA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -14,11 +16,12 @@ Global
 		{591208EE-623C-4A4A-BF17-8F63DD1A29B9}.Debug|x86.ActiveCfg = Debug|x86
 		{591208EE-623C-4A4A-BF17-8F63DD1A29B9}.Debug|x86.Build.0 = Debug|x86
 		{591208EE-623C-4A4A-BF17-8F63DD1A29B9}.Release|x86.ActiveCfg = Release|x86
-		{591208EE-623C-4A4A-BF17-8F63DD1A29B9}.Release|x86.Build.0 = Release|x86
 		{35820E05-D45C-4DB2-86BD-177B05A6AB9E}.Debug|x86.ActiveCfg = Debug|x86
 		{35820E05-D45C-4DB2-86BD-177B05A6AB9E}.Debug|x86.Build.0 = Debug|x86
 		{35820E05-D45C-4DB2-86BD-177B05A6AB9E}.Release|x86.ActiveCfg = Release|x86
 		{35820E05-D45C-4DB2-86BD-177B05A6AB9E}.Release|x86.Build.0 = Release|x86
+		{6DAF1AFC-1E3A-49A6-8CEA-A88B3AB0DCBA}.Debug|x86.ActiveCfg = Debug
+		{6DAF1AFC-1E3A-49A6-8CEA-A88B3AB0DCBA}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
