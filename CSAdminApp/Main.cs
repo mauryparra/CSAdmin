@@ -176,7 +176,9 @@ namespace CSAdminApp
             this.limpiarPanel();
 
             // codigo pantalla
-
+            Pantallas.pConsultas pantallaConsultas = new Pantallas.pConsultas();
+            pantallaConsultas.Dock = DockStyle.Fill;
+            splitContainer.Panel2.Controls.Add(pantallaConsultas);
 
             toolStripProgressBar.Visible = false;
         }
