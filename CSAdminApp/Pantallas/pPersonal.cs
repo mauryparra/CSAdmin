@@ -18,7 +18,6 @@ namespace CSAdminApp.Pantallas
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
         private int[] aux = {0, 0, 0};
         protected string[] telefonos = {string.Empty, string.Empty};
-        bool soloLectura = false;
 
         public pPersonal()
         {
@@ -29,10 +28,14 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                ObjectQuery<Personas> personaQuery =
-                        Main.BDContext.Personas.Where("it.Baja = True");
-                aDataGridViewPer.DataSource = personaQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
-                aButtonReactivar.Visible = false;
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    ObjectQuery<Personas> personaQuery =
+                            db.Personas.Where("it.Baja = True");
+                    aDataGridViewPer.DataSource = personaQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                    aButtonReactivar.Visible = false;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -44,36 +47,38 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                ObjectQuery<Personas> personaQ;
-                switch (tabControlPersonal.SelectedIndex)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    case 0:
-                        personaQ =
-                            Main.BDContext.Personas.Where("it.Baja = True");
-                        aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
-                        break;
+                    ObjectQuery<Personas> personaQ;
+                    switch (tabControlPersonal.SelectedIndex)
+                    {
+                        case 0:
+                            personaQ =
+                                db.Personas.Where("it.Baja = True");
+                            aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                            break;
 
-                    case 1:
-                        personaQ =
-                            Main.BDContext.Personas;
-                        mDataGridViewPer.DataSource = personaQ.Select(
-                            "it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
-                        break;
+                        case 1:
+                            personaQ =
+                                db.Personas;
+                            mDataGridViewPer.DataSource = personaQ.Select(
+                                "it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
+                            break;
 
-                    case 2:
-                        personaQ =
-                            Main.BDContext.Personas.Where("it.Baja = False");
-                        bDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
-                        break;
+                        case 2:
+                            personaQ =
+                                db.Personas.Where("it.Baja = False");
+                            bDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                            break;
 
-                    default:
-                        MessageBox.Show("No se puede determinar el indice de la Pestaña," +
-                                    " por favor contacte al administrador", "Error", 
-                                    MessageBoxButtons.OK, 
-                                    MessageBoxIcon.Error);
-                        break;
+                        default:
+                            MessageBox.Show("No se puede determinar el indice de la Pestaña," +
+                                        " por favor contacte al administrador", "Error",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                            break;
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -125,6 +130,8 @@ namespace CSAdminApp.Pantallas
                 FunmPC.limpiarForm(aSplitContainer.Panel1);
                 aButtonReactivar.Visible = false;
                 aMaskedTextBoxDni.Focus();
+                telefonos[0] = string.Empty;
+                telefonos[1] = string.Empty;
                 aux[0] = 0;
             }
             catch (Exception ex)
@@ -142,7 +149,8 @@ namespace CSAdminApp.Pantallas
             aButtonAceptar.Enabled = true;
             aButtonReactivar.Visible = false;
             aMaskedTextBoxDni.Focus();
-            soloLectura = false;
+            telefonos[0] = string.Empty;
+            telefonos[1] = string.Empty;
             aux[0] = 0;
         }
 
@@ -164,12 +172,13 @@ namespace CSAdminApp.Pantallas
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
-                
                 FunmPC.limpiarForm(aSplitContainer.Panel1);
                 FunmPC.readOnlyForm(aSplitContainer.Panel1, false);
                 aButtonAceptar.Enabled = true;
                 aButtonReactivar.Visible = false;
                 aMaskedTextBoxDni.Focus();
+                telefonos[0] = string.Empty;
+                telefonos[1] = string.Empty;
                 aux[0] = 0;
             }
             catch (Exception ex)
@@ -196,10 +205,12 @@ namespace CSAdminApp.Pantallas
                     aTextBoxApellido.Text = personaQ.First().Apellido;
                     aTextBoxDireccion.Text = personaQ.First().Direccion;
                     aTextBoxCorreo.Text = personaQ.First().Correo;
+
+                    // TODO setear telefonos si existen
+
                     FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
                     aButtonAceptar.Enabled = false;
                     aButtonReactivar.Visible = true;
-                    soloLectura = true;
                 }
                 
             }
@@ -213,35 +224,39 @@ namespace CSAdminApp.Pantallas
         {
             if (aMaskedTextBoxDni.Text.Length > 0)
             {
-
                 try
                 {
-                    ObjectQuery<Personas> personaQ =
-                        Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(aMaskedTextBoxDni.Text)));
-
-                    if (personaQ.Any())
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        if (personaQ.First().Baja)
+                        ObjectQuery<Personas> personaQ =
+                            db.Personas.Where("it.Dni = @Dni");
+                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(aMaskedTextBoxDni.Text)));
+
+                        if (personaQ.Any())
                         {
-                            aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
-                            aTextBoxNombre.Text = personaQ.First().Nombre;
-                            aTextBoxApellido.Text = personaQ.First().Apellido;
-                            aTextBoxDireccion.Text = personaQ.First().Direccion;
-                            aTextBoxCorreo.Text = personaQ.First().Correo;
-                            aux[0] = personaQ.First().Id;
-                            FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
-                            aButtonAceptar.Enabled = false;
-                            aButtonReactivar.Visible = true;
-                            soloLectura = true;
-                        }
-                        else
-                        {
-                            MessageBox.Show(personaQ.First().Nombre + " " + personaQ.First().Apellido + " ya se encuentra dado de alta.",
-                                "Agregar Personas",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            aMaskedTextBoxDni.Clear();
-                            aMaskedTextBoxDni.Focus();
+                            if (personaQ.First().Baja)
+                            {
+                                aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
+                                aTextBoxNombre.Text = personaQ.First().Nombre;
+                                aTextBoxApellido.Text = personaQ.First().Apellido;
+                                aTextBoxDireccion.Text = personaQ.First().Direccion;
+                                aTextBoxCorreo.Text = personaQ.First().Correo;
+                                aux[0] = personaQ.First().Id;
+
+                                // TODO setear telefonos si existen
+
+                                FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
+                                aButtonAceptar.Enabled = false;
+                                aButtonReactivar.Visible = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show(personaQ.First().Nombre + " " + personaQ.First().Apellido + " ya se encuentra dado de alta.",
+                                    "Agregar Personas",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                aMaskedTextBoxDni.Clear();
+                                aMaskedTextBoxDni.Focus();
+                            }
                         }
                     }
                 }
