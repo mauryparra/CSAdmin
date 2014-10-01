@@ -28,106 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.maskedTextBoxTel = new System.Windows.Forms.MaskedTextBox();
-            this.buttonAgregar = new System.Windows.Forms.Button();
-            this.comboBoxTipo = new System.Windows.Forms.ComboBox();
+            this.buttonOk = new System.Windows.Forms.Button();
             this.labelTelefono = new System.Windows.Forms.Label();
-            this.dataGridViewTel = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel1.SuspendLayout();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTel)).BeginInit();
+            this.maskedTextBoxCel = new System.Windows.Forms.MaskedTextBox();
+            this.labelCel = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // splitContainer
-            // 
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer.Name = "splitContainer";
-            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer.Panel1
-            // 
-            this.splitContainer.Panel1.Controls.Add(this.maskedTextBoxTel);
-            this.splitContainer.Panel1.Controls.Add(this.buttonAgregar);
-            this.splitContainer.Panel1.Controls.Add(this.comboBoxTipo);
-            this.splitContainer.Panel1.Controls.Add(this.labelTelefono);
-            // 
-            // splitContainer.Panel2
-            // 
-            this.splitContainer.Panel2.Controls.Add(this.dataGridViewTel);
-            this.splitContainer.Size = new System.Drawing.Size(284, 122);
-            this.splitContainer.SplitterDistance = 42;
-            this.splitContainer.TabIndex = 1;
             // 
             // maskedTextBoxTel
             // 
-            this.maskedTextBoxTel.Location = new System.Drawing.Point(70, 12);
+            this.maskedTextBoxTel.Location = new System.Drawing.Point(70, 21);
             this.maskedTextBoxTel.Mask = "(999) 000-0000";
             this.maskedTextBoxTel.Name = "maskedTextBoxTel";
             this.maskedTextBoxTel.PromptChar = ' ';
             this.maskedTextBoxTel.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBoxTel.TabIndex = 6;
+            this.maskedTextBoxTel.TabIndex = 10;
             this.maskedTextBoxTel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
-            // buttonAgregar
+            // buttonOk
             // 
-            this.buttonAgregar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
-            this.buttonAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
-            this.buttonAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAgregar.Location = new System.Drawing.Point(242, 10);
-            this.buttonAgregar.Name = "buttonAgregar";
-            this.buttonAgregar.Size = new System.Drawing.Size(30, 23);
-            this.buttonAgregar.TabIndex = 8;
-            this.buttonAgregar.Text = "+";
-            this.buttonAgregar.UseVisualStyleBackColor = true;
-            this.buttonAgregar.Click += new System.EventHandler(this.buttonAgregar_Click);
-            // 
-            // comboBoxTipo
-            // 
-            this.comboBoxTipo.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.comboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTipo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTipo.FormattingEnabled = true;
-            this.comboBoxTipo.Items.AddRange(new object[] {
-            "MO",
-            "FI"});
-            this.comboBoxTipo.Location = new System.Drawing.Point(176, 12);
-            this.comboBoxTipo.Name = "comboBoxTipo";
-            this.comboBoxTipo.Size = new System.Drawing.Size(60, 21);
-            this.comboBoxTipo.TabIndex = 7;
+            this.buttonOk.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonOk.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonOk.Location = new System.Drawing.Point(15, 85);
+            this.buttonOk.Name = "buttonOk";
+            this.buttonOk.Size = new System.Drawing.Size(43, 25);
+            this.buttonOk.TabIndex = 12;
+            this.buttonOk.Text = "Ok";
+            this.buttonOk.UseVisualStyleBackColor = true;
+            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             // 
             // labelTelefono
             // 
             this.labelTelefono.AutoSize = true;
-            this.labelTelefono.Location = new System.Drawing.Point(12, 15);
+            this.labelTelefono.Location = new System.Drawing.Point(12, 24);
             this.labelTelefono.Name = "labelTelefono";
             this.labelTelefono.Size = new System.Drawing.Size(52, 13);
-            this.labelTelefono.TabIndex = 5;
+            this.labelTelefono.TabIndex = 9;
             this.labelTelefono.Text = "Teléfono:";
             // 
-            // dataGridViewTel
+            // maskedTextBoxCel
             // 
-            this.dataGridViewTel.AllowUserToAddRows = false;
-            this.dataGridViewTel.AllowUserToDeleteRows = false;
-            this.dataGridViewTel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewTel.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewTel.Name = "dataGridViewTel";
-            this.dataGridViewTel.ReadOnly = true;
-            this.dataGridViewTel.Size = new System.Drawing.Size(284, 76);
-            this.dataGridViewTel.TabIndex = 1;
+            this.maskedTextBoxCel.Location = new System.Drawing.Point(70, 52);
+            this.maskedTextBoxCel.Mask = "(999) 000-0000";
+            this.maskedTextBoxCel.Name = "maskedTextBoxCel";
+            this.maskedTextBoxCel.PromptChar = ' ';
+            this.maskedTextBoxCel.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBoxCel.TabIndex = 14;
+            this.maskedTextBoxCel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            // 
+            // labelCel
+            // 
+            this.labelCel.AutoSize = true;
+            this.labelCel.Location = new System.Drawing.Point(12, 55);
+            this.labelCel.Name = "labelCel";
+            this.labelCel.Size = new System.Drawing.Size(42, 13);
+            this.labelCel.TabIndex = 13;
+            this.labelCel.Text = "Celular:";
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancelar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSeaGreen;
+            this.buttonCancelar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.MediumTurquoise;
+            this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.buttonCancelar.Location = new System.Drawing.Point(75, 85);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(89, 25);
+            this.buttonCancelar.TabIndex = 15;
+            this.buttonCancelar.Text = "Cancelar";
+            this.buttonCancelar.UseVisualStyleBackColor = true;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
             // 
             // telPopUp
             // 
+            this.AcceptButton = this.buttonOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 122);
-            this.Controls.Add(this.splitContainer);
+            this.CancelButton = this.buttonCancelar;
+            this.ClientSize = new System.Drawing.Size(187, 122);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.maskedTextBoxCel);
+            this.Controls.Add(this.labelCel);
+            this.Controls.Add(this.maskedTextBoxTel);
+            this.Controls.Add(this.buttonOk);
+            this.Controls.Add(this.labelTelefono);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -138,24 +126,20 @@
             this.Text = "Teléfonos";
             this.Load += new System.EventHandler(this.telPopUp_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.telPopUp_KeyPress);
-            this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel1.PerformLayout();
-            this.splitContainer.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTel)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        internal System.Windows.Forms.SplitContainer splitContainer;
-        internal System.Windows.Forms.DataGridView dataGridViewTel;
         internal System.Windows.Forms.MaskedTextBox maskedTextBoxTel;
-        internal System.Windows.Forms.Button buttonAgregar;
-        internal System.Windows.Forms.ComboBox comboBoxTipo;
+        internal System.Windows.Forms.Button buttonOk;
         internal System.Windows.Forms.Label labelTelefono;
+        internal System.Windows.Forms.MaskedTextBox maskedTextBoxCel;
+        internal System.Windows.Forms.Label labelCel;
+        internal System.Windows.Forms.Button buttonCancelar;
+
 
     }
 }

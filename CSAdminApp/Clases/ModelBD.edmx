@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="CSAdminBDModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CSAdminBDModelStoreContainer">
-          <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Store.Funciones" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Inasistencias" EntityType="CSAdminBDModel.Store.Inasistencias" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Localidades" EntityType="CSAdminBDModel.Store.Localidades" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Personas" EntityType="CSAdminBDModel.Store.Personas" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PersonasTel" EntityType="CSAdminBDModel.Store.PersonasTel" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SituacionesProfesionales" EntityType="CSAdminBDModel.Store.SituacionesProfesionales" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuarios" EntityType="CSAdminBDModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Store.Contratos" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Store.Equipos" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Store.Funciones" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Inasistencias" EntityType="CSAdminBDModel.Store.Inasistencias" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Localidades" EntityType="CSAdminBDModel.Store.Localidades" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Personas" EntityType="CSAdminBDModel.Store.Personas" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PersonasTel" EntityType="CSAdminBDModel.Store.PersonasTel" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="SituacionesProfesionales" EntityType="CSAdminBDModel.Store.SituacionesProfesionales" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Usuarios" EntityType="CSAdminBDModel.Store.Usuarios" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="FK_Contratos_Equipos" Association="CSAdminBDModel.Store.FK_Contratos_Equipos">
             <End Role="Equipos" EntitySet="Equipos" />
             <End Role="Contratos" EntitySet="Contratos" />
@@ -268,8 +268,8 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="CSAdminBDEntities" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="CSAdminBDModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="CSAdminBDEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="Contratos" EntityType="CSAdminBDModel.Contratos" />
           <EntitySet Name="Equipos" EntityType="CSAdminBDModel.Equipos" />
           <EntitySet Name="Funciones" EntityType="CSAdminBDModel.Funciones" />
@@ -321,7 +321,7 @@
             <PropertyRef Name="Id" />
             <PropertyRef Name="PersonaId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="PersonaId" Type="Int32" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
           <Property Name="FechaBaja" Type="DateTime" />
@@ -365,7 +365,7 @@
             <PropertyRef Name="Id" />
             <PropertyRef Name="IdPersona" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
           <Property Name="Desde" Type="DateTime" Nullable="false" />
           <Property Name="Hasta" Type="DateTime" />
@@ -376,7 +376,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Localidad" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Equipos" Relationship="CSAdminBDModel.FK_Equipos_Localidades" FromRole="Localidades" ToRole="Equipos" />
         </EntityType>
@@ -384,7 +384,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Dni" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
           <Property Name="Cuit" Type="Decimal" Precision="11" Scale="0" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -551,7 +551,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CSAdminBDModelStoreContainer" CdmEntityContainer="CSAdminBDEntities">
           <EntitySetMapping Name="Contratos">
             <EntityTypeMapping TypeName="CSAdminBDModel.Contratos">
@@ -658,7 +658,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />

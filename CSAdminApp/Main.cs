@@ -82,7 +82,7 @@ namespace CSAdminApp
 
         private void acercaDeCSAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AcercaDe acerca = new AcercaDe("Acerca de CSAdmin", "http://mauryparra.com.ar/");
+            AcercaDe acerca = new AcercaDe();
             acerca.ShowDialog();
         }
 

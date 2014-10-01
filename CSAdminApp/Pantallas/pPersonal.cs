@@ -17,7 +17,7 @@ namespace CSAdminApp.Pantallas
     {
         // aux[] es utilizado para guardar temporalmente el Id de la persona en c/ pestaña
         private int[] aux = {0, 0, 0};
-        protected Personas nuevaPersona;
+        protected string[] telefonos = {string.Empty, string.Empty};
         bool soloLectura = false;
 
         public pPersonal()
@@ -29,7 +29,6 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                nuevaPersona = new Personas();
                 ObjectQuery<Personas> personaQuery =
                         Main.BDContext.Personas.Where("it.Baja = True");
                 aDataGridViewPer.DataSource = personaQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
@@ -49,7 +48,6 @@ namespace CSAdminApp.Pantallas
                 switch (tabControlPersonal.SelectedIndex)
                 {
                     case 0:
-                        nuevaPersona = new Personas();
                         personaQ =
                             Main.BDContext.Personas.Where("it.Baja = True");
                         aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
@@ -92,9 +90,8 @@ namespace CSAdminApp.Pantallas
 
         private void aButtonTelefonos_Click(object sender, EventArgs e)
         {
-            telPopUp tel = new telPopUp(nuevaPersona, soloLectura);
+            telPopUp tel = new telPopUp(telefonos);
             tel.StartPosition = FormStartPosition.CenterParent;
-            tel.aux = aux[0];
             tel.ShowDialog();
         }
 
@@ -102,6 +99,7 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
+                Personas nuevaPersona = new Personas();
                 nuevaPersona.Dni = Decimal.Parse(aMaskedTextBoxDni.Text);
                 if (aMaskedTextBoxCuit.Text.Length > 0)
                 {
@@ -117,8 +115,11 @@ namespace CSAdminApp.Pantallas
                 nuevaPersona.Correo = aTextBoxCorreo.Text;
                 nuevaPersona.Baja = false;
 
-                Main.BDContext.AddToPersonas(nuevaPersona);
-                Main.BDContext.SaveChanges();
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    db.Personas.AddObject(nuevaPersona);
+                    db.SaveChanges();
+                }
                 MessageBox.Show("Se agrego: " + nuevaPersona.Nombre + " " + nuevaPersona.Apellido,
                             "Alta Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FunmPC.limpiarForm(aSplitContainer.Panel1);
@@ -150,15 +151,20 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    ObjectQuery<Personas> personaQ =
+                    db.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
 
-                personaQ.First().Baja = false;
-                Main.BDContext.SaveChanges();
-                MessageBox.Show("Se activo nuevamente a: " + personaQ.First().Nombre + " " +
+                    personaQ.First().Baja = false;
+                    db.SaveChanges();
+                    MessageBox.Show("Se activo nuevamente a: " + personaQ.First().Nombre + " " +
                                 personaQ.First().Apellido, "Alta Personas",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+                
                 FunmPC.limpiarForm(aSplitContainer.Panel1);
                 FunmPC.readOnlyForm(aSplitContainer.Panel1, false);
                 aButtonAceptar.Enabled = true;
@@ -177,21 +183,25 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                aux[0] = Convert.ToInt32(aDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    aux[0] = Convert.ToInt32(aDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    ObjectQuery<Personas> personaQ =
+                        db.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
 
-                aMaskedTextBoxDni.Text = personaQ.First().Dni.ToString();
-                aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
-                aTextBoxNombre.Text = personaQ.First().Nombre;
-                aTextBoxApellido.Text = personaQ.First().Apellido;
-                aTextBoxDireccion.Text = personaQ.First().Direccion;
-                aTextBoxCorreo.Text = personaQ.First().Correo;
-                FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
-                aButtonAceptar.Enabled = false;
-                aButtonReactivar.Visible = true;
-                soloLectura = true;
+                    aMaskedTextBoxDni.Text = personaQ.First().Dni.ToString();
+                    aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
+                    aTextBoxNombre.Text = personaQ.First().Nombre;
+                    aTextBoxApellido.Text = personaQ.First().Apellido;
+                    aTextBoxDireccion.Text = personaQ.First().Direccion;
+                    aTextBoxCorreo.Text = personaQ.First().Correo;
+                    FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
+                    aButtonAceptar.Enabled = false;
+                    aButtonReactivar.Visible = true;
+                    soloLectura = true;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -334,9 +344,8 @@ namespace CSAdminApp.Pantallas
 
         private void mButtonTelefonos_Click(object sender, EventArgs e)
         {
-            telPopUp tel = new telPopUp(nuevaPersona, soloLectura);
+            telPopUp tel = new telPopUp(telefonos);
             tel.StartPosition = FormStartPosition.CenterParent;
-            tel.aux = aux[1];
             tel.ShowDialog();
         }
 
