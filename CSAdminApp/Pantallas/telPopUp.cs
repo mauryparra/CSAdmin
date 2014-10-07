@@ -74,6 +74,7 @@ namespace CSAdminApp.Pantallas
             {
                 tel[0] = maskedTextBoxTel.Text;
                 tel[1] = maskedTextBoxCel.Text;
+                this.Close();
             }
             catch (Exception ex)
             {

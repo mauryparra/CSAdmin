@@ -43,7 +43,7 @@
             this.maskedTextBoxTel.Name = "maskedTextBoxTel";
             this.maskedTextBoxTel.PromptChar = ' ';
             this.maskedTextBoxTel.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBoxTel.TabIndex = 10;
+            this.maskedTextBoxTel.TabIndex = 1;
             this.maskedTextBoxTel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // buttonOk
@@ -55,7 +55,7 @@
             this.buttonOk.Location = new System.Drawing.Point(15, 85);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(43, 25);
-            this.buttonOk.TabIndex = 12;
+            this.buttonOk.TabIndex = 4;
             this.buttonOk.Text = "Ok";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -66,7 +66,7 @@
             this.labelTelefono.Location = new System.Drawing.Point(12, 24);
             this.labelTelefono.Name = "labelTelefono";
             this.labelTelefono.Size = new System.Drawing.Size(52, 13);
-            this.labelTelefono.TabIndex = 9;
+            this.labelTelefono.TabIndex = 0;
             this.labelTelefono.Text = "Teléfono:";
             // 
             // maskedTextBoxCel
@@ -76,7 +76,7 @@
             this.maskedTextBoxCel.Name = "maskedTextBoxCel";
             this.maskedTextBoxCel.PromptChar = ' ';
             this.maskedTextBoxCel.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBoxCel.TabIndex = 14;
+            this.maskedTextBoxCel.TabIndex = 3;
             this.maskedTextBoxCel.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // labelCel
@@ -85,7 +85,7 @@
             this.labelCel.Location = new System.Drawing.Point(12, 55);
             this.labelCel.Name = "labelCel";
             this.labelCel.Size = new System.Drawing.Size(42, 13);
-            this.labelCel.TabIndex = 13;
+            this.labelCel.TabIndex = 2;
             this.labelCel.Text = "Celular:";
             // 
             // buttonCancelar
@@ -98,7 +98,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(75, 85);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(89, 25);
-            this.buttonCancelar.TabIndex = 15;
+            this.buttonCancelar.TabIndex = 5;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);

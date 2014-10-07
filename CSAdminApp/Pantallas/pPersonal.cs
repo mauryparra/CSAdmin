@@ -120,6 +120,18 @@ namespace CSAdminApp.Pantallas
                 nuevaPersona.Correo = aTextBoxCorreo.Text;
                 nuevaPersona.Baja = false;
 
+                // Se agregan telefonos
+                
+                PersonasTel telFijo = new PersonasTel();
+                telFijo.Numero = Decimal.Parse(telefonos[0]);
+                telFijo.Tipo = "FI";
+                nuevaPersona.PersonasTel.Add(telFijo);
+                
+                PersonasTel telMovil = new PersonasTel();
+                telMovil.Numero = Decimal.Parse(telefonos[1]);
+                telMovil.Tipo = "MO";
+                nuevaPersona.PersonasTel.Add(telMovil);
+
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     db.Personas.AddObject(nuevaPersona);
@@ -136,7 +148,7 @@ namespace CSAdminApp.Pantallas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + ex.InnerException.Message);
             }
         }
 
@@ -206,7 +218,24 @@ namespace CSAdminApp.Pantallas
                     aTextBoxDireccion.Text = personaQ.First().Direccion;
                     aTextBoxCorreo.Text = personaQ.First().Correo;
 
-                    // TODO setear telefonos si existen
+                    // Si tiene telefonos registrados se cargan
+
+                    ObjectQuery<PersonasTel> telefonosQ =
+                        db.PersonasTel.Where("it.IdPersona = @IdP");
+                    telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[0]));
+
+                    if (telefonosQ.Any())
+                    {
+                        foreach (PersonasTel tel in telefonosQ)
+                        {
+                            if (tel.Tipo == "FI")
+                            { telefonos[0] = tel.Numero.ToString(); }
+                                
+                            if (tel.Tipo == "MO")
+                            { telefonos[1] = tel.Numero.ToString(); }
+                                
+                        }
+                    }
 
                     FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
                     aButtonAceptar.Enabled = false;
@@ -243,7 +272,23 @@ namespace CSAdminApp.Pantallas
                                 aTextBoxCorreo.Text = personaQ.First().Correo;
                                 aux[0] = personaQ.First().Id;
 
-                                // TODO setear telefonos si existen
+                                // Si tiene telefonos registrados se cargan
+                                ObjectQuery<PersonasTel> telefonosQ =
+                                    db.PersonasTel.Where("it.IdPersona = @IdP");
+                                telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[0]));
+
+                                if (telefonosQ.Any())
+                                {
+                                    foreach (PersonasTel tel in telefonosQ)
+                                    {
+                                        if (tel.Tipo == "FI")
+                                        { telefonos[0] = tel.Numero.ToString(); }
+
+                                        if (tel.Tipo == "MO")
+                                        { telefonos[1] = tel.Numero.ToString(); }
+
+                                    }
+                                }
 
                                 FunmPC.readOnlyForm(aSplitContainer.Panel1, true);
                                 aButtonAceptar.Enabled = false;
@@ -277,26 +322,46 @@ namespace CSAdminApp.Pantallas
             {
                 try
                 {
-                    ObjectQuery<Personas> personaQ =
-                        Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(mMaskedTextBoxDni.Text)));
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        ObjectQuery<Personas> personaQ =
+                            db.Personas.Where("it.Dni = @Dni");
+                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(mMaskedTextBoxDni.Text)));
 
-                    if (personaQ.Any())
-                    {
-                        mMaskedTextBoxCuit.Text = Convert.ToString(personaQ.First().Cuit);
-                        mTextBoxNombre.Text = personaQ.First().Nombre;
-                        mTextBoxApellido.Text = personaQ.First().Apellido;
-                        mTextBoxDireccion.Text = personaQ.First().Direccion;
-                        mTextBoxCorreo.Text = personaQ.First().Correo;
-                        aux[1] = personaQ.First().Id;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontro ninguna persona con DNI: " + mMaskedTextBoxDni.Text,
-                                "Modificar Personas",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FunmPC.limpiarForm(mSplitContainer.Panel1);
-                        mMaskedTextBoxDni.Focus();
+                        if (personaQ.Any())
+                        {
+                            mMaskedTextBoxCuit.Text = Convert.ToString(personaQ.First().Cuit);
+                            mTextBoxNombre.Text = personaQ.First().Nombre;
+                            mTextBoxApellido.Text = personaQ.First().Apellido;
+                            mTextBoxDireccion.Text = personaQ.First().Direccion;
+                            mTextBoxCorreo.Text = personaQ.First().Correo;
+                            aux[1] = personaQ.First().Id;
+
+                            // Si tiene telefonos registrados se cargan
+                            ObjectQuery<PersonasTel> telefonosQ =
+                                db.PersonasTel.Where("it.IdPersona = @IdP");
+                            telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+
+                            if (telefonosQ.Any())
+                            {
+                                foreach (PersonasTel tel in telefonosQ)
+                                {
+                                    if (tel.Tipo == "FI")
+                                    { telefonos[0] = tel.Numero.ToString(); }
+
+                                    if (tel.Tipo == "MO")
+                                    { telefonos[1] = tel.Numero.ToString(); }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontro ninguna persona con DNI: " + mMaskedTextBoxDni.Text,
+                                    "Modificar Personas",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            FunmPC.limpiarForm(mSplitContainer.Panel1);
+                            mMaskedTextBoxDni.Focus();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -312,28 +377,45 @@ namespace CSAdminApp.Pantallas
             {
                 if (aux[1] != 0)
                 {
-                   ObjectQuery<Personas> personaQ =
-                        Main.BDContext.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
-                    personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
-                    if (mMaskedTextBoxCuit.Text.Length > 0)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        personaQ.First().Cuit = Convert.ToInt64(mMaskedTextBoxCuit.Text);
+                        ObjectQuery<Personas> personaQ =
+                            db.Personas.Where("it.Id = @Id");
+                        personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                        personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
+                        if (mMaskedTextBoxCuit.Text.Length > 0)
+                        {
+                            personaQ.First().Cuit = Convert.ToInt64(mMaskedTextBoxCuit.Text);
+                        }
+                        else
+                        {
+                            personaQ.First().Cuit = null;
+                        }
+                        personaQ.First().Nombre = mTextBoxNombre.Text;
+                        personaQ.First().Apellido = mTextBoxApellido.Text;
+                        personaQ.First().Direccion = mTextBoxDireccion.Text;
+                        personaQ.First().Correo = mTextBoxCorreo.Text;
+
+                        // Guarda cambios en telefonos
+
+                        foreach (PersonasTel tel in personaQ.First().PersonasTel)
+                        {
+                            if (tel.Tipo == "FI")
+                            { tel.Numero = Decimal.Parse(telefonos[0]); }
+
+                            if (tel.Tipo == "MO")
+                            { tel.Numero = Decimal.Parse(telefonos[1]); }
+                        }
+
+                        db.SaveChanges();
+                        MessageBox.Show("Se modifico: " + personaQ.First().Nombre + " " + personaQ.First().Apellido,
+                                    "Modificación de Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FunmPC.limpiarForm(mSplitContainer.Panel1);
+                        mMaskedTextBoxDni.Focus();
+                        telefonos[0] = string.Empty;
+                        telefonos[1] = string.Empty;
+                        aux[1] = 0;
                     }
-                    else
-                    {
-                        personaQ.First().Cuit = null;
-                    }
-                    personaQ.First().Nombre = mTextBoxNombre.Text;
-                    personaQ.First().Apellido = mTextBoxApellido.Text;
-                    personaQ.First().Direccion = mTextBoxDireccion.Text;
-                    personaQ.First().Correo = mTextBoxCorreo.Text;
-                    Main.BDContext.SaveChanges();
-                    MessageBox.Show("Se modifico: " + personaQ.First().Nombre + " " + personaQ.First().Apellido,
-                                "Modificación de Personas", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FunmPC.limpiarForm(mSplitContainer.Panel1);
-                    mMaskedTextBoxDni.Focus();
-                    aux[1] = 0;
                 }
                 else
                 {
@@ -344,7 +426,7 @@ namespace CSAdminApp.Pantallas
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " "  + ex.InnerException.Message);
             }
         }
 
@@ -354,6 +436,8 @@ namespace CSAdminApp.Pantallas
             FunmPC.limpiarForm(mSplitContainer.Panel1);
             FunmPC.readOnlyForm(mSplitContainer.Panel1, false);
             mMaskedTextBoxDni.Focus();
+            telefonos[0] = string.Empty;
+            telefonos[1] = string.Empty;
             aux[1] = 0;
         }
 
@@ -368,17 +452,39 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                aux[1] =Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                ObjectQuery<Personas> personasQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personasQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    aux[1] = Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    ObjectQuery<Personas> personasQ =
+                       db.Personas.Where("it.Id = @Id");
+                    personasQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
 
-                mMaskedTextBoxDni.Text = Convert.ToString(personasQ.First().Dni);
-                mMaskedTextBoxCuit.Text = Convert.ToString(personasQ.First().Cuit);
-                mTextBoxNombre.Text = personasQ.First().Nombre;
-                mTextBoxApellido.Text = personasQ.First().Apellido;
-                mTextBoxDireccion.Text = personasQ.First().Direccion;
-                mTextBoxCorreo.Text = personasQ.First().Correo;
+                    mMaskedTextBoxDni.Text = Convert.ToString(personasQ.First().Dni);
+                    mMaskedTextBoxCuit.Text = Convert.ToString(personasQ.First().Cuit);
+                    mTextBoxNombre.Text = personasQ.First().Nombre;
+                    mTextBoxApellido.Text = personasQ.First().Apellido;
+                    mTextBoxDireccion.Text = personasQ.First().Direccion;
+                    mTextBoxCorreo.Text = personasQ.First().Correo;
+
+                    // Si tiene telefonos registrados se cargan
+
+                    ObjectQuery<PersonasTel> telefonosQ =
+                        db.PersonasTel.Where("it.IdPersona = @IdP");
+                    telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+
+                    if (telefonosQ.Any())
+                    {
+                        foreach (PersonasTel tel in telefonosQ)
+                        {
+                            if (tel.Tipo == "FI")
+                            { telefonos[0] = tel.Numero.ToString(); }
+
+                            if (tel.Tipo == "MO")
+                            { telefonos[1] = tel.Numero.ToString(); }
+
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -395,19 +501,22 @@ namespace CSAdminApp.Pantallas
             {
                 if (aux[2] != 0)
                 {
-                    ObjectQuery<Personas> personaQ =
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        ObjectQuery<Personas> personaQ =
                         Main.BDContext.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+                        personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
 
-                    personaQ.First().Baja = true;
-                    Main.BDContext.SaveChanges();
-                    MessageBox.Show("Se dio de baja a: " + personaQ.First().Nombre,
-                                "Baja Personas",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FunmPC.limpiarForm(bSplitContainer.Panel1);
-                    FunmPC.readOnlyForm(bSplitContainer.Panel1, false);
-                    bMaskedTextBoxDni.Focus();
-                    aux[2] = 0;
+                        personaQ.First().Baja = true;
+                        Main.BDContext.SaveChanges();
+                        MessageBox.Show("Se dio de baja a: " + personaQ.First().Nombre,
+                                    "Baja Personas",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        FunmPC.limpiarForm(bSplitContainer.Panel1);
+                        FunmPC.readOnlyForm(bSplitContainer.Panel1, false);
+                        bMaskedTextBoxDni.Focus();
+                        aux[2] = 0;
+                    }
                 }
             }
             catch (Exception ex)
@@ -436,24 +545,27 @@ namespace CSAdminApp.Pantallas
             {
                 try
                 {
-                    ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(bMaskedTextBoxDni.Text)));
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        ObjectQuery<Personas> personaQ =
+                            db.Personas.Where("it.Dni = @Dni");
+                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(bMaskedTextBoxDni.Text)));
 
-                    if (personaQ.Any())
-                    {
-                        bTextBoxNombre.Text = personaQ.First().Nombre;
-                        bTextBoxApellido.Text = personaQ.First().Apellido;
-                        bTextBoxDireccion.Text = personaQ.First().Direccion;
-                        aux[2] = personaQ.First().Id;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontro ninguna persona con DNI: " + bMaskedTextBoxDni.Text,
-                                    "Baja Personas",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        FunmPC.limpiarForm(bSplitContainer.Panel1);
-                        bMaskedTextBoxDni.Focus();
+                        if (personaQ.Any())
+                        {
+                            bTextBoxNombre.Text = personaQ.First().Nombre;
+                            bTextBoxApellido.Text = personaQ.First().Apellido;
+                            bTextBoxDireccion.Text = personaQ.First().Direccion;
+                            aux[2] = personaQ.First().Id;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontro ninguna persona con DNI: " + bMaskedTextBoxDni.Text,
+                                        "Baja Personas",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            FunmPC.limpiarForm(bSplitContainer.Panel1);
+                            bMaskedTextBoxDni.Focus();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -467,16 +579,19 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    ObjectQuery<Personas> personaQ =
+                        db.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
 
-                bMaskedTextBoxDni.Text = Convert.ToString(personaQ.First().Dni);
-                bTextBoxNombre.Text = personaQ.First().Nombre;
-                bTextBoxApellido.Text = personaQ.First().Apellido;
-                bTextBoxDireccion.Text = personaQ.First().Direccion;
-                FunmPC.readOnlyForm(bSplitContainer.Panel1, true);
+                    bMaskedTextBoxDni.Text = Convert.ToString(personaQ.First().Dni);
+                    bTextBoxNombre.Text = personaQ.First().Nombre;
+                    bTextBoxApellido.Text = personaQ.First().Apellido;
+                    bTextBoxDireccion.Text = personaQ.First().Direccion;
+                    FunmPC.readOnlyForm(bSplitContainer.Panel1, true);
+                }
             }
             catch (Exception ex)
             {
