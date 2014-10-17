@@ -44,9 +44,6 @@
             this.rLabelHasta = new System.Windows.Forms.Label();
             this.rLabelDesde = new System.Windows.Forms.Label();
             this.rDateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.rGroupBoxPersona = new System.Windows.Forms.GroupBox();
             this.rTextBoxNombre = new System.Windows.Forms.TextBox();
             this.rLabelNombre = new System.Windows.Forms.Label();
@@ -92,9 +89,6 @@
             this.mLabelHasta = new System.Windows.Forms.Label();
             this.mLabelDesde = new System.Windows.Forms.Label();
             this.mDateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.mButtonEliminar = new System.Windows.Forms.Button();
             this.tabControlAsistencia.SuspendLayout();
@@ -208,7 +202,6 @@
             this.rGroupBoxInasistencia.Controls.Add(this.rLabelHasta);
             this.rGroupBoxInasistencia.Controls.Add(this.rLabelDesde);
             this.rGroupBoxInasistencia.Controls.Add(this.rDateTimePickerDesde);
-            this.rGroupBoxInasistencia.Controls.Add(this.shapeContainer1);
             this.rGroupBoxInasistencia.Location = new System.Drawing.Point(3, 78);
             this.rGroupBoxInasistencia.Name = "rGroupBoxInasistencia";
             this.rGroupBoxInasistencia.Size = new System.Drawing.Size(665, 98);
@@ -291,36 +284,6 @@
             this.rDateTimePickerDesde.Name = "rDateTimePickerDesde";
             this.rDateTimePickerDesde.Size = new System.Drawing.Size(99, 21);
             this.rDateTimePickerDesde.TabIndex = 1;
-            // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape2,
-            this.rectangleShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(659, 78);
-            this.shapeContainer1.TabIndex = 11;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape2.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape2.BorderWidth = 3;
-            this.rectangleShape2.Location = new System.Drawing.Point(96, 42);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.Location = new System.Drawing.Point(96, 6);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(102, 24);
             // 
             // rGroupBoxPersona
             // 
@@ -742,7 +705,6 @@
             this.mGroupBoxInasistencia.Controls.Add(this.mLabelHasta);
             this.mGroupBoxInasistencia.Controls.Add(this.mLabelDesde);
             this.mGroupBoxInasistencia.Controls.Add(this.mDateTimePickerDesde);
-            this.mGroupBoxInasistencia.Controls.Add(this.shapeContainer2);
             this.mGroupBoxInasistencia.Location = new System.Drawing.Point(3, 78);
             this.mGroupBoxInasistencia.Name = "mGroupBoxInasistencia";
             this.mGroupBoxInasistencia.Size = new System.Drawing.Size(665, 98);
@@ -828,36 +790,6 @@
             this.mDateTimePickerDesde.TabIndex = 1;
             this.mDateTimePickerDesde.Validating += new System.ComponentModel.CancelEventHandler(this.mDateTimePickerDesde_Validating);
             // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape3,
-            this.rectangleShape4});
-            this.shapeContainer2.Size = new System.Drawing.Size(659, 78);
-            this.shapeContainer2.TabIndex = 11;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape3
-            // 
-            this.rectangleShape3.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape3.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape3.BorderWidth = 3;
-            this.rectangleShape3.Location = new System.Drawing.Point(96, 42);
-            this.rectangleShape3.Name = "rectangleShape2";
-            this.rectangleShape3.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape4
-            // 
-            this.rectangleShape4.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape4.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape4.BorderWidth = 3;
-            this.rectangleShape4.Location = new System.Drawing.Point(96, 6);
-            this.rectangleShape4.Name = "rectangleShape1";
-            this.rectangleShape4.Size = new System.Drawing.Size(102, 24);
-            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
@@ -930,9 +862,6 @@
         private System.Windows.Forms.Label rLabelHasta;
         private System.Windows.Forms.Label rLabelDesde;
         private System.Windows.Forms.DateTimePicker rDateTimePickerDesde;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
         private System.Windows.Forms.GroupBox rGroupBoxPersona;
         private System.Windows.Forms.TextBox rTextBoxNombre;
         private System.Windows.Forms.Label rLabelNombre;
@@ -960,9 +889,6 @@
         private System.Windows.Forms.Label mLabelHasta;
         private System.Windows.Forms.Label mLabelDesde;
         private System.Windows.Forms.DateTimePicker mDateTimePickerDesde;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
         private System.Windows.Forms.GroupBox mGroupBoxPersona;
         private System.Windows.Forms.TextBox mTextBoxNombre;
         private System.Windows.Forms.Label mLabelNombre;

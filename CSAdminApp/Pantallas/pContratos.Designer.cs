@@ -57,9 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.aDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.aGroupBoxPersona = new System.Windows.Forms.GroupBox();
             this.aTextBoxApellido = new System.Windows.Forms.TextBox();
             this.aLabelApellido = new System.Windows.Forms.Label();
@@ -120,9 +117,6 @@
             this.mLabelBaja = new System.Windows.Forms.Label();
             this.mLabelInicio = new System.Windows.Forms.Label();
             this.mDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
@@ -213,7 +207,6 @@
             this.aGroupBoxContrato.Controls.Add(this.label2);
             this.aGroupBoxContrato.Controls.Add(this.label1);
             this.aGroupBoxContrato.Controls.Add(this.aDateTimePickerInicio);
-            this.aGroupBoxContrato.Controls.Add(this.shapeContainer2);
             this.aGroupBoxContrato.Location = new System.Drawing.Point(17, 129);
             this.aGroupBoxContrato.Name = "aGroupBoxContrato";
             this.aGroupBoxContrato.Size = new System.Drawing.Size(641, 254);
@@ -472,37 +465,6 @@
             this.aDateTimePickerInicio.Name = "aDateTimePickerInicio";
             this.aDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
             this.aDateTimePickerInicio.TabIndex = 0;
-            // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape2,
-            this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(635, 234);
-            this.shapeContainer2.TabIndex = 7;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape2.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape2.BorderWidth = 3;
-            this.rectangleShape2.Location = new System.Drawing.Point(437, 12);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.Location = new System.Drawing.Point(84, 13);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(102, 24);
             // 
             // aGroupBoxPersona
             // 
@@ -980,7 +942,6 @@
             this.mGroupBoxContrato.Controls.Add(this.mLabelBaja);
             this.mGroupBoxContrato.Controls.Add(this.mLabelInicio);
             this.mGroupBoxContrato.Controls.Add(this.mDateTimePickerInicio);
-            this.mGroupBoxContrato.Controls.Add(this.shapeContainer1);
             this.mGroupBoxContrato.Location = new System.Drawing.Point(3, 64);
             this.mGroupBoxContrato.Name = "mGroupBoxContrato";
             this.mGroupBoxContrato.Size = new System.Drawing.Size(665, 139);
@@ -1189,36 +1150,6 @@
             this.mDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
             this.mDateTimePickerInicio.TabIndex = 1;
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape3,
-            this.rectangleShape4});
-            this.shapeContainer1.Size = new System.Drawing.Size(659, 119);
-            this.shapeContainer1.TabIndex = 11;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape3
-            // 
-            this.rectangleShape3.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape3.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape3.BorderWidth = 3;
-            this.rectangleShape3.Location = new System.Drawing.Point(62, 37);
-            this.rectangleShape3.Name = "rectangleShape2";
-            this.rectangleShape3.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape4
-            // 
-            this.rectangleShape4.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape4.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape4.BorderWidth = 3;
-            this.rectangleShape4.Location = new System.Drawing.Point(62, 1);
-            this.rectangleShape4.Name = "rectangleShape1";
-            this.rectangleShape4.Size = new System.Drawing.Size(102, 24);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Personas";
@@ -1302,9 +1233,6 @@
         internal System.Windows.Forms.Button aButtonCancelar;
         internal System.Windows.Forms.Button aButtonGuardar;
         private System.Windows.Forms.NumericUpDown aNumericUpDownHoras;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
         private System.Windows.Forms.SplitContainer splitContainerModificar;
         private EFWinforms.EntityBindingNavigator mEntityBindingNavigator;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -1330,9 +1258,6 @@
         private System.Windows.Forms.Label mLabelBaja;
         private System.Windows.Forms.Label mLabelInicio;
         private System.Windows.Forms.DateTimePicker mDateTimePickerInicio;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
         private System.Windows.Forms.ToolStripButton toolStripButtonActivos;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;

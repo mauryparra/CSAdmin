@@ -346,7 +346,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -365,7 +365,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -392,7 +392,7 @@ namespace CSAdminApp.Clases
                 {
                     OnPersonaIdChanging(value);
                     ReportPropertyChanging("PersonaId");
-                    _PersonaId = StructuralObject.SetValidValue(value);
+                    _PersonaId = StructuralObject.SetValidValue(value, "PersonaId");
                     ReportPropertyChanged("PersonaId");
                     OnPersonaIdChanged();
                 }
@@ -417,7 +417,7 @@ namespace CSAdminApp.Clases
             {
                 OnFechaInicioChanging(value);
                 ReportPropertyChanging("FechaInicio");
-                _FechaInicio = StructuralObject.SetValidValue(value);
+                _FechaInicio = StructuralObject.SetValidValue(value, "FechaInicio");
                 ReportPropertyChanged("FechaInicio");
                 OnFechaInicioChanged();
             }
@@ -441,7 +441,7 @@ namespace CSAdminApp.Clases
             {
                 OnFechaBajaChanging(value);
                 ReportPropertyChanging("FechaBaja");
-                _FechaBaja = StructuralObject.SetValidValue(value);
+                _FechaBaja = StructuralObject.SetValidValue(value, "FechaBaja");
                 ReportPropertyChanged("FechaBaja");
                 OnFechaBajaChanged();
             }
@@ -465,7 +465,7 @@ namespace CSAdminApp.Clases
             {
                 OnOrigenChanging(value);
                 ReportPropertyChanging("Origen");
-                _Origen = StructuralObject.SetValidValue(value, false);
+                _Origen = StructuralObject.SetValidValue(value, false, "Origen");
                 ReportPropertyChanged("Origen");
                 OnOrigenChanged();
             }
@@ -489,7 +489,7 @@ namespace CSAdminApp.Clases
             {
                 OnCargoIdChanging(value);
                 ReportPropertyChanging("CargoId");
-                _CargoId = StructuralObject.SetValidValue(value, false);
+                _CargoId = StructuralObject.SetValidValue(value, false, "CargoId");
                 ReportPropertyChanged("CargoId");
                 OnCargoIdChanged();
             }
@@ -513,7 +513,7 @@ namespace CSAdminApp.Clases
             {
                 OnCondicionIdChanging(value);
                 ReportPropertyChanging("CondicionId");
-                _CondicionId = StructuralObject.SetValidValue(value, false);
+                _CondicionId = StructuralObject.SetValidValue(value, false, "CondicionId");
                 ReportPropertyChanged("CondicionId");
                 OnCondicionIdChanged();
             }
@@ -537,7 +537,7 @@ namespace CSAdminApp.Clases
             {
                 OnFuncionIdChanging(value);
                 ReportPropertyChanging("FuncionId");
-                _FuncionId = StructuralObject.SetValidValue(value, false);
+                _FuncionId = StructuralObject.SetValidValue(value, false, "FuncionId");
                 ReportPropertyChanged("FuncionId");
                 OnFuncionIdChanged();
             }
@@ -561,7 +561,7 @@ namespace CSAdminApp.Clases
             {
                 OnEquipoIdChanging(value);
                 ReportPropertyChanging("EquipoId");
-                _EquipoId = StructuralObject.SetValidValue(value, false);
+                _EquipoId = StructuralObject.SetValidValue(value, false, "EquipoId");
                 ReportPropertyChanged("EquipoId");
                 OnEquipoIdChanged();
             }
@@ -585,7 +585,7 @@ namespace CSAdminApp.Clases
             {
                 OnHorasChanging(value);
                 ReportPropertyChanging("Horas");
-                _Horas = StructuralObject.SetValidValue(value);
+                _Horas = StructuralObject.SetValidValue(value, "Horas");
                 ReportPropertyChanged("Horas");
                 OnHorasChanged();
             }
@@ -609,7 +609,7 @@ namespace CSAdminApp.Clases
             {
                 OnObservacionChanging(value);
                 ReportPropertyChanging("Observacion");
-                _Observacion = StructuralObject.SetValidValue(value, true);
+                _Observacion = StructuralObject.SetValidValue(value, true, "Observacion");
                 ReportPropertyChanged("Observacion");
                 OnObservacionChanged();
             }
@@ -620,7 +620,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -808,7 +807,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -827,7 +826,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value, false);
+                    _Id = StructuralObject.SetValidValue(value, false, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -852,7 +851,7 @@ namespace CSAdminApp.Clases
             {
                 OnUbicacionChanging(value);
                 ReportPropertyChanging("Ubicacion");
-                _Ubicacion = StructuralObject.SetValidValue(value, false);
+                _Ubicacion = StructuralObject.SetValidValue(value, false, "Ubicacion");
                 ReportPropertyChanged("Ubicacion");
                 OnUbicacionChanged();
             }
@@ -876,7 +875,7 @@ namespace CSAdminApp.Clases
             {
                 OnLocalidadIdChanging(value);
                 ReportPropertyChanging("LocalidadId");
-                _LocalidadId = StructuralObject.SetValidValue(value);
+                _LocalidadId = StructuralObject.SetValidValue(value, "LocalidadId");
                 ReportPropertyChanged("LocalidadId");
                 OnLocalidadIdChanged();
             }
@@ -900,7 +899,7 @@ namespace CSAdminApp.Clases
             {
                 OnCorreoChanging(value);
                 ReportPropertyChanging("Correo");
-                _Correo = StructuralObject.SetValidValue(value, true);
+                _Correo = StructuralObject.SetValidValue(value, true, "Correo");
                 ReportPropertyChanged("Correo");
                 OnCorreoChanged();
             }
@@ -924,7 +923,7 @@ namespace CSAdminApp.Clases
             {
                 OnContraChanging(value);
                 ReportPropertyChanging("Contra");
-                _Contra = StructuralObject.SetValidValue(value, true);
+                _Contra = StructuralObject.SetValidValue(value, true, "Contra");
                 ReportPropertyChanged("Contra");
                 OnContraChanged();
             }
@@ -948,7 +947,7 @@ namespace CSAdminApp.Clases
             {
                 OnTelefonoChanging(value);
                 ReportPropertyChanging("Telefono");
-                _Telefono = StructuralObject.SetValidValue(value);
+                _Telefono = StructuralObject.SetValidValue(value, "Telefono");
                 ReportPropertyChanged("Telefono");
                 OnTelefonoChanged();
             }
@@ -972,7 +971,7 @@ namespace CSAdminApp.Clases
             {
                 OnCoordinadoIdChanging(value);
                 ReportPropertyChanging("CoordinadoId");
-                _CoordinadoId = StructuralObject.SetValidValue(value);
+                _CoordinadoId = StructuralObject.SetValidValue(value, "CoordinadoId");
                 ReportPropertyChanged("CoordinadoId");
                 OnCoordinadoIdChanged();
             }
@@ -983,7 +982,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -1113,7 +1111,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1132,7 +1130,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value, false);
+                    _Id = StructuralObject.SetValidValue(value, false, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -1157,7 +1155,7 @@ namespace CSAdminApp.Clases
             {
                 OnFuncionChanging(value);
                 ReportPropertyChanging("Funcion");
-                _Funcion = StructuralObject.SetValidValue(value, false);
+                _Funcion = StructuralObject.SetValidValue(value, false, "Funcion");
                 ReportPropertyChanged("Funcion");
                 OnFuncionChanged();
             }
@@ -1168,7 +1166,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -1224,7 +1221,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1243,7 +1240,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -1270,7 +1267,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdPersonaChanging(value);
                     ReportPropertyChanging("IdPersona");
-                    _IdPersona = StructuralObject.SetValidValue(value);
+                    _IdPersona = StructuralObject.SetValidValue(value, "IdPersona");
                     ReportPropertyChanged("IdPersona");
                     OnIdPersonaChanged();
                 }
@@ -1295,7 +1292,7 @@ namespace CSAdminApp.Clases
             {
                 OnDesdeChanging(value);
                 ReportPropertyChanging("Desde");
-                _Desde = StructuralObject.SetValidValue(value);
+                _Desde = StructuralObject.SetValidValue(value, "Desde");
                 ReportPropertyChanged("Desde");
                 OnDesdeChanged();
             }
@@ -1319,7 +1316,7 @@ namespace CSAdminApp.Clases
             {
                 OnHastaChanging(value);
                 ReportPropertyChanging("Hasta");
-                _Hasta = StructuralObject.SetValidValue(value);
+                _Hasta = StructuralObject.SetValidValue(value, "Hasta");
                 ReportPropertyChanged("Hasta");
                 OnHastaChanged();
             }
@@ -1343,7 +1340,7 @@ namespace CSAdminApp.Clases
             {
                 OnMotivoChanging(value);
                 ReportPropertyChanging("Motivo");
-                _Motivo = StructuralObject.SetValidValue(value, true);
+                _Motivo = StructuralObject.SetValidValue(value, true, "Motivo");
                 ReportPropertyChanged("Motivo");
                 OnMotivoChanged();
             }
@@ -1354,7 +1351,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -1424,7 +1420,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1443,7 +1439,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -1468,7 +1464,7 @@ namespace CSAdminApp.Clases
             {
                 OnLocalidadChanging(value);
                 ReportPropertyChanging("Localidad");
-                _Localidad = StructuralObject.SetValidValue(value, false);
+                _Localidad = StructuralObject.SetValidValue(value, false, "Localidad");
                 ReportPropertyChanged("Localidad");
                 OnLocalidadChanged();
             }
@@ -1479,7 +1475,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -1541,7 +1536,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1560,7 +1555,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdChanging(value);
                     ReportPropertyChanging("Id");
-                    _Id = StructuralObject.SetValidValue(value);
+                    _Id = StructuralObject.SetValidValue(value, "Id");
                     ReportPropertyChanged("Id");
                     OnIdChanged();
                 }
@@ -1585,7 +1580,7 @@ namespace CSAdminApp.Clases
             {
                 OnDniChanging(value);
                 ReportPropertyChanging("Dni");
-                _Dni = StructuralObject.SetValidValue(value);
+                _Dni = StructuralObject.SetValidValue(value, "Dni");
                 ReportPropertyChanged("Dni");
                 OnDniChanged();
             }
@@ -1609,7 +1604,7 @@ namespace CSAdminApp.Clases
             {
                 OnCuitChanging(value);
                 ReportPropertyChanging("Cuit");
-                _Cuit = StructuralObject.SetValidValue(value);
+                _Cuit = StructuralObject.SetValidValue(value, "Cuit");
                 ReportPropertyChanged("Cuit");
                 OnCuitChanged();
             }
@@ -1633,7 +1628,7 @@ namespace CSAdminApp.Clases
             {
                 OnNombreChanging(value);
                 ReportPropertyChanging("Nombre");
-                _Nombre = StructuralObject.SetValidValue(value, false);
+                _Nombre = StructuralObject.SetValidValue(value, false, "Nombre");
                 ReportPropertyChanged("Nombre");
                 OnNombreChanged();
             }
@@ -1657,7 +1652,7 @@ namespace CSAdminApp.Clases
             {
                 OnApellidoChanging(value);
                 ReportPropertyChanging("Apellido");
-                _Apellido = StructuralObject.SetValidValue(value, false);
+                _Apellido = StructuralObject.SetValidValue(value, false, "Apellido");
                 ReportPropertyChanged("Apellido");
                 OnApellidoChanged();
             }
@@ -1681,7 +1676,7 @@ namespace CSAdminApp.Clases
             {
                 OnDireccionChanging(value);
                 ReportPropertyChanging("Direccion");
-                _Direccion = StructuralObject.SetValidValue(value, false);
+                _Direccion = StructuralObject.SetValidValue(value, false, "Direccion");
                 ReportPropertyChanged("Direccion");
                 OnDireccionChanged();
             }
@@ -1705,7 +1700,7 @@ namespace CSAdminApp.Clases
             {
                 OnCorreoChanging(value);
                 ReportPropertyChanging("Correo");
-                _Correo = StructuralObject.SetValidValue(value, true);
+                _Correo = StructuralObject.SetValidValue(value, true, "Correo");
                 ReportPropertyChanged("Correo");
                 OnCorreoChanged();
             }
@@ -1729,7 +1724,7 @@ namespace CSAdminApp.Clases
             {
                 OnBajaChanging(value);
                 ReportPropertyChanging("Baja");
-                _Baja = StructuralObject.SetValidValue(value);
+                _Baja = StructuralObject.SetValidValue(value, "Baja");
                 ReportPropertyChanged("Baja");
                 OnBajaChanged();
             }
@@ -1740,7 +1735,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -1900,7 +1894,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -1919,7 +1913,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdPersonaChanging(value);
                     ReportPropertyChanging("IdPersona");
-                    _IdPersona = StructuralObject.SetValidValue(value);
+                    _IdPersona = StructuralObject.SetValidValue(value, "IdPersona");
                     ReportPropertyChanged("IdPersona");
                     OnIdPersonaChanged();
                 }
@@ -1946,7 +1940,7 @@ namespace CSAdminApp.Clases
                 {
                     OnTipoChanging(value);
                     ReportPropertyChanging("Tipo");
-                    _Tipo = StructuralObject.SetValidValue(value, false);
+                    _Tipo = StructuralObject.SetValidValue(value, false, "Tipo");
                     ReportPropertyChanged("Tipo");
                     OnTipoChanged();
                 }
@@ -1971,7 +1965,7 @@ namespace CSAdminApp.Clases
             {
                 OnNumeroChanging(value);
                 ReportPropertyChanging("Numero");
-                _Numero = StructuralObject.SetValidValue(value);
+                _Numero = StructuralObject.SetValidValue(value, "Numero");
                 ReportPropertyChanged("Numero");
                 OnNumeroChanged();
             }
@@ -1982,7 +1976,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -2056,7 +2049,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -2075,7 +2068,7 @@ namespace CSAdminApp.Clases
                 {
                     OnCargoAbrevChanging(value);
                     ReportPropertyChanging("CargoAbrev");
-                    _CargoAbrev = StructuralObject.SetValidValue(value, false);
+                    _CargoAbrev = StructuralObject.SetValidValue(value, false, "CargoAbrev");
                     ReportPropertyChanged("CargoAbrev");
                     OnCargoAbrevChanged();
                 }
@@ -2100,7 +2093,7 @@ namespace CSAdminApp.Clases
             {
                 OnCargoChanging(value);
                 ReportPropertyChanging("Cargo");
-                _Cargo = StructuralObject.SetValidValue(value, false);
+                _Cargo = StructuralObject.SetValidValue(value, false, "Cargo");
                 ReportPropertyChanged("Cargo");
                 OnCargoChanged();
             }
@@ -2126,7 +2119,7 @@ namespace CSAdminApp.Clases
                 {
                     OnCondicionAbrevChanging(value);
                     ReportPropertyChanging("CondicionAbrev");
-                    _CondicionAbrev = StructuralObject.SetValidValue(value, false);
+                    _CondicionAbrev = StructuralObject.SetValidValue(value, false, "CondicionAbrev");
                     ReportPropertyChanged("CondicionAbrev");
                     OnCondicionAbrevChanged();
                 }
@@ -2151,7 +2144,7 @@ namespace CSAdminApp.Clases
             {
                 OnCondicionChanging(value);
                 ReportPropertyChanging("Condicion");
-                _Condicion = StructuralObject.SetValidValue(value, false);
+                _Condicion = StructuralObject.SetValidValue(value, false, "Condicion");
                 ReportPropertyChanged("Condicion");
                 OnCondicionChanged();
             }
@@ -2162,7 +2155,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -2220,7 +2212,7 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-        #region Propiedades primitivas
+        #region Propiedades simples
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -2239,7 +2231,7 @@ namespace CSAdminApp.Clases
                 {
                     OnIdPersonaChanging(value);
                     ReportPropertyChanging("IdPersona");
-                    _IdPersona = StructuralObject.SetValidValue(value);
+                    _IdPersona = StructuralObject.SetValidValue(value, "IdPersona");
                     ReportPropertyChanged("IdPersona");
                     OnIdPersonaChanged();
                 }
@@ -2264,7 +2256,7 @@ namespace CSAdminApp.Clases
             {
                 OnUsuarioChanging(value);
                 ReportPropertyChanging("Usuario");
-                _Usuario = StructuralObject.SetValidValue(value, false);
+                _Usuario = StructuralObject.SetValidValue(value, false, "Usuario");
                 ReportPropertyChanged("Usuario");
                 OnUsuarioChanged();
             }
@@ -2288,7 +2280,7 @@ namespace CSAdminApp.Clases
             {
                 OnContraChanging(value);
                 ReportPropertyChanging("Contra");
-                _Contra = StructuralObject.SetValidValue(value, false);
+                _Contra = StructuralObject.SetValidValue(value, false, "Contra");
                 ReportPropertyChanged("Contra");
                 OnContraChanged();
             }
@@ -2312,7 +2304,7 @@ namespace CSAdminApp.Clases
             {
                 OnRolChanging(value);
                 ReportPropertyChanging("Rol");
-                _Rol = StructuralObject.SetValidValue(value, false);
+                _Rol = StructuralObject.SetValidValue(value, false, "Rol");
                 ReportPropertyChanged("Rol");
                 OnRolChanged();
             }
@@ -2323,7 +2315,6 @@ namespace CSAdminApp.Clases
 
         #endregion
 
-    
         #region Propiedades de navegación
     
         /// <summary>
@@ -2370,5 +2361,4 @@ namespace CSAdminApp.Clases
 
     #endregion
 
-    
 }
