@@ -123,12 +123,26 @@ namespace CSAdminApp.Pantallas
                 // Se agregan telefonos
                 
                 PersonasTel telFijo = new PersonasTel();
-                telFijo.Numero = Decimal.Parse(telefonos[0]);
+                if (telefonos[0] != string.Empty)
+                {
+                    telFijo.Numero = Decimal.Parse(telefonos[0]);
+                }
+                else
+                {
+                    telFijo.Numero = 0;
+                }
                 telFijo.Tipo = "FI";
                 nuevaPersona.PersonasTel.Add(telFijo);
                 
                 PersonasTel telMovil = new PersonasTel();
-                telMovil.Numero = Decimal.Parse(telefonos[1]);
+                if (telefonos[1] != string.Empty)
+                {
+                    telMovil.Numero = Decimal.Parse(telefonos[1]);
+                } 
+                else
+                {
+                    telMovil.Numero = 0;
+                }
                 telMovil.Tipo = "MO";
                 nuevaPersona.PersonasTel.Add(telMovil);
 
@@ -401,10 +415,28 @@ namespace CSAdminApp.Pantallas
                         foreach (PersonasTel tel in personaQ.First().PersonasTel)
                         {
                             if (tel.Tipo == "FI")
-                            { tel.Numero = Decimal.Parse(telefonos[0]); }
+                            {
+                                if (telefonos[0] != string.Empty)
+                                {
+                                    tel.Numero = Decimal.Parse(telefonos[0]); 
+                                }
+                                else
+                                {
+                                    tel.Numero = 0;
+                                }
+                            }
 
                             if (tel.Tipo == "MO")
-                            { tel.Numero = Decimal.Parse(telefonos[1]); }
+                            {
+                                if (telefonos[1] != string.Empty)
+                                {
+                                    tel.Numero = Decimal.Parse(telefonos[1]);
+                                }
+                                else
+                                {
+                                    tel.Numero = 0;
+                                }
+                            }
                         }
 
                         db.SaveChanges();

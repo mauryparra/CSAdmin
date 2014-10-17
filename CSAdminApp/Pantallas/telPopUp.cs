@@ -28,8 +28,22 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                maskedTextBoxTel.Text = tel[0];
-                maskedTextBoxCel.Text = tel[1];
+                if (tel[0] == "0")
+                {
+                    maskedTextBoxTel.Text = "";
+                }
+                else
+                {
+                    maskedTextBoxTel.Text = tel[0];
+                }
+                if (tel[1] == "0")
+                {
+                    maskedTextBoxCel.Text = "";
+                }
+                else
+                {
+                    maskedTextBoxCel.Text = tel[1];
+                }
             }
             catch (Exception ex)
             {
