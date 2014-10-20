@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.cSAdminBDEntitiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.cSAdminBDEntitiesBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // cSAdminBDEntitiesBindingSource
+            // 
+            this.cSAdminBDEntitiesBindingSource.DataSource = typeof(CSAdminApp.Clases.CSAdminBDEntities);
             // 
             // reportViewer
             // 
@@ -46,10 +50,7 @@
             this.reportViewer.Name = "reportViewer";
             this.reportViewer.Size = new System.Drawing.Size(689, 446);
             this.reportViewer.TabIndex = 0;
-            // 
-            // cSAdminBDEntitiesBindingSource
-            // 
-            this.cSAdminBDEntitiesBindingSource.DataSource = typeof(CSAdminApp.Clases.CSAdminBDEntities);
+            this.reportViewer.ReportRefresh += new System.ComponentModel.CancelEventHandler(this.reportViewer_ReportRefresh);
             // 
             // pConsultas
             // 

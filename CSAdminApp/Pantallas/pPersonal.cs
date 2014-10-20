@@ -536,11 +536,11 @@ namespace CSAdminApp.Pantallas
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
                         ObjectQuery<Personas> personaQ =
-                        Main.BDContext.Personas.Where("it.Id = @Id");
+                        db.Personas.Where("it.Id = @Id");
                         personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
 
                         personaQ.First().Baja = true;
-                        Main.BDContext.SaveChanges();
+                        db.SaveChanges();
                         MessageBox.Show("Se dio de baja a: " + personaQ.First().Nombre,
                                     "Baja Personas",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);

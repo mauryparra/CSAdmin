@@ -31,15 +31,17 @@ namespace CSAdminApp.Pantallas
 
         private void pAsistencia_Load(object sender, EventArgs e)
         {
-            foreach (Clases.Personas persona in Main.BDContext.Personas)
+            using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
             {
-                if (persona.Baja == false)
+                foreach (Clases.Personas persona in db.Personas)
                 {
-                    autocomNombres.Add(persona.NombreCompleto);
-
-                    nombresDict.Add(persona.NombreCompleto, persona.Id);
+                    if (persona.Baja == false)
+                    {
+                        autocomNombres.Add(persona.NombreCompleto);
+                        nombresDict.Add(persona.NombreCompleto, persona.Id);
+                    }
                 }
-            }
+            } 
 
             mButtonEliminar.Enabled = false;
             rTextBoxNombre.AutoCompleteCustomSource = autocomNombres;
@@ -73,8 +75,11 @@ namespace CSAdminApp.Pantallas
                     }
                     nuevaInasistencia.Motivo = rTextBoxMotivo.Text;
 
-                    Main.BDContext.AddToInasistencias(nuevaInasistencia);
-                    Main.BDContext.SaveChanges();
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        db.AddToInasistencias(nuevaInasistencia);
+                        db.SaveChanges();
+                    }
                     MessageBox.Show("Se registro la inasistencia de: " + rTextBoxNombre.Text,
                                     "Registro Inasistencias", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FunmPC.limpiarForm(rGroupBoxPersona);
@@ -108,13 +113,17 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                aux[0] = Convert.ToInt32(rDataGridViewPersonas.SelectedRows[0].Cells[0].Value);
-                ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    aux[0] = Convert.ToInt32(rDataGridViewPersonas.SelectedRows[0].Cells[0].Value);
+                    ObjectQuery<Personas> personaQ =
+                        db.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
 
-                rTextBoxNombre.Text = personaQ.First().NombreCompleto;
-                rMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+                    rTextBoxNombre.Text = personaQ.First().NombreCompleto;
+                    rMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+                }
+                
             }
             catch (Exception ex)
             {
@@ -128,24 +137,27 @@ namespace CSAdminApp.Pantallas
             {
                 try
                 {
-                    ObjectQuery<Personas> personas =
-                        Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(rMaskedTextBoxDNI.Text)));
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        ObjectQuery<Personas> personas =
+                        db.Personas.Where("it.Dni = @Dni");
+                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(rMaskedTextBoxDNI.Text)));
 
-                    if (personas.Any())
-                    {
-                        rTextBoxNombre.Text = personas.First().NombreCompleto;
-                        aux[0] = personas.First().Id;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay ninguna persona con ese DNI", "Asistencias",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        FunmPC.limpiarForm(rGroupBoxPersona);
-                        FunmPC.limpiarForm(rGroupBoxInasistencia);
-                        rDateTimePickerHasta.Checked = false;
-                        rTextBoxNombre.Focus();
-                        aux[0] = 0;
+                        if (personas.Any())
+                        {
+                            rTextBoxNombre.Text = personas.First().NombreCompleto;
+                            aux[0] = personas.First().Id;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay ninguna persona con ese DNI", "Asistencias",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            FunmPC.limpiarForm(rGroupBoxPersona);
+                            FunmPC.limpiarForm(rGroupBoxInasistencia);
+                            rDateTimePickerHasta.Checked = false;
+                            rTextBoxNombre.Focus();
+                            aux[0] = 0;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -163,12 +175,16 @@ namespace CSAdminApp.Pantallas
                 {
                     if (nombresDict.ContainsKey(rTextBoxNombre.Text))
                     {
-                        ObjectQuery<Personas> personas =
-                            Main.BDContext.Personas.Where("it.Id = @Id");
-                        personas.Parameters.Add(new ObjectParameter("Id", nombresDict[rTextBoxNombre.Text]));
+                        using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                        {
+                            ObjectQuery<Personas> personas =
+                                db.Personas.Where("it.Id = @Id");
+                            personas.Parameters.Add(new ObjectParameter("Id", nombresDict[rTextBoxNombre.Text]));
 
-                        rMaskedTextBoxDNI.Text = personas.First().Dni.ToString();
-                        aux[0] = nombresDict[rTextBoxNombre.Text];
+                            rMaskedTextBoxDNI.Text = personas.First().Dni.ToString();
+                            aux[0] = nombresDict[rTextBoxNombre.Text];
+                        }
+                        
                     }
                     else
                     {
@@ -217,25 +233,29 @@ namespace CSAdminApp.Pantallas
             {
                 try
                 {
-                    ObjectQuery<Inasistencias> inasistenciaQ =
-                            Main.BDContext.Inasistencias.Where("it.Id = @Id");
-                    inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
-
-                    inasistenciaQ.First().Desde = mDateTimePickerDesde.Value.Date;
-                    if (mDateTimePickerHasta.Checked == true)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        inasistenciaQ.First().Hasta = mDateTimePickerHasta.Value.Date;
-                    }
-                    else
-                    {
-                        inasistenciaQ.First().Hasta = null;
-                    }
-                    inasistenciaQ.First().Motivo = mTextBoxMotivo.Text;
+                        ObjectQuery<Inasistencias> inasistenciaQ =
+                             db.Inasistencias.Where("it.Id = @Id");
+                        inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
 
-                    Main.BDContext.SaveChanges();
-                    MessageBox.Show("Se han modificado los datos de la insasistencia.", "Asistencias",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    entityDataSource.Refresh();
+                        inasistenciaQ.First().Desde = mDateTimePickerDesde.Value.Date;
+                        if (mDateTimePickerHasta.Checked == true)
+                        {
+                            inasistenciaQ.First().Hasta = mDateTimePickerHasta.Value.Date;
+                        }
+                        else
+                        {
+                            inasistenciaQ.First().Hasta = null;
+                        }
+                        inasistenciaQ.First().Motivo = mTextBoxMotivo.Text;
+
+                        db.SaveChanges();
+                        MessageBox.Show("Se han modificado los datos de la insasistencia.", "Asistencias",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        entityDataSource.Refresh();
+                    }
+
 
                     // Limpiar Form
                     FunmPC.limpiarForm(mGroupBoxPersona);
@@ -267,29 +287,34 @@ namespace CSAdminApp.Pantallas
             {
                 if (aux[1] != 0)
                 {
-                    passwordPrompt passprompt = new passwordPrompt();
-                    DialogResult dr = passprompt.ShowDialog();
-                    if (dr == DialogResult.OK)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Inasistencias> borrarInasistencia =
-                            Main.BDContext.Inasistencias.Where("it.Id = @Id");
-                        borrarInasistencia.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
-                        Main.BDContext.Inasistencias.DeleteObject(borrarInasistencia.First());
-                        Main.BDContext.SaveChanges();
-                        MessageBox.Show("Inasistencia eliminada");
-                        entityDataSource.Refresh();
 
-                        // Limpiar Form
-                        FunmPC.limpiarForm(mGroupBoxPersona);
-                        FunmPC.limpiarForm(mGroupBoxInasistencia);
-                        mDateTimePickerDesde.Value = DateTime.Now.Date;
-                        mDateTimePickerHasta.Value = DateTime.Now.Date;
-                        mDateTimePickerHasta.Checked = false;
-                        toolStripTextBoxFiltro.Focus();
-                        mGroupBoxInasistencia.Text = "Inasistencia";
-                        mButtonEliminar.Enabled = false;
-                        aux[1] = 0;
-                        auxInasistencia = 0;
+                        passwordPrompt passprompt = new passwordPrompt();
+                        DialogResult dr = passprompt.ShowDialog();
+                        if (dr == DialogResult.OK)
+                        {
+                            ObjectQuery<Inasistencias> borrarInasistencia =
+                                db.Inasistencias.Where("it.Id = @Id");
+                            borrarInasistencia.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+                            db.Inasistencias.DeleteObject(borrarInasistencia.First());
+                            db.SaveChanges();
+                            MessageBox.Show("Inasistencia eliminada");
+                            entityDataSource.Refresh();
+
+                            // Limpiar Form
+                            FunmPC.limpiarForm(mGroupBoxPersona);
+                            FunmPC.limpiarForm(mGroupBoxInasistencia);
+                            mDateTimePickerDesde.Value = DateTime.Now.Date;
+                            mDateTimePickerHasta.Value = DateTime.Now.Date;
+                            mDateTimePickerHasta.Checked = false;
+                            toolStripTextBoxFiltro.Focus();
+                            mGroupBoxInasistencia.Text = "Inasistencia";
+                            mButtonEliminar.Enabled = false;
+                            aux[1] = 0;
+                            auxInasistencia = 0;
+                        }
+
                     }
                 }
             }
@@ -303,35 +328,38 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                // Datos Persona
-                aux[1] = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[1].Value);
-                ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
-
-                mTextBoxNombre.Text = personaQ.First().NombreCompleto;
-                mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
-
-                // Datos Inasistencia
-                auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
-                ObjectQuery<Inasistencias> inasistenciaQ =
-                    Main.BDContext.Inasistencias.Where("it.Id = @Id");
-                inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
-
-                mDateTimePickerDesde.Value = inasistenciaQ.First().Desde;
-                if (inasistenciaQ.First().Hasta != null)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    mDateTimePickerHasta.Value = (DateTime)inasistenciaQ.First().Hasta;
-                    mDateTimePickerHasta.Checked = true;
+                    // Datos Persona
+                    aux[1] = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[1].Value);
+                    ObjectQuery<Personas> personaQ =
+                        db.Personas.Where("it.Id = @Id");
+                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+
+                    mTextBoxNombre.Text = personaQ.First().NombreCompleto;
+                    mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+
+                    // Datos Inasistencia
+                    auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
+                    ObjectQuery<Inasistencias> inasistenciaQ =
+                        db.Inasistencias.Where("it.Id = @Id");
+                    inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+
+                    mDateTimePickerDesde.Value = inasistenciaQ.First().Desde;
+                    if (inasistenciaQ.First().Hasta != null)
+                    {
+                        mDateTimePickerHasta.Value = (DateTime)inasistenciaQ.First().Hasta;
+                        mDateTimePickerHasta.Checked = true;
+                    }
+                    else
+                    {
+                        mDateTimePickerHasta.Value = DateTime.Now;
+                        mDateTimePickerHasta.Checked = false;
+                    }
+                    mTextBoxMotivo.Text = inasistenciaQ.First().Motivo;
+                    mGroupBoxInasistencia.Text = "Inasistencia - ID: " + inasistenciaQ.First().Id.ToString();
+                    mButtonEliminar.Enabled = true;
                 }
-                else
-                {
-                    mDateTimePickerHasta.Value = DateTime.Now;
-                    mDateTimePickerHasta.Checked = false;
-                }
-                mTextBoxMotivo.Text = inasistenciaQ.First().Motivo;
-                mGroupBoxInasistencia.Text = "Inasistencia - ID: " + inasistenciaQ.First().Id.ToString();
-                mButtonEliminar.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -380,47 +408,51 @@ namespace CSAdminApp.Pantallas
             {
                 if (toolStripTextBoxFiltro.Text.Length > 0)
                 {
-                    switch (toolStripComboBoxCampos.SelectedIndex)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        case 0:
-                            if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
-                            {
-                                aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
-                                ObjectQuery<Inasistencias> inasistenciasQF =
-                                    Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
-                                inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                var bindinglist = entityDataSource.CreateView(inasistenciasQF);
-                                mDataGridViewAsistencia.DataSource = bindinglist;
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontraron registros con ese nombre");
-                                toolStripTextBoxFiltro.Focus();
-                            }                                                            
-                            break;
+                        switch (toolStripComboBoxCampos.SelectedIndex)
+                        {
+                            case 0:
+                                if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
+                                {
+                                    aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                                    ObjectQuery<Inasistencias> inasistenciasQF =
+                                        db.Inasistencias.Where("it.IdPersona = @IdP");
+                                    inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(inasistenciasQF);
+                                    mDataGridViewAsistencia.DataSource = bindinglist;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se encontraron registros con ese nombre");
+                                    toolStripTextBoxFiltro.Focus();
+                                }
+                                break;
 
-                        case 1:
-                            ObjectQuery<Personas> personaQF =
-                                Main.BDContext.Personas.Where("it.DNI = @Dni");
-                            personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
-                            if (personaQF.Any())
-                            {
-                                aux[1] = personaQF.First().Id;
-                                ObjectQuery<Inasistencias> inasistenciaQF =
-                                    Main.BDContext.Inasistencias.Where("it.IdPersona = @IdP");
-                                inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                var bindinglist = entityDataSource.CreateView(inasistenciaQF);
-                                mDataGridViewAsistencia.DataSource = bindinglist;
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontraron registros con ese DNI");
-                                toolStripTextBoxFiltro.Focus();
-                            }
-                            break;
+                            case 1:
+                                ObjectQuery<Personas> personaQF =
+                                    db.Personas.Where("it.DNI = @Dni");
+                                personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                                if (personaQF.Any())
+                                {
+                                    aux[1] = personaQF.First().Id;
+                                    ObjectQuery<Inasistencias> inasistenciaQF =
+                                        db.Inasistencias.Where("it.IdPersona = @IdP");
+                                    inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var bindinglist = entityDataSource.CreateView(inasistenciaQF);
+                                    mDataGridViewAsistencia.DataSource = bindinglist;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se encontraron registros con ese DNI");
+                                    toolStripTextBoxFiltro.Focus();
+                                }
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
+
                     }
                 }
             }

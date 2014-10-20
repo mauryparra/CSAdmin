@@ -36,51 +36,54 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                ObjectQuery<SituacionesProfesionales> sitProf =
-                    Main.BDContext.SituacionesProfesionales;
-
-                foreach (var sit in sitProf)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    if (!cargos.Contains(sit.CargoAbrev))
+                    ObjectQuery<SituacionesProfesionales> sitProf =
+                        db.SituacionesProfesionales;
+
+                    foreach (var sit in sitProf)
                     {
-                        cargos.Add(sit.CargoAbrev);
+                        if (!cargos.Contains(sit.CargoAbrev))
+                        {
+                            cargos.Add(sit.CargoAbrev);
+                        }
                     }
-                }
 
-                aComboBoxCargo.DataSource = cargos;
+                    aComboBoxCargo.DataSource = cargos;
 
-                ObjectQuery<Equipos> equipos =
-                    Main.BDContext.Equipos;
-                aComboBoxEquipo.DataSource = equipos;
-                aComboBoxEquipo.DisplayMember = "Id";
-                aComboBoxEquipo.ValueMember = "Id";
+                    ObjectQuery<Equipos> equipos =
+                        db.Equipos;
+                    aComboBoxEquipo.DataSource = equipos;
+                    aComboBoxEquipo.DisplayMember = "Id";
+                    aComboBoxEquipo.ValueMember = "Id";
 
-                mComboBoxEquipo.DataSource = equipos;
-                mComboBoxEquipo.DisplayMember = "Id";
-                mComboBoxEquipo.ValueMember = "Id";
+                    mComboBoxEquipo.DataSource = equipos;
+                    mComboBoxEquipo.DisplayMember = "Id";
+                    mComboBoxEquipo.ValueMember = "Id";
 
-                ObjectQuery<Funciones> funciones =
-                    Main.BDContext.Funciones;
-                aComboBoxFuncion.DataSource = funciones;
-                aComboBoxFuncion.DisplayMember = "Funcion";
-                aComboBoxFuncion.ValueMember = "Id";
+                    ObjectQuery<Funciones> funciones =
+                        db.Funciones;
+                    aComboBoxFuncion.DataSource = funciones;
+                    aComboBoxFuncion.DisplayMember = "Funcion";
+                    aComboBoxFuncion.ValueMember = "Id";
 
-                mComboBoxFuncion.DataSource = funciones;
-                mComboBoxFuncion.DisplayMember = "Funcion";
-                mComboBoxFuncion.ValueMember = "Id";
+                    mComboBoxFuncion.DataSource = funciones;
+                    mComboBoxFuncion.DisplayMember = "Funcion";
+                    mComboBoxFuncion.ValueMember = "Id";
 
 
-                foreach (Clases.Personas persona in Main.BDContext.Personas)
-                {
-                    if (persona.Baja == false)
+                    foreach (Clases.Personas persona in db.Personas)
                     {
-                        autocomNombres.Add(persona.NombreCompleto);
+                        if (persona.Baja == false)
+                        {
+                            autocomNombres.Add(persona.NombreCompleto);
 
-                        nombresDict.Add(persona.NombreCompleto, persona.Id);
+                            nombresDict.Add(persona.NombreCompleto, persona.Id);
+                        }
                     }
-                }
 
-                toolStripTextBoxFiltro.AutoCompleteCustomSource = autocomNombres;
+                    toolStripTextBoxFiltro.AutoCompleteCustomSource = autocomNombres;
+                }
             }
             catch (Exception ex)
             {
@@ -94,21 +97,24 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                condiciones.Clear();
-                ObjectQuery<SituacionesProfesionales> sitCond =
-                   Main.BDContext.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-                sitCond.Parameters.Add(new ObjectParameter("Cargo", aComboBoxCargo.SelectedValue));
-
-                foreach (var cond in sitCond)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    if (!condiciones.Contains(cond.CondicionAbrev))
-                    {
-                        condiciones.Add(cond.CondicionAbrev);
-                    }
-                }
+                    condiciones.Clear();
+                    ObjectQuery<SituacionesProfesionales> sitCond =
+                       db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
+                    sitCond.Parameters.Add(new ObjectParameter("Cargo", aComboBoxCargo.SelectedValue));
 
-                aComboBoxCondicion.DataSource = null;
-                aComboBoxCondicion.DataSource = condiciones;
+                    foreach (var cond in sitCond)
+                    {
+                        if (!condiciones.Contains(cond.CondicionAbrev))
+                        {
+                            condiciones.Add(cond.CondicionAbrev);
+                        }
+                    }
+
+                    aComboBoxCondicion.DataSource = null;
+                    aComboBoxCondicion.DataSource = condiciones;
+                }
             }
             catch (Exception ex)
             {
@@ -120,11 +126,14 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                ObjectQuery<Equipos> equipos =
-                    Main.BDContext.Equipos.Where("it.Id = @Id");
-                equipos.Parameters.Add(new ObjectParameter("Id", aComboBoxEquipo.SelectedValue));
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                {
+                    ObjectQuery<Equipos> equipos =
+                        db.Equipos.Where("it.Id = @Id");
+                    equipos.Parameters.Add(new ObjectParameter("Id", aComboBoxEquipo.SelectedValue));
 
-                aTextBoxSede.Text = equipos.First().Ubicacion;
+                    aTextBoxSede.Text = equipos.First().Ubicacion;
+                }
             }
             catch (Exception ex)
             {
@@ -138,26 +147,29 @@ namespace CSAdminApp.Pantallas
             {
                 try
                 {
-                    ObjectQuery<Personas> personas =
-                    Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        ObjectQuery<Personas> personas =
+                        db.Personas.Where("it.Dni = @Dni");
+                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
 
-                    if (personas.Any())
-                    {
-                        aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
-                        aTextBoxNombre.Text = personas.First().Nombre;
-                        aTextBoxApellido.Text = personas.First().Apellido;
-                        aux[0] = personas.First().Id;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        FunmPC.limpiarForm(aGroupBoxPersona);
-                        FunmPC.limpiarForm(aGroupBoxDestino);
-                        aNumericUpDownHoras.Value = 25;
-                        aMaskedTextBoxDNI.Focus();
-                        aux[0] = 0;
+                        if (personas.Any())
+                        {
+                            aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
+                            aTextBoxNombre.Text = personas.First().Nombre;
+                            aTextBoxApellido.Text = personas.First().Apellido;
+                            aux[0] = personas.First().Id;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            FunmPC.limpiarForm(aGroupBoxPersona);
+                            FunmPC.limpiarForm(aGroupBoxDestino);
+                            aNumericUpDownHoras.Value = 25;
+                            aMaskedTextBoxDNI.Focus();
+                            aux[0] = 0;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -171,28 +183,31 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                if (aMaskedTextBoxDNI.Text.Length > 0)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<Personas> personas =
-                        Main.BDContext.Personas.Where("it.Dni = @Dni");
-                    personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
+                    if (aMaskedTextBoxDNI.Text.Length > 0)
+                    {
+                        ObjectQuery<Personas> personas =
+                            db.Personas.Where("it.Dni = @Dni");
+                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
 
-                    if (personas.Any())
-                    {
-                        aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
-                        aTextBoxNombre.Text = personas.First().Nombre;
-                        aTextBoxApellido.Text = personas.First().Apellido;
-                        aux[0] = personas.First().Id;
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        FunmPC.limpiarForm(aGroupBoxPersona);
-                        FunmPC.limpiarForm(aGroupBoxDestino);
-                        aNumericUpDownHoras.Value = 25;
-                        aMaskedTextBoxDNI.Focus();
-                        aux[0] = 0;
+                        if (personas.Any())
+                        {
+                            aMaskedTextBoxCuit.Text = personas.First().Cuit.ToString();
+                            aTextBoxNombre.Text = personas.First().Nombre;
+                            aTextBoxApellido.Text = personas.First().Apellido;
+                            aux[0] = personas.First().Id;
+                        }
+                        else
+                        {
+                            MessageBox.Show("No hay ninguna persona con ese DNI", "Alta Contratos",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            FunmPC.limpiarForm(aGroupBoxPersona);
+                            FunmPC.limpiarForm(aGroupBoxDestino);
+                            aNumericUpDownHoras.Value = 25;
+                            aMaskedTextBoxDNI.Focus();
+                            aux[0] = 0;
+                        }
                     }
                 }
             }
@@ -238,10 +253,14 @@ namespace CSAdminApp.Pantallas
                     nuevoContrato.Horas = Convert.ToByte(aNumericUpDownHoras.Value);
                     nuevoContrato.Observacion = aTextBoxObs.Text;
 
-                    Main.BDContext.AddToContratos(nuevoContrato);
-                    Main.BDContext.SaveChanges();
-                    MessageBox.Show("Se agrego el contrato a: " + aTextBoxNombre.Text + " " + aTextBoxApellido.Text,
-                                    "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                    {
+                        db.AddToContratos(nuevoContrato);
+                        db.SaveChanges();
+                        MessageBox.Show("Se agrego el contrato a: " + aTextBoxNombre.Text + " " + aTextBoxApellido.Text,
+                                        "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    
                     FunmPC.limpiarForm(aGroupBoxPersona);
                     FunmPC.limpiarForm(aGroupBoxDestino);
                     aNumericUpDownHoras.Value = 25;
@@ -263,73 +282,76 @@ namespace CSAdminApp.Pantallas
 #region Modificar
         private void mDataGridViewContratos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            // en aux se guarda el Id de persona
-            aux[1] = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[1].Value);
-
-            ObjectQuery<Personas> personaQ =
-                    Main.BDContext.Personas.Where("it.Id = @Id");
-            personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
-
-            mTextBoxNombre.Text = personaQ.First().NombreCompleto;
-            mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
-
-            // Datos Contrato
-            auxContratoId = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[0].Value);
-
-            ObjectQuery<Contratos> contratoQ =
-                Main.BDContext.Contratos.Where("it.Id = @Id");
-            contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
-
-            mDateTimePickerInicio.Value = contratoQ.First().FechaInicio;
-            if (contratoQ.First().FechaBaja.HasValue)
+            using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
             {
-                mDateTimePickerBaja.Value = (DateTime)contratoQ.First().FechaBaja;
-                mDateTimePickerBaja.Checked = true;
-            }
-            else
-            {
-                mDateTimePickerBaja.Value = DateTime.Now.Date;
-                mDateTimePickerBaja.Checked = false;
-            }
+                // en aux se guarda el Id de persona
+                aux[1] = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[1].Value);
 
-            mComboBoxOrigen.Text = contratoQ.First().Origen;
+                ObjectQuery<Personas> personaQ =
+                        db.Personas.Where("it.Id = @Id");
+                personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
 
-            // Carga de combobox para Cargo y Condicion
-            ObjectQuery<SituacionesProfesionales> sitProf =
-                    Main.BDContext.SituacionesProfesionales;
-            foreach (var sit in sitProf)
-            {
-                if (!cargos.Contains(sit.CargoAbrev))
+                mTextBoxNombre.Text = personaQ.First().NombreCompleto;
+                mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
+
+                // Datos Contrato
+                auxContratoId = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[0].Value);
+
+                ObjectQuery<Contratos> contratoQ =
+                    db.Contratos.Where("it.Id = @Id");
+                contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+
+                mDateTimePickerInicio.Value = contratoQ.First().FechaInicio;
+                if (contratoQ.First().FechaBaja.HasValue)
                 {
-                    cargos.Add(sit.CargoAbrev);
+                    mDateTimePickerBaja.Value = (DateTime)contratoQ.First().FechaBaja;
+                    mDateTimePickerBaja.Checked = true;
                 }
-            }
-            mComboBoxCargo.DataSource = cargos;
-            mComboBoxCargo.SelectedItem = contratoQ.First().CargoId;
-
-            condiciones.Clear();
-            ObjectQuery<SituacionesProfesionales> sitCond =
-               Main.BDContext.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-            sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
-
-            foreach (var cond in sitCond)
-            {
-                if (!condiciones.Contains(cond.CondicionAbrev))
+                else
                 {
-                    condiciones.Add(cond.CondicionAbrev);
+                    mDateTimePickerBaja.Value = DateTime.Now.Date;
+                    mDateTimePickerBaja.Checked = false;
                 }
+
+                mComboBoxOrigen.Text = contratoQ.First().Origen;
+
+                // Carga de combobox para Cargo y Condicion
+                ObjectQuery<SituacionesProfesionales> sitProf =
+                        db.SituacionesProfesionales;
+                foreach (var sit in sitProf)
+                {
+                    if (!cargos.Contains(sit.CargoAbrev))
+                    {
+                        cargos.Add(sit.CargoAbrev);
+                    }
+                }
+                mComboBoxCargo.DataSource = cargos;
+                mComboBoxCargo.SelectedItem = contratoQ.First().CargoId;
+
+                condiciones.Clear();
+                ObjectQuery<SituacionesProfesionales> sitCond =
+                   db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
+                sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+
+                foreach (var cond in sitCond)
+                {
+                    if (!condiciones.Contains(cond.CondicionAbrev))
+                    {
+                        condiciones.Add(cond.CondicionAbrev);
+                    }
+                }
+
+                mComboBoxCondicion.DataSource = null;
+                mComboBoxCondicion.DataSource = condiciones;
+
+                mComboBoxCondicion.SelectedItem = contratoQ.First().CondicionId;
+
+                mComboBoxEquipo.SelectedValue = contratoQ.First().EquipoId;
+                mComboBoxFuncion.SelectedValue = contratoQ.First().FuncionId;
+                mNumericUpDownHoras.Value = contratoQ.First().Horas;
+                mTextBoxObs.Text = contratoQ.First().Observacion;
+                mButtonEliminar.Enabled = true;
             }
-
-            mComboBoxCondicion.DataSource = null;
-            mComboBoxCondicion.DataSource = condiciones;
-
-            mComboBoxCondicion.SelectedItem = contratoQ.First().CondicionId;
-
-            mComboBoxEquipo.SelectedValue = contratoQ.First().EquipoId;
-            mComboBoxFuncion.SelectedValue = contratoQ.First().FuncionId;
-            mNumericUpDownHoras.Value = contratoQ.First().Horas;
-            mTextBoxObs.Text = contratoQ.First().Observacion;
-            mButtonEliminar.Enabled = true;
         }
 
         private void mButtonCancelar_Click(object sender, EventArgs e)
@@ -352,30 +374,33 @@ namespace CSAdminApp.Pantallas
             {
                 if (aux[1] != 0)
                 {
-                    ObjectQuery<Contratos> contratosQ =
-                        Main.BDContext.Contratos.Where("it.Id = @Id");
-                    contratosQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
-
-                    contratosQ.First().FechaInicio = mDateTimePickerInicio.Value;
-                    if (mDateTimePickerBaja.Checked)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        contratosQ.First().FechaBaja = mDateTimePickerBaja.Value;
-                    }
-                    else
-                    {
-                        contratosQ.First().FechaBaja = null;
-                    }
+                        ObjectQuery<Contratos> contratosQ =
+                            db.Contratos.Where("it.Id = @Id");
+                        contratosQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
 
-                    contratosQ.First().Origen = mComboBoxOrigen.Text;
-                    contratosQ.First().EquipoId = (string)mComboBoxEquipo.SelectedValue;
-                    contratosQ.First().FuncionId = (string)mComboBoxFuncion.SelectedValue;
-                    contratosQ.First().Horas = Convert.ToByte(mNumericUpDownHoras.Value);
-                    contratosQ.First().Observacion = mTextBoxObs.Text;
+                        contratosQ.First().FechaInicio = mDateTimePickerInicio.Value;
+                        if (mDateTimePickerBaja.Checked)
+                        {
+                            contratosQ.First().FechaBaja = mDateTimePickerBaja.Value;
+                        }
+                        else
+                        {
+                            contratosQ.First().FechaBaja = null;
+                        }
 
-                    Main.BDContext.SaveChanges();
-                    MessageBox.Show("Se han modificado los datos del contrato.", "Contratos",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    entityDataSource.Refresh();
+                        contratosQ.First().Origen = mComboBoxOrigen.Text;
+                        contratosQ.First().EquipoId = (string)mComboBoxEquipo.SelectedValue;
+                        contratosQ.First().FuncionId = (string)mComboBoxFuncion.SelectedValue;
+                        contratosQ.First().Horas = Convert.ToByte(mNumericUpDownHoras.Value);
+                        contratosQ.First().Observacion = mTextBoxObs.Text;
+
+                        db.SaveChanges();
+                        MessageBox.Show("Se han modificado los datos del contrato.", "Contratos",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        entityDataSource.Refresh();
+                    }
 
                     // Limpiar Form
                     FunmPC.limpiarForm(mGroupBoxPersona);
@@ -407,13 +432,17 @@ namespace CSAdminApp.Pantallas
                     DialogResult dr = passprompt.ShowDialog();
                     if (dr == DialogResult.OK)
                     {
-                        ObjectQuery<Contratos> contratoQ =
-                            Main.BDContext.Contratos.Where("it.Id = @Id");
-                        contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
-                        Main.BDContext.Contratos.DeleteObject(contratoQ.First());
-                        Main.BDContext.SaveChanges();
-                        MessageBox.Show("Contrato eliminado");
-                        entityDataSource.Refresh();
+                        using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+                        {
+                            ObjectQuery<Contratos> contratoQ =
+                                db.Contratos.Where("it.Id = @Id");
+                            contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+                            db.Contratos.DeleteObject(contratoQ.First());
+                            db.SaveChanges();
+                            MessageBox.Show("Contrato eliminado");
+                            entityDataSource.Refresh();
+                        }
+
 
                         // Limpiar Form
                         FunmPC.limpiarForm(mGroupBoxPersona);
@@ -440,21 +469,25 @@ namespace CSAdminApp.Pantallas
         {
             try
             {
-                condiciones.Clear();
-                ObjectQuery<SituacionesProfesionales> sitCond =
-                   Main.BDContext.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-                sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
-
-                foreach (var cond in sitCond)
+                using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    if (!condiciones.Contains(cond.CondicionAbrev))
+                    condiciones.Clear();
+                    ObjectQuery<SituacionesProfesionales> sitCond =
+                       db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
+                    sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+
+                    foreach (var cond in sitCond)
                     {
-                        condiciones.Add(cond.CondicionAbrev);
+                        if (!condiciones.Contains(cond.CondicionAbrev))
+                        {
+                            condiciones.Add(cond.CondicionAbrev);
+                        }
                     }
+
+                    mComboBoxCondicion.DataSource = null;
+                    mComboBoxCondicion.DataSource = condiciones;
                 }
 
-                mComboBoxCondicion.DataSource = null;
-                mComboBoxCondicion.DataSource = condiciones;
             }
             catch (Exception ex)
             {
@@ -470,70 +503,73 @@ namespace CSAdminApp.Pantallas
                 {
 
                     // TODO agregar filtro de activos o inactivos
-                    switch (toolStripComboBoxCampos.SelectedIndex)
+                    using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        case 0:
-                            if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
-                            {
-                                aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
-                                if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                        switch (toolStripComboBoxCampos.SelectedIndex)
+                        {
+                            case 0:
+                                if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
                                 {
-                                    ObjectQuery<Contratos> ContratosQF =
-                                        Main.BDContext.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
-                                    ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                    var bindinglist = entityDataSource.CreateView(ContratosQF);
-                                    mDataGridViewContratos.DataSource = bindinglist;
+                                    aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                                    if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                                    {
+                                        ObjectQuery<Contratos> ContratosQF =
+                                            db.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
+                                        ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var bindinglist = entityDataSource.CreateView(ContratosQF);
+                                        mDataGridViewContratos.DataSource = bindinglist;
+                                    }
+                                    else
+                                    {
+                                        ObjectQuery<Contratos> ContratosQF =
+                                            db.Contratos.Where("it.PersonaId = @IdP");
+                                        ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var bindinglist = entityDataSource.CreateView(ContratosQF);
+                                        mDataGridViewContratos.DataSource = bindinglist;
+                                    }
                                 }
                                 else
                                 {
-                                    ObjectQuery<Contratos> ContratosQF =
-                                        Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
-                                    ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                    var bindinglist = entityDataSource.CreateView(ContratosQF);
-                                    mDataGridViewContratos.DataSource = bindinglist;
+                                    MessageBox.Show("No se encontraron registros con ese nombre");
+                                    toolStripTextBoxFiltro.Focus();
                                 }
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontraron registros con ese nombre");
-                                toolStripTextBoxFiltro.Focus();
-                            }
-                            break;
+                                break;
 
-                        case 1:
-                            ObjectQuery<Personas> personaQF =
-                                Main.BDContext.Personas.Where("it.DNI = @Dni");
-                            personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
-                            if (personaQF.Any())
-                            {
-                                aux[1] = personaQF.First().Id;
-                                if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                            case 1:
+                                ObjectQuery<Personas> personaQF =
+                                    db.Personas.Where("it.DNI = @Dni");
+                                personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                                if (personaQF.Any())
                                 {
-                                    ObjectQuery<Contratos> contratosQF =
-                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
-                                    contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                    var bindinglist = entityDataSource.CreateView(contratosQF);
-                                    mDataGridViewContratos.DataSource = bindinglist;
+                                    aux[1] = personaQF.First().Id;
+                                    if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
+                                    {
+                                        ObjectQuery<Contratos> contratosQF =
+                                        db.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
+                                        contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var bindinglist = entityDataSource.CreateView(contratosQF);
+                                        mDataGridViewContratos.DataSource = bindinglist;
+                                    }
+                                    else
+                                    {
+                                        ObjectQuery<Contratos> contratosQF =
+                                        db.Contratos.Where("it.PersonaId = @IdP");
+                                        contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var bindinglist = entityDataSource.CreateView(contratosQF);
+                                        mDataGridViewContratos.DataSource = bindinglist;
+                                    }
+
                                 }
                                 else
                                 {
-                                    ObjectQuery<Contratos> contratosQF =
-                                    Main.BDContext.Contratos.Where("it.PersonaId = @IdP");
-                                    contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
-                                    var bindinglist = entityDataSource.CreateView(contratosQF);
-                                    mDataGridViewContratos.DataSource = bindinglist;
+                                    MessageBox.Show("No se encontraron registros con ese DNI");
+                                    toolStripTextBoxFiltro.Focus();
                                 }
-                                
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontraron registros con ese DNI");
-                                toolStripTextBoxFiltro.Focus();
-                            }
-                            break;
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -552,18 +588,20 @@ namespace CSAdminApp.Pantallas
 
         private void toolStripButtonActivos_CheckedChanged(object sender, EventArgs e)
         {
-            if (toolStripButtonActivos.Checked)
+            using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
             {
-                ObjectQuery<Contratos> contratosQ =
-                                    Main.BDContext.Contratos.Where("it.FechaBaja IS NULL");
-                mDataGridViewContratos.DataSource = entityDataSource.CreateView(contratosQ);
+                if (toolStripButtonActivos.Checked)
+                {
+                    ObjectQuery<Contratos> contratosQ =
+                                        db.Contratos.Where("it.FechaBaja IS NULL");
+                    mDataGridViewContratos.DataSource = entityDataSource.CreateView(contratosQ);
+                }
+                else
+                {
+                    mDataGridViewContratos.DataSource = entityDataSource;
+                    mDataGridViewContratos.DataMember = "Contratos";
+                }
             }
-            else
-            {
-                mDataGridViewContratos.DataSource = entityDataSource;
-                mDataGridViewContratos.DataMember = "Contratos";
-            }
-            
         }
 #endregion
     }
