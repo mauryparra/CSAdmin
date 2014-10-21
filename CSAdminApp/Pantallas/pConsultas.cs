@@ -24,21 +24,25 @@ namespace CSAdminApp.Pantallas
 
         private void pConsultas_Load(object sender, EventArgs e)
         {
-            lstInasistencias = Main.BDContext.Inasistencias.ToList();
+            using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
+            {
+                lstInasistencias = db.Inasistencias.ToList();
 
-            string exeFolder = Path.GetDirectoryName(Application.StartupPath);
-            string reportPath = Path.Combine(exeFolder, @"Release\Reportes\ReporteAsistencia.rdlc");
+                string exeFolder = Path.GetDirectoryName(Application.StartupPath);
+                string reportPath = Path.Combine(exeFolder, @"Release\Reportes\ReporteAsistencia.rdlc");
 
-            reportViewer.ProcessingMode = ProcessingMode.Local;
-            reportViewer.LocalReport.ReportPath = reportPath;
+                reportViewer.ProcessingMode = ProcessingMode.Local;
+                reportViewer.LocalReport.ReportPath = reportPath;
 
-            ReportDataSource rDataSource = new ReportDataSource();
-            rDataSource.Name = "DataSetAsistencia";
-            rDataSource.Value = lstInasistencias;
+                ReportDataSource rDataSource = new ReportDataSource();
+                rDataSource.Name = "DataSetAsistencia";
+                rDataSource.Value = lstInasistencias;
 
-            reportViewer.LocalReport.DataSources.Clear();
-            reportViewer.LocalReport.DataSources.Add(rDataSource);
-            reportViewer.RefreshReport();
+                reportViewer.LocalReport.DataSources.Clear();
+                reportViewer.LocalReport.DataSources.Add(rDataSource);
+                reportViewer.RefreshReport();
+
+            }
         }
 
         private void reportViewer_ReportRefresh(object sender, CancelEventArgs e)

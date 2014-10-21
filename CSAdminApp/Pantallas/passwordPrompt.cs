@@ -25,22 +25,25 @@ namespace CSAdminApp.Pantallas
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            ObjectQuery<Usuarios> userQ =
-                Main.BDContext.Usuarios.Where("it.Usuario = @Usuario");
-            userQ.Parameters.Add(new ObjectParameter("Usuario", usernameTextBox.Text));
-
-            if (userQ.Any())
+            using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
             {
-                if (userQ.First().Contra == passwordTextBox.Text)
+                ObjectQuery<Usuarios> userQ =
+                    db.Usuarios.Where("it.Usuario = @Usuario");
+                userQ.Parameters.Add(new ObjectParameter("Usuario", usernameTextBox.Text));
+
+                if (userQ.Any())
                 {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Contraseña incorrecta");
-                    passwordTextBox.Clear();
-                    passwordTextBox.Focus();
+                    if (userQ.First().Contra == passwordTextBox.Text)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contraseña incorrecta");
+                        passwordTextBox.Clear();
+                        passwordTextBox.Focus();
+                    }
                 }
             }
         }
