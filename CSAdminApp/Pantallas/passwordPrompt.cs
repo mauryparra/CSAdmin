@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Data.Objects;
+using System.Data.Entity.Core.Objects;
 using CSAdminApp.Clases;
 
 namespace CSAdminApp.Pantallas

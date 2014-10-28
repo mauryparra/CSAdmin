@@ -669,6 +669,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -680,9 +681,9 @@
         <EntityTypeShape EntityType="CSAdminBDModel.Inasistencias" Width="1.5" PointX="3.5" PointY="5.375" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Localidades" Width="1.5" PointX="9" PointY="8.5" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.Personas" Width="1.5" PointX="0.875" PointY="4" Height="3.5186979166666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="1" PointY="0.875" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.PersonasTel" Width="1.5" PointX="1" PointY="0.625" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="CSAdminBDModel.SituacionesProfesionales" Width="1.5" PointX="8.875" PointY="3.375" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3.5" PointY="0.875" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="CSAdminBDModel.Usuarios" Width="1.5" PointX="3.5" PointY="1.875" Height="1.9802864583333317" IsExpanded="true" />
         <AssociationConnector Association="CSAdminBDModel.FK_Contratos_Equipos" ManuallyRouted="false">
           <ConnectorPoint PointX="6.5" PointY="8.5" />
           <ConnectorPoint PointX="6.5" PointY="7.52830078125" />

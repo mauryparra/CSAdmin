@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Principal;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace CSAdminApp.Clases
 {
