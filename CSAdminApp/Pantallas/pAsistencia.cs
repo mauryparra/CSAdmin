@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Objects.DataClasses;
-using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -77,7 +76,7 @@ namespace CSAdminApp.Pantallas
 
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        db.AddToInasistencias(nuevaInasistencia);
+                        db.Inasistencias.Add(nuevaInasistencia);
                         db.SaveChanges();
                     }
                     MessageBox.Show("Se registro la inasistencia de: " + rTextBoxNombre.Text,
@@ -116,9 +115,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     aux[0] = Convert.ToInt32(rDataGridViewPersonas.SelectedRows[0].Cells[0].Value);
-                    ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                    var personaQ = db.Personas
+                                     .Where(p => p.Id == aux[0]);
 
                     rTextBoxNombre.Text = personaQ.First().NombreCompleto;
                     rMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
@@ -139,9 +137,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personas =
-                        db.Personas.Where("it.Dni = @Dni");
-                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(rMaskedTextBoxDNI.Text)));
+                        var personas = db.Personas
+                                         .Where(p => p.Dni == Convert.ToDecimal(rMaskedTextBoxDNI.Text));
 
                         if (personas.Any())
                         {
@@ -177,9 +174,8 @@ namespace CSAdminApp.Pantallas
                     {
                         using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                         {
-                            ObjectQuery<Personas> personas =
-                                db.Personas.Where("it.Id = @Id");
-                            personas.Parameters.Add(new ObjectParameter("Id", nombresDict[rTextBoxNombre.Text]));
+                            var personas = db.Personas
+                                             .Where(p => p.Id == nombresDict[rTextBoxNombre.Text]);
 
                             rMaskedTextBoxDNI.Text = personas.First().Dni.ToString();
                             aux[0] = nombresDict[rTextBoxNombre.Text];
@@ -235,9 +231,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Inasistencias> inasistenciaQ =
-                             db.Inasistencias.Where("it.Id = @Id");
-                        inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+                        var inasistenciaQ = db.Inasistencias
+                                              .Where(i => i.Id == auxInasistencia);
 
                         inasistenciaQ.First().Desde = mDateTimePickerDesde.Value.Date;
                         if (mDateTimePickerHasta.Checked == true)
@@ -294,10 +289,9 @@ namespace CSAdminApp.Pantallas
                         DialogResult dr = passprompt.ShowDialog();
                         if (dr == DialogResult.OK)
                         {
-                            ObjectQuery<Inasistencias> borrarInasistencia =
-                                db.Inasistencias.Where("it.Id = @Id");
-                            borrarInasistencia.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
-                            db.Inasistencias.DeleteObject(borrarInasistencia.First());
+                            var borrarInasistencia = db.Inasistencias
+                                                       .Where(i => i.Id == auxInasistencia);
+                            db.Inasistencias.Remove(borrarInasistencia.First());
                             db.SaveChanges();
                             MessageBox.Show("Inasistencia eliminada");
                             entityDataSource.Refresh();
@@ -332,18 +326,16 @@ namespace CSAdminApp.Pantallas
                 {
                     // Datos Persona
                     aux[1] = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[1].Value);
-                    ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                    var personaQ = db.Personas
+                                     .Where(i => i.Id == aux[1]);
 
                     mTextBoxNombre.Text = personaQ.First().NombreCompleto;
                     mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
 
                     // Datos Inasistencia
                     auxInasistencia = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[0].Value);
-                    ObjectQuery<Inasistencias> inasistenciaQ =
-                        db.Inasistencias.Where("it.Id = @Id");
-                    inasistenciaQ.Parameters.Add(new ObjectParameter("Id", auxInasistencia));
+                    var inasistenciaQ = db.Inasistencias
+                                          .Where(i => i.Id == auxInasistencia);
 
                     mDateTimePickerDesde.Value = inasistenciaQ.First().Desde;
                     if (inasistenciaQ.First().Hasta != null)
@@ -416,9 +408,8 @@ namespace CSAdminApp.Pantallas
                                 if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
                                 {
                                     aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
-                                    ObjectQuery<Inasistencias> inasistenciasQF =
-                                        db.Inasistencias.Where("it.IdPersona = @IdP");
-                                    inasistenciasQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var inasistenciasQF = db.Inasistencias
+                                                            .Where(i => i.IdPersona == aux[1]);
                                     var bindinglist = entityDataSource.CreateView(inasistenciasQF);
                                     mDataGridViewAsistencia.DataSource = bindinglist;
                                 }
@@ -430,15 +421,13 @@ namespace CSAdminApp.Pantallas
                                 break;
 
                             case 1:
-                                ObjectQuery<Personas> personaQF =
-                                    db.Personas.Where("it.DNI = @Dni");
-                                personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                                var personaQF = db.Personas
+                                                  .Where(p => p.Dni == Decimal.Parse(toolStripTextBoxFiltro.Text));
                                 if (personaQF.Any())
                                 {
                                     aux[1] = personaQF.First().Id;
-                                    ObjectQuery<Inasistencias> inasistenciaQF =
-                                        db.Inasistencias.Where("it.IdPersona = @IdP");
-                                    inasistenciaQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                    var inasistenciaQF = db.Inasistencias
+                                                           .Where(i => i.IdPersona == aux[1]);
                                     var bindinglist = entityDataSource.CreateView(inasistenciaQF);
                                     mDataGridViewAsistencia.DataSource = bindinglist;
                                 }

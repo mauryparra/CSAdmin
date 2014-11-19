@@ -44,7 +44,7 @@ namespace CSAdminApp.Pantallas
                     };
 
                     // Muestra todos los equipos en el Datagrid
-                    aDataGridViewEquipos.DataSource = equiposQuery;
+                    aDataGridViewEquipos.DataSource = equiposQuery.ToList();
 
                     // Carga los campos para autocompletar el nombre de equipo
                     foreach (Equipos eq in db.Equipos)
@@ -95,7 +95,7 @@ namespace CSAdminApp.Pantallas
                             };
 
                             // Muestra todos los equipos en el Datagrid
-                            aDataGridViewEquipos.DataSource = equiposQ0;
+                            aDataGridViewEquipos.DataSource = equiposQ0.ToList();
 
                             // Carga los campos para autocompletar el nombre de equipo
                             foreach (Equipos eq in db.Equipos)
@@ -131,7 +131,7 @@ namespace CSAdminApp.Pantallas
                             };
 
                             // Muestra todos los equipos en el Datagrid
-                            mDataGridViewEquipos.DataSource = equiposQ1;
+                            mDataGridViewEquipos.DataSource = equiposQ1.ToList();
 
                             // Carga los campos para autocompletar el nombre de equipo
                             foreach (Equipos eq in db.Equipos)
@@ -167,7 +167,7 @@ namespace CSAdminApp.Pantallas
                             };
 
                             // Muestra todos los equipos en el Datagrid
-                            bDataGridViewEquipos.DataSource = equiposQ2;
+                            bDataGridViewEquipos.DataSource = equiposQ2.ToList();
 
                             // Carga los campos para autocompletar el nombre de equipo
                             foreach (Equipos eq in db.Equipos)
@@ -214,7 +214,7 @@ namespace CSAdminApp.Pantallas
 
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        db.AddToEquipos(nuevoEquipo);
+                        db.Equipos.Add(nuevoEquipo);
                         db.SaveChanges();
                     }
 
@@ -271,9 +271,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equipoQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equipoQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                        var equipoQ = db.Equipos
+                                        .Where(eq => eq.Id == aux[0]);
 
                         equipoQ.First().Ubicacion = mTextBoxUbicacion.Text;
                         equipoQ.First().LocalidadId = (Int32)mComboBoxLocalidad.SelectedValue;
@@ -316,9 +315,8 @@ namespace CSAdminApp.Pantallas
                 using (CSAdminBDEntities db = new CSAdminBDEntities())
                 {
                     aux[0] = (string)mDataGridViewEquipos.SelectedRows[0].Cells[0].Value;
-                    ObjectQuery<Equipos> equipoQ =
-                        db.Equipos.Where("it.Id = @Id");
-                    equipoQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                    var equipoQ = db.Equipos
+                                    .Where(eq => eq.Id == aux[0]);
 
                     mTextBoxNombre.Text = equipoQ.First().Id;
                     mTextBoxUbicacion.Text = equipoQ.First().Ubicacion;
@@ -348,9 +346,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equiposQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equiposQ.Parameters.Add(new ObjectParameter("Id", mTextBoxNombre.Text));
+                        var equiposQ = db.Equipos
+                                         .Where(eq => eq.Id == mTextBoxNombre.Text);
 
                         if (equiposQ.Any())
                         {
@@ -393,9 +390,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equiposQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equiposQ.Parameters.Add(new ObjectParameter("Id", mTextBoxNombre.Text));
+                        var equiposQ = db.Equipos
+                                         .Where(eq => eq.Id == mTextBoxNombre.Text);
 
                         if (equiposQ.Any())
                         {
@@ -442,13 +438,11 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equiposQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equiposQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                        var equiposQ = db.Equipos.Where(eq => eq.Id == aux[1]);
 
                         if (equiposQ.Any())
                         {
-                            db.Equipos.DeleteObject(equiposQ.First());
+                            db.Equipos.Remove(equiposQ.First());
                             db.SaveChanges();
                             MessageBox.Show("Se dio de baja al equipo: " + bTextBoxNombre.Text,
                                         "Baja de Equipos",
@@ -490,9 +484,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equiposQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equiposQ.Parameters.Add(new ObjectParameter("Id", bTextBoxNombre.Text));
+                        var equiposQ = db.Equipos
+                                         .Where(eq => eq.Id == bTextBoxNombre.Text);
 
                         if (equiposQ.Any())
                         {
@@ -532,9 +525,7 @@ namespace CSAdminApp.Pantallas
                 {
                     using (CSAdminBDEntities db = new CSAdminBDEntities())
                     {
-                        ObjectQuery<Equipos> equiposQ =
-                            db.Equipos.Where("it.Id = @Id");
-                        equiposQ.Parameters.Add(new ObjectParameter("Id", bTextBoxNombre.Text));
+                        var equiposQ = db.Equipos.Where(eq => eq.Id == bTextBoxNombre.Text);
 
                         if (equiposQ.Any())
                         {
@@ -572,9 +563,8 @@ namespace CSAdminApp.Pantallas
                 using (CSAdminBDEntities db = new CSAdminBDEntities())
                 {
                     aux[1] = (string)bDataGridViewEquipos.SelectedRows[0].Cells[0].Value;
-                    ObjectQuery<Equipos> equipoQ =
-                        db.Equipos.Where("it.Id = @Id");
-                    equipoQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                    var equipoQ = db.Equipos
+                                    .Where(eq => eq.Id == aux[1]);
 
                     bTextBoxNombre.Text = equipoQ.First().Id;
                     bTextBoxUbicacion.Text = equipoQ.First().Ubicacion;

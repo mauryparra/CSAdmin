@@ -87,8 +87,6 @@
             this.CondicionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FuncionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EquipoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.mButtonEliminar = new System.Windows.Forms.Button();
             this.mButtonCancelar = new System.Windows.Forms.Button();
@@ -608,6 +606,7 @@
             // mEntityBindingNavigator
             // 
             this.mEntityBindingNavigator.DataMember = "Inasistencias";
+            this.mEntityBindingNavigator.DataSource = this.entityDataSource;
             this.mEntityBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.mEntityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
@@ -713,10 +712,7 @@
             this.CargoId,
             this.CondicionId,
             this.FuncionId,
-            this.EquipoId,
-            this.horasDataGridViewTextBoxColumn,
-            this.observacionDataGridViewTextBoxColumn});
-            this.mDataGridViewContratos.DataMember = "Contratos";
+            this.EquipoId});
             this.mDataGridViewContratos.DataSource = this.entityDataSource;
             this.mDataGridViewContratos.Location = new System.Drawing.Point(0, 27);
             this.mDataGridViewContratos.Name = "mDataGridViewContratos";
@@ -797,23 +793,9 @@
             this.EquipoId.Name = "EquipoId";
             this.EquipoId.ReadOnly = true;
             // 
-            // horasDataGridViewTextBoxColumn
-            // 
-            this.horasDataGridViewTextBoxColumn.DataPropertyName = "Horas";
-            this.horasDataGridViewTextBoxColumn.HeaderText = "Horas";
-            this.horasDataGridViewTextBoxColumn.Name = "horasDataGridViewTextBoxColumn";
-            this.horasDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // observacionDataGridViewTextBoxColumn
-            // 
-            this.observacionDataGridViewTextBoxColumn.DataPropertyName = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.HeaderText = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.Name = "observacionDataGridViewTextBoxColumn";
-            this.observacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // entityDataSource
             // 
-            this.entityDataSource.ObjectContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
+            this.entityDataSource.DbContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
             // 
             // mButtonEliminar
             // 

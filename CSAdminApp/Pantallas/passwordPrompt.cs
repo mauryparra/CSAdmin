@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
+using System.Data.Entity.Core;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,13 +27,12 @@ namespace CSAdminApp.Pantallas
         {
             using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
             {
-                ObjectQuery<Usuarios> userQ =
-                    db.Usuarios.Where("it.Usuario = @Usuario");
-                userQ.Parameters.Add(new ObjectParameter("Usuario", usernameTextBox.Text));
+                var usuario = db.Usuarios
+                                .Where(u => u.Usuario == usernameTextBox.Text);
 
-                if (userQ.Any())
+                if (usuario.Any())
                 {
-                    if (userQ.First().Contra == passwordTextBox.Text)
+                    if (usuario.First().Contra == passwordTextBox.Text)
                     {
                         this.DialogResult = DialogResult.OK;
                         this.Close();

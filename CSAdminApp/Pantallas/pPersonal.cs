@@ -30,10 +30,20 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<Personas> personaQuery =
-                            db.Personas.Where("it.Baja = True");
-                    aDataGridViewPer.DataSource = personaQuery.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                    var personas = db.Personas
+                                     .Where(p => p.Baja == true).ToList();
+                    aDataGridViewPer.DataSource = personas;
                     aButtonReactivar.Visible = false;
+                    aDataGridViewPer.Columns[0].Visible = false;
+                    aDataGridViewPer.Columns[3].Visible = false;
+                    aDataGridViewPer.Columns[6].Visible = false;
+                    aDataGridViewPer.Columns[7].Visible = false;
+                    aDataGridViewPer.Columns[8].Visible = false;
+                    aDataGridViewPer.Columns[9].Visible = false;
+                    aDataGridViewPer.Columns[10].Visible = false;
+                    aDataGridViewPer.Columns[11].Visible = false;
+                    aDataGridViewPer.Columns[12].Visible = false;
+                    aDataGridViewPer.Columns[13].Visible = false;
                 }
                 
             }
@@ -49,26 +59,37 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<Personas> personaQ;
                     switch (tabControlPersonal.SelectedIndex)
                     {
                         case 0:
-                            personaQ =
-                                db.Personas.Where("it.Baja = True");
-                            aDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                            var personasAlta = db.Personas
+                                                 .Where(p => p.Baja == true).ToList();
+                            aDataGridViewPer.DataSource = personasAlta;
+                            
+                            aDataGridViewPer.Columns[0].Visible = false;
+                            aDataGridViewPer.Columns[3].Visible = false;
+                            aDataGridViewPer.Columns[6].Visible = false;
+                            aDataGridViewPer.Columns[7].Visible = false;
+                            aDataGridViewPer.Columns[8].Visible = false;
+                            aDataGridViewPer.Columns[9].Visible = false;
+                            aDataGridViewPer.Columns[10].Visible = false;
+                            aDataGridViewPer.Columns[11].Visible = false;
+                            aDataGridViewPer.Columns[12].Visible = false;
+                            aDataGridViewPer.Columns[13].Visible = false;
                             break;
 
                         case 1:
-                            personaQ =
-                                db.Personas;
-                            mDataGridViewPer.DataSource = personaQ.Select(
-                                "it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
+                            var personasMod = db.Personas.ToList();
+                            mDataGridViewPer.DataSource = personasMod;
+
+                            // .Select("it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
                             break;
 
                         case 2:
-                            personaQ =
-                                db.Personas.Where("it.Baja = False");
-                            bDataGridViewPer.DataSource = personaQ.Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+                            var personasBaja = db.Personas
+                                                .Where(p => p.Baja == false).ToList();
+                            bDataGridViewPer.DataSource = personasBaja;
+                            // .Select("it.Id, it.Dni, it.Nombre, it.Apellido");
                             break;
 
                         default:
@@ -148,7 +169,7 @@ namespace CSAdminApp.Pantallas
 
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    db.Personas.AddObject(nuevaPersona);
+                    db.Personas.Add(nuevaPersona);
                     db.SaveChanges();
                 }
                 MessageBox.Show("Se agrego: " + nuevaPersona.Nombre + " " + nuevaPersona.Apellido,
@@ -187,9 +208,8 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<Personas> personaQ =
-                    db.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                    var personaQ = db.Personas
+                                     .Where(p => p.Id == aux[0]);
 
                     personaQ.First().Baja = false;
                     db.SaveChanges();
@@ -221,9 +241,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     aux[0] = Convert.ToInt32(aDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                    ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[0]));
+                    var personaQ = db.Personas
+                                      .Where(p => p.Id == aux[0]);
 
                     aMaskedTextBoxDni.Text = personaQ.First().Dni.ToString();
                     aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
@@ -234,9 +253,8 @@ namespace CSAdminApp.Pantallas
 
                     // Si tiene telefonos registrados se cargan
 
-                    ObjectQuery<PersonasTel> telefonosQ =
-                        db.PersonasTel.Where("it.IdPersona = @IdP");
-                    telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[0]));
+                    var telefonosQ = db.PersonasTel
+                                       .Where(t => t.IdPersona == aux[0]);
 
                     if (telefonosQ.Any())
                     {
@@ -271,9 +289,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personaQ =
-                            db.Personas.Where("it.Dni = @Dni");
-                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(aMaskedTextBoxDni.Text)));
+                        var personaQ = db.Personas
+                                         .Where(p => p.Dni == Convert.ToInt32(aMaskedTextBoxDni.Text));
 
                         if (personaQ.Any())
                         {
@@ -287,9 +304,8 @@ namespace CSAdminApp.Pantallas
                                 aux[0] = personaQ.First().Id;
 
                                 // Si tiene telefonos registrados se cargan
-                                ObjectQuery<PersonasTel> telefonosQ =
-                                    db.PersonasTel.Where("it.IdPersona = @IdP");
-                                telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[0]));
+                                var telefonosQ = db.PersonasTel
+                                                   .Where(pt => pt.IdPersona == aux[0]);
 
                                 if (telefonosQ.Any())
                                 {
@@ -338,9 +354,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personaQ =
-                            db.Personas.Where("it.Dni = @Dni");
-                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(mMaskedTextBoxDni.Text)));
+                        var personaQ = db.Personas
+                                         .Where(p => p.Dni == Convert.ToInt32(mMaskedTextBoxDni.Text));
 
                         if (personaQ.Any())
                         {
@@ -352,9 +367,8 @@ namespace CSAdminApp.Pantallas
                             aux[1] = personaQ.First().Id;
 
                             // Si tiene telefonos registrados se cargan
-                            ObjectQuery<PersonasTel> telefonosQ =
-                                db.PersonasTel.Where("it.IdPersona = @IdP");
-                            telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                            var telefonosQ = db.PersonasTel
+                                               .Where(pt => pt.IdPersona == aux[1]);
 
                             if (telefonosQ.Any())
                             {
@@ -393,9 +407,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personaQ =
-                            db.Personas.Where("it.Id = @Id");
-                        personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                        var personaQ = db.Personas
+                                         .Where(p => p.Id == aux[1]);
                         personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
                         if (mMaskedTextBoxCuit.Text.Length > 0)
                         {
@@ -487,9 +500,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     aux[1] = Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                    ObjectQuery<Personas> personasQ =
-                       db.Personas.Where("it.Id = @Id");
-                    personasQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                    var personasQ = db.Personas
+                                      .Where(p => p.Id == aux[1]);
 
                     mMaskedTextBoxDni.Text = Convert.ToString(personasQ.First().Dni);
                     mMaskedTextBoxCuit.Text = Convert.ToString(personasQ.First().Cuit);
@@ -500,9 +512,8 @@ namespace CSAdminApp.Pantallas
 
                     // Si tiene telefonos registrados se cargan
 
-                    ObjectQuery<PersonasTel> telefonosQ =
-                        db.PersonasTel.Where("it.IdPersona = @IdP");
-                    telefonosQ.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                    var telefonosQ = db.PersonasTel
+                                       .Where(pt => pt.IdPersona == aux[1]);
 
                     if (telefonosQ.Any())
                     {
@@ -535,9 +546,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                        personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+                        var personaQ = db.Personas
+                                         .Where(p=> p.Id == aux[2]);
 
                         personaQ.First().Baja = true;
                         db.SaveChanges();
@@ -579,9 +589,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personaQ =
-                            db.Personas.Where("it.Dni = @Dni");
-                        personaQ.Parameters.Add(new ObjectParameter("Dni", Convert.ToInt32(bMaskedTextBoxDni.Text)));
+                        var personaQ = db.Personas
+                                         .Where(p => p.Dni == Convert.ToInt32(bMaskedTextBoxDni.Text));
 
                         if (personaQ.Any())
                         {
@@ -614,9 +623,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[0].Value);
-                    ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                    personaQ.Parameters.Add(new ObjectParameter("Id", aux[2]));
+                    var personaQ = db.Personas
+                                     .Where(p => p.Id == aux[2]);
 
                     bMaskedTextBoxDni.Text = Convert.ToString(personaQ.First().Dni);
                     bTextBoxNombre.Text = personaQ.First().Nombre;

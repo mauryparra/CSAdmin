@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pAsistencia));
             this.tabControlAsistencia = new System.Windows.Forms.TabControl();
             this.tabPageRegistrar = new System.Windows.Forms.TabPage();
@@ -53,10 +52,6 @@
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dniDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.correoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bajaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.tabPageModificar = new System.Windows.Forms.TabPage();
             this.splitContainerModificar = new System.Windows.Forms.SplitContainer();
@@ -68,12 +63,8 @@
             this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
             this.mDataGridViewAsistencia = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idPersonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.personasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.desdeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hastaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.motivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mButtonEliminar = new System.Windows.Forms.Button();
             this.mButtonCancelar = new System.Windows.Forms.Button();
             this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
             this.mTextBoxNombre = new System.Windows.Forms.TextBox();
@@ -90,7 +81,6 @@
             this.mLabelDesde = new System.Windows.Forms.Label();
             this.mDateTimePickerDesde = new System.Windows.Forms.DateTimePicker();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.mButtonEliminar = new System.Windows.Forms.Button();
             this.tabControlAsistencia.SuspendLayout();
             this.tabPageRegistrar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerRegistro)).BeginInit();
@@ -352,12 +342,7 @@
             this.rDataGridViewPersonas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.Nombre,
-            this.Apellido,
-            this.dniDataGridViewTextBoxColumn,
-            this.direccionDataGridViewTextBoxColumn,
-            this.correoDataGridViewTextBoxColumn,
-            this.bajaDataGridViewCheckBoxColumn});
-            this.rDataGridViewPersonas.DataMember = "Personas";
+            this.Apellido});
             this.rDataGridViewPersonas.DataSource = this.entityDataSource;
             this.rDataGridViewPersonas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rDataGridViewPersonas.Location = new System.Drawing.Point(0, 0);
@@ -390,39 +375,9 @@
             this.Apellido.Name = "Apellido";
             this.Apellido.ReadOnly = true;
             // 
-            // dniDataGridViewTextBoxColumn
-            // 
-            this.dniDataGridViewTextBoxColumn.DataPropertyName = "Dni";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dniDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dniDataGridViewTextBoxColumn.HeaderText = "Dni";
-            this.dniDataGridViewTextBoxColumn.Name = "dniDataGridViewTextBoxColumn";
-            this.dniDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // direccionDataGridViewTextBoxColumn
-            // 
-            this.direccionDataGridViewTextBoxColumn.DataPropertyName = "Direccion";
-            this.direccionDataGridViewTextBoxColumn.HeaderText = "Direccion";
-            this.direccionDataGridViewTextBoxColumn.Name = "direccionDataGridViewTextBoxColumn";
-            this.direccionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // correoDataGridViewTextBoxColumn
-            // 
-            this.correoDataGridViewTextBoxColumn.DataPropertyName = "Correo";
-            this.correoDataGridViewTextBoxColumn.HeaderText = "Correo";
-            this.correoDataGridViewTextBoxColumn.Name = "correoDataGridViewTextBoxColumn";
-            this.correoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bajaDataGridViewCheckBoxColumn
-            // 
-            this.bajaDataGridViewCheckBoxColumn.DataPropertyName = "Baja";
-            this.bajaDataGridViewCheckBoxColumn.HeaderText = "Baja";
-            this.bajaDataGridViewCheckBoxColumn.Name = "bajaDataGridViewCheckBoxColumn";
-            this.bajaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
             // entityDataSource
             // 
-            this.entityDataSource.ObjectContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
+            this.entityDataSource.DbContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
             // 
             // tabPageModificar
             // 
@@ -547,13 +502,7 @@
             this.mDataGridViewAsistencia.AutoGenerateColumns = false;
             this.mDataGridViewAsistencia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mDataGridViewAsistencia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.idPersonaDataGridViewTextBoxColumn,
-            this.personasDataGridViewTextBoxColumn,
-            this.desdeDataGridViewTextBoxColumn,
-            this.hastaDataGridViewTextBoxColumn,
-            this.motivoDataGridViewTextBoxColumn});
-            this.mDataGridViewAsistencia.DataMember = "Inasistencias";
+            this.personasDataGridViewTextBoxColumn});
             this.mDataGridViewAsistencia.DataSource = this.entityDataSource;
             this.mDataGridViewAsistencia.Location = new System.Drawing.Point(0, 28);
             this.mDataGridViewAsistencia.Name = "mDataGridViewAsistencia";
@@ -563,21 +512,6 @@
             this.mDataGridViewAsistencia.TabIndex = 2;
             this.mDataGridViewAsistencia.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewAsistencia_CellMouseDoubleClick);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // idPersonaDataGridViewTextBoxColumn
-            // 
-            this.idPersonaDataGridViewTextBoxColumn.DataPropertyName = "IdPersona";
-            this.idPersonaDataGridViewTextBoxColumn.HeaderText = "IdPersona";
-            this.idPersonaDataGridViewTextBoxColumn.Name = "idPersonaDataGridViewTextBoxColumn";
-            this.idPersonaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idPersonaDataGridViewTextBoxColumn.Visible = false;
-            // 
             // personasDataGridViewTextBoxColumn
             // 
             this.personasDataGridViewTextBoxColumn.DataPropertyName = "Personas";
@@ -585,26 +519,22 @@
             this.personasDataGridViewTextBoxColumn.Name = "personasDataGridViewTextBoxColumn";
             this.personasDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // desdeDataGridViewTextBoxColumn
+            // mButtonEliminar
             // 
-            this.desdeDataGridViewTextBoxColumn.DataPropertyName = "Desde";
-            this.desdeDataGridViewTextBoxColumn.HeaderText = "Desde";
-            this.desdeDataGridViewTextBoxColumn.Name = "desdeDataGridViewTextBoxColumn";
-            this.desdeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hastaDataGridViewTextBoxColumn
-            // 
-            this.hastaDataGridViewTextBoxColumn.DataPropertyName = "Hasta";
-            this.hastaDataGridViewTextBoxColumn.HeaderText = "Hasta";
-            this.hastaDataGridViewTextBoxColumn.Name = "hastaDataGridViewTextBoxColumn";
-            this.hastaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // motivoDataGridViewTextBoxColumn
-            // 
-            this.motivoDataGridViewTextBoxColumn.DataPropertyName = "Motivo";
-            this.motivoDataGridViewTextBoxColumn.HeaderText = "Motivo";
-            this.motivoDataGridViewTextBoxColumn.Name = "motivoDataGridViewTextBoxColumn";
-            this.motivoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mButtonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.mButtonEliminar.Enabled = false;
+            this.mButtonEliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
+            this.mButtonEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
+            this.mButtonEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
+            this.mButtonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mButtonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mButtonEliminar.Location = new System.Drawing.Point(40, 180);
+            this.mButtonEliminar.Name = "mButtonEliminar";
+            this.mButtonEliminar.Size = new System.Drawing.Size(88, 26);
+            this.mButtonEliminar.TabIndex = 40;
+            this.mButtonEliminar.Text = "&Eliminar";
+            this.mButtonEliminar.UseVisualStyleBackColor = true;
+            this.mButtonEliminar.Click += new System.EventHandler(this.mButtonEliminar_Click);
             // 
             // mButtonCancelar
             // 
@@ -793,23 +723,6 @@
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            // 
-            // mButtonEliminar
-            // 
-            this.mButtonEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.mButtonEliminar.Enabled = false;
-            this.mButtonEliminar.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightSeaGreen;
-            this.mButtonEliminar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
-            this.mButtonEliminar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
-            this.mButtonEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mButtonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mButtonEliminar.Location = new System.Drawing.Point(40, 180);
-            this.mButtonEliminar.Name = "mButtonEliminar";
-            this.mButtonEliminar.Size = new System.Drawing.Size(88, 26);
-            this.mButtonEliminar.TabIndex = 40;
-            this.mButtonEliminar.Text = "&Eliminar";
-            this.mButtonEliminar.UseVisualStyleBackColor = true;
-            this.mButtonEliminar.Click += new System.EventHandler(this.mButtonEliminar_Click);
             // 
             // pAsistencia
             // 

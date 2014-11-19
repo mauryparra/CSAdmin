@@ -62,10 +62,8 @@ namespace CSAdminApp.Clases
         private bool IsValidNameAndPassword(string name, string pass)
         {
             CSAdminBDEntities dataContext = new CSAdminBDEntities();
-            ObjectQuery<Usuarios> usuariosQ =
-                dataContext.Usuarios.Where("it.Usuario = @usuario AND it.Contra = @pass ");
-            usuariosQ.Parameters.Add(new ObjectParameter("usuario", name));
-            usuariosQ.Parameters.Add(new ObjectParameter("pass", pass));
+            var usuariosQ = dataContext.Usuarios
+                                       .Where(u => u.Usuario == name && u.Contra == pass );
 
             if (usuariosQ.Any())
             {

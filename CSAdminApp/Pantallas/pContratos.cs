@@ -4,8 +4,6 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Data.Entity.Core.Objects;
-using System.Data.Entity.Core.Objects.DataClasses;
-using System.Data.Entity.Core.EntityClient;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -38,8 +36,7 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<SituacionesProfesionales> sitProf =
-                        db.SituacionesProfesionales;
+                    var sitProf = db.SituacionesProfesionales;
 
                     foreach (var sit in sitProf)
                     {
@@ -51,8 +48,7 @@ namespace CSAdminApp.Pantallas
 
                     aComboBoxCargo.DataSource = cargos;
 
-                    ObjectQuery<Equipos> equipos =
-                        db.Equipos;
+                    var equipos = db.Equipos;
                     aComboBoxEquipo.DataSource = equipos;
                     aComboBoxEquipo.DisplayMember = "Id";
                     aComboBoxEquipo.ValueMember = "Id";
@@ -61,8 +57,7 @@ namespace CSAdminApp.Pantallas
                     mComboBoxEquipo.DisplayMember = "Id";
                     mComboBoxEquipo.ValueMember = "Id";
 
-                    ObjectQuery<Funciones> funciones =
-                        db.Funciones;
+                    var funciones = db.Funciones;
                     aComboBoxFuncion.DataSource = funciones;
                     aComboBoxFuncion.DisplayMember = "Funcion";
                     aComboBoxFuncion.ValueMember = "Id";
@@ -100,9 +95,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     condiciones.Clear();
-                    ObjectQuery<SituacionesProfesionales> sitCond =
-                       db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-                    sitCond.Parameters.Add(new ObjectParameter("Cargo", aComboBoxCargo.SelectedValue));
+                    var sitCond = db.SituacionesProfesionales
+                                    .Where(sit => sit.CargoAbrev == aComboBoxCargo.SelectedValue.ToString());
 
                     foreach (var cond in sitCond)
                     {
@@ -128,9 +122,8 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    ObjectQuery<Equipos> equipos =
-                        db.Equipos.Where("it.Id = @Id");
-                    equipos.Parameters.Add(new ObjectParameter("Id", aComboBoxEquipo.SelectedValue));
+                    var equipos = db.Equipos
+                                    .Where(eq => eq.Id == aComboBoxEquipo.SelectedValue);
 
                     aTextBoxSede.Text = equipos.First().Ubicacion;
                 }
@@ -149,9 +142,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Personas> personas =
-                        db.Personas.Where("it.Dni = @Dni");
-                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
+                        var personas = db.Personas
+                                         .Where(p => p.Dni == Convert.ToDecimal(aMaskedTextBoxDNI.Text));
 
                         if (personas.Any())
                         {
@@ -187,9 +179,8 @@ namespace CSAdminApp.Pantallas
                 {
                     if (aMaskedTextBoxDNI.Text.Length > 0)
                     {
-                        ObjectQuery<Personas> personas =
-                            db.Personas.Where("it.Dni = @Dni");
-                        personas.Parameters.Add(new ObjectParameter("Dni", Convert.ToDecimal(aMaskedTextBoxDNI.Text)));
+                        var personas = db.Personas
+                                         .Where(p => p.Dni == Convert.ToDecimal(aMaskedTextBoxDNI.Text));
 
                         if (personas.Any())
                         {
@@ -255,7 +246,7 @@ namespace CSAdminApp.Pantallas
 
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        db.AddToContratos(nuevoContrato);
+                        db.Contratos.Add(nuevoContrato);
                         db.SaveChanges();
                         MessageBox.Show("Se agrego el contrato a: " + aTextBoxNombre.Text + " " + aTextBoxApellido.Text,
                                         "Alta Contratos", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -287,9 +278,8 @@ namespace CSAdminApp.Pantallas
                 // en aux se guarda el Id de persona
                 aux[1] = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[1].Value);
 
-                ObjectQuery<Personas> personaQ =
-                        db.Personas.Where("it.Id = @Id");
-                personaQ.Parameters.Add(new ObjectParameter("Id", aux[1]));
+                var personaQ = db.Personas
+                                 .Where(p => p.Id == aux[1]);
 
                 mTextBoxNombre.Text = personaQ.First().NombreCompleto;
                 mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
@@ -297,9 +287,8 @@ namespace CSAdminApp.Pantallas
                 // Datos Contrato
                 auxContratoId = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[0].Value);
 
-                ObjectQuery<Contratos> contratoQ =
-                    db.Contratos.Where("it.Id = @Id");
-                contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+                var contratoQ = db.Contratos
+                                  .Where(c => c.Id == auxContratoId);
 
                 mDateTimePickerInicio.Value = contratoQ.First().FechaInicio;
                 if (contratoQ.First().FechaBaja.HasValue)
@@ -316,8 +305,7 @@ namespace CSAdminApp.Pantallas
                 mComboBoxOrigen.Text = contratoQ.First().Origen;
 
                 // Carga de combobox para Cargo y Condicion
-                ObjectQuery<SituacionesProfesionales> sitProf =
-                        db.SituacionesProfesionales;
+                var sitProf = db.SituacionesProfesionales;
                 foreach (var sit in sitProf)
                 {
                     if (!cargos.Contains(sit.CargoAbrev))
@@ -329,9 +317,8 @@ namespace CSAdminApp.Pantallas
                 mComboBoxCargo.SelectedItem = contratoQ.First().CargoId;
 
                 condiciones.Clear();
-                ObjectQuery<SituacionesProfesionales> sitCond =
-                   db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-                sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+                var sitCond = db.SituacionesProfesionales
+                                .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue);
 
                 foreach (var cond in sitCond)
                 {
@@ -376,9 +363,8 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
-                        ObjectQuery<Contratos> contratosQ =
-                            db.Contratos.Where("it.Id = @Id");
-                        contratosQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
+                        var contratosQ = db.Contratos
+                                           .Where(c=> c.Id == auxContratoId);
 
                         contratosQ.First().FechaInicio = mDateTimePickerInicio.Value;
                         if (mDateTimePickerBaja.Checked)
@@ -434,10 +420,9 @@ namespace CSAdminApp.Pantallas
                     {
                         using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                         {
-                            ObjectQuery<Contratos> contratoQ =
-                                db.Contratos.Where("it.Id = @Id");
-                            contratoQ.Parameters.Add(new ObjectParameter("Id", auxContratoId));
-                            db.Contratos.DeleteObject(contratoQ.First());
+                            var contratoQ = db.Contratos
+                                              .Where(c => c.Id == auxContratoId);
+                            db.Contratos.Remove(contratoQ.First());
                             db.SaveChanges();
                             MessageBox.Show("Contrato eliminado");
                             entityDataSource.Refresh();
@@ -472,9 +457,8 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     condiciones.Clear();
-                    ObjectQuery<SituacionesProfesionales> sitCond =
-                       db.SituacionesProfesionales.Where("it.CargoAbrev = @Cargo");
-                    sitCond.Parameters.Add(new ObjectParameter("Cargo", mComboBoxCargo.SelectedValue));
+                    var sitCond = db.SituacionesProfesionales
+                                    .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue);
 
                     foreach (var cond in sitCond)
                     {
@@ -513,17 +497,15 @@ namespace CSAdminApp.Pantallas
                                     aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
                                     if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
                                     {
-                                        ObjectQuery<Contratos> ContratosQF =
-                                            db.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
-                                        ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var ContratosQF = db.Contratos
+                                                            .Where(c => c.PersonaId == aux[1] && c.FechaBaja == null);
                                         var bindinglist = entityDataSource.CreateView(ContratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
                                     else
                                     {
-                                        ObjectQuery<Contratos> ContratosQF =
-                                            db.Contratos.Where("it.PersonaId = @IdP");
-                                        ContratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var ContratosQF = db.Contratos
+                                                            .Where(c => c.PersonaId == aux[1]);
                                         var bindinglist = entityDataSource.CreateView(ContratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
@@ -536,25 +518,22 @@ namespace CSAdminApp.Pantallas
                                 break;
 
                             case 1:
-                                ObjectQuery<Personas> personaQF =
-                                    db.Personas.Where("it.DNI = @Dni");
-                                personaQF.Parameters.Add(new ObjectParameter("Dni", Decimal.Parse(toolStripTextBoxFiltro.Text)));
+                                var personaQF = db.Personas
+                                                  .Where(p => p.Dni == Decimal.Parse(toolStripTextBoxFiltro.Text));
                                 if (personaQF.Any())
                                 {
                                     aux[1] = personaQF.First().Id;
                                     if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
                                     {
-                                        ObjectQuery<Contratos> contratosQF =
-                                        db.Contratos.Where("it.PersonaId = @IdP AND it.FechaBaja IS NULL");
-                                        contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var contratosQF = db.Contratos
+                                                            .Where(c => c.PersonaId == aux[1] && c.FechaBaja == null);
                                         var bindinglist = entityDataSource.CreateView(contratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
                                     else
                                     {
-                                        ObjectQuery<Contratos> contratosQF =
-                                        db.Contratos.Where("it.PersonaId = @IdP");
-                                        contratosQF.Parameters.Add(new ObjectParameter("IdP", aux[1]));
+                                        var contratosQF = db.Contratos
+                                                            .Where(c => c.PersonaId == aux[1]);
                                         var bindinglist = entityDataSource.CreateView(contratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
@@ -592,8 +571,8 @@ namespace CSAdminApp.Pantallas
             {
                 if (toolStripButtonActivos.Checked)
                 {
-                    ObjectQuery<Contratos> contratosQ =
-                                        db.Contratos.Where("it.FechaBaja IS NULL");
+                    var contratosQ = db.Contratos
+                                       .Where(c => c.FechaBaja == null);
                     mDataGridViewContratos.DataSource = entityDataSource.CreateView(contratosQ);
                 }
                 else
