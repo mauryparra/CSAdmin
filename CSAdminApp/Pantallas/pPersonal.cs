@@ -83,6 +83,13 @@ namespace CSAdminApp.Pantallas
                             mDataGridViewPer.DataSource = personasMod;
 
                             // .Select("it.Id, it.Dni, it.Cuit, it.Nombre, it.Apellido, it.Direccion, it.Correo, it.Baja");
+
+                            mDataGridViewPer.Columns[0].Visible = false;
+                            mDataGridViewPer.Columns[9].Visible = false;
+                            mDataGridViewPer.Columns[10].Visible = false;
+                            mDataGridViewPer.Columns[11].Visible = false;
+                            mDataGridViewPer.Columns[12].Visible = false;
+                            mDataGridViewPer.Columns[13].Visible = false;
                             break;
 
                         case 2:
@@ -90,6 +97,17 @@ namespace CSAdminApp.Pantallas
                                                 .Where(p => p.Baja == false).ToList();
                             bDataGridViewPer.DataSource = personasBaja;
                             // .Select("it.Id, it.Dni, it.Nombre, it.Apellido");
+
+                            bDataGridViewPer.Columns[0].Visible = false;
+                            bDataGridViewPer.Columns[3].Visible = false;
+                            bDataGridViewPer.Columns[6].Visible = false;
+                            bDataGridViewPer.Columns[7].Visible = false;
+                            bDataGridViewPer.Columns[8].Visible = false;
+                            bDataGridViewPer.Columns[9].Visible = false;
+                            bDataGridViewPer.Columns[10].Visible = false;
+                            bDataGridViewPer.Columns[11].Visible = false;
+                            bDataGridViewPer.Columns[12].Visible = false;
+                            bDataGridViewPer.Columns[13].Visible = false;
                             break;
 
                         default:
