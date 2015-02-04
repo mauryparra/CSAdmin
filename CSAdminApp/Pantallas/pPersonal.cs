@@ -226,8 +226,9 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
+                    var tempVar = aux[0];
                     var personaQ = db.Personas
-                                     .Where(p => p.Id == aux[0]);
+                                     .Where(p => p.Id == tempVar);
 
                     personaQ.First().Baja = false;
                     db.SaveChanges();
@@ -258,9 +259,10 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    aux[0] = Convert.ToInt32(aDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    aux[0] = Convert.ToInt32(aDataGridViewPer.SelectedRows[0].Cells[1].Value);
+                    var tempVar = aux[0];
                     var personaQ = db.Personas
-                                      .Where(p => p.Id == aux[0]);
+                                      .Where(p => p.Id == tempVar);
 
                     aMaskedTextBoxDni.Text = personaQ.First().Dni.ToString();
                     aMaskedTextBoxCuit.Text = personaQ.First().Cuit.ToString();
@@ -272,7 +274,7 @@ namespace CSAdminApp.Pantallas
                     // Si tiene telefonos registrados se cargan
 
                     var telefonosQ = db.PersonasTel
-                                       .Where(t => t.IdPersona == aux[0]);
+                                       .Where(t => t.IdPersona == tempVar);
 
                     if (telefonosQ.Any())
                     {
@@ -307,8 +309,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var tempDNI = Convert.ToInt32(aMaskedTextBoxDni.Text);
                         var personaQ = db.Personas
-                                         .Where(p => p.Dni == Convert.ToInt32(aMaskedTextBoxDni.Text));
+                                         .Where(p => p.Dni == tempDNI);
 
                         if (personaQ.Any())
                         {
@@ -322,8 +325,9 @@ namespace CSAdminApp.Pantallas
                                 aux[0] = personaQ.First().Id;
 
                                 // Si tiene telefonos registrados se cargan
+                                var tempVar = aux[0];
                                 var telefonosQ = db.PersonasTel
-                                                   .Where(pt => pt.IdPersona == aux[0]);
+                                                   .Where(pt => pt.IdPersona == tempVar);
 
                                 if (telefonosQ.Any())
                                 {
@@ -372,8 +376,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var tempDNI = Convert.ToInt32(mMaskedTextBoxDni.Text);
                         var personaQ = db.Personas
-                                         .Where(p => p.Dni == Convert.ToInt32(mMaskedTextBoxDni.Text));
+                                         .Where(p => p.Dni == tempDNI);
 
                         if (personaQ.Any())
                         {
@@ -385,8 +390,9 @@ namespace CSAdminApp.Pantallas
                             aux[1] = personaQ.First().Id;
 
                             // Si tiene telefonos registrados se cargan
+                            var tempVar = aux[1];
                             var telefonosQ = db.PersonasTel
-                                               .Where(pt => pt.IdPersona == aux[1]);
+                                               .Where(pt => pt.IdPersona == tempVar);
 
                             if (telefonosQ.Any())
                             {
@@ -425,8 +431,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var tempVar = aux[1];
                         var personaQ = db.Personas
-                                         .Where(p => p.Id == aux[1]);
+                                         .Where(p => p.Id == tempVar);
                         personaQ.First().Dni = Convert.ToInt32(mMaskedTextBoxDni.Text);
                         if (mMaskedTextBoxCuit.Text.Length > 0)
                         {
@@ -517,9 +524,13 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    aux[1] = Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    aux[1] = Convert.ToInt32(mDataGridViewPer.SelectedRows[0].Cells[1].Value);
+
+                    // se usa una variable temporal ya que no se puede usar un array en la 
+                    // expresion LINQ "The LINQ expression node type 'ArrayIndex' is not supported in LINQ to Entities"
+                    var tempVar = aux[1];
                     var personasQ = db.Personas
-                                      .Where(p => p.Id == aux[1]);
+                                      .Where(p => p.Id == tempVar);
 
                     mMaskedTextBoxDni.Text = Convert.ToString(personasQ.First().Dni);
                     mMaskedTextBoxCuit.Text = Convert.ToString(personasQ.First().Cuit);
@@ -531,7 +542,7 @@ namespace CSAdminApp.Pantallas
                     // Si tiene telefonos registrados se cargan
 
                     var telefonosQ = db.PersonasTel
-                                       .Where(pt => pt.IdPersona == aux[1]);
+                                       .Where(pt => pt.IdPersona == tempVar);
 
                     if (telefonosQ.Any())
                     {
@@ -564,8 +575,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var tempVar = aux[2];
                         var personaQ = db.Personas
-                                         .Where(p=> p.Id == aux[2]);
+                                         .Where(p=> p.Id == tempVar);
 
                         personaQ.First().Baja = true;
                         db.SaveChanges();
@@ -607,8 +619,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var tempDNI = Convert.ToInt32(bMaskedTextBoxDni.Text);
                         var personaQ = db.Personas
-                                         .Where(p => p.Dni == Convert.ToInt32(bMaskedTextBoxDni.Text));
+                                         .Where(p => p.Dni == tempDNI);
 
                         if (personaQ.Any())
                         {
@@ -640,9 +653,10 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[0].Value);
+                    aux[2] = Convert.ToInt32(bDataGridViewPer.SelectedRows[0].Cells[1].Value);
+                    var tempVar = aux[2];
                     var personaQ = db.Personas
-                                     .Where(p => p.Id == aux[2]);
+                                     .Where(p => p.Id == tempVar);
 
                     bMaskedTextBoxDni.Text = Convert.ToString(personaQ.First().Dni);
                     bTextBoxNombre.Text = personaQ.First().Nombre;
