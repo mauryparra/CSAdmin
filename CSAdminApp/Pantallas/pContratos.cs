@@ -36,7 +36,7 @@ namespace CSAdminApp.Pantallas
             {
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
-                    var sitProf = db.SituacionesProfesionales;
+                    var sitProf = db.SituacionesProfesionales.ToList();
 
                     foreach (var sit in sitProf)
                     {
@@ -47,8 +47,9 @@ namespace CSAdminApp.Pantallas
                     }
 
                     aComboBoxCargo.DataSource = cargos;
+                    mComboBoxCargo.DataSource = cargos;
 
-                    var equipos = db.Equipos;
+                    var equipos = db.Equipos.ToList();
                     aComboBoxEquipo.DataSource = equipos;
                     aComboBoxEquipo.DisplayMember = "Id";
                     aComboBoxEquipo.ValueMember = "Id";
@@ -57,7 +58,7 @@ namespace CSAdminApp.Pantallas
                     mComboBoxEquipo.DisplayMember = "Id";
                     mComboBoxEquipo.ValueMember = "Id";
 
-                    var funciones = db.Funciones;
+                    var funciones = db.Funciones.ToList();
                     aComboBoxFuncion.DataSource = funciones;
                     aComboBoxFuncion.DisplayMember = "Funcion";
                     aComboBoxFuncion.ValueMember = "Id";
@@ -123,7 +124,7 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     var equipos = db.Equipos
-                                    .Where(eq => eq.Id == aComboBoxEquipo.SelectedValue);
+                                    .Where(eq => eq.Id == aComboBoxEquipo.SelectedValue.ToString());
 
                     aTextBoxSede.Text = equipos.First().Ubicacion;
                 }
@@ -142,8 +143,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var dni = Convert.ToDecimal(aMaskedTextBoxDNI.Text);
                         var personas = db.Personas
-                                         .Where(p => p.Dni == Convert.ToDecimal(aMaskedTextBoxDNI.Text));
+                                         .Where(p => p.Dni == dni );
 
                         if (personas.Any())
                         {
@@ -179,8 +181,9 @@ namespace CSAdminApp.Pantallas
                 {
                     if (aMaskedTextBoxDNI.Text.Length > 0)
                     {
+                        var dni = Convert.ToDecimal(aMaskedTextBoxDNI.Text);
                         var personas = db.Personas
-                                         .Where(p => p.Dni == Convert.ToDecimal(aMaskedTextBoxDNI.Text));
+                                         .Where(p => p.Dni == dni);
 
                         if (personas.Any())
                         {
@@ -278,8 +281,9 @@ namespace CSAdminApp.Pantallas
                 // en aux se guarda el Id de persona
                 aux[1] = Convert.ToInt32(mDataGridViewContratos.SelectedRows[0].Cells[1].Value);
 
+                var auxId = aux[1];
                 var personaQ = db.Personas
-                                 .Where(p => p.Id == aux[1]);
+                                 .Where(p => p.Id == auxId);
 
                 mTextBoxNombre.Text = personaQ.First().NombreCompleto;
                 mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
@@ -305,7 +309,7 @@ namespace CSAdminApp.Pantallas
                 mComboBoxOrigen.Text = contratoQ.First().Origen;
 
                 // Carga de combobox para Cargo y Condicion
-                var sitProf = db.SituacionesProfesionales;
+                var sitProf = db.SituacionesProfesionales.ToList();
                 foreach (var sit in sitProf)
                 {
                     if (!cargos.Contains(sit.CargoAbrev))
@@ -318,7 +322,7 @@ namespace CSAdminApp.Pantallas
 
                 condiciones.Clear();
                 var sitCond = db.SituacionesProfesionales
-                                .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue);
+                                .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue.ToString());
 
                 foreach (var cond in sitCond)
                 {
@@ -458,7 +462,7 @@ namespace CSAdminApp.Pantallas
                 {
                     condiciones.Clear();
                     var sitCond = db.SituacionesProfesionales
-                                    .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue);
+                                    .Where(s => s.CargoAbrev == mComboBoxCargo.SelectedValue.ToString());
 
                     foreach (var cond in sitCond)
                     {
@@ -497,15 +501,17 @@ namespace CSAdminApp.Pantallas
                                     aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
                                     if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
                                     {
+                                        var auxId = aux[1];
                                         var ContratosQF = db.Contratos
-                                                            .Where(c => c.PersonaId == aux[1] && c.FechaBaja == null);
+                                                            .Where(c => c.PersonaId == auxId && c.FechaBaja == null);
                                         var bindinglist = entityDataSource.CreateView(ContratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
                                     else
                                     {
+                                        var auxId = aux[1];
                                         var ContratosQF = db.Contratos
-                                                            .Where(c => c.PersonaId == aux[1]);
+                                                            .Where(c => c.PersonaId == auxId);
                                         var bindinglist = entityDataSource.CreateView(ContratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
@@ -518,23 +524,26 @@ namespace CSAdminApp.Pantallas
                                 break;
 
                             case 1:
+                                var dni = Convert.ToDecimal(toolStripTextBoxFiltro.Text);
                                 var personaQF = db.Personas
-                                                  .Where(p => p.Dni == Decimal.Parse(toolStripTextBoxFiltro.Text));
+                                                  .Where(p => p.Dni == dni);
                                 if (personaQF.Any())
                                 {
                                     aux[1] = personaQF.First().Id;
                                     if (toolStripButtonActivos.Checked) // Muestra solo contratos activos
                                     {
+                                        var auxId = aux[1];
                                         var contratosQF = db.Contratos
-                                                            .Where(c => c.PersonaId == aux[1] && c.FechaBaja == null);
+                                                            .Where(c => c.PersonaId == auxId && c.FechaBaja == null);
                                         var bindinglist = entityDataSource.CreateView(contratosQF);
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
                                     else
                                     {
+                                        var auxId = aux[1];
                                         var contratosQF = db.Contratos
-                                                            .Where(c => c.PersonaId == aux[1]);
-                                        var bindinglist = entityDataSource.CreateView(contratosQF);
+                                                            .Where(c => c.PersonaId == auxId);
+                                        var bindinglist = entityDataSource.CreateView(contratosQF.ToList());
                                         mDataGridViewContratos.DataSource = bindinglist;
                                     }
 

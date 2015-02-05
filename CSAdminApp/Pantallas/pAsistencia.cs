@@ -115,8 +115,9 @@ namespace CSAdminApp.Pantallas
                 using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                 {
                     aux[0] = Convert.ToInt32(rDataGridViewPersonas.SelectedRows[0].Cells[0].Value);
+                    var auxId = aux[0];
                     var personaQ = db.Personas
-                                     .Where(p => p.Id == aux[0]);
+                                     .Where(p => p.Id == auxId);
 
                     rTextBoxNombre.Text = personaQ.First().NombreCompleto;
                     rMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
@@ -137,8 +138,9 @@ namespace CSAdminApp.Pantallas
                 {
                     using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                     {
+                        var dni = Convert.ToDecimal(rMaskedTextBoxDNI.Text);
                         var personas = db.Personas
-                                         .Where(p => p.Dni == Convert.ToDecimal(rMaskedTextBoxDNI.Text));
+                                         .Where(p => p.Dni == dni);
 
                         if (personas.Any())
                         {
@@ -174,8 +176,9 @@ namespace CSAdminApp.Pantallas
                     {
                         using (Clases.CSAdminBDEntities db = new Clases.CSAdminBDEntities())
                         {
+                            var auxId = nombresDict[rTextBoxNombre.Text];
                             var personas = db.Personas
-                                             .Where(p => p.Id == nombresDict[rTextBoxNombre.Text]);
+                                             .Where(p => p.Id == auxId);
 
                             rMaskedTextBoxDNI.Text = personas.First().Dni.ToString();
                             aux[0] = nombresDict[rTextBoxNombre.Text];
@@ -326,8 +329,9 @@ namespace CSAdminApp.Pantallas
                 {
                     // Datos Persona
                     aux[1] = Convert.ToInt32(mDataGridViewAsistencia.SelectedRows[0].Cells[1].Value);
+                    var auxId = aux[1];
                     var personaQ = db.Personas
-                                     .Where(i => i.Id == aux[1]);
+                                     .Where(i => i.Id == auxId);
 
                     mTextBoxNombre.Text = personaQ.First().NombreCompleto;
                     mMaskedTextBoxDNI.Text = personaQ.First().Dni.ToString();
@@ -408,8 +412,9 @@ namespace CSAdminApp.Pantallas
                                 if (nombresDict.Keys.Contains(toolStripTextBoxFiltro.Text))
                                 {
                                     aux[1] = nombresDict[toolStripTextBoxFiltro.Text];
+                                    var auxId = aux[1];
                                     var inasistenciasQF = db.Inasistencias
-                                                            .Where(i => i.IdPersona == aux[1]);
+                                                            .Where(i => i.IdPersona == auxId);
                                     var bindinglist = entityDataSource.CreateView(inasistenciasQF);
                                     mDataGridViewAsistencia.DataSource = bindinglist;
                                 }
@@ -426,8 +431,9 @@ namespace CSAdminApp.Pantallas
                                 if (personaQF.Any())
                                 {
                                     aux[1] = personaQF.First().Id;
+                                    var auxId = aux[1];
                                     var inasistenciaQF = db.Inasistencias
-                                                           .Where(i => i.IdPersona == aux[1]);
+                                                           .Where(i => i.IdPersona == auxId);
                                     var bindinglist = entityDataSource.CreateView(inasistenciaQF);
                                     mDataGridViewAsistencia.DataSource = bindinglist;
                                 }
@@ -458,5 +464,6 @@ namespace CSAdminApp.Pantallas
             mDataGridViewAsistencia.DataMember = "Inasistencias";
         }
 #endregion
+
     }
 }
