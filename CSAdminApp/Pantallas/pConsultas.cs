@@ -28,8 +28,8 @@ namespace CSAdminApp.Pantallas
             {
                 lstInasistencias = db.Inasistencias.ToList();
 
-                string exeFolder = Path.GetDirectoryName(Application.StartupPath);
-                string reportPath = Path.Combine(exeFolder, @"Release\Reportes\ReporteAsistencia.rdlc");
+                string exeFolder = Application.StartupPath;
+                string reportPath = Path.Combine(exeFolder, @"Reportes\ReporteAsistencia.rdlc");
 
                 reportViewer.ProcessingMode = ProcessingMode.Local;
                 reportViewer.LocalReport.ReportPath = reportPath;
@@ -48,6 +48,7 @@ namespace CSAdminApp.Pantallas
         private void reportViewer_ReportRefresh(object sender, CancelEventArgs e)
         {
             // TODO
+            MessageBox.Show("TO DO");
         }
     }
 }

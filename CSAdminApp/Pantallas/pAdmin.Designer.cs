@@ -40,14 +40,26 @@
             this.fButtonGuardar = new System.Windows.Forms.Button();
             this.fButtonRecargar = new System.Windows.Forms.Button();
             this.dataGridViewFunciones = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.dataGridViewContratos = new System.Windows.Forms.DataGridView();
             this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageSituacProfesionales = new System.Windows.Forms.TabPage();
             this.sButtonCancelar = new System.Windows.Forms.Button();
             this.sButtonGuardar = new System.Windows.Forms.Button();
             this.sButtonRecargar = new System.Windows.Forms.Button();
             this.dataGridViewSitPro = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageUsuarios = new System.Windows.Forms.TabPage();
             this.uButtonCancelar = new System.Windows.Forms.Button();
             this.uButtonGuardar = new System.Windows.Forms.Button();
@@ -57,18 +69,6 @@
             this.lButtonGuardar = new System.Windows.Forms.Button();
             this.lButtonRecargar = new System.Windows.Forms.Button();
             this.dataGridViewLocalidades = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -219,6 +219,22 @@
             this.dataGridViewFunciones.Size = new System.Drawing.Size(675, 188);
             this.dataGridViewFunciones.TabIndex = 0;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Funcion";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Funcion";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // entityDataSource
+            // 
+            this.entityDataSource.DbContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
+            // 
             // dataGridViewContratos
             // 
             this.dataGridViewContratos.AllowUserToAddRows = false;
@@ -276,6 +292,36 @@
             this.dataGridViewUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewUsuarios.Size = new System.Drawing.Size(675, 374);
             this.dataGridViewUsuarios.TabIndex = 38;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "IdPersona";
+            this.dataGridViewTextBoxColumn7.HeaderText = "IdPersona";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Usuario";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Usuario";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Contra";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Contra";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Rol";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Rol";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Personas";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Personas";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             // 
             // label1
             // 
@@ -377,6 +423,30 @@
             this.dataGridViewSitPro.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewSitPro.Size = new System.Drawing.Size(675, 374);
             this.dataGridViewSitPro.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CargoAbrev";
+            this.dataGridViewTextBoxColumn3.HeaderText = "CargoAbrev";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Cargo";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Cargo";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "CondicionAbrev";
+            this.dataGridViewTextBoxColumn5.HeaderText = "CondicionAbrev";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Condicion";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Condicion";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // tabPageUsuarios
             // 
@@ -528,76 +598,6 @@
             this.dataGridViewLocalidades.Size = new System.Drawing.Size(675, 374);
             this.dataGridViewLocalidades.TabIndex = 38;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Funcion";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Funcion";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // entityDataSource
-            // 
-            this.entityDataSource.DbContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "CargoAbrev";
-            this.dataGridViewTextBoxColumn3.HeaderText = "CargoAbrev";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Cargo";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Cargo";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "CondicionAbrev";
-            this.dataGridViewTextBoxColumn5.HeaderText = "CondicionAbrev";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Condicion";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Condicion";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "IdPersona";
-            this.dataGridViewTextBoxColumn7.HeaderText = "IdPersona";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Usuario";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Usuario";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Contra";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Contra";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Rol";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Rol";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Personas";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Personas";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            // 
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "Id";
@@ -619,8 +619,8 @@
             // 
             // dataGridViewTextBoxColumn15
             // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "PersonaId";
-            this.dataGridViewTextBoxColumn15.HeaderText = "PersonaId";
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "Personas";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
             // 
