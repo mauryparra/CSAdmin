@@ -57,9 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.aDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer2 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape2 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape1 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.aGroupBoxPersona = new System.Windows.Forms.GroupBox();
             this.aTextBoxApellido = new System.Windows.Forms.TextBox();
             this.aLabelApellido = new System.Windows.Forms.Label();
@@ -71,28 +68,7 @@
             this.aLabelDNI = new System.Windows.Forms.Label();
             this.tabPageModificar = new System.Windows.Forms.TabPage();
             this.splitContainerModificar = new System.Windows.Forms.SplitContainer();
-            this.mEntityBindingNavigator = new EFWinforms.EntityBindingNavigator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonActivos = new System.Windows.Forms.ToolStripButton();
             this.mDataGridViewContratos = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaBaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Origen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CargoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CondicionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FuncionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EquipoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.observacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
             this.mButtonEliminar = new System.Windows.Forms.Button();
             this.mButtonCancelar = new System.Windows.Forms.Button();
             this.mGroupBoxPersona = new System.Windows.Forms.GroupBox();
@@ -120,10 +96,26 @@
             this.mLabelBaja = new System.Windows.Forms.Label();
             this.mLabelInicio = new System.Windows.Forms.Label();
             this.mDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.rectangleShape3 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
-            this.rectangleShape4 = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mEntityBindingNavigator = new EFWinforms.EntityBindingNavigator();
+            this.entityDataSource = new EFWinforms.EntityDataSource(this.components);
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxFiltro = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxCampos = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLimpiar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonActivos = new System.Windows.Forms.ToolStripButton();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Personas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaInicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaBaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Origen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CargoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CondicionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FuncionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EquipoId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlContratos.SuspendLayout();
             this.tabPageAlta.SuspendLayout();
             this.aGroupBoxContrato.SuspendLayout();
@@ -137,11 +129,11 @@
             this.splitContainerModificar.Panel1.SuspendLayout();
             this.splitContainerModificar.Panel2.SuspendLayout();
             this.splitContainerModificar.SuspendLayout();
-            this.mEntityBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewContratos)).BeginInit();
             this.mGroupBoxPersona.SuspendLayout();
             this.mGroupBoxContrato.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mNumericUpDownHoras)).BeginInit();
+            this.mEntityBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlContratos
@@ -213,7 +205,6 @@
             this.aGroupBoxContrato.Controls.Add(this.label2);
             this.aGroupBoxContrato.Controls.Add(this.label1);
             this.aGroupBoxContrato.Controls.Add(this.aDateTimePickerInicio);
-            this.aGroupBoxContrato.Controls.Add(this.shapeContainer2);
             this.aGroupBoxContrato.Location = new System.Drawing.Point(17, 129);
             this.aGroupBoxContrato.Name = "aGroupBoxContrato";
             this.aGroupBoxContrato.Size = new System.Drawing.Size(641, 254);
@@ -473,37 +464,6 @@
             this.aDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
             this.aDateTimePickerInicio.TabIndex = 0;
             // 
-            // shapeContainer2
-            // 
-            this.shapeContainer2.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer2.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer2.Name = "shapeContainer2";
-            this.shapeContainer2.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape2,
-            this.rectangleShape1});
-            this.shapeContainer2.Size = new System.Drawing.Size(635, 234);
-            this.shapeContainer2.TabIndex = 7;
-            this.shapeContainer2.TabStop = false;
-            // 
-            // rectangleShape2
-            // 
-            this.rectangleShape2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rectangleShape2.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape2.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape2.BorderWidth = 3;
-            this.rectangleShape2.Location = new System.Drawing.Point(437, 12);
-            this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape1
-            // 
-            this.rectangleShape1.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape1.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape1.BorderWidth = 3;
-            this.rectangleShape1.Location = new System.Drawing.Point(84, 13);
-            this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(102, 24);
-            // 
             // aGroupBoxPersona
             // 
             this.aGroupBoxPersona.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -643,95 +603,6 @@
             this.splitContainerModificar.SplitterDistance = 170;
             this.splitContainerModificar.TabIndex = 7;
             // 
-            // mEntityBindingNavigator
-            // 
-            this.mEntityBindingNavigator.DataMember = "Inasistencias";
-            this.mEntityBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.mEntityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel1,
-            this.toolStripTextBoxFiltro,
-            this.toolStripLabel2,
-            this.toolStripComboBoxCampos,
-            this.toolStripButtonFiltrar,
-            this.toolStripButtonLimpiar,
-            this.toolStripButtonActivos});
-            this.mEntityBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.mEntityBindingNavigator.Name = "mEntityBindingNavigator";
-            this.mEntityBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.mEntityBindingNavigator.ShowAddRemoveButtons = false;
-            this.mEntityBindingNavigator.ShowNavigationButtons = false;
-            this.mEntityBindingNavigator.ShowSaveUndoRefreshButtons = false;
-            this.mEntityBindingNavigator.Size = new System.Drawing.Size(671, 25);
-            this.mEntityBindingNavigator.TabIndex = 3;
-            this.mEntityBindingNavigator.Text = "entityBindingNavigator1";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(40, 22);
-            this.toolStripLabel1.Text = "Filtrar:";
-            // 
-            // toolStripTextBoxFiltro
-            // 
-            this.toolStripTextBoxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.toolStripTextBoxFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.toolStripTextBoxFiltro.BackColor = System.Drawing.Color.MistyRose;
-            this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
-            this.toolStripTextBoxFiltro.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(20, 22);
-            this.toolStripLabel2.Text = "en";
-            // 
-            // toolStripComboBoxCampos
-            // 
-            this.toolStripComboBoxCampos.BackColor = System.Drawing.Color.MistyRose;
-            this.toolStripComboBoxCampos.Items.AddRange(new object[] {
-            "Nombre",
-            "DNI"});
-            this.toolStripComboBoxCampos.Name = "toolStripComboBoxCampos";
-            this.toolStripComboBoxCampos.Size = new System.Drawing.Size(121, 25);
-            this.toolStripComboBoxCampos.Text = "Nombre";
-            // 
-            // toolStripButtonFiltrar
-            // 
-            this.toolStripButtonFiltrar.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.toolStripButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFiltrar.Image")));
-            this.toolStripButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonFiltrar.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
-            this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
-            this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
-            this.toolStripButtonFiltrar.Text = "Filtrar";
-            this.toolStripButtonFiltrar.Click += new System.EventHandler(this.toolStripButtonFiltrar_Click);
-            // 
-            // toolStripButtonLimpiar
-            // 
-            this.toolStripButtonLimpiar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.toolStripButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLimpiar.Image")));
-            this.toolStripButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonLimpiar.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
-            this.toolStripButtonLimpiar.Name = "toolStripButtonLimpiar";
-            this.toolStripButtonLimpiar.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButtonLimpiar.Text = "Limpiar";
-            this.toolStripButtonLimpiar.Click += new System.EventHandler(this.toolStripButtonLimpiar_Click);
-            // 
-            // toolStripButtonActivos
-            // 
-            this.toolStripButtonActivos.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripButtonActivos.CheckOnClick = true;
-            this.toolStripButtonActivos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonActivos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonActivos.Image")));
-            this.toolStripButtonActivos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonActivos.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
-            this.toolStripButtonActivos.Name = "toolStripButtonActivos";
-            this.toolStripButtonActivos.Size = new System.Drawing.Size(50, 22);
-            this.toolStripButtonActivos.Text = "Activos";
-            this.toolStripButtonActivos.CheckedChanged += new System.EventHandler(this.toolStripButtonActivos_CheckedChanged);
-            // 
             // mDataGridViewContratos
             // 
             this.mDataGridViewContratos.AllowUserToAddRows = false;
@@ -751,10 +622,7 @@
             this.CargoId,
             this.CondicionId,
             this.FuncionId,
-            this.EquipoId,
-            this.horasDataGridViewTextBoxColumn,
-            this.observacionDataGridViewTextBoxColumn});
-            this.mDataGridViewContratos.DataMember = "Contratos";
+            this.EquipoId});
             this.mDataGridViewContratos.DataSource = this.entityDataSource;
             this.mDataGridViewContratos.Location = new System.Drawing.Point(0, 27);
             this.mDataGridViewContratos.Name = "mDataGridViewContratos";
@@ -763,95 +631,6 @@
             this.mDataGridViewContratos.Size = new System.Drawing.Size(671, 138);
             this.mDataGridViewContratos.TabIndex = 2;
             this.mDataGridViewContratos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mDataGridViewContratos_CellMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // PersonaId
-            // 
-            this.PersonaId.DataPropertyName = "PersonaId";
-            this.PersonaId.HeaderText = "PersonaId";
-            this.PersonaId.Name = "PersonaId";
-            this.PersonaId.ReadOnly = true;
-            this.PersonaId.Visible = false;
-            // 
-            // Personas
-            // 
-            this.Personas.DataPropertyName = "Personas";
-            this.Personas.HeaderText = "Personas";
-            this.Personas.Name = "Personas";
-            this.Personas.ReadOnly = true;
-            // 
-            // FechaInicio
-            // 
-            this.FechaInicio.DataPropertyName = "FechaInicio";
-            this.FechaInicio.HeaderText = "Fecha Inicio";
-            this.FechaInicio.Name = "FechaInicio";
-            this.FechaInicio.ReadOnly = true;
-            // 
-            // FechaBaja
-            // 
-            this.FechaBaja.DataPropertyName = "FechaBaja";
-            this.FechaBaja.HeaderText = "Fecha Baja";
-            this.FechaBaja.Name = "FechaBaja";
-            this.FechaBaja.ReadOnly = true;
-            // 
-            // Origen
-            // 
-            this.Origen.DataPropertyName = "Origen";
-            this.Origen.HeaderText = "Origen";
-            this.Origen.Name = "Origen";
-            this.Origen.ReadOnly = true;
-            // 
-            // CargoId
-            // 
-            this.CargoId.DataPropertyName = "CargoId";
-            this.CargoId.HeaderText = "Cargo";
-            this.CargoId.Name = "CargoId";
-            this.CargoId.ReadOnly = true;
-            // 
-            // CondicionId
-            // 
-            this.CondicionId.DataPropertyName = "CondicionId";
-            this.CondicionId.HeaderText = "Condicion";
-            this.CondicionId.Name = "CondicionId";
-            this.CondicionId.ReadOnly = true;
-            // 
-            // FuncionId
-            // 
-            this.FuncionId.DataPropertyName = "FuncionId";
-            this.FuncionId.HeaderText = "Funcion";
-            this.FuncionId.Name = "FuncionId";
-            this.FuncionId.ReadOnly = true;
-            // 
-            // EquipoId
-            // 
-            this.EquipoId.DataPropertyName = "EquipoId";
-            this.EquipoId.HeaderText = "Equipo";
-            this.EquipoId.Name = "EquipoId";
-            this.EquipoId.ReadOnly = true;
-            // 
-            // horasDataGridViewTextBoxColumn
-            // 
-            this.horasDataGridViewTextBoxColumn.DataPropertyName = "Horas";
-            this.horasDataGridViewTextBoxColumn.HeaderText = "Horas";
-            this.horasDataGridViewTextBoxColumn.Name = "horasDataGridViewTextBoxColumn";
-            this.horasDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // observacionDataGridViewTextBoxColumn
-            // 
-            this.observacionDataGridViewTextBoxColumn.DataPropertyName = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.HeaderText = "Observacion";
-            this.observacionDataGridViewTextBoxColumn.Name = "observacionDataGridViewTextBoxColumn";
-            this.observacionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // entityDataSource
-            // 
-            this.entityDataSource.ObjectContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
             // 
             // mButtonEliminar
             // 
@@ -980,7 +759,6 @@
             this.mGroupBoxContrato.Controls.Add(this.mLabelBaja);
             this.mGroupBoxContrato.Controls.Add(this.mLabelInicio);
             this.mGroupBoxContrato.Controls.Add(this.mDateTimePickerInicio);
-            this.mGroupBoxContrato.Controls.Add(this.shapeContainer1);
             this.mGroupBoxContrato.Location = new System.Drawing.Point(3, 64);
             this.mGroupBoxContrato.Name = "mGroupBoxContrato";
             this.mGroupBoxContrato.Size = new System.Drawing.Size(665, 139);
@@ -1189,41 +967,176 @@
             this.mDateTimePickerInicio.Size = new System.Drawing.Size(99, 21);
             this.mDateTimePickerInicio.TabIndex = 1;
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(3, 17);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.rectangleShape3,
-            this.rectangleShape4});
-            this.shapeContainer1.Size = new System.Drawing.Size(659, 119);
-            this.shapeContainer1.TabIndex = 11;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // rectangleShape3
-            // 
-            this.rectangleShape3.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape3.BorderColor = System.Drawing.Color.Aquamarine;
-            this.rectangleShape3.BorderWidth = 3;
-            this.rectangleShape3.Location = new System.Drawing.Point(62, 37);
-            this.rectangleShape3.Name = "rectangleShape2";
-            this.rectangleShape3.Size = new System.Drawing.Size(102, 24);
-            // 
-            // rectangleShape4
-            // 
-            this.rectangleShape4.BackColor = System.Drawing.Color.Transparent;
-            this.rectangleShape4.BorderColor = System.Drawing.Color.MistyRose;
-            this.rectangleShape4.BorderWidth = 3;
-            this.rectangleShape4.Location = new System.Drawing.Point(62, 1);
-            this.rectangleShape4.Name = "rectangleShape1";
-            this.rectangleShape4.Size = new System.Drawing.Size(102, 24);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "Personas";
             this.dataGridViewTextBoxColumn1.HeaderText = "Personas";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // mEntityBindingNavigator
+            // 
+            this.mEntityBindingNavigator.DataMember = "Inasistencias";
+            this.mEntityBindingNavigator.DataSource = this.entityDataSource;
+            this.mEntityBindingNavigator.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.mEntityBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.toolStripTextBoxFiltro,
+            this.toolStripLabel2,
+            this.toolStripComboBoxCampos,
+            this.toolStripButtonFiltrar,
+            this.toolStripButtonLimpiar,
+            this.toolStripButtonActivos});
+            this.mEntityBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.mEntityBindingNavigator.Name = "mEntityBindingNavigator";
+            this.mEntityBindingNavigator.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.mEntityBindingNavigator.ShowAddRemoveButtons = false;
+            this.mEntityBindingNavigator.ShowNavigationButtons = false;
+            this.mEntityBindingNavigator.ShowSaveUndoRefreshButtons = false;
+            this.mEntityBindingNavigator.Size = new System.Drawing.Size(671, 25);
+            this.mEntityBindingNavigator.TabIndex = 3;
+            this.mEntityBindingNavigator.Text = "entityBindingNavigator1";
+            // 
+            // entityDataSource
+            // 
+            this.entityDataSource.DbContextType = typeof(CSAdminApp.Clases.CSAdminBDEntities);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(40, 22);
+            this.toolStripLabel1.Text = "Filtrar:";
+            // 
+            // toolStripTextBoxFiltro
+            // 
+            this.toolStripTextBoxFiltro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.toolStripTextBoxFiltro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBoxFiltro.BackColor = System.Drawing.Color.MistyRose;
+            this.toolStripTextBoxFiltro.Name = "toolStripTextBoxFiltro";
+            this.toolStripTextBoxFiltro.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(20, 22);
+            this.toolStripLabel2.Text = "en";
+            // 
+            // toolStripComboBoxCampos
+            // 
+            this.toolStripComboBoxCampos.BackColor = System.Drawing.Color.MistyRose;
+            this.toolStripComboBoxCampos.Items.AddRange(new object[] {
+            "Nombre",
+            "DNI"});
+            this.toolStripComboBoxCampos.Name = "toolStripComboBoxCampos";
+            this.toolStripComboBoxCampos.Size = new System.Drawing.Size(121, 25);
+            this.toolStripComboBoxCampos.Text = "Nombre";
+            // 
+            // toolStripButtonFiltrar
+            // 
+            this.toolStripButtonFiltrar.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.toolStripButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonFiltrar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFiltrar.Image")));
+            this.toolStripButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFiltrar.Margin = new System.Windows.Forms.Padding(0, 1, 2, 2);
+            this.toolStripButtonFiltrar.Name = "toolStripButtonFiltrar";
+            this.toolStripButtonFiltrar.Size = new System.Drawing.Size(41, 22);
+            this.toolStripButtonFiltrar.Text = "Filtrar";
+            this.toolStripButtonFiltrar.Click += new System.EventHandler(this.toolStripButtonFiltrar_Click);
+            // 
+            // toolStripButtonLimpiar
+            // 
+            this.toolStripButtonLimpiar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.toolStripButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLimpiar.Image")));
+            this.toolStripButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLimpiar.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
+            this.toolStripButtonLimpiar.Name = "toolStripButtonLimpiar";
+            this.toolStripButtonLimpiar.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButtonLimpiar.Text = "Limpiar";
+            this.toolStripButtonLimpiar.Click += new System.EventHandler(this.toolStripButtonLimpiar_Click);
+            // 
+            // toolStripButtonActivos
+            // 
+            this.toolStripButtonActivos.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripButtonActivos.CheckOnClick = true;
+            this.toolStripButtonActivos.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonActivos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonActivos.Image")));
+            this.toolStripButtonActivos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonActivos.Margin = new System.Windows.Forms.Padding(2, 1, 0, 2);
+            this.toolStripButtonActivos.Name = "toolStripButtonActivos";
+            this.toolStripButtonActivos.Size = new System.Drawing.Size(50, 22);
+            this.toolStripButtonActivos.Text = "Activos";
+            this.toolStripButtonActivos.CheckedChanged += new System.EventHandler(this.toolStripButtonActivos_CheckedChanged);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // PersonaId
+            // 
+            this.PersonaId.DataPropertyName = "PersonaId";
+            this.PersonaId.HeaderText = "PersonaId";
+            this.PersonaId.Name = "PersonaId";
+            this.PersonaId.ReadOnly = true;
+            this.PersonaId.Visible = false;
+            // 
+            // Personas
+            // 
+            this.Personas.DataPropertyName = "Personas";
+            this.Personas.HeaderText = "Personas";
+            this.Personas.Name = "Personas";
+            this.Personas.ReadOnly = true;
+            // 
+            // FechaInicio
+            // 
+            this.FechaInicio.DataPropertyName = "FechaInicio";
+            this.FechaInicio.HeaderText = "Fecha Inicio";
+            this.FechaInicio.Name = "FechaInicio";
+            this.FechaInicio.ReadOnly = true;
+            // 
+            // FechaBaja
+            // 
+            this.FechaBaja.DataPropertyName = "FechaBaja";
+            this.FechaBaja.HeaderText = "Fecha Baja";
+            this.FechaBaja.Name = "FechaBaja";
+            this.FechaBaja.ReadOnly = true;
+            // 
+            // Origen
+            // 
+            this.Origen.DataPropertyName = "Origen";
+            this.Origen.HeaderText = "Origen";
+            this.Origen.Name = "Origen";
+            this.Origen.ReadOnly = true;
+            // 
+            // CargoId
+            // 
+            this.CargoId.DataPropertyName = "CargoId";
+            this.CargoId.HeaderText = "Cargo";
+            this.CargoId.Name = "CargoId";
+            this.CargoId.ReadOnly = true;
+            // 
+            // CondicionId
+            // 
+            this.CondicionId.DataPropertyName = "CondicionId";
+            this.CondicionId.HeaderText = "Condicion";
+            this.CondicionId.Name = "CondicionId";
+            this.CondicionId.ReadOnly = true;
+            // 
+            // FuncionId
+            // 
+            this.FuncionId.DataPropertyName = "FuncionId";
+            this.FuncionId.HeaderText = "Funcion";
+            this.FuncionId.Name = "FuncionId";
+            this.FuncionId.ReadOnly = true;
+            // 
+            // EquipoId
+            // 
+            this.EquipoId.DataPropertyName = "EquipoId";
+            this.EquipoId.HeaderText = "Equipo";
+            this.EquipoId.Name = "EquipoId";
+            this.EquipoId.ReadOnly = true;
             // 
             // pContratos
             // 
@@ -1251,14 +1164,14 @@
             this.splitContainerModificar.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerModificar)).EndInit();
             this.splitContainerModificar.ResumeLayout(false);
-            this.mEntityBindingNavigator.ResumeLayout(false);
-            this.mEntityBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mDataGridViewContratos)).EndInit();
             this.mGroupBoxPersona.ResumeLayout(false);
             this.mGroupBoxPersona.PerformLayout();
             this.mGroupBoxContrato.ResumeLayout(false);
             this.mGroupBoxContrato.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mNumericUpDownHoras)).EndInit();
+            this.mEntityBindingNavigator.ResumeLayout(false);
+            this.mEntityBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1302,9 +1215,6 @@
         internal System.Windows.Forms.Button aButtonCancelar;
         internal System.Windows.Forms.Button aButtonGuardar;
         private System.Windows.Forms.NumericUpDown aNumericUpDownHoras;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer2;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape2;
         private System.Windows.Forms.SplitContainer splitContainerModificar;
         private EFWinforms.EntityBindingNavigator mEntityBindingNavigator;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
@@ -1330,23 +1240,8 @@
         private System.Windows.Forms.Label mLabelBaja;
         private System.Windows.Forms.Label mLabelInicio;
         private System.Windows.Forms.DateTimePicker mDateTimePickerInicio;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape3;
-        private Microsoft.VisualBasic.PowerPacks.RectangleShape rectangleShape4;
         private System.Windows.Forms.ToolStripButton toolStripButtonActivos;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonaId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Personas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaBaja;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Origen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CargoId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CondicionId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FuncionId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EquipoId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn horasDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn observacionDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox mComboBoxOrigen;
         private System.Windows.Forms.Label mLabelObs;
         private System.Windows.Forms.NumericUpDown mNumericUpDownHoras;
@@ -1359,5 +1254,15 @@
         private System.Windows.Forms.ComboBox mComboBoxCondicion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonaId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Personas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaInicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaBaja;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Origen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CargoId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CondicionId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FuncionId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EquipoId;
     }
 }

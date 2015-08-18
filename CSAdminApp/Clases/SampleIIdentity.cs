@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Principal;
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Core.Objects.DataClasses;
 
 namespace CSAdminApp.Clases
 {
@@ -62,10 +62,8 @@ namespace CSAdminApp.Clases
         private bool IsValidNameAndPassword(string name, string pass)
         {
             CSAdminBDEntities dataContext = new CSAdminBDEntities();
-            ObjectQuery<Usuarios> usuariosQ =
-                dataContext.Usuarios.Where("it.Usuario = @usuario AND it.Contra = @pass ");
-            usuariosQ.Parameters.Add(new ObjectParameter("usuario", name));
-            usuariosQ.Parameters.Add(new ObjectParameter("pass", pass));
+            var usuariosQ = dataContext.Usuarios
+                                       .Where(u => u.Usuario == name && u.Contra == pass );
 
             if (usuariosQ.Any())
             {

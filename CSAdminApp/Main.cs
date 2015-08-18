@@ -51,12 +51,7 @@ namespace CSAdminApp
                 toolStripProgressBar.MarqueeAnimationSpeed = 30;
                 toolStripProgressBar.Visible = true;
 
-                this.limpiarPanel();
-
-                // codigo pantalla
-                Pantallas.pPersonal pantallaPersonal = new Pantallas.pPersonal();
-                pantallaPersonal.Dock = DockStyle.Fill;
-                splitContainer.Panel2.Controls.Add(pantallaPersonal);
+                this.adminPantalla("pPersonal");
 
                 toolStripProgressBar.Visible = false;
             }
@@ -64,12 +59,72 @@ namespace CSAdminApp
 
         #region GUI
 
-        // Elimina las pantallas que se agregan al Panel2 del SplitContainer
-        private void limpiarPanel()
+        // Si la pantalla solicitada existe la muestra,
+        // oculta el resto de ventanas y si no existe la crea.
+        private void adminPantalla(String ctrlName)
         {
+            bool flag = false;
             foreach (Control ctrl in splitContainer.Panel2.Controls)
             {
-                splitContainer.Panel2.Controls.Remove(ctrl);
+                if (ctrlName == ctrl.Name)
+                {
+                    ctrl.Show();
+                    flag = true;
+                }
+                else
+                {
+                    ctrl.Hide();
+                }
+            }
+
+            if (flag == false)
+            {
+                switch (ctrlName)
+                {
+                    case "pPersonal":
+                        Pantallas.pPersonal pantallaPersonal = new Pantallas.pPersonal();
+                        pantallaPersonal.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaPersonal);
+                        break;
+
+                    case "pContratos":
+                        Pantallas.pContratos pantallaContratos = new Pantallas.pContratos();
+                        pantallaContratos.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaContratos);
+                        break;
+
+                    case "pAsistencia":
+                        Pantallas.pAsistencia pantallaAsistencia = new Pantallas.pAsistencia();
+                        pantallaAsistencia.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaAsistencia);
+                        break;
+
+                    case "pEquipos":
+                        Pantallas.pEquipos pantallaEquipos = new Pantallas.pEquipos();
+                        pantallaEquipos.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaEquipos);
+                        break;
+
+                    case "pConsultas":
+                        Pantallas.pConsultas pantallaConsultas = new Pantallas.pConsultas();
+                        pantallaConsultas.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaConsultas);
+                        break;
+
+                    case "pCertificados":
+
+                        break;
+
+                    case "pAdmin":
+                        Pantallas.pAdmin pantallaAdmin = new Pantallas.pAdmin();
+                        pantallaAdmin.Dock = DockStyle.Fill;
+                        splitContainer.Panel2.Controls.Add(pantallaAdmin);
+                        break;
+
+                    default:
+                        MessageBox.Show("Error al administrar pantalla");
+                        break;
+                }
             }
         }
 
@@ -82,7 +137,7 @@ namespace CSAdminApp
 
         private void acercaDeCSAdminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AcercaDe acerca = new AcercaDe("Acerca de CSAdmin", "http://mauryparra.com.ar/");
+            AcercaDe acerca = new AcercaDe();
             acerca.ShowDialog();
         }
 
@@ -101,12 +156,7 @@ namespace CSAdminApp
                 toolStripProgressBar.MarqueeAnimationSpeed = 30;
                 toolStripProgressBar.Visible = true;
 
-                this.limpiarPanel();
-
-                // codigo pantalla
-                Pantallas.pPersonal pantallaPersonal = new Pantallas.pPersonal();
-                pantallaPersonal.Dock = DockStyle.Fill;
-                splitContainer.Panel2.Controls.Add(pantallaPersonal);
+                this.adminPantalla("pPersonal");
 
                 toolStripProgressBar.Visible = false;
             }
@@ -119,12 +169,7 @@ namespace CSAdminApp
             toolStripProgressBar.MarqueeAnimationSpeed = 30;
             toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
-
-            // codigo pantalla
-            Pantallas.pContratos pantallaContratos = new Pantallas.pContratos();
-            pantallaContratos.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(pantallaContratos);
+            this.adminPantalla("pContratos");
 
             toolStripProgressBar.Visible = false;
         }
@@ -136,12 +181,7 @@ namespace CSAdminApp
             toolStripProgressBar.MarqueeAnimationSpeed = 30;
             toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
-
-            // codigo pantalla
-            Pantallas.pAsistencia pantallaAsistencia = new Pantallas.pAsistencia();
-            pantallaAsistencia.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(pantallaAsistencia);
+            this.adminPantalla("pAsistencia");
 
             toolStripProgressBar.Visible = false;
         }
@@ -155,12 +195,7 @@ namespace CSAdminApp
                 toolStripProgressBar.MarqueeAnimationSpeed = 30;
                 toolStripProgressBar.Visible = true;
 
-                this.limpiarPanel();
-
-                // codigo pantalla
-                Pantallas.pEquipos pantallaEquipos = new Pantallas.pEquipos();
-                pantallaEquipos.Dock = DockStyle.Fill;
-                splitContainer.Panel2.Controls.Add(pantallaEquipos);
+                this.adminPantalla("pEquipos");
 
                 toolStripProgressBar.Visible = false;
             }
@@ -173,10 +208,7 @@ namespace CSAdminApp
             toolStripProgressBar.MarqueeAnimationSpeed = 30;
             toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
-
-            // codigo pantalla
-
+            this.adminPantalla("pConsultas");
 
             toolStripProgressBar.Visible = false;
         }
@@ -188,10 +220,7 @@ namespace CSAdminApp
             toolStripProgressBar.MarqueeAnimationSpeed = 30;
             toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
-
-            // codigo pantalla
-
+            this.adminPantalla("");
 
             toolStripProgressBar.Visible = false;
         }
@@ -203,13 +232,7 @@ namespace CSAdminApp
             toolStripProgressBar.MarqueeAnimationSpeed = 30;
             toolStripProgressBar.Visible = true;
 
-            this.limpiarPanel();
-
-            // codigo pantalla
-            Pantallas.pAdmin pantallaAdmin = new Pantallas.pAdmin();
-            pantallaAdmin.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Add(pantallaAdmin);
-
+            this.adminPantalla("pAdmin");
 
             toolStripProgressBar.Visible = false;
         }
